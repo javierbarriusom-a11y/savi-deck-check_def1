@@ -1,0 +1,3492 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Savi · Customer Engagement Solutions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   SAVI — Customer Engagement Solutions Deck
+   Editorial-minimal, type-driven, agency vibe
+   ============================================ */
+
+:root {
+  --bg: #f4f1ea;
+  --bg-2: #ece8de;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a48;
+  --ink-mute: #8a8780;
+  --line: #1a1a1a;
+  --line-soft: #d4cfc1;
+  --accent: #ff4d1f;        /* signal orange */
+  --accent-2: #1a1a1a;
+  --paper: #fafaf7;
+  --invert-bg: #0e0e0c;
+  --invert-ink: #f4f1ea;
+
+  --serif: "Instrument Serif", "Times New Roman", serif;
+  --sans: "Geist", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --pad-x: 80px;
+  --pad-y: 64px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #000;
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+deck-stage > section {
+  width: 1920px;
+  height: 1080px;
+  background: var(--bg);
+  color: var(--ink);
+  position: relative;
+  overflow: hidden;
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+}
+
+/* ---------- Type scale ---------- */
+.display {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 220px;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  text-wrap: pretty;
+}
+.display.s {
+  font-size: 144px;
+}
+.display.xs {
+  font-size: 96px;
+}
+.h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 110px;
+  line-height: 0.96;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
+.h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 76px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+.h4 {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+}
+.body-l { font-size: 28px; line-height: 1.45; color: var(--ink-soft); text-wrap: pretty; }
+.body { font-size: 24px; line-height: 1.5; color: var(--ink-soft); text-wrap: pretty; }
+.body-s { font-size: 22px; line-height: 1.5; color: var(--ink-soft); }
+
+.eyebrow, .label, .meta {
+  font-family: var(--mono);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.eyebrow.lg { font-size: 26px; }
+.eyebrow .dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  margin-right: 12px;
+  transform: translateY(-2px);
+}
+
+/* ---------- Layout primitives ---------- */
+.frame {
+  position: absolute;
+  inset: 0;
+  padding: var(--pad-y) var(--pad-x);
+  display: flex;
+  flex-direction: column;
+}
+.frame.justify-between { justify-content: space-between; }
+.frame.center { justify-content: center; }
+
+.row { display: flex; gap: 32px; }
+.col { display: flex; flex-direction: column; gap: 16px; }
+.between { justify-content: space-between; }
+.ai-end { align-items: flex-end; }
+.ai-center { align-items: center; }
+.flex1 { flex: 1; min-width: 0; }
+.grow { flex: 1; }
+
+.divider {
+  height: 1px;
+  background: var(--line);
+  width: 100%;
+}
+.divider.soft { background: var(--line-soft); }
+
+.rule-top { border-top: 1px solid var(--line); padding-top: 24px; }
+.rule-top.soft { border-top: 1px solid var(--line-soft); }
+
+/* ---------- Header / footer chrome ---------- */
+.deck-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.deck-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  margin-top: auto;
+}
+.wordmark {
+  font-family: var(--serif);
+  font-size: 32px;
+  letter-spacing: -0.02em;
+}
+.wordmark .dot { color: var(--accent); }
+
+/* ---------- Inverted slides ---------- */
+.invert { background: var(--invert-bg) !important; color: var(--invert-ink); }
+.invert .body-l, .invert .body, .invert .body-s, .invert .eyebrow, .invert .label, .invert .meta { color: rgba(244,241,234,0.65); }
+.invert .deck-header, .invert .deck-footer { border-color: rgba(244,241,234,0.18); }
+.invert .divider { background: rgba(244,241,234,0.18); }
+.invert .divider.soft { background: rgba(244,241,234,0.12); }
+.invert .rule-top { border-top-color: rgba(244,241,234,0.18); }
+.invert .rule-top.soft { border-top-color: rgba(244,241,234,0.12); }
+
+/* ---------- Pills, tags ---------- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 22px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: transparent;
+}
+.pill.solid { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.pill.accent { background: var(--accent); color: #fff; border-color: var(--accent); }
+.invert .pill { border-color: rgba(244,241,234,0.3); color: var(--invert-ink); }
+.invert .pill.solid { background: var(--invert-ink); color: var(--invert-bg); border-color: var(--invert-ink); }
+
+.tag {
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgba(26,26,26,0.06);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 22px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.invert .tag { background: rgba(244,241,234,0.1); color: rgba(244,241,234,0.7); }
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+.card.no-border { border: none; }
+.card.soft { background: var(--bg-2); border: none; }
+.card.dark { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.card.dark .body, .card.dark .body-s, .card.dark .label, .card.dark .meta { color: rgba(244,241,234,0.7); }
+.card.accent { background: var(--accent); color: #fff; border-color: var(--accent); }
+.card.accent .body, .card.accent .body-s, .card.accent .label, .card.accent .meta { color: rgba(255,255,255,0.85); }
+
+/* ---------- Stat / number ---------- */
+.stat-num {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 180px;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+.stat-num.s { font-size: 120px; }
+
+/* ---------- Index dot ---------- */
+.idx {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--ink-mute);
+}
+
+/* ---------- Marquee ---------- */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: inline-flex;
+  animation: marquee 40s linear infinite;
+  gap: 80px;
+  padding-right: 80px;
+}
+
+/* ---------- Phone mockup (slide-scale, 1920×1080) ---------- */
+.phone {
+  width: 600px;
+  height: 1240px;
+  background: #111;
+  border-radius: 70px;
+  padding: 18px;
+  box-shadow: 0 40px 80px -30px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,0,0,0.5);
+  position: relative;
+}
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background: #ECE5DD;
+  border-radius: 56px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.phone-notch {
+  position: absolute;
+  top: 18px; left: 50%;
+  transform: translateX(-50%);
+  width: 180px; height: 44px;
+  background: #000;
+  border-radius: 22px;
+  z-index: 10;
+}
+
+/* ---------- WhatsApp specific ---------- */
+.wa-header {
+  background: #075E54;
+  color: #fff;
+  padding: 70px 24px 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 24px;
+}
+.wa-avatar {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-weight: 600;
+  color: #fff;
+  font-size: 28px;
+}
+.wa-body {
+  flex: 1;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(0,0,0,0.04) 0 1px, transparent 1px),
+    #ECE5DD;
+  background-size: 24px 24px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: hidden;
+}
+.wa-msg {
+  max-width: 78%;
+  background: #fff;
+  border-radius: 12px 12px 12px 0;
+  padding: 16px 18px;
+  font-size: 24px;
+  line-height: 1.35;
+  color: #111;
+  box-shadow: 0 1px 0.5px rgba(0,0,0,0.08);
+}
+.wa-msg.mine {
+  align-self: flex-end;
+  background: #DCF8C6;
+  border-radius: 12px 12px 0 12px;
+}
+.wa-msg .ts {
+  font-size: 22px;
+  color: #888;
+  margin-top: 6px;
+  text-align: right;
+}
+.wa-msg .btn {
+  display: block;
+  margin-top: 12px;
+  padding: 12px 16px;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  text-align: center;
+  color: #075E54;
+  font-weight: 600;
+  font-size: 24px;
+}
+.wa-msg .heading {
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+.wa-input {
+  background: #f0f0f0;
+  padding: 14px 22px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.wa-input .input-bubble {
+  flex: 1;
+  background: #fff;
+  border-radius: 24px;
+  padding: 12px 20px;
+  font-size: 24px;
+  color: #888;
+}
+
+/* ---------- Slide number / chrome ---------- */
+.slide-num {
+  font-family: var(--mono);
+  font-size: 24px;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- Misc ---------- */
+.accent-text { color: var(--accent); }
+.serif { font-family: var(--serif); }
+.mono { font-family: var(--mono); }
+.tabular { font-variant-numeric: tabular-nums; }
+
+.underline-title {
+  display: inline-block;
+  padding-bottom: 6px;
+  border-bottom: 2px solid currentColor;
+}
+
+/* Faux brand logos */
+.brand-logo {
+  font-family: var(--serif);
+  font-size: 38px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  opacity: 0.85;
+  white-space: nowrap;
+}
+.invert .brand-logo { color: var(--invert-ink); }
+
+.brand-logo.sans {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.brand-logo.mono {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* ---------- Animated dot ---------- */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+.live-dot {
+  display: inline-block;
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 1.6s ease-in-out infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* ---------- Grid tiles helper ---------- */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+
+/* ---------- Asymmetric layouts ---------- */
+.split-7-5 {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 56px;
+  height: 100%;
+}
+.split-5-7 {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 56px;
+  height: 100%;
+}
+
+/* ---------- Big bracket ---------- */
+.bracket {
+  position: relative;
+  padding: 0 24px;
+}
+.bracket::before, .bracket::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 12px;
+  border: 2px solid currentColor;
+}
+.bracket::before { left: 0; border-right: none; }
+.bracket::after { right: 0; border-left: none; }
+
+/* ---------- Hover lift ---------- */
+.lift { transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.lift:hover { transform: translateY(-4px); }
+
+/* product chip */
+.chip-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip {
+  font-family: var(--mono);
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border: 1px solid currentColor;
+  opacity: 0.7;
+}
+
+/* dashboard mockup */
+.dash {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 24px;
+  font-family: var(--sans);
+}
+.dash-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 100px;
+}
+.dash-bar > div {
+  flex: 1;
+  background: var(--ink);
+  position: relative;
+}
+.dash-bar > div.hi { background: var(--accent); }
+
+/* sparkline */
+svg.spark { display: block; width: 100%; height: 60px; }
+
+</style>
+<style>
+/* ============================================
+   SAVI LANDING — corporate teal theme overrides
+   Layered ON TOP of styles.css to repaint the
+   slide components as scrollable landing sections.
+   ============================================ */
+
+:root {
+  /* Savi corporate palette */
+  --bg: #f4f1ea;
+  --bg-2: #ece8de;
+  --paper: #ffffff;
+  --ink: #0a2e2b;
+  --ink-soft: #2d4f4b;
+  --ink-mute: #6b8884;
+  --line: #0a2e2b;
+  --line-soft: #c5d3d0;
+  --accent: #5dd4c1;       /* turquoise */
+  --accent-deep: #0a4f47;  /* deep teal */
+  --accent-mid: #1a6b63;
+  --accent-2: #0a2e2b;
+  --invert-bg: #0a2e2b;
+  --invert-ink: #f4f1ea;
+
+  /* Fonts: editorial serif display + corporate sans body */
+  --display: "Instrument Serif", "Times New Roman", serif;
+  --serif: "Instrument Serif", "Times New Roman", serif;
+  --sans: "Geist", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* ===== Reset deck-stage to landing flow ===== */
+deck-stage {
+  display: block !important;
+  position: static !important;
+  width: 100% !important;
+  height: auto !important;
+  background: var(--bg) !important;
+  transform: none !important;
+}
+deck-stage::part(slide-counter),
+.slide-counter,
+[class*="counter"] {
+  display: none !important;
+}
+
+/* Each section is now a viewport-height block */
+deck-stage > section {
+  width: 100vw !important;
+  min-width: 100vw !important;
+  max-width: 100vw !important;
+  height: auto !important;
+  min-height: max(100vh, 720px) !important;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 18px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  scroll-snap-align: start;
+}
+
+/* Inner frame becomes flow content with max-width */
+deck-stage > section .frame {
+  position: relative !important;
+  inset: auto !important;
+  width: min(1680px, 92vw);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: clamp(56px, 7vh, 96px) clamp(32px, 4vw, 80px);
+  min-height: max(100vh, 720px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Type system: corporate sans, big & confident ===== */
+.display, .h1, .h2, .h3 {
+  font-family: var(--serif) !important;
+}
+.display {
+  font-weight: 400 !important;
+  font-size: clamp(72px, 10vw, 180px) !important;
+  line-height: 0.94 !important;
+  letter-spacing: -0.025em !important;
+}
+.display.s {
+  font-size: clamp(56px, 7vw, 120px) !important;
+}
+.display.xs {
+  font-size: clamp(44px, 5.5vw, 88px) !important;
+}
+.h1 {
+  font-weight: 400 !important;
+  font-size: clamp(48px, 6vw, 96px) !important;
+  line-height: 1.0 !important;
+  letter-spacing: -0.022em !important;
+}
+.h2 {
+  font-weight: 400 !important;
+  font-size: clamp(36px, 4.5vw, 68px) !important;
+  line-height: 1.04 !important;
+  letter-spacing: -0.02em !important;
+}
+.h3 {
+  font-weight: 400 !important;
+  font-size: clamp(28px, 3vw, 46px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.015em !important;
+}
+.h4 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(20px, 1.6vw, 28px);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+.body-l { font-size: clamp(18px, 1.5vw, 24px); line-height: 1.5; color: var(--ink-soft); }
+.body { font-size: clamp(16px, 1.2vw, 20px); line-height: 1.55; color: var(--ink-soft); }
+.body-s { font-size: clamp(14px, 1vw, 17px); line-height: 1.55; color: var(--ink-soft); }
+
+.eyebrow, .label, .meta {
+  font-family: var(--mono);
+  font-size: clamp(11px, 0.85vw, 14px) !important;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+.eyebrow .dot {
+  background: var(--accent) !important;
+  width: 10px !important;
+  height: 10px !important;
+}
+
+/* The wordmark */
+.wordmark {
+  font-family: var(--serif) !important;
+  font-weight: 400;
+  font-size: clamp(24px, 1.9vw, 32px) !important;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.wordmark .dot {
+  color: var(--accent);
+}
+
+/* Inverted sections — teal dark */
+.invert {
+  background: var(--accent-deep) !important;
+  color: #f4f1ea !important;
+}
+.invert .body-l, .invert .body, .invert .body-s {
+  color: rgba(244,241,234,0.78) !important;
+}
+.invert .eyebrow, .invert .label, .invert .meta {
+  color: var(--accent) !important;
+}
+.invert .deck-header, .invert .deck-footer {
+  border-color: rgba(244,241,234,0.18) !important;
+}
+.invert .divider { background: rgba(244,241,234,0.2) !important; }
+.invert .divider.soft { background: rgba(244,241,234,0.12) !important; }
+
+/* Cards: clean white with thin teal border */
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: 4px;
+}
+.card.soft { background: var(--bg-2); border-color: transparent; }
+.card.dark { background: var(--accent-deep); color: #f4f1ea; border-color: var(--accent-deep); }
+.card.accent { background: var(--accent); color: var(--accent-deep); border-color: var(--accent); }
+.card.accent .body, .card.accent .body-s, .card.accent .label, .card.accent .meta { color: var(--accent-deep); }
+
+/* Pills */
+.pill {
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: clamp(11px, 0.85vw, 14px);
+  padding: 8px 16px;
+}
+.pill.solid { background: var(--ink); color: var(--bg); }
+.pill.accent { background: var(--accent); color: var(--accent-deep); border-color: var(--accent); }
+
+.tag {
+  font-size: clamp(10px, 0.75vw, 13px);
+  background: rgba(10,46,43,0.06);
+  color: var(--ink-soft);
+}
+
+/* Stat numbers — serif editorial */
+.stat-num {
+  font-family: var(--serif) !important;
+  font-weight: 400 !important;
+  font-size: clamp(72px, 10vw, 160px) !important;
+  letter-spacing: -0.04em !important;
+  line-height: 0.85 !important;
+  font-variant-numeric: tabular-nums;
+}
+.stat-num.s {
+  font-size: clamp(56px, 7vw, 110px) !important;
+}
+
+/* Brand logos — sans */
+.brand-logo {
+  font-family: var(--sans) !important;
+  font-weight: 600 !important;
+  font-size: clamp(20px, 1.6vw, 30px) !important;
+  letter-spacing: -0.02em !important;
+}
+.brand-logo.sans { font-weight: 700 !important; }
+.brand-logo.mono { font-family: var(--mono) !important; font-size: clamp(11px, 0.9vw, 16px) !important; font-weight: 500; }
+
+/* Headers / footers */
+.deck-header {
+  border-color: var(--line-soft);
+  padding-bottom: 16px;
+}
+.deck-footer {
+  border-color: var(--line-soft);
+  padding-top: 16px;
+  margin-top: 56px;
+}
+
+/* Phone mockup — fits the new flow */
+.phone {
+  width: clamp(280px, 26vw, 460px);
+  height: clamp(580px, 54vw, 940px);
+  border-radius: clamp(34px, 3vw, 56px);
+}
+.phone-screen { border-radius: clamp(28px, 2.4vw, 44px); }
+.phone-notch { width: clamp(100px, 10vw, 160px); height: clamp(28px, 2.4vw, 36px); }
+
+.wa-header { background: #075E54; }
+.wa-avatar { background: var(--accent); color: var(--accent-deep); }
+
+/* Section number marker — disabled: slides have their own counter in deck-header */
+.section-marker {
+  display: none;
+}
+
+/* ===== Reveal-on-scroll ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.2,0.7,0.2,1), transform 1s cubic-bezier(0.2,0.7,0.2,1);
+  will-change: transform, opacity;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.2,0.7,0.2,1), transform 0.8s cubic-bezier(0.2,0.7,0.2,1);
+}
+.reveal-stagger.in > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-stagger.in > *:nth-child(1) { transition-delay: 0.05s; }
+.reveal-stagger.in > *:nth-child(2) { transition-delay: 0.15s; }
+.reveal-stagger.in > *:nth-child(3) { transition-delay: 0.25s; }
+.reveal-stagger.in > *:nth-child(4) { transition-delay: 0.35s; }
+.reveal-stagger.in > *:nth-child(5) { transition-delay: 0.45s; }
+.reveal-stagger.in > *:nth-child(6) { transition-delay: 0.55s; }
+.reveal-stagger.in > *:nth-child(7) { transition-delay: 0.65s; }
+.reveal-stagger.in > *:nth-child(8) { transition-delay: 0.75s; }
+
+/* Subtle line-grow accent under display headings */
+deck-stage > section.in .display + *,
+deck-stage > section.in .h1 + * {
+  /* nothing yet, hook for future */
+}
+
+/* ===== Side nav (progress + section dots) ===== */
+.side-nav {
+  position: fixed;
+  right: clamp(20px, 1.8vw, 36px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 12px;
+}
+.side-nav button {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(10,46,43,0.25);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s;
+  position: relative;
+}
+.side-nav button:hover {
+  background: var(--accent-deep);
+  transform: scale(1.6);
+}
+.side-nav button.active {
+  background: var(--accent-deep);
+  width: 6px;
+  height: 22px;
+  border-radius: 4px;
+}
+.invert-context .side-nav button { background: rgba(244,241,234,0.25); }
+.invert-context .side-nav button.active,
+.invert-context .side-nav button:hover { background: var(--accent); }
+.side-nav button .tip {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-12px);
+  background: var(--ink);
+  color: var(--bg);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.side-nav button:hover .tip { opacity: 1; }
+
+/* ===== Top progress bar ===== */
+.top-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: var(--accent);
+  z-index: 100;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.1s linear;
+}
+
+/* ===== Top nav ===== */
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 40;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px clamp(24px, 3vw, 56px);
+  background: rgba(244,241,234,0);
+  backdrop-filter: blur(0);
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+.top-nav > * { pointer-events: auto; }
+.top-nav.scrolled {
+  background: rgba(244,241,234,0.85);
+  backdrop-filter: blur(20px) saturate(1.2);
+  border-bottom-color: var(--line-soft);
+}
+/* Hide nav wordmark + links + cta on first viewport — show only when scrolled */
+.top-nav .wordmark,
+.top-nav .top-nav-links,
+.top-nav .cta {
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.top-nav.scrolled .wordmark,
+.top-nav.scrolled .top-nav-links,
+.top-nav.scrolled .cta {
+  opacity: 1;
+}
+.top-nav .wordmark {
+  font-size: clamp(22px, 1.7vw, 28px) !important;
+}
+.top-nav-links {
+  display: flex;
+  gap: 28px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.top-nav-links a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.top-nav-links a:hover { color: var(--accent-deep); }
+.top-nav .cta {
+  background: var(--accent-deep);
+  color: var(--bg);
+  padding: 10px 20px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.top-nav .cta:hover { background: var(--ink); }
+
+/* ===== Marquee adjustments ===== */
+.marquee-track { gap: 64px; padding-right: 64px; }
+
+/* hover for cards */
+.lift {
+  transition: transform 0.4s cubic-bezier(0.2,0.7,0.2,1), box-shadow 0.4s;
+}
+.lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px -30px rgba(10,46,43,0.25);
+}
+
+/* ===== Hide ALL deck-stage decorative chrome ===== */
+deck-stage > .deck-stage-overlay,
+deck-stage > [part],
+deck-stage > div {
+  display: none !important;
+}
+
+/* ===== Section spacing tweaks: alternating bg rhythm ===== */
+deck-stage > section:nth-child(odd) { background: var(--bg); }
+deck-stage > section:nth-child(even) { background: var(--paper); }
+deck-stage > section.invert { background: var(--accent-deep) !important; }
+deck-stage > section.bg-accent {
+  background: var(--accent) !important;
+  color: var(--accent-deep);
+}
+deck-stage > section.bg-accent .body,
+deck-stage > section.bg-accent .body-l,
+deck-stage > section.bg-accent .body-s {
+  color: var(--accent-deep);
+}
+deck-stage > section.bg-accent .eyebrow,
+deck-stage > section.bg-accent .label,
+deck-stage > section.bg-accent .meta { color: var(--accent-deep); }
+
+/* ===== Scroll-driven phone hero ===== */
+.hero-mockup-stack {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cleaner section transitions: subtle teal divider line */
+deck-stage > section + section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: min(1680px, 92vw);
+  height: 1px;
+  background: var(--line-soft);
+}
+deck-stage > section.invert + section::before,
+deck-stage > section + section.invert::before { display: none; }
+
+/* deck-stage shadow DOM root: force flow */
+:host { display: block !important; }
+
+/* ===== KILL deck-stage scaling completely ===== */
+
+</style>
+</head>
+<body>
+
+<!-- Reading progress bar -->
+<div class="top-progress" id="topProgress"></div>
+
+<!-- Fixed top nav -->
+<nav class="top-nav" id="topNav">
+  <a href="#top" class="wordmark">savi<span class="dot">.</span></a>
+  <div class="top-nav-links">
+    <a href="#contexto">Contexto</a>
+    <a href="#valor">Valor</a>
+    <a href="#productos">Productos</a>
+    <a href="#b2c">B2C</a>
+    <a href="#b2b">B2B</a>
+    <a href="#data">Data &amp; AI</a>
+  </div>
+  <a href="#cta" class="cta">Solicitar demo</a>
+</nav>
+
+<!-- Side nav dots -->
+<nav class="side-nav" id="sideNav"></nav>
+
+<deck-stage id="stage">
+  <section id="m1"  data-anchor="top"></section>
+  <section id="m2"></section>
+  <section id="m3"  data-anchor="contexto"></section>
+  <section id="m4"></section>
+  <section id="m5"></section>
+  <section id="m7"  data-anchor="valor"></section>
+  <section id="m8"></section>
+  <section id="m9"></section>
+  <section id="m10"></section>
+  <section id="m11" data-anchor="productos"></section>
+  <section id="m12"></section>
+  <section id="m13" data-anchor="b2c"></section>
+  <section id="m14"></section>
+  <section id="m15"></section>
+  <section id="m16"></section>
+  <section id="m17" data-anchor="b2b"></section>
+  <section id="m18"></section>
+  <section id="m19"></section>
+  <section id="m20"></section>
+  <section id="m21"></section>
+  <section id="m22"></section>
+  <section id="m23" data-anchor="data"></section>
+  <section id="m24"></section>
+  <section id="m25"></section>
+  <section id="m26"></section>
+  <section id="m27"></section>
+  <section id="m28" data-anchor="cta"></section>
+</deck-stage>
+
+<!-- React 18 + Babel standalone (CDN) -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<!-- All components inlined -->
+<script type="text/babel">
+
+// tweaks-panel.jsx
+// Reusable Tweaks shell + form-control helpers.
+//
+// Owns the host protocol (listens for __activate_edit_mode / __deactivate_edit_mode,
+// posts __edit_mode_available / __edit_mode_set_keys / __edit_mode_dismissed) so
+// individual prototypes don't re-roll it. Ships a consistent set of controls so you
+// don't hand-draw <input type="range">, segmented radios, steppers, etc.
+//
+// Usage (in an HTML file that loads React + Babel):
+//
+//   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+//     "primaryColor": "#D97757",
+//     "fontSize": 16,
+//     "density": "regular",
+//     "dark": false
+//   }/*EDITMODE-END*/;
+//
+//   function App() {
+//     const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+//     return (
+//       <div style={{ fontSize: t.fontSize, color: t.primaryColor }}>
+//         Hello
+//         <TweaksPanel>
+//           <TweakSection label="Typography" />
+//           <TweakSlider label="Font size" value={t.fontSize} min={10} max={32} unit="px"
+//                        onChange={(v) => setTweak('fontSize', v)} />
+//           <TweakRadio  label="Density" value={t.density}
+//                        options={['compact', 'regular', 'comfy']}
+//                        onChange={(v) => setTweak('density', v)} />
+//           <TweakSection label="Theme" />
+//           <TweakColor  label="Primary" value={t.primaryColor}
+//                        onChange={(v) => setTweak('primaryColor', v)} />
+//           <TweakToggle label="Dark mode" value={t.dark}
+//                        onChange={(v) => setTweak('dark', v)} />
+//         </TweaksPanel>
+//       </div>
+//     );
+//   }
+//
+// ─────────────────────────────────────────────────────────────────────────────
+
+const __TWEAKS_STYLE = `
+  .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
+    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
+    transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom right;
+    background:rgba(250,249,247,.78);color:#29261b;
+    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
+    font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
+  .twk-hd{display:flex;align-items:center;justify-content:space-between;
+    padding:10px 8px 10px 14px;cursor:move;user-select:none}
+  .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
+  .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
+    width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
+  .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
+  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
+    overflow-y:auto;overflow-x:hidden;min-height:0;
+    scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+  .twk-body::-webkit-scrollbar{width:8px}
+  .twk-body::-webkit-scrollbar-track{background:transparent;margin:2px}
+  .twk-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px;
+    border:2px solid transparent;background-clip:content-box}
+  .twk-body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25);
+    border:2px solid transparent;background-clip:content-box}
+  .twk-row{display:flex;flex-direction:column;gap:5px}
+  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
+    color:rgba(41,38,27,.72)}
+  .twk-lbl>span:first-child{font-weight:500}
+  .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
+
+  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(41,38,27,.45);padding:10px 0 0}
+  .twk-sect:first-child{padding-top:0}
+
+  .twk-field{appearance:none;width:100%;height:26px;padding:0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
+    background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
+  .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
+  select.twk-field{padding-right:22px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
+    background-repeat:no-repeat;background-position:right 8px center}
+
+  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
+    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
+  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;background:#fff;
+    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+
+  .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
+    background:rgba(0,0,0,.06);user-select:none}
+  .twk-seg-thumb{position:absolute;top:2px;bottom:2px;border-radius:6px;
+    background:rgba(255,255,255,.9);box-shadow:0 1px 2px rgba(0,0,0,.12);
+    transition:left .15s cubic-bezier(.3,.7,.4,1),width .15s}
+  .twk-seg.dragging .twk-seg-thumb{transition:none}
+  .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
+    background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
+    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;
+    overflow-wrap:anywhere}
+
+  .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
+    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
+  .twk-toggle[data-on="1"]{background:#34c759}
+  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+  .twk-toggle[data-on="1"] i{transform:translateX(14px)}
+
+  .twk-num{display:flex;align-items:center;height:26px;padding:0 0 0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;background:rgba(255,255,255,.6)}
+  .twk-num-lbl{font-weight:500;color:rgba(41,38,27,.6);cursor:ew-resize;
+    user-select:none;padding-right:8px}
+  .twk-num input{flex:1;min-width:0;height:100%;border:0;background:transparent;
+    font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:0 8px 0 0;
+    outline:none;color:inherit;-moz-appearance:textfield}
+  .twk-num input::-webkit-inner-spin-button,.twk-num input::-webkit-outer-spin-button{
+    -webkit-appearance:none;margin:0}
+  .twk-num-unit{padding-right:8px;color:rgba(41,38,27,.45)}
+
+  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:7px;
+    background:rgba(0,0,0,.78);color:#fff;font:inherit;font-weight:500;cursor:default}
+  .twk-btn:hover{background:rgba(0,0,0,.88)}
+  .twk-btn.secondary{background:rgba(0,0,0,.06);color:inherit}
+  .twk-btn.secondary:hover{background:rgba(0,0,0,.1)}
+
+  .twk-swatch{appearance:none;-webkit-appearance:none;width:56px;height:22px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:6px;padding:0;cursor:default;
+    background:transparent;flex-shrink:0}
+  .twk-swatch::-webkit-color-swatch-wrapper{padding:0}
+  .twk-swatch::-webkit-color-swatch{border:0;border-radius:5.5px}
+  .twk-swatch::-moz-color-swatch{border:0;border-radius:5.5px}
+`;
+
+// ── useTweaks ───────────────────────────────────────────────────────────────
+// Single source of truth for tweak values. setTweak persists via the host
+// (__edit_mode_set_keys → host rewrites the EDITMODE block on disk).
+function useTweaks(defaults) {
+  const [values, setValues] = React.useState(defaults);
+  // Accepts either setTweak('key', value) or setTweak({ key: value, ... }) so a
+  // useState-style call doesn't write a "[object Object]" key into the persisted
+  // JSON block.
+  const setTweak = React.useCallback((keyOrEdits, val) => {
+    const edits = typeof keyOrEdits === 'object' && keyOrEdits !== null
+      ? keyOrEdits : { [keyOrEdits]: val };
+    setValues((prev) => ({ ...prev, ...edits }));
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*');
+  }, []);
+  return [values, setTweak];
+}
+
+// ── TweaksPanel ─────────────────────────────────────────────────────────────
+// Floating shell. Registers the protocol listener BEFORE announcing
+// availability — if the announce ran first, the host's activate could land
+// before our handler exists and the toolbar toggle would silently no-op.
+// The close button posts __edit_mode_dismissed so the host's toolbar toggle
+// flips off in lockstep; the host echoes __deactivate_edit_mode back which
+// is what actually hides the panel.
+function TweaksPanel({ title = 'Tweaks', children }) {
+  const [open, setOpen] = React.useState(false);
+  const dragRef = React.useRef(null);
+  const offsetRef = React.useRef({ x: 16, y: 16 });
+  const PAD = 16;
+
+  const clampToViewport = React.useCallback(() => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const w = panel.offsetWidth, h = panel.offsetHeight;
+    const maxRight = Math.max(PAD, window.innerWidth - w - PAD);
+    const maxBottom = Math.max(PAD, window.innerHeight - h - PAD);
+    offsetRef.current = {
+      x: Math.min(maxRight, Math.max(PAD, offsetRef.current.x)),
+      y: Math.min(maxBottom, Math.max(PAD, offsetRef.current.y)),
+    };
+    panel.style.right = offsetRef.current.x + 'px';
+    panel.style.bottom = offsetRef.current.y + 'px';
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) return;
+    clampToViewport();
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', clampToViewport);
+      return () => window.removeEventListener('resize', clampToViewport);
+    }
+    const ro = new ResizeObserver(clampToViewport);
+    ro.observe(document.documentElement);
+    return () => ro.disconnect();
+  }, [open, clampToViewport]);
+
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      const t = e?.data?.type;
+      if (t === '__activate_edit_mode') setOpen(true);
+      else if (t === '__deactivate_edit_mode') setOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  const dismiss = () => {
+    setOpen(false);
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  };
+
+  const onDragStart = (e) => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const r = panel.getBoundingClientRect();
+    const sx = e.clientX, sy = e.clientY;
+    const startRight = window.innerWidth - r.right;
+    const startBottom = window.innerHeight - r.bottom;
+    const move = (ev) => {
+      offsetRef.current = {
+        x: startRight - (ev.clientX - sx),
+        y: startBottom - (ev.clientY - sy),
+      };
+      clampToViewport();
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+
+  if (!open) return null;
+  return (
+    <>
+      <style>{__TWEAKS_STYLE}</style>
+      <div ref={dragRef} className="twk-panel" data-noncommentable=""
+           style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+        <div className="twk-hd" onMouseDown={onDragStart}>
+          <b>{title}</b>
+          <button className="twk-x" aria-label="Close tweaks"
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={dismiss}>✕</button>
+        </div>
+        <div className="twk-body">{children}</div>
+      </div>
+    </>
+  );
+}
+
+// ── Layout helpers ──────────────────────────────────────────────────────────
+
+function TweakSection({ label, children }) {
+  return (
+    <>
+      <div className="twk-sect">{label}</div>
+      {children}
+    </>
+  );
+}
+
+function TweakRow({ label, value, children, inline = false }) {
+  return (
+    <div className={inline ? 'twk-row twk-row-h' : 'twk-row'}>
+      <div className="twk-lbl">
+        <span>{label}</span>
+        {value != null && <span className="twk-val">{value}</span>}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+// ── Controls ────────────────────────────────────────────────────────────────
+
+function TweakSlider({ label, value, min = 0, max = 100, step = 1, unit = '', onChange }) {
+  return (
+    <TweakRow label={label} value={`${value}${unit}`}>
+      <input type="range" className="twk-slider" min={min} max={max} step={step}
+             value={value} onChange={(e) => onChange(Number(e.target.value))} />
+    </TweakRow>
+  );
+}
+
+function TweakToggle({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <button type="button" className="twk-toggle" data-on={value ? '1' : '0'}
+              role="switch" aria-checked={!!value}
+              onClick={() => onChange(!value)}><i /></button>
+    </div>
+  );
+}
+
+function TweakRadio({ label, value, options, onChange }) {
+  const trackRef = React.useRef(null);
+  const [dragging, setDragging] = React.useState(false);
+  const opts = options.map((o) => (typeof o === 'object' ? o : { value: o, label: o }));
+  const idx = Math.max(0, opts.findIndex((o) => o.value === value));
+  const n = opts.length;
+
+  // The active value is read by pointer-move handlers attached for the lifetime
+  // of a drag — ref it so a stale closure doesn't fire onChange for every move.
+  const valueRef = React.useRef(value);
+  valueRef.current = value;
+
+  const segAt = (clientX) => {
+    const r = trackRef.current.getBoundingClientRect();
+    const inner = r.width - 4;
+    const i = Math.floor(((clientX - r.left - 2) / inner) * n);
+    return opts[Math.max(0, Math.min(n - 1, i))].value;
+  };
+
+  const onPointerDown = (e) => {
+    setDragging(true);
+    const v0 = segAt(e.clientX);
+    if (v0 !== valueRef.current) onChange(v0);
+    const move = (ev) => {
+      if (!trackRef.current) return;
+      const v = segAt(ev.clientX);
+      if (v !== valueRef.current) onChange(v);
+    };
+    const up = () => {
+      setDragging(false);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  return (
+    <TweakRow label={label}>
+      <div ref={trackRef} role="radiogroup" onPointerDown={onPointerDown}
+           className={dragging ? 'twk-seg dragging' : 'twk-seg'}>
+        <div className="twk-seg-thumb"
+             style={{ left: `calc(2px + ${idx} * (100% - 4px) / ${n})`,
+                      width: `calc((100% - 4px) / ${n})` }} />
+        {opts.map((o) => (
+          <button key={o.value} type="button" role="radio" aria-checked={o.value === value}>
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakSelect({ label, value, options, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <select className="twk-field" value={value} onChange={(e) => onChange(e.target.value)}>
+        {options.map((o) => {
+          const v = typeof o === 'object' ? o.value : o;
+          const l = typeof o === 'object' ? o.label : o;
+          return <option key={v} value={v}>{l}</option>;
+        })}
+      </select>
+    </TweakRow>
+  );
+}
+
+function TweakText({ label, value, placeholder, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <input className="twk-field" type="text" value={value} placeholder={placeholder}
+             onChange={(e) => onChange(e.target.value)} />
+    </TweakRow>
+  );
+}
+
+function TweakNumber({ label, value, min, max, step = 1, unit = '', onChange }) {
+  const clamp = (n) => {
+    if (min != null && n < min) return min;
+    if (max != null && n > max) return max;
+    return n;
+  };
+  const startRef = React.useRef({ x: 0, val: 0 });
+  const onScrubStart = (e) => {
+    e.preventDefault();
+    startRef.current = { x: e.clientX, val: value };
+    const decimals = (String(step).split('.')[1] || '').length;
+    const move = (ev) => {
+      const dx = ev.clientX - startRef.current.x;
+      const raw = startRef.current.val + dx * step;
+      const snapped = Math.round(raw / step) * step;
+      onChange(clamp(Number(snapped.toFixed(decimals))));
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+  return (
+    <div className="twk-num">
+      <span className="twk-num-lbl" onPointerDown={onScrubStart}>{label}</span>
+      <input type="number" value={value} min={min} max={max} step={step}
+             onChange={(e) => onChange(clamp(Number(e.target.value)))} />
+      {unit && <span className="twk-num-unit">{unit}</span>}
+    </div>
+  );
+}
+
+function TweakColor({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <input type="color" className="twk-swatch" value={value}
+             onChange={(e) => onChange(e.target.value)} />
+    </div>
+  );
+}
+
+function TweakButton({ label, onClick, secondary = false }) {
+  return (
+    <button type="button" className={secondary ? 'twk-btn secondary' : 'twk-btn'}
+            onClick={onClick}>{label}</button>
+  );
+}
+
+Object.assign(window, {
+  useTweaks, TweaksPanel, TweakSection, TweakRow,
+  TweakSlider, TweakToggle, TweakRadio, TweakSelect,
+  TweakText, TweakNumber, TweakColor, TweakButton,
+});
+
+</script>
+
+<script type="text/babel">
+/* SAVI deck — slide components 1/3
+   Slides 1–10: Cover, market context, value prop, portfolio
+*/
+
+const SaviMark = ({ size = 32, accent = "var(--accent)" }) => (
+  <span className="wordmark" style={{ fontSize: size }}>
+    savi<span className="dot" style={{ color: accent }}>.</span>
+  </span>
+);
+
+const DeckHeader = ({ section, sectionLabel, slide, total = 28, invert }) => (
+  <div className="deck-header">
+    <div className="row" style={{ gap: 24, alignItems: "center" }}>
+      <SaviMark size={28} />
+      <span className="meta">{sectionLabel}</span>
+    </div>
+    <div className="row" style={{ gap: 32, alignItems: "center" }}>
+      <span className="meta">{section}</span>
+      <span className="slide-num">{String(slide).padStart(2, "0")} / {String(total).padStart(2, "0")}</span>
+    </div>
+  </div>
+);
+
+const DeckFooter = ({ left = "Customer Engagement Solutions · 2026", right = "Marketing that works for everyone" }) => (
+  <div className="deck-footer">
+    <span className="meta">{left}</span>
+    <span className="meta">{right}</span>
+  </div>
+);
+
+/* =========================================================
+   SLIDE 01 — COVER
+   ========================================================= */
+function SlideCover() {
+  return (
+    <section data-screen-label="01 Cover">
+      <div className="frame" style={{ padding: "40px 80px 32px" }}>
+        {/* Top bar */}
+        <div className="row between ai-center">
+          <SaviMark size={36} />
+          <div className="row" style={{ gap: 32, alignItems: "center" }}>
+            <span className="meta" style={{ fontSize: 24 }}>Commercial Deck · 2026</span>
+            <span className="meta" style={{ fontSize: 24 }}>FMCG Edition</span>
+            <span className="pill" style={{ fontSize: 24, padding: "10px 20px" }}><span className="live-dot"></span>Available now</span>
+          </div>
+        </div>
+
+        {/* Body */}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div className="eyebrow lg" style={{ marginBottom: 24, fontSize: 26 }}><span className="dot"></span>Customer Engagement Solutions</div>
+          <h1 className="display" style={{ fontSize: 240, marginBottom: 32 }}>
+            Convertimos<br/>
+            <span style={{ fontStyle: "italic", color: "var(--accent)" }}>cada compra</span><br/>
+            en una relación.
+          </h1>
+          <div className="row between ai-end" style={{ marginTop: 24 }}>
+            <p className="body-l" style={{ maxWidth: 720, fontSize: 28 }}>
+              Una plataforma modular para diseñar, lanzar y escalar relaciones de valor con consumidores y canales. B2C, B2B, WhatsApp, Loyalty, Data e IA — bajo una sola arquitectura comercial.
+            </p>
+            <div className="col" style={{ alignItems: "flex-end", gap: 8 }}>
+              <span className="meta" style={{ fontSize: 24 }}>For brands that want to grow beyond the discount</span>
+              <span className="serif" style={{ fontSize: 36, fontStyle: "italic" }}>Connect · Convert · Engage</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom strip */}
+        <div className="row between ai-end" style={{ borderTop: "1px solid var(--line)", paddingTop: 16 }}>
+          <span className="meta" style={{ fontSize: 24 }}>A — Cover</span>
+          <div className="row" style={{ gap: 48 }}>
+            <span className="meta" style={{ fontSize: 24 }}>B2C · B2B · Loyalty · AI</span>
+            <span className="meta" style={{ fontSize: 24 }}>28 slides · ~25 min read</span>
+          </div>
+          <span className="meta" style={{ fontSize: 24 }}>savi.com</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 02 — INDEX / TOC
+   ========================================================= */
+function SlideIndex() {
+  const sections = [
+    { num: "01", title: "Contexto de mercado", desc: "Por qué engagement, datos y promociones tienen que trabajar juntos." },
+    { num: "02", title: "Propuesta de valor", desc: "Qué resuelve Savi y por qué es diferencial para tu marca." },
+    { num: "03", title: "Portfolio de soluciones", desc: "El catálogo que conecta, convierte y fideliza." },
+    { num: "04", title: "Customer journeys", desc: "Cómo se vive una activación de Savi de inicio a fin." },
+    { num: "05", title: "B2C, B2B y casos de uso", desc: "Mecánicas y verticales: FMCG, snacking, pharma, horeca." },
+    { num: "06", title: "Data, IA y plataforma", desc: "Dashboards, IA generativa y arquitectura escalable." },
+    { num: "07", title: "Activación y next step", desc: "Cómo pasamos de idea a programa con impacto medible." },
+  ];
+  return (
+    <section data-screen-label="02 Índice">
+      <div className="frame">
+        <DeckHeader section="A · ÍNDICE" sectionLabel="Agenda comercial" slide={2} />
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div className="row between ai-end" style={{ marginBottom: 56 }}>
+            <h2 className="display s">Lo que vamos<br/><span style={{ fontStyle: "italic" }}>a recorrer.</span></h2>
+            <p className="body-l" style={{ maxWidth: 480 }}>
+              Un deck para marcas FMCG que quieren transformar la promoción en un ecosistema de relación medible, escalable y rentable.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 0, borderTop: "1px solid var(--line)" }}>
+            {sections.map((s) => (
+              <div key={s.num} className="row between ai-center" style={{ borderBottom: "1px solid var(--line-soft)", padding: "22px 0" }}>
+                <div className="row ai-center" style={{ gap: 56 }}>
+                  <span className="mono" style={{ fontSize: 24, color: "var(--ink-mute)", width: 40 }}>{s.num}</span>
+                  <span className="serif" style={{ fontSize: 48, lineHeight: 1.05 }}>{s.title}</span>
+                </div>
+                <span className="body" style={{ maxWidth: 540, textAlign: "right" }}>{s.desc}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 03 — MARKET CONTEXT (BIG STATEMENT)
+   ========================================================= */
+function SlideMarketStatement() {
+  return (
+    <section data-screen-label="03 Market context" className="invert">
+      <div className="frame">
+        <DeckHeader section="01 · CONTEXTO DE MERCADO" sectionLabel="The Brief" slide={3} />
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div className="eyebrow lg" style={{ marginBottom: 32 }}><span className="dot"></span>2026 Outlook · FMCG</div>
+          <h1 className="display" style={{ fontSize: 200 }}>
+            El mercado ya<br/>no compra solo<br/>
+            <span style={{ fontStyle: "italic", color: "var(--accent)" }}>productos.</span><br/>
+            Compra <span style={{ textDecoration: "underline", textUnderlineOffset: 24, textDecorationThickness: 4 }}>experiencias</span>.
+          </h1>
+        </div>
+        <div className="row between ai-end" style={{ borderTop: "1px solid rgba(244,241,234,0.18)", paddingTop: 24 }}>
+          <span className="meta">— La fidelización tradicional pierde tracción si no genera utilidad, emoción y datos accionables.</span>
+          <span className="meta">03 / 28</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 04 — THREE FORCES (market context detail)
+   ========================================================= */
+function SlideThreeForces() {
+  const forces = [
+    {
+      n: "01",
+      title: "Consumidores más exigentes",
+      body: "Esperan valor inmediato, interacciones simples y recompensas relevantes en el canal donde ya están. Cada paso extra es una caída de conversión.",
+      tags: ["Instant value", "Frictionless", "On-channel"],
+    },
+    {
+      n: "02",
+      title: "Privacidad y first-party data",
+      body: "El cookie-less obliga a las marcas a generar relaciones declaradas. El first-party data se vuelve el activo estratégico para personalizar y medir.",
+      tags: ["Cookieless", "Opt-in", "Owned audience"],
+    },
+    {
+      n: "03",
+      title: "De campaña a relación",
+      body: "La promoción aislada se convierte en coste. La oportunidad real está en transformar cada activación en un ecosistema de aprendizaje continuo.",
+      tags: ["Always-on", "Recurrence", "Insight loop"],
+    },
+  ];
+  return (
+    <section data-screen-label="04 Tres fuerzas">
+      <div className="frame">
+        <DeckHeader section="01 · CONTEXTO DE MERCADO" sectionLabel="Tres fuerzas" slide={4} />
+        <div className="row between ai-end" style={{ marginTop: 48, marginBottom: 56 }}>
+          <h2 className="h1" style={{ maxWidth: 1200 }}>
+            Tres fuerzas que están redefiniendo<br/>la inversión promocional.
+          </h2>
+          <span className="meta" style={{ maxWidth: 280, textAlign: "right" }}>Fuente · Savi research, 2025</span>
+        </div>
+
+        <div className="grid-3" style={{ flex: 1, gap: 32 }}>
+          {forces.map((f) => (
+            <div key={f.n} className="col" style={{ borderTop: "2px solid var(--ink)", paddingTop: 24, gap: 20 }}>
+              <span className="mono" style={{ fontSize: 24 }}>{f.n} / 03</span>
+              <h3 className="h3" style={{ marginTop: 12 }}>{f.title}</h3>
+              <p className="body-l" style={{ marginTop: 8 }}>{f.body}</p>
+              <div className="chip-row" style={{ marginTop: "auto", paddingTop: 16, color: "var(--ink-soft)" }}>
+                {f.tags.map((t, i) => <span key={i} className="chip">{t}</span>)}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 05 — PROOF / KPIs
+   ========================================================= */
+function SlideProof() {
+  const stats = [
+    { num: "+7M€", label: "reembolsados al año a consumidores", sub: "cashback, gift cards y rewards" },
+    { num: "+70%", label: "de las grandes marcas FMCG en España", sub: "confían en savi para activar" },
+    { num: "+50K", label: "tiendas conectadas", sub: "para validar y entregar promociones" },
+    { num: "+50", label: "años de experiencia", sub: "diseñando incentivos que funcionan" },
+  ];
+  return (
+    <section data-screen-label="05 Proof">
+      <div className="frame">
+        <DeckHeader section="02 · PROPUESTA DE VALOR" sectionLabel="Tracción" slide={5} />
+        <div className="row between ai-end" style={{ marginTop: 48, marginBottom: 40 }}>
+          <h2 className="h1">El partner detrás<br/>de las activaciones<br/>de las marcas que <span style={{ fontStyle: "italic" }}>compras</span>.</h2>
+          <p className="body-l" style={{ maxWidth: 440 }}>
+            Llevamos décadas operando promociones, loyalty y rewards en gran consumo. Conocemos cada detalle: validación, legal, fraude, escala, soporte.
+          </p>
+        </div>
+
+        <div className="grid-4" style={{ flex: 1, alignItems: "stretch", gap: 0 }}>
+          {stats.map((s, i) => (
+            <div key={i} className="col" style={{
+              padding: "28px 24px",
+              borderLeft: i === 0 ? "1px solid var(--line)" : "none",
+              borderRight: "1px solid var(--line)",
+              borderTop: "1px solid var(--line)",
+              borderBottom: "1px solid var(--line)",
+              gap: 16,
+              justifyContent: "space-between",
+            }}>
+              <span className="meta">0{i+1}</span>
+              <div className="stat-num">{s.num}</div>
+              <div>
+                <div className="h4" style={{ marginBottom: 6 }}>{s.label}</div>
+                <div className="body-s">{s.sub}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 06 — LOGO STRIP (brands using savi)
+   ========================================================= */
+function SlideLogos() {
+  const row1 = ["GRANJA NORTE", "Solé & Co", "ALPENBLICK", "Kima", "BRIO", "MARGOT", "Verano"];
+  const row2 = ["FRESCAL", "Talo", "OPALIA", "Roma 1922", "ARCO", "Halo", "MILE END"];
+  const row3 = ["NORDIA", "Bosso", "ELLA", "Tantré", "ÓRBITA", "Cova", "POLARIS"];
+  return (
+    <section data-screen-label="06 Logos">
+      <div className="frame">
+        <DeckHeader section="02 · PROPUESTA DE VALOR" sectionLabel="Quiénes confían" slide={6} />
+        <div className="row between ai-end" style={{ marginTop: 40, marginBottom: 32 }}>
+          <h2 className="h1">Trabajamos con las marcas<br/>que <span style={{ fontStyle: "italic" }}>marcan</span> tu carrito de la compra.</h2>
+          <span className="meta" style={{ maxWidth: 320, textAlign: "right" }}>* Marcas representativas, ilustrativas para deck comercial</span>
+        </div>
+
+        <div className="col" style={{ flex: 1, justifyContent: "space-around", gap: 24 }}>
+          {[row1, row2, row3].map((row, ri) => (
+            <div key={ri} className="row" style={{ justifyContent: "space-between", alignItems: "center", borderTop: "1px solid var(--line-soft)", borderBottom: ri === 2 ? "1px solid var(--line-soft)" : "none", padding: "24px 0" }}>
+              {row.map((b, i) => (
+                <span key={i} className={i % 2 === 0 ? "brand-logo" : "brand-logo sans"}>{b}</span>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <div className="row between" style={{ marginTop: 24 }}>
+          <span className="meta">FMCG · Snacking · Beverages · Dairy · Pet · Home · Beauty</span>
+          <span className="meta">+70% top-100 brands · ES, PT, LATAM</span>
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+window.SaviMark = SaviMark;
+window.DeckHeader = DeckHeader;
+window.DeckFooter = DeckFooter;
+Object.assign(window, {
+  SlideCover, SlideIndex, SlideMarketStatement, SlideThreeForces, SlideProof, SlideLogos
+});
+
+</script>
+
+<script type="text/babel">
+/* SAVI deck — slide components 2/3
+   Slides 7–17: Value prop, portfolio, B2C journey, WhatsApp mockup
+*/
+
+/* =========================================================
+   SLIDE 07 — VALUE PROP — BIG STATEMENT
+   ========================================================= */
+function SlideValueProp() {
+  return (
+    <section data-screen-label="07 Value prop">
+      <div className="frame">
+        <DeckHeader section="02 · PROPUESTA DE VALOR" sectionLabel="The pitch" slide={7} />
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div className="eyebrow lg" style={{ marginBottom: 32 }}><span className="dot"></span>What we actually sell</div>
+          <h1 className="display" style={{ fontSize: 200 }}>
+            No vendemos<br/>tecnología.<br/>
+            Vendemos <span style={{ fontStyle: "italic", color: "var(--accent)" }}>crecimiento<br/>relacional.</span>
+          </h1>
+        </div>
+        <div className="row between ai-end rule-top" style={{ marginTop: 32 }}>
+          <p className="body-l" style={{ maxWidth: 800 }}>
+            Las marcas ya no necesitan más impactos. Necesitan clientes <em>identificados, activados y vinculados</em>. Eso es lo que entregamos.
+          </p>
+          <span className="meta">07 / 28</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 08 — VALUE STACK
+   ========================================================= */
+function SlideValueStack() {
+  const layers = [
+    {
+      from: "DE",
+      fromText: "Campañas puntuales",
+      to: "A",
+      toText: "Ecosistemas de relación continua",
+      kicker: "Always-on",
+    },
+    {
+      from: "DE",
+      fromText: "Descuentos aislados",
+      to: "A",
+      toText: "Incentivos con aprendizaje y recurrencia",
+      kicker: "Smart rewards",
+    },
+    {
+      from: "DE",
+      fromText: "Datos dispersos",
+      to: "A",
+      toText: "First-party data accionable para negocio",
+      kicker: "Owned audience",
+    },
+    {
+      from: "DE",
+      fromText: "Coste promocional",
+      to: "A",
+      toText: "Activo de conocimiento y crecimiento",
+      kicker: "P&L lever",
+    },
+  ];
+  return (
+    <section data-screen-label="08 Value stack">
+      <div className="frame">
+        <DeckHeader section="02 · PROPUESTA DE VALOR" sectionLabel="From → To" slide={8} />
+        <div className="row between ai-end" style={{ marginTop: 40, marginBottom: 40 }}>
+          <h2 className="h1">El salto que<br/>te ayudamos a dar.</h2>
+          <p className="body-l" style={{ maxWidth: 480 }}>
+            Cada activación que diseñamos parte del mismo principio: convertir el incentivo en un ladrillo de relación, no en un coste de adquisición.
+          </p>
+        </div>
+
+        <div style={{ flex: 1, borderTop: "2px solid var(--ink)" }}>
+          {layers.map((l, i) => (
+            <div key={i} className="row ai-center" style={{
+              padding: "32px 0",
+              borderBottom: "1px solid var(--line-soft)",
+              gap: 56,
+            }}>
+              <span className="mono" style={{ width: 50, color: "var(--ink-mute)" }}>0{i+1}</span>
+              <div className="col" style={{ width: 460 }}>
+                <span className="meta" style={{ marginBottom: 4 }}>{l.from}</span>
+                <span className="serif" style={{ fontSize: 38, color: "var(--ink-mute)", textDecoration: "line-through" }}>{l.fromText}</span>
+              </div>
+              <span className="serif" style={{ fontSize: 56, color: "var(--accent)" }}>→</span>
+              <div className="col" style={{ flex: 1 }}>
+                <span className="meta" style={{ marginBottom: 4 }}>{l.to}</span>
+                <span className="serif" style={{ fontSize: 46 }}>{l.toText}</span>
+              </div>
+              <span className="pill solid">{l.kicker}</span>
+            </div>
+          ))}
+        </div>
+
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 09 — CONNECT / CONVERT / ENGAGE
+   ========================================================= */
+function SlideOperatingModel() {
+  const phases = [
+    {
+      n: "01", title: "Conectar", verb: "Connect",
+      body: "Impactamos al consumidor en el canal y momento adecuado. Tienda, on-pack, WhatsApp, delivery, app, web o medios digitales.",
+      kpis: [{ k: "Reach", v: "+50k pdv" }, { k: "Channels", v: "8+" }, { k: "Latency", v: "<24h go-live" }],
+    },
+    {
+      n: "02", title: "Convertir", verb: "Convert",
+      body: "Promociones inteligentes, recompensas y mecánicas que incentivan compra, prueba y repetición. El incentivo encuentra al usuario donde decide.",
+      kpis: [{ k: "Lift", v: "+18% sell-out" }, { k: "Reach-rate", v: "92%" }, { k: "Mecánicas", v: "12+" }],
+    },
+    {
+      n: "03", title: "Fidelizar", verb: "Engage",
+      body: "Activaciones que crean relación, capturan datos, generan insights y alimentan la siguiente acción comercial sin reiniciar desde cero.",
+      kpis: [{ k: "Opt-in", v: "78% medio" }, { k: "Recurrencia", v: "x3.2" }, { k: "FPD records", v: "Millones" }],
+    },
+  ];
+  return (
+    <section data-screen-label="09 Connect Convert Engage" className="invert">
+      <div className="frame">
+        <DeckHeader section="02 · PROPUESTA DE VALOR" sectionLabel="Operating model" slide={9} />
+        <div className="row between ai-end" style={{ marginTop: 40, marginBottom: 40 }}>
+          <h2 className="h1">Un enfoque<br/>end-to-end.</h2>
+          <p className="body-l" style={{ maxWidth: 520 }}>
+            Tres fases, una sola plataforma. Cada paso alimenta al siguiente con datos, audiencia y aprendizaje.
+          </p>
+        </div>
+
+        <div className="grid-3" style={{ flex: 1, gap: 24 }}>
+          {phases.map((p) => (
+            <div key={p.n} className="col" style={{
+              border: "1px solid rgba(244,241,234,0.25)",
+              padding: 32,
+              gap: 20,
+              justifyContent: "space-between",
+            }}>
+              <div className="row between ai-center">
+                <span className="meta">{p.n}</span>
+                <span className="meta">{p.verb}</span>
+              </div>
+              <div>
+                <h3 className="display xs" style={{ fontSize: 120, color: "var(--accent)", lineHeight: 0.9 }}>{p.title}</h3>
+              </div>
+              <p className="body-l" style={{ color: "rgba(244,241,234,0.8)" }}>{p.body}</p>
+              <div className="row" style={{ gap: 16, borderTop: "1px solid rgba(244,241,234,0.18)", paddingTop: 16 }}>
+                {p.kpis.map((k, i) => (
+                  <div key={i} className="col" style={{ gap: 4, flex: 1 }}>
+                    <span className="meta" style={{ fontSize: 24 }}>{k.k}</span>
+                    <span className="serif" style={{ fontSize: 24, color: "var(--invert-ink)" }}>{k.v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 10 — FOUR LEVERS FOR BRANDS
+   ========================================================= */
+function SlideFourLevers() {
+  const levers = [
+    { n: "01", t: "Ventas incrementales", body: "Frecuencia, volumen, prueba de producto y nuevos momentos de consumo. La promoción se diseña para mover la métrica que falta.", metric: "+18% sell-out" },
+    { n: "02", t: "Engagement real", body: "Convertimos la interacción promocional en una conversación bidireccional. La marca habla, escucha, recompensa y vuelve a impactar.", metric: "78% opt-in" },
+    { n: "03", t: "First-party data", body: "Generamos datos transaccionales, declarativos y relacionales con trazabilidad y consentimiento desde el primer touch.", metric: "Owned 100%" },
+    { n: "04", t: "Eficiencia operativa", body: "Centralizamos diseño, validación, soporte, premios, legal y reporting. Una sola operación para múltiples activaciones.", metric: "−40% time-to-market" },
+  ];
+  return (
+    <section data-screen-label="10 Cuatro palancas">
+      <div className="frame">
+        <DeckHeader section="02 · PROPUESTA DE VALOR" sectionLabel="Brand levers" slide={10} />
+        <div className="row between ai-end" style={{ marginTop: 48, marginBottom: 48 }}>
+          <h2 className="h1">Cuatro palancas para<br/>vender más y <span style={{ fontStyle: "italic" }}>conocer mejor</span>.</h2>
+          <p className="body-l" style={{ maxWidth: 460 }}>
+            No se trata de regalar más. Se trata de incentivar mejor, medir mejor y relacionarse mejor.
+          </p>
+        </div>
+        <div className="grid-2" style={{ flex: 1, gap: 0 }}>
+          {levers.map((l, i) => (
+            <div key={l.n} className="col" style={{
+              padding: "36px 40px",
+              gap: 16,
+              borderTop: i < 2 ? "1px solid var(--line)" : "none",
+              borderBottom: "1px solid var(--line)",
+              borderRight: i % 2 === 0 ? "1px solid var(--line)" : "none",
+              justifyContent: "space-between",
+              minHeight: 280,
+            }}>
+              <div className="row between ai-center">
+                <span className="mono" style={{ fontSize: 24, color: "var(--ink-mute)" }}>{l.n}</span>
+                <span className="pill accent">{l.metric}</span>
+              </div>
+              <h3 className="h2" style={{ fontSize: 64 }}>{l.t}</h3>
+              <p className="body-l">{l.body}</p>
+            </div>
+          ))}
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 11 — PORTFOLIO OVERVIEW (12 products)
+   ========================================================= */
+function SlidePortfolioOverview() {
+  const products = [
+    { n: "P01", name: "Cupones digitales", tag: "Promo", body: "In-store, on-pack, OOH y digital. Face value adaptable, control operativo, clearing y reporting." },
+    { n: "P02", name: "Cashback & Rewards", tag: "Reward", body: "Validación por ticket o prueba de compra. Reembolso, gift card o dinero tematizado." },
+    { n: "P03", name: "Instant Win", tag: "WOW", body: "Momentos ganadores, sorteos, premios de consolación. Alta capacidad de viralización." },
+    { n: "P04", name: "WhatsApp Loyalty", tag: "B2C", body: "Programa de fidelización conversacional sin app. Puntos, catálogo, comunicaciones." },
+    { n: "P05", name: "Reward Marketplace", tag: "Catalog", body: "Tarjetas regalo, experiencias, contenido y beneficios. Canje digital con trazabilidad." },
+    { n: "P06", name: "Smart Campaigns", tag: "AI", body: "Activaciones que aprenden del comportamiento para reimpactar con relevancia." },
+    { n: "P07", name: "Consumer Insights", tag: "Voice", body: "Comunidades para preguntar, escuchar, testar y aprender antes de escalar." },
+    { n: "P08", name: "B2B Channel", tag: "B2B", body: "Retos de venta, niveles, formación y rankings para redes profesionales." },
+    { n: "P09", name: "Horeca App", tag: "Field", body: "Tickets, facturas, listados de venta. Promociones geolocalizadas por establecimiento." },
+    { n: "P10", name: "Pharma Engagement", tag: "Health", body: "Farmacias, prescriptores y consumidores. Microlearning, certificación, prescripción." },
+    { n: "P11", name: "Validation Engine", tag: "Core", body: "OCR, pincodes, geofencing, anti-fraude. El cerebro que conecta físico y digital." },
+    { n: "P12", name: "AI Assistant", tag: "AI", body: "Bot conversacional con IA generativa para soporte, dudas y reactivación." },
+  ];
+  return (
+    <section data-screen-label="11 Portfolio">
+      <div className="frame">
+        <DeckHeader section="03 · PORTFOLIO" sectionLabel="12 soluciones · 1 plataforma" slide={11} />
+        <div className="row between ai-end" style={{ marginTop: 32, marginBottom: 28 }}>
+          <h2 className="h1">Doce soluciones.<br/>Una sola arquitectura.</h2>
+          <p className="body-l" style={{ maxWidth: 460 }}>
+            Cada solución se puede activar de forma independiente o como parte de un programa escalable. Empieza por una. Crece a las doce.
+          </p>
+        </div>
+        <div className="grid-4" style={{ flex: 1, gap: 16 }}>
+          {products.map((p, i) => (
+            <div key={p.n} className="card lift" style={{ padding: 22, gap: 12, justifyContent: "space-between" }}>
+              <div className="row between ai-center">
+                <span className="mono" style={{ fontSize: 24, color: "var(--ink-mute)" }}>{p.n}</span>
+                <span className="tag">{p.tag}</span>
+              </div>
+              <h3 className="serif" style={{ fontSize: 36, lineHeight: 1, letterSpacing: "-0.02em" }}>{p.name}</h3>
+              <p className="body-s" style={{ fontSize: 24 }}>{p.body}</p>
+            </div>
+          ))}
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 12 — WHATSAPP DEEP DIVE (with mockup)
+   ========================================================= */
+function SlideWhatsApp() {
+  return (
+    <section data-screen-label="12 WhatsApp loyalty">
+      <div className="frame">
+        <DeckHeader section="04 · CUSTOMER JOURNEY · B2C" sectionLabel="Hero product" slide={12} />
+        <div className="split-7-5" style={{ flex: 1, marginTop: 32 }}>
+          <div className="col" style={{ justifyContent: "space-between" }}>
+            <div>
+              <span className="pill accent" style={{ marginBottom: 24 }}>Hero product · WhatsApp Loyalty</span>
+              <h2 className="h1" style={{ marginTop: 24 }}>El canal donde<br/>vive tu shopper<br/>se convierte<br/>en tu <span style={{ fontStyle: "italic", color: "var(--accent)" }}>loyalty</span>.</h2>
+            </div>
+            <div className="grid-2" style={{ gap: 24, marginTop: 24, marginBottom: 24 }}>
+              <div className="col rule-top" style={{ gap: 8 }}>
+                <span className="meta">01 · Adopción</span>
+                <span className="serif" style={{ fontSize: 32 }}>Sin descarga</span>
+                <p className="body-s">Interfaz familiar, baja curva, comunicación inmediata. Cero fricción.</p>
+              </div>
+              <div className="col rule-top" style={{ gap: 8 }}>
+                <span className="meta">02 · Bidireccional</span>
+                <span className="serif" style={{ fontSize: 32 }}>Conversa</span>
+                <p className="body-s">La marca no solo impacta: escucha, reactiva y resuelve.</p>
+              </div>
+              <div className="col rule-top" style={{ gap: 8 }}>
+                <span className="meta">03 · Always-on</span>
+                <span className="serif" style={{ fontSize: 32 }}>End-to-end</span>
+                <p className="body-s">Registro, participación, validación, canje y soporte en un solo flow.</p>
+              </div>
+              <div className="col rule-top" style={{ gap: 8 }}>
+                <span className="meta">04 · Data</span>
+                <span className="serif" style={{ fontSize: 32 }}>Relacional</span>
+                <p className="body-s">Cada interacción alimenta conocimiento accionable y consentido.</p>
+              </div>
+            </div>
+            <div className="row" style={{ gap: 8, flexWrap: "wrap" }}>
+              {["Loyalty", "Cashback", "Instant Win", "Puntos", "Cupones", "Catálogo", "Soporte"].map(t => (
+                <span key={t} className="pill">{t}</span>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
+            <WhatsAppMock />
+            <div style={{ position: "absolute", top: 20, right: 0, width: 240, textAlign: "right" }}>
+              <span className="meta">Live preview</span>
+              <p className="body-s" style={{ marginTop: 8 }}>Flow real — registro, participación y canje sin abandonar el chat.</p>
+            </div>
+          </div>
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+function WhatsAppMock() {
+  return (
+    <div className="phone">
+      <div className="phone-notch"></div>
+      <div className="phone-screen">
+        <div className="wa-header">
+          <span style={{ fontSize: 24 }}>‹</span>
+          <div className="wa-avatar">G</div>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontWeight: 600, fontSize: 24 }}>Granja Norte · oficial</div>
+            <div style={{ fontSize: 24, opacity: 0.85 }}>en línea</div>
+          </div>
+          <span style={{ fontSize: 24 }}>⋮</span>
+        </div>
+        <div className="wa-body">
+          <div className="wa-msg">
+            <div className="heading">¡Hola, Carla! 👋</div>
+            Bienvenida al programa <b>Granja+</b>. Cada compra te suma puntos canjeables por experiencias.
+            <div className="ts">10:24</div>
+          </div>
+          <div className="wa-msg mine">
+            Quiero participar
+            <div className="ts">10:25 ✓✓</div>
+          </div>
+          <div className="wa-msg">
+            Sube tu ticket o introduce el pincode del envase.
+            <div className="btn">📷  Subir ticket</div>
+            <div className="btn">🔢  Introducir pincode</div>
+            <div className="ts">10:25</div>
+          </div>
+          <div className="wa-msg">
+            <div className="heading">¡Validado! +120 pts</div>
+            Has ganado <b>3€ en cashback</b>. Tu saldo: <b>4.860 pts</b>.
+            <div className="btn" style={{ background: "#075E54", color: "#fff", borderColor: "#075E54" }}>Ver catálogo</div>
+            <div className="ts">10:26</div>
+          </div>
+        </div>
+        <div className="wa-input">
+          <span style={{ fontSize: 24, opacity: 0.5 }}>＋</span>
+          <div className="input-bubble">Escribe un mensaje</div>
+          <span style={{ fontSize: 24, opacity: 0.5 }}>🎤</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+   SLIDE 13 — B2C JOURNEY (5 steps)
+   ========================================================= */
+function SlideJourneyB2C() {
+  const steps = [
+    { n: "01", t: "Compra", body: "Producto, ticket, delivery o pincode on-pack.", icon: "🛒" },
+    { n: "02", t: "Activa", body: "QR, WhatsApp, web bot o landing dedicada.", icon: "📲" },
+    { n: "03", t: "Valida", body: "OCR de ticket, código único o prueba geolocalizada.", icon: "✓" },
+    { n: "04", t: "Gana", body: "Instant win, puntos, cashback o premio físico.", icon: "★" },
+    { n: "05", t: "Canjea", body: "Catálogo digital, tarjetas regalo, experiencias.", icon: "🎁" },
+  ];
+  return (
+    <section data-screen-label="13 Journey B2C">
+      <div className="frame">
+        <DeckHeader section="04 · CUSTOMER JOURNEY · B2C" sectionLabel="End-to-end flow" slide={13} />
+        <div className="row between ai-end" style={{ marginTop: 40, marginBottom: 48 }}>
+          <h2 className="h1">Un viaje simple,<br/>medible y <span style={{ fontStyle: "italic" }}>sin fricción</span>.</h2>
+          <p className="body-l" style={{ maxWidth: 460 }}>
+            Diseñado para maximizar participación y reducir abandono. Cada paso tiene un next-best-action comercial.
+          </p>
+        </div>
+
+        {/* timeline */}
+        <div style={{ flex: 1, position: "relative" }}>
+          <div style={{ position: "absolute", top: 70, left: 0, right: 0, height: 2, background: "var(--ink)" }}></div>
+          <div className="row" style={{ justifyContent: "space-between", position: "relative" }}>
+            {steps.map((s, i) => (
+              <div key={s.n} className="col" style={{ width: 280, alignItems: "flex-start", gap: 16 }}>
+                <div style={{
+                  width: 140, height: 140,
+                  borderRadius: "50%",
+                  background: i === 2 ? "var(--accent)" : "var(--paper)",
+                  border: "2px solid var(--ink)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: 48,
+                  color: i === 2 ? "#fff" : "var(--ink)",
+                  position: "relative",
+                  zIndex: 1,
+                }}>
+                  <span className="serif" style={{ fontSize: 54 }}>{s.n}</span>
+                </div>
+                <h3 className="serif" style={{ fontSize: 56, marginTop: 16 }}>{s.t}</h3>
+                <p className="body" style={{ maxWidth: 240 }}>{s.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* value triple */}
+        <div className="grid-3" style={{ gap: 0, marginTop: 32, borderTop: "1px solid var(--line)" }}>
+          <div className="col" style={{ padding: "20px 32px 0 0", gap: 6, borderRight: "1px solid var(--line-soft)" }}>
+            <span className="meta">Valor para la marca</span>
+            <p className="body">Más compras, más frecuencia, más trazabilidad y un canal directo para las próximas activaciones.</p>
+          </div>
+          <div className="col" style={{ padding: "20px 32px 0", gap: 6, borderRight: "1px solid var(--line-soft)" }}>
+            <span className="meta">Valor para el consumidor</span>
+            <p className="body">Beneficio claro, rápido y personalizado. Sin descargas, sin formularios largos.</p>
+          </div>
+          <div className="col" style={{ padding: "20px 0 0 32px", gap: 6 }}>
+            <span className="meta">Valor para el retailer</span>
+            <p className="body">Tráfico, sell-out, lectura de resultados por punto de venta y nuevas conversaciones.</p>
+          </div>
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+Object.assign(window, {
+  SlideValueProp, SlideValueStack, SlideOperatingModel, SlideFourLevers,
+  SlidePortfolioOverview, SlideWhatsApp, WhatsAppMock, SlideJourneyB2C
+});
+
+</script>
+
+<script type="text/babel">
+/* SAVI deck — slide components 3/3
+   Slides 14–28: Mecanicas, validation, B2B, verticales, data, IA, roadmap, CTA
+*/
+
+/* =========================================================
+   SLIDE 14 — MECANICAS PROMOCIONALES
+   ========================================================= */
+function SlideMecanicas() {
+  const mec = [
+    { n: "M01", t: "Instant Win", sub: "Momento ganador + premio de consolación", body: "El usuario sabe en segundos si ha ganado. Cero espera, máxima viralidad.", chips: ["Sorteo", "WOW", "Viral"] },
+    { n: "M02", t: "Cashback", sub: "Reembolso por ticket o acumulación", body: "Validamos compra y devolvemos dinero a cuenta, gift card o WhatsApp Pay.", chips: ["High value", "Trial"] },
+    { n: "M03", t: "Puntos", sub: "Acumulación y canje por catálogo", body: "Loyalty clásico — la columna vertebral del programa de relación de tu marca.", chips: ["Recurrencia", "Catálogo"] },
+    { n: "M04", t: "Cupones digitales", sub: "Descuento inmediato y redención medible", body: "Distribuibles por WhatsApp, app, on-pack, retail media o tienda. Trazabilidad total.", chips: ["Trial", "Conversion"] },
+    { n: "M05", t: "Colector de compras", sub: "La sexta compra devuelve valor", body: "Mecánica perfecta para impulsar repetición en categorías de alta frecuencia.", chips: ["Frecuencia"] },
+    { n: "M06", t: "Geofenced activation", sub: "Validación por ubicación + prueba", body: "Activaciones tácticas en el punto de venta, eventos, cadenas o territorios concretos.", chips: ["Local", "OOH"] },
+  ];
+  return (
+    <section data-screen-label="14 Mecánicas">
+      <div className="frame">
+        <DeckHeader section="05 · MECÁNICAS" sectionLabel="Promotional toolkit" slide={14} />
+        <div className="row between ai-end" style={{ marginTop: 40, marginBottom: 32 }}>
+          <h2 className="h1">La mecánica se adapta<br/>a tu objetivo de <span style={{ fontStyle: "italic" }}>negocio</span>.</h2>
+          <p className="body-l" style={{ maxWidth: 480 }}>
+            Una campaña táctica puede evolucionar a un loyalty completo sin reiniciar nada. Mismo motor, distintas reglas.
+          </p>
+        </div>
+        <div className="grid-3" style={{ flex: 1, gap: 0 }}>
+          {mec.map((m, i) => (
+            <div key={m.n} className="col" style={{
+              padding: 32,
+              borderTop: "1px solid var(--line)",
+              borderBottom: i >= 3 ? "1px solid var(--line)" : "none",
+              borderRight: i % 3 < 2 ? "1px solid var(--line-soft)" : "none",
+              gap: 14,
+              minHeight: 280,
+            }}>
+              <div className="row between ai-center">
+                <span className="mono" style={{ fontSize: 24, color: "var(--ink-mute)" }}>{m.n}</span>
+                <div className="chip-row">{m.chips.map((c, j) => <span key={j} className="chip">{c}</span>)}</div>
+              </div>
+              <h3 className="h3" style={{ fontSize: 48 }}>{m.t}</h3>
+              <span className="serif" style={{ fontSize: 24, fontStyle: "italic", color: "var(--ink-soft)" }}>{m.sub}</span>
+              <p className="body">{m.body}</p>
+            </div>
+          ))}
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 15 — VALIDATION ENGINE
+   ========================================================= */
+function SlideValidation() {
+  const proof = [
+    { n: "01", t: "Pincodes únicos", body: "Códigos on-pack o talonarios asignados por tienda, canal o lote." },
+    { n: "02", t: "Tickets OCR", body: "Subida de ticket con validación automática + revisión manual cuando hace falta." },
+    { n: "03", t: "Delivery proof", body: "Recibo digital, captura o prueba del pedido a través de la app." },
+    { n: "04", t: "Geofencing", body: "Participación vinculada a ubicación con tolerancia operativa." },
+    { n: "05", t: "Facturas B2B", body: "Carga de facturas y listados de venta para HORECA, farma o retail." },
+    { n: "06", t: "Anti-fraude", body: "Control de códigos, reintentos, estados, historial y trazabilidad completa." },
+  ];
+  return (
+    <section data-screen-label="15 Validation engine" className="invert">
+      <div className="frame">
+        <DeckHeader section="05 · MECÁNICAS" sectionLabel="Validation engine" slide={15} />
+        <div className="split-7-5" style={{ flex: 1, marginTop: 40 }}>
+          <div className="col" style={{ justifyContent: "space-between" }}>
+            <div>
+              <span className="pill" style={{ marginBottom: 24 }}>The core</span>
+              <h2 className="h1" style={{ marginTop: 24 }}>
+                Todas las pruebas<br/>de compra <span style={{ fontStyle: "italic", color: "var(--accent)" }}>cuentan</span>.
+              </h2>
+              <p className="body-l" style={{ marginTop: 32, maxWidth: 640 }}>
+                Nuestro motor de validación conecta canales físicos y digitales con reglas de negocio claras y antifraude integrado desde el día 1.
+              </p>
+            </div>
+            <div className="grid-2" style={{ gap: 0, marginTop: 32 }}>
+              {[{ k: "Códigos cargados", v: "+10M" }, { k: "Tickets validados", v: "+1.2M" }, { k: "Tasa fraude", v: "<0.4%" }, { k: "Latencia OCR", v: "<3s" }].map((s, i) => (
+                <div key={i} className="col" style={{
+                  padding: "20px 24px",
+                  borderTop: "1px solid rgba(244,241,234,0.18)",
+                  borderRight: i % 2 === 0 ? "1px solid rgba(244,241,234,0.18)" : "none",
+                  borderBottom: i < 2 ? "1px solid rgba(244,241,234,0.18)" : "none",
+                  gap: 4,
+                }}>
+                  <span className="meta">{s.k}</span>
+                  <span className="serif" style={{ fontSize: 56, color: "var(--invert-ink)" }}>{s.v}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="col" style={{ gap: 0, alignSelf: "stretch" }}>
+            {proof.map((p, i) => (
+              <div key={p.n} className="row" style={{
+                padding: "20px 0",
+                borderTop: i === 0 ? "1px solid rgba(244,241,234,0.3)" : "none",
+                borderBottom: "1px solid rgba(244,241,234,0.18)",
+                gap: 32,
+                alignItems: "center",
+              }}>
+                <span className="mono" style={{ fontSize: 24, width: 28, color: "rgba(244,241,234,0.5)" }}>{p.n}</span>
+                <span className="serif" style={{ fontSize: 36, width: 280 }}>{p.t}</span>
+                <span className="body" style={{ flex: 1 }}>{p.body}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 16 — REWARDS GALLERY
+   ========================================================= */
+function SlideRewards() {
+  const rewards = [
+    { t: "Tarjetas regalo digitales", c: "Marketplace · 200+ marcas", color: "#1a1a1a" },
+    { t: "Cashback al instante", c: "Bizum · WhatsApp Pay · IBAN", color: "var(--accent)" },
+    { t: "Catálogos temáticos", c: "TV · Gaming · Música · Cine", color: "#0e1a14" },
+    { t: "Experiencias", c: "Ocio · Viajes · Conciertos", color: "#3d2e1f" },
+    { t: "Premios físicos", c: "Producto, merch y ediciones limitadas", color: "#1a1a1a" },
+    { t: "Beneficios temáticos", c: "Delivery · Streaming · Wellness", color: "var(--accent)" },
+  ];
+  return (
+    <section data-screen-label="16 Rewards">
+      <div className="frame">
+        <DeckHeader section="05 · MECÁNICAS" sectionLabel="Rewards engine" slide={16} />
+        <div className="row between ai-end" style={{ marginTop: 40, marginBottom: 40 }}>
+          <h2 className="h1">Recompensas que construyen<br/>relaciones, no solo <span style={{ fontStyle: "italic" }}>redenciones</span>.</h2>
+          <p className="body-l" style={{ maxWidth: 460 }}>
+            Dinero tematizado, regalos digitales y beneficios alineados con momentos de consumo reales.
+          </p>
+        </div>
+        <div className="grid-3" style={{ flex: 1, gap: 16 }}>
+          {rewards.map((r, i) => (
+            <div key={i} className="col lift" style={{
+              background: r.color,
+              color: "#fff",
+              padding: 32,
+              minHeight: 260,
+              justifyContent: "space-between",
+              border: "1px solid rgba(0,0,0,0.1)",
+            }}>
+              <span className="meta" style={{ color: "rgba(255,255,255,0.7)" }}>R0{i+1}</span>
+              <div>
+                <h3 className="serif" style={{ fontSize: 44, lineHeight: 1.05 }}>{r.t}</h3>
+                <p className="body" style={{ color: "rgba(255,255,255,0.85)", marginTop: 12 }}>{r.c}</p>
+              </div>
+              <div style={{ display: "flex", justifyContent: "flex-end", fontSize: 36 }}>↗</div>
+            </div>
+          ))}
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 17 — B2B Channel section opener
+   ========================================================= */
+function SlideB2BIntro() {
+  return (
+    <section data-screen-label="17 B2B intro">
+      <div className="frame">
+        <DeckHeader section="06 · B2B & CANAL" sectionLabel="From channel to ambassador" slide={17} />
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div className="eyebrow lg" style={{ marginBottom: 24 }}><span className="dot"></span>B2B engagement</div>
+          <h1 className="display" style={{ fontSize: 200 }}>
+            Convierte tu canal<br/>
+            en <span style={{ fontStyle: "italic", color: "var(--accent)" }}>embajador</span><br/>
+            activo de tu marca.
+          </h1>
+          <div className="row between ai-end" style={{ marginTop: 56, borderTop: "1px solid var(--line)", paddingTop: 24 }}>
+            <p className="body-l" style={{ maxWidth: 800 }}>
+              Para HORECA, farma, franquiciados, veterinarios, gimnasios o redes de servicios. Quien vende, prescribe o ejecuta tu marca, gana con ella.
+            </p>
+            <div className="row" style={{ gap: 12 }}>
+              {["Horeca", "Pharma", "Pet", "Beauty", "Retail spec."].map(t => <span key={t} className="pill">{t}</span>)}
+            </div>
+          </div>
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 18 — B2B PORTAL MOCKUP
+   ========================================================= */
+function SlideB2BPortal() {
+  return (
+    <section data-screen-label="18 B2B portal">
+      <div className="frame">
+        <DeckHeader section="06 · B2B & CANAL" sectionLabel="Channel portal" slide={18} />
+        <div className="split-5-7" style={{ flex: 1, marginTop: 32, gap: 64 }}>
+          <div className="col" style={{ justifyContent: "space-between" }}>
+            <div>
+              <span className="pill accent" style={{ marginBottom: 24 }}>B2B Channel platform</span>
+              <h2 className="h1" style={{ marginTop: 24 }}>De obligación<br/>a <span style={{ fontStyle: "italic" }}>logro</span>.</h2>
+              <p className="body-l" style={{ marginTop: 32, maxWidth: 540 }}>
+                La compra, formación o ejecución se convierten en reto, reconocimiento y recompensa. La marca gana visibilidad sobre canal, performance y oportunidades.
+              </p>
+            </div>
+            <div className="col" style={{ gap: 16, marginTop: 24 }}>
+              {[
+                { t: "Retos de venta", d: "Compra, rotación, lanzamientos, share of menu" },
+                { t: "Retos operativos", d: "Foto de nevera, visibilidad, ejecución, prueba en PDV" },
+                { t: "Microlearning", d: "Píldoras, tests, certificaciones y badges" },
+                { t: "Catálogo", d: "Premios económicos, operativos y experienciales" },
+              ].map((x, i) => (
+                <div key={i} className="row rule-top soft" style={{ paddingTop: 12, gap: 16, alignItems: "baseline" }}>
+                  <span className="mono" style={{ fontSize: 24, width: 28 }}>0{i+1}</span>
+                  <span className="serif" style={{ fontSize: 30, width: 280 }}>{x.t}</span>
+                  <span className="body-s" style={{ flex: 1 }}>{x.d}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <B2BPortalMock />
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+function B2BPortalMock() {
+  return (
+    <div style={{
+      background: "var(--paper)",
+      border: "1px solid var(--line)",
+      borderRadius: 12,
+      overflow: "hidden",
+      boxShadow: "0 30px 80px -30px rgba(0,0,0,0.25)",
+      display: "flex",
+      flexDirection: "column",
+    }}>
+      {/* Browser chrome */}
+      <div style={{ background: "#e8e3d6", padding: "12px 16px", display: "flex", gap: 6, borderBottom: "1px solid var(--line)" }}>
+        <span style={{ width: 12, height: 12, borderRadius: "50%", background: "#ff5f57" }}></span>
+        <span style={{ width: 12, height: 12, borderRadius: "50%", background: "#febc2e" }}></span>
+        <span style={{ width: 12, height: 12, borderRadius: "50%", background: "#28c840" }}></span>
+        <span className="mono" style={{ fontSize: 24, marginLeft: 16, color: "var(--ink-mute)" }}>granjanorte.savi.io/horeca</span>
+      </div>
+      {/* App body */}
+      <div style={{ display: "grid", gridTemplateColumns: "180px 1fr", flex: 1 }}>
+        {/* Sidebar */}
+        <div style={{ background: "var(--bg-2)", padding: "20px 16px", borderRight: "1px solid var(--line-soft)" }}>
+          <div className="wordmark" style={{ fontSize: 24 }}>granja+<span style={{ color: "var(--accent)" }}>.</span></div>
+          <div className="col" style={{ gap: 4, marginTop: 24 }}>
+            {[
+              { t: "Inicio", on: false },
+              { t: "Retos", on: true },
+              { t: "Subir tickets", on: false },
+              { t: "Catálogo", on: false },
+              { t: "Formación", on: false },
+              { t: "Ranking", on: false },
+            ].map(i => (
+              <div key={i.t} style={{
+                padding: "8px 12px",
+                fontSize: 24,
+                background: i.on ? "var(--ink)" : "transparent",
+                color: i.on ? "#fff" : "var(--ink)",
+                borderRadius: 4,
+              }}>{i.t}</div>
+            ))}
+          </div>
+        </div>
+        {/* Main */}
+        <div style={{ padding: 24 }}>
+          <div className="row between ai-center">
+            <div>
+              <div className="meta" style={{ fontSize: 24 }}>BIENVENIDO</div>
+              <div className="serif" style={{ fontSize: 34, lineHeight: 1, marginTop: 4 }}>Bar La Coruña</div>
+            </div>
+            <span className="pill solid" style={{ fontSize: 24 }}>★ Nivel ORO</span>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, marginTop: 20 }}>
+            {[
+              { k: "Puntos", v: "12.480" },
+              { k: "Retos activos", v: "07" },
+              { k: "Premio mes", v: "168€" },
+            ].map(s => (
+              <div key={s.k} style={{ background: "var(--bg)", padding: 14, border: "1px solid var(--line-soft)" }}>
+                <div className="meta" style={{ fontSize: 24 }}>{s.k}</div>
+                <div className="serif" style={{ fontSize: 26, marginTop: 4 }}>{s.v}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="meta" style={{ fontSize: 24, marginTop: 24 }}>RETOS DE LA SEMANA</div>
+          <div className="col" style={{ gap: 8, marginTop: 8 }}>
+            {[
+              { t: "Vende 12 botellas Granja IPA", p: 8, total: 12, reward: "+250 pts" },
+              { t: "Sube foto de visibilidad nevera", p: 1, total: 1, reward: "✓ 100 pts" },
+              { t: "Test producto Granja Premium", p: 0, total: 1, reward: "+150 pts" },
+            ].map((r, i) => {
+              const pct = (r.p / r.total) * 100;
+              return (
+                <div key={i} style={{ background: "var(--bg)", padding: "10px 14px", border: "1px solid var(--line-soft)" }}>
+                  <div className="row between ai-center">
+                    <div style={{ fontSize: 24, fontWeight: 500 }}>{r.t}</div>
+                    <div className="mono" style={{ fontSize: 24, color: "var(--accent)" }}>{r.reward}</div>
+                  </div>
+                  <div style={{ height: 4, background: "var(--line-soft)", marginTop: 8, position: "relative" }}>
+                    <div style={{ position: "absolute", inset: 0, width: pct + "%", background: "var(--accent)" }}></div>
+                  </div>
+                  <div className="mono" style={{ fontSize: 24, marginTop: 4, color: "var(--ink-mute)" }}>{r.p}/{r.total} completado</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+   SLIDE 19 — TIER SYSTEM (Bronce/Plata/Oro)
+   ========================================================= */
+function SlideTiers() {
+  const tiers = [
+    { n: "01", t: "Bronce", body: "Acceso inicial, beneficios básicos y primeras oportunidades. Una bienvenida útil al programa.", perks: ["Catálogo base", "Cashback estándar", "Comunicaciones"], color: "#a37a4d" },
+    { n: "02", t: "Plata", body: "Cliente constante: más ventajas, retos exclusivos y mayor visibilidad sobre la red.", perks: ["+15% en cashback", "Retos exclusivos", "Premios temáticos"], color: "#9da3a7" },
+    { n: "03", t: "Oro", body: "Embajador de marca: experiencias VIP, beneficios exclusivos y comunicación 1:1.", perks: ["Experiencias VIP", "Eventos marca", "Account manager"], color: "var(--accent)" },
+  ];
+  return (
+    <section data-screen-label="19 Tiers">
+      <div className="frame">
+        <DeckHeader section="06 · B2B & CANAL" sectionLabel="Tier system" slide={19} />
+        <div className="row between ai-end" style={{ marginTop: 40, marginBottom: 40 }}>
+          <h2 className="h1">Niveles, retos y rankings<br/>para activar <span style={{ fontStyle: "italic" }}>comportamiento</span>.</h2>
+          <p className="body-l" style={{ maxWidth: 460 }}>
+            Las mejores plataformas B2B combinan palanca transaccional y relacional. La progresión es tan importante como el premio.
+          </p>
+        </div>
+        <div className="grid-3" style={{ flex: 1, gap: 0 }}>
+          {tiers.map((t, i) => (
+            <div key={t.n} className="col" style={{
+              padding: 36,
+              border: "1px solid var(--line)",
+              marginRight: i < 2 ? -1 : 0,
+              gap: 24,
+              justifyContent: "space-between",
+              background: i === 2 ? "var(--ink)" : "var(--paper)",
+              color: i === 2 ? "var(--bg)" : "var(--ink)",
+            }}>
+              <div className="row between ai-center">
+                <span className="mono" style={{ fontSize: 24, color: i === 2 ? "rgba(244,241,234,0.6)" : "var(--ink-mute)" }}>{t.n} / 03</span>
+                <span style={{ width: 20, height: 20, borderRadius: "50%", background: t.color, border: "2px solid currentColor" }}></span>
+              </div>
+              <h3 className="display xs" style={{ fontSize: 140, color: t.color }}>{t.t}</h3>
+              <p className="body-l" style={{ color: i === 2 ? "rgba(244,241,234,0.8)" : "var(--ink-soft)" }}>{t.body}</p>
+              <div className="col" style={{ gap: 6, borderTop: "1px solid currentColor", paddingTop: 16, opacity: 0.85 }}>
+                {t.perks.map((p, j) => (
+                  <div key={j} className="row" style={{ gap: 10, fontSize: 24 }}>
+                    <span className="mono" style={{ opacity: 0.5 }}>—</span>
+                    <span>{p}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 20 — VERTICAL: FMCG
+   ========================================================= */
+function SlideVerticalFMCG() {
+  return (
+    <section data-screen-label="20 Vertical FMCG">
+      <div className="frame">
+        <DeckHeader section="07 · CASOS DE USO" sectionLabel="Vertical · FMCG" slide={20} />
+        <div className="split-7-5" style={{ flex: 1, marginTop: 32 }}>
+          <div className="col" style={{ justifyContent: "space-between" }}>
+            <div>
+              <span className="pill solid" style={{ marginBottom: 16 }}>USE CASE · 01</span>
+              <h2 className="h1" style={{ marginTop: 24 }}>FMCG · Loyalty<br/>sin app propia.</h2>
+              <p className="body-l" style={{ marginTop: 32, maxWidth: 760 }}>
+                Para marcas que necesitan una relación directa con consumidores que compran en múltiples canales — gran distribución, conveniencia, ecommerce, delivery — y no quieren la fricción de una app dedicada.
+              </p>
+            </div>
+
+            <div className="col" style={{ gap: 16, marginTop: 24 }}>
+              <div className="meta">QUÉ ACTIVAMOS</div>
+              {[
+                "Puntos por compra y recompra (WhatsApp).",
+                "Instant win para acelerar prueba y participación.",
+                "Comunicaciones y opt-in con consentimiento trazable.",
+                "Data por categoría, canal, momento de consumo y SKU.",
+              ].map((x, i) => (
+                <div key={i} className="row" style={{ gap: 24, alignItems: "baseline", borderBottom: "1px solid var(--line-soft)", paddingBottom: 12 }}>
+                  <span className="mono" style={{ fontSize: 24, color: "var(--ink-mute)" }}>0{i+1}</span>
+                  <span className="serif" style={{ fontSize: 28, flex: 1 }}>{x}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="col" style={{ gap: 24 }}>
+            <div className="card" style={{ background: "var(--accent)", color: "#fff", border: "none", padding: 32, gap: 16 }}>
+              <span className="meta" style={{ color: "rgba(255,255,255,0.8)" }}>EXPECTED OUTCOME</span>
+              <div className="serif" style={{ fontSize: 56, lineHeight: 1 }}>+18%<br/>sell-out</div>
+              <p className="body" style={{ color: "rgba(255,255,255,0.9)" }}>en SKUs activados, con frecuencia de compra x3.2 frente a no-participantes.</p>
+            </div>
+            <div className="grid-2" style={{ gap: 12 }}>
+              {[
+                { k: "Opt-in medio", v: "78%" },
+                { k: "CPA participante", v: "0.35€" },
+                { k: "Time-to-market", v: "4 sem." },
+                { k: "Premios entregados", v: "100%" },
+              ].map(s => (
+                <div key={s.k} style={{ background: "var(--paper)", border: "1px solid var(--line)", padding: 18 }}>
+                  <span className="meta" style={{ fontSize: 24 }}>{s.k}</span>
+                  <div className="serif" style={{ fontSize: 36, lineHeight: 1, marginTop: 6 }}>{s.v}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{ background: "var(--bg-2)", padding: 24, fontSize: 24, lineHeight: 1.5 }}>
+              <span className="meta" style={{ fontSize: 24 }}>QUOTE FICTICIO · VP MARKETING FMCG</span>
+              <p className="serif" style={{ fontSize: 24, marginTop: 12, lineHeight: 1.25, fontStyle: "italic" }}>"Pasamos de medir 'cuánto invertimos' a medir 'a cuántos hogares conocemos'. Esa es la diferencia."</p>
+            </div>
+          </div>
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 21 — VERTICAL: Snacking
+   ========================================================= */
+function SlideVerticalSnacking() {
+  return (
+    <section data-screen-label="21 Vertical Snacking" className="invert">
+      <div className="frame">
+        <DeckHeader section="07 · CASOS DE USO" sectionLabel="Vertical · Snacking & Ice Cream" slide={21} />
+        <div className="split-7-5" style={{ flex: 1, marginTop: 32 }}>
+          <div className="col" style={{ justifyContent: "space-between" }}>
+            <div>
+              <span className="pill" style={{ marginBottom: 16 }}>USE CASE · 02</span>
+              <h2 className="h1" style={{ marginTop: 24 }}>
+                Snacking & Ice Cream.<br/>Activaciones por <span style={{ fontStyle: "italic", color: "var(--accent)" }}>momento</span>.
+              </h2>
+              <p className="body-l" style={{ marginTop: 32, maxWidth: 760 }}>
+                Productos de impulso que viven de la emoción, el ocio y el consumo social. La mecánica tiene que ser tan inmediata como el producto.
+              </p>
+            </div>
+
+            <div className="grid-2" style={{ gap: 16, marginTop: 24 }}>
+              {[
+                { t: "QR + WhatsApp", d: "On-pack escaneable que dispara la conversación en 1 segundo." },
+                { t: "Premios tematizados", d: "Música, festivales, gaming o cine — alineados con la marca." },
+                { t: "Retos estacionales", d: "Verano, navidad, vuelta al cole — momentum de venta." },
+                { t: "Canje digital instantáneo", d: "El usuario gana y consume sin abrir otra app." },
+              ].map((x, i) => (
+                <div key={i} className="col" style={{ borderTop: "1px solid rgba(244,241,234,0.3)", paddingTop: 12, gap: 6 }}>
+                  <span className="meta">0{i+1}</span>
+                  <span className="serif" style={{ fontSize: 30, color: "var(--invert-ink)" }}>{x.t}</span>
+                  <span className="body-s">{x.d}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="col" style={{ gap: 16, justifyContent: "center", alignItems: "center" }}>
+            {/* on-pack mockup */}
+            <div style={{
+              width: 380, height: 480,
+              background: "linear-gradient(180deg, #ff4d1f 0%, #ffaa6a 100%)",
+              padding: 32,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              border: "1px solid rgba(0,0,0,0.1)",
+              boxShadow: "0 30px 80px -30px rgba(0,0,0,0.4)",
+            }}>
+              <div className="row between ai-start">
+                <div>
+                  <div className="serif" style={{ fontSize: 60, color: "#fff", lineHeight: 0.9 }}>helado.</div>
+                  <div className="meta" style={{ color: "rgba(255,255,255,0.85)", marginTop: 8 }}>edición verano</div>
+                </div>
+                <span className="pill solid" style={{ background: "#000", borderColor: "#000", color: "#fff" }}>★</span>
+              </div>
+              <div className="col" style={{ gap: 12 }}>
+                <div style={{
+                  width: 140, height: 140,
+                  background: "#fff",
+                  display: "grid",
+                  gridTemplateColumns: "repeat(8, 1fr)",
+                  gridTemplateRows: "repeat(8, 1fr)",
+                  gap: 1,
+                }}>
+                  {Array.from({ length: 64 }).map((_, i) => (
+                    <div key={i} style={{ background: Math.random() > 0.4 ? "#000" : "#fff" }}></div>
+                  ))}
+                </div>
+                <div className="serif" style={{ fontSize: 36, color: "#fff", lineHeight: 1 }}>Escanea<br/>y gana.</div>
+                <div className="meta" style={{ color: "rgba(255,255,255,0.85)" }}>Pincode · GR-72-491</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 22 — Verticales grid (rest)
+   ========================================================= */
+function SlideVerticalsGrid() {
+  const verticals = [
+    { t: "Pharma & Health", body: "Engagement con farmacias, profesionales y consumidores desde la educación, el incentivo y la prescripción.", chips: ["Microlearning", "Certificación", "Prescripción"] },
+    { t: "Horeca", body: "Programas que alinean sell-in, sell-out, formación y ejecución en restaurantes y bares.", chips: ["Tickets", "Listados", "Foto PDV", "Ranking"] },
+    { t: "Retail especializado", body: "Pet shops, ópticas, beauty, sportech: redes con identidad propia y necesidad de incentivos a medida.", chips: ["B2B", "Loyalty", "Catálogo"] },
+    { t: "Servicios & subscripción", body: "Telco, energía, banca, mobility: incentivos para activar primer uso, upsell y reducir churn.", chips: ["Onboarding", "Cross-sell", "Anti-churn"] },
+  ];
+  return (
+    <section data-screen-label="22 Verticales grid">
+      <div className="frame">
+        <DeckHeader section="07 · CASOS DE USO" sectionLabel="Otros verticales" slide={22} />
+        <div className="row between ai-end" style={{ marginTop: 40, marginBottom: 32 }}>
+          <h2 className="h1">No solo FMCG.<br/>El motor escala con<br/>tu modelo de negocio.</h2>
+          <p className="body-l" style={{ maxWidth: 480 }}>
+            Mismo core, distintas reglas. La validación, los premios, los retos y los datos se adaptan al vertical sin reescribir la plataforma.
+          </p>
+        </div>
+        <div className="grid-2" style={{ flex: 1, gap: 0 }}>
+          {verticals.map((v, i) => (
+            <div key={v.t} className="col" style={{
+              padding: 40,
+              borderTop: i < 2 ? "1px solid var(--line)" : "none",
+              borderBottom: "1px solid var(--line)",
+              borderRight: i % 2 === 0 ? "1px solid var(--line-soft)" : "none",
+              gap: 16,
+              minHeight: 280,
+            }}>
+              <div className="row between ai-center">
+                <span className="mono" style={{ color: "var(--ink-mute)" }}>V0{i+1}</span>
+                <div className="chip-row">{v.chips.map((c, j) => <span key={j} className="chip">{c}</span>)}</div>
+              </div>
+              <h3 className="h2" style={{ fontSize: 64 }}>{v.t}</h3>
+              <p className="body-l">{v.body}</p>
+            </div>
+          ))}
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+Object.assign(window, {
+  SlideMecanicas, SlideValidation, SlideRewards, SlideB2BIntro,
+  SlideB2BPortal, B2BPortalMock, SlideTiers, SlideVerticalFMCG,
+  SlideVerticalSnacking, SlideVerticalsGrid
+});
+
+</script>
+
+<script type="text/babel">
+/* SAVI deck — slides 4/4
+   Slides 23–28: Data, IA, dashboard, plataforma, roadmap, CTA
+*/
+
+/* =========================================================
+   SLIDE 23 — DATA & DASHBOARD MOCKUP
+   ========================================================= */
+function SlideDashboard() {
+  const bars = [42, 58, 51, 70, 64, 88, 95, 78, 92, 110, 102, 120];
+  return (
+    <section data-screen-label="23 Dashboard">
+      <div className="frame">
+        <DeckHeader section="08 · DATA & IA" sectionLabel="Insights dashboard" slide={23} />
+        <div className="split-5-7" style={{ flex: 1, marginTop: 32, gap: 56 }}>
+          <div className="col" style={{ justifyContent: "space-between" }}>
+            <div>
+              <span className="pill accent" style={{ marginBottom: 16 }}>Real-time</span>
+              <h2 className="h1" style={{ marginTop: 24 }}>El dato deja de ser<br/>reporting <span style={{ fontStyle: "italic" }}>final</span>.</h2>
+              <p className="body-l" style={{ marginTop: 32, maxWidth: 540 }}>
+                Pasa a ser palanca de decisión durante la campaña. Medimos, aprendemos y ajustamos en tiempo real — no en el debrief.
+              </p>
+            </div>
+            <div className="col" style={{ gap: 12, marginTop: 24 }}>
+              {[
+                { k: "Performance", d: "Participaciones, ventas, frecuencia, valor, conversión" },
+                { k: "Canal", d: "Tienda, delivery, HORECA, farma, retail, zona" },
+                { k: "Consumidor", d: "Segmentos, perfil, hábitos, recurrencia, engagement" },
+                { k: "ROI", d: "Coste por participación, redención, incentivo y evolución" },
+              ].map((x, i) => (
+                <div key={i} className="row rule-top soft" style={{ paddingTop: 12, gap: 24 }}>
+                  <span className="mono" style={{ fontSize: 24, width: 28 }}>0{i+1}</span>
+                  <span className="serif" style={{ fontSize: 26, width: 200 }}>{x.k}</span>
+                  <span className="body-s" style={{ flex: 1 }}>{x.d}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Dashboard mock */}
+          <div className="dash" style={{ borderRadius: 6, boxShadow: "0 30px 80px -30px rgba(0,0,0,0.25)" }}>
+            <div className="row between ai-center">
+              <div>
+                <div className="meta" style={{ fontSize: 24 }}>CAMPAÑA · GRANJA SUMMER 26</div>
+                <div className="serif" style={{ fontSize: 28, lineHeight: 1, marginTop: 4 }}>Performance overview</div>
+              </div>
+              <div className="row" style={{ gap: 8 }}>
+                <span className="pill" style={{ fontSize: 24, padding: "4px 10px" }}>30d</span>
+                <span className="pill solid" style={{ fontSize: 24, padding: "4px 10px" }}>Live</span>
+              </div>
+            </div>
+
+            <div className="grid-4" style={{ gap: 12, marginTop: 20 }}>
+              {[
+                { k: "Participaciones", v: "284.512", d: "+12% vs prev" },
+                { k: "Sell-out lift", v: "+18.4%", d: "vs base 8w" },
+                { k: "Opt-in", v: "78%", d: "+4 pts" },
+                { k: "Cost / lead", v: "0.31€", d: "−14%" },
+              ].map(s => (
+                <div key={s.k} style={{ background: "var(--bg)", border: "1px solid var(--line-soft)", padding: 14 }}>
+                  <div className="meta" style={{ fontSize: 24 }}>{s.k}</div>
+                  <div className="serif" style={{ fontSize: 28, marginTop: 4, lineHeight: 1 }}>{s.v}</div>
+                  <div className="mono" style={{ fontSize: 24, color: "var(--accent)", marginTop: 4 }}>{s.d}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="row between ai-end" style={{ marginTop: 24 }}>
+              <span className="meta" style={{ fontSize: 24 }}>PARTICIPACIONES · ÚLTIMOS 12 DÍAS</span>
+              <span className="mono" style={{ fontSize: 24, color: "var(--ink-mute)" }}>x1k</span>
+            </div>
+            <div className="dash-bar" style={{ marginTop: 12, height: 140 }}>
+              {bars.map((b, i) => (
+                <div key={i} className={i === 11 ? "hi" : ""} style={{ height: b + "%" }}></div>
+              ))}
+            </div>
+
+            <div className="row between" style={{ marginTop: 16 }}>
+              <span className="mono" style={{ fontSize: 24, color: "var(--ink-mute)" }}>L  M  X  J  V  S  D  L  M  X  J  V</span>
+            </div>
+
+            <div className="grid-2" style={{ gap: 12, marginTop: 16 }}>
+              <div style={{ background: "var(--bg)", border: "1px solid var(--line-soft)", padding: 14 }}>
+                <div className="meta" style={{ fontSize: 24 }}>TOP CANALES</div>
+                <div className="col" style={{ gap: 6, marginTop: 8 }}>
+                  {[["WhatsApp", 64], ["Web bot", 22], ["On-pack QR", 14]].map(([n, p], i) => (
+                    <div key={i}>
+                      <div className="row between" style={{ fontSize: 24 }}>
+                        <span>{n}</span><span className="mono">{p}%</span>
+                      </div>
+                      <div style={{ height: 4, background: "var(--line-soft)", marginTop: 4 }}>
+                        <div style={{ width: p + "%", height: "100%", background: "var(--ink)" }}></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div style={{ background: "var(--bg)", border: "1px solid var(--line-soft)", padding: 14 }}>
+                <div className="meta" style={{ fontSize: 24 }}>SEGMENTOS</div>
+                <div className="col" style={{ gap: 6, marginTop: 8 }}>
+                  {[["Heavy", 38], ["Medium", 41], ["Light", 21]].map(([n, p], i) => (
+                    <div key={i}>
+                      <div className="row between" style={{ fontSize: 24 }}>
+                        <span>{n}</span><span className="mono">{p}%</span>
+                      </div>
+                      <div style={{ height: 4, background: "var(--line-soft)", marginTop: 4 }}>
+                        <div style={{ width: p + "%", height: "100%", background: "var(--accent)" }}></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 24 — AI / Asistente
+   ========================================================= */
+function SlideAI() {
+  return (
+    <section data-screen-label="24 IA" className="invert">
+      <div className="frame">
+        <DeckHeader section="08 · DATA & IA" sectionLabel="Generative AI" slide={24} />
+        <div className="split-5-7" style={{ flex: 1, marginTop: 32 }}>
+          <div className="col" style={{ justifyContent: "space-between" }}>
+            <div>
+              <span className="pill" style={{ marginBottom: 16 }}>AI Layer</span>
+              <h2 className="h1" style={{ marginTop: 24 }}>
+                Del dato al<br/><span style={{ fontStyle: "italic", color: "var(--accent)" }}>insight</span><br/>accionable.
+              </h2>
+              <p className="body-l" style={{ marginTop: 32, maxWidth: 580 }}>
+                IA generativa integrada en cada punto del journey: respuestas a usuarios, lectura de feedback, sugerencias para próximas activaciones y operaciones.
+              </p>
+            </div>
+            <div className="col" style={{ gap: 16, marginTop: 24 }}>
+              {[
+                { k: "Asistente conversacional", d: "Responde dudas de producto, programa y operación." },
+                { k: "Comunidad de asesores", d: "Misiones, UGC e insights de consumidores y profesionales." },
+                { k: "Insights cognitivos", d: "Lectura de feedback, patrones y oportunidades para la próxima acción." },
+              ].map((x, i) => (
+                <div key={i} className="row rule-top" style={{ paddingTop: 12, gap: 24 }}>
+                  <span className="mono" style={{ fontSize: 24, width: 28 }}>0{i+1}</span>
+                  <span className="serif" style={{ fontSize: 28, width: 380 }}>{x.k}</span>
+                  <span className="body-s" style={{ flex: 1 }}>{x.d}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* AI chat mockup */}
+          <div style={{
+            background: "rgba(244,241,234,0.06)",
+            border: "1px solid rgba(244,241,234,0.18)",
+            borderRadius: 6,
+            padding: 28,
+            display: "flex",
+            flexDirection: "column",
+            gap: 16,
+          }}>
+            <div className="row between ai-center" style={{ borderBottom: "1px solid rgba(244,241,234,0.12)", paddingBottom: 14 }}>
+              <div className="row" style={{ gap: 12, alignItems: "center" }}>
+                <div style={{ width: 28, height: 28, borderRadius: "50%", background: "var(--accent)" }}></div>
+                <div>
+                  <div className="serif" style={{ fontSize: 24, color: "var(--invert-ink)" }}>savi.assist</div>
+                  <div className="meta" style={{ fontSize: 24 }}>BRAND COPILOT</div>
+                </div>
+              </div>
+              <span className="pill"><span className="live-dot"></span>Live</span>
+            </div>
+
+            <div className="col" style={{ gap: 12, fontSize: 24, lineHeight: 1.5 }}>
+              <div style={{ alignSelf: "flex-end", maxWidth: "78%", background: "var(--accent)", color: "#fff", padding: "12px 16px", borderRadius: "12px 12px 0 12px" }}>
+                Resumen de la campaña Granja Summer hasta hoy
+              </div>
+              <div style={{ alignSelf: "flex-start", maxWidth: "92%", background: "rgba(244,241,234,0.08)", color: "var(--invert-ink)", padding: "16px 18px", borderRadius: "12px 12px 12px 0" }}>
+                <div className="meta" style={{ fontSize: 24, marginBottom: 10, color: "rgba(244,241,234,0.5)" }}>RESUMEN · 12 DÍAS</div>
+                <p>Participaciones <b style={{ color: "var(--accent)" }}>+12%</b> vs el mismo periodo el año pasado. El SKU <b>Granja IPA</b> está rotando un <b>+24%</b> en convenience.</p>
+                <p style={{ marginTop: 10 }}>Detecto baja redención (32%) en cashback de 1€. Sugiero <b>subir face value a 2€</b> en participantes Light durante 7 días.</p>
+                <div className="row" style={{ gap: 8, marginTop: 14 }}>
+                  <span className="pill solid" style={{ fontSize: 24, background: "var(--accent)", borderColor: "var(--accent)" }}>Aplicar sugerencia</span>
+                  <span className="pill" style={{ fontSize: 24 }}>Ver detalle</span>
+                </div>
+              </div>
+              <div style={{ alignSelf: "flex-end", maxWidth: "78%", background: "var(--accent)", color: "#fff", padding: "12px 16px", borderRadius: "12px 12px 0 12px" }}>
+                Aplica solo a heavy users del norte
+              </div>
+              <div style={{ alignSelf: "flex-start", color: "rgba(244,241,234,0.5)", fontSize: 24, fontStyle: "italic", padding: "0 8px" }}>
+                <span className="live-dot" style={{ width: 6, height: 6 }}></span>savi.assist está ajustando segmentos…
+              </div>
+            </div>
+          </div>
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 25 — PLATFORM ARCHITECTURE
+   ========================================================= */
+function SlidePlatform() {
+  const layers = [
+    { t: "Front / Canal", items: ["WhatsApp", "PWA", "App", "Web bot", "QR", "On-pack", "Tienda"], color: "var(--paper)" },
+    { t: "Core rules", items: ["Puntos", "Instant win", "Cashback", "Retos", "Niveles", "Smart camp."], color: "var(--bg-2)" },
+    { t: "Validation", items: ["OCR", "Pincodes", "Ventas", "Geofencing", "Aprobaciones", "Anti-fraude"], color: "var(--paper)" },
+    { t: "Reward hub", items: ["Cupones", "Tarjetas regalo", "Catálogo", "Cashback", "Experiencias"], color: "var(--bg-2)" },
+    { t: "Backoffice", items: ["Usuarios", "Campañas", "Premios", "Órdenes", "Stock", "Roles"], color: "var(--paper)" },
+    { t: "Analytics & AI", items: ["Dashboards", "Segmentos", "KPIs", "Insights", "Asistente"], color: "var(--bg-2)" },
+    { t: "Integraciones", items: ["CRM", "ERP", "Data warehouse", "Webhooks", "APIs cliente"], color: "var(--paper)" },
+  ];
+  return (
+    <section data-screen-label="25 Plataforma">
+      <div className="frame">
+        <DeckHeader section="09 · PLATAFORMA" sectionLabel="Architecture" slide={25} />
+        <div className="row between ai-end" style={{ marginTop: 40, marginBottom: 32 }}>
+          <h2 className="h1">Un ecosistema<br/><span style={{ fontStyle: "italic" }}>plug-and-play</span>.</h2>
+          <p className="body-l" style={{ maxWidth: 480 }}>
+            Empieza por un MVP. Crece a una plataforma 360º. Mismo core, mismas integraciones, mismas reglas.
+          </p>
+        </div>
+        <div className="col" style={{ flex: 1, gap: 6 }}>
+          {layers.map((l, i) => (
+            <div key={l.t} className="row" style={{
+              background: l.color,
+              border: "1px solid var(--line)",
+              padding: "16px 24px",
+              alignItems: "center",
+              gap: 32,
+            }}>
+              <span className="mono" style={{ fontSize: 24, width: 36, color: "var(--ink-mute)" }}>L0{i+1}</span>
+              <span className="serif" style={{ fontSize: 32, width: 320 }}>{l.t}</span>
+              <div className="row" style={{ flex: 1, gap: 8, flexWrap: "wrap", justifyContent: "flex-end" }}>
+                {l.items.map((x, j) => <span key={j} className="pill" style={{ fontSize: 24 }}>{x}</span>)}
+              </div>
+            </div>
+          ))}
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 26 — ROADMAP IMPLANTACIÓN
+   ========================================================= */
+function SlideRoadmap() {
+  const phases = [
+    { t: "01 · MVP", d: "1–6 sem.", body: "Campaña conversacional o shopper activation para validar uptake y mecánica.", deliv: ["Concepto + UX", "Reglas + premios", "Backoffice base"] },
+    { t: "02 · Programa", d: "6–12 sem.", body: "Loyalty con backoffice, catálogo, reglas recurrentes y comunicación bidireccional.", deliv: ["Segmentación", "Catálogo digital", "Reporting + dashboards"] },
+    { t: "03 · Plataforma", d: "12+ sem.", body: "Modelo multi-marca / multi-canal con integraciones, IA y comunidad de usuarios.", deliv: ["Integración CRM/ERP", "AI Assistant", "Community layer"] },
+  ];
+  return (
+    <section data-screen-label="26 Roadmap">
+      <div className="frame">
+        <DeckHeader section="10 · ACTIVACIÓN" sectionLabel="Roadmap por fases" slide={26} />
+        <div className="row between ai-end" style={{ marginTop: 40, marginBottom: 40 }}>
+          <h2 className="h1">Lanzamos rápido.<br/>Escalamos con <span style={{ fontStyle: "italic" }}>control</span>.</h2>
+          <p className="body-l" style={{ maxWidth: 460 }}>
+            Metodología agile para minimizar riesgo y acelerar time-to-market. Cada fase entrega valor; nada se queda en backlog.
+          </p>
+        </div>
+
+        <div className="grid-3" style={{ flex: 1, gap: 0 }}>
+          {phases.map((p, i) => (
+            <div key={p.t} className="col" style={{
+              padding: 36,
+              background: i === 0 ? "var(--paper)" : i === 1 ? "var(--bg-2)" : "var(--ink)",
+              color: i === 2 ? "var(--bg)" : "var(--ink)",
+              border: "1px solid var(--line)",
+              marginRight: i < 2 ? -1 : 0,
+              gap: 24,
+              justifyContent: "space-between",
+            }}>
+              <div className="row between ai-center">
+                <span className="meta" style={{ color: i === 2 ? "rgba(244,241,234,0.6)" : "var(--ink-mute)" }}>FASE {i+1} / 03</span>
+                <span className="pill" style={{ borderColor: i === 2 ? "rgba(244,241,234,0.4)" : "currentColor", color: i === 2 ? "var(--bg)" : "var(--ink)" }}>{p.d}</span>
+              </div>
+              <h3 className="h2" style={{ fontSize: 76, color: i === 2 ? "var(--accent)" : "var(--ink)" }}>{p.t}</h3>
+              <p className="body-l" style={{ color: i === 2 ? "rgba(244,241,234,0.85)" : "var(--ink-soft)" }}>{p.body}</p>
+              <div className="col" style={{ gap: 8, borderTop: "1px solid currentColor", paddingTop: 16, opacity: 0.85 }}>
+                {p.deliv.map((d, j) => (
+                  <div key={j} className="row" style={{ gap: 10, fontSize: 24 }}>
+                    <span className="mono" style={{ opacity: 0.5 }}>—</span>
+                    <span>{d}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 27 — Por qué savi (resumen)
+   ========================================================= */
+function SlideWhySavi() {
+  const reasons = [
+    { n: "01", t: "Especialistas, no generalistas", body: "50 años diseñando incentivos. Cada decisión de producto está pulida en miles de campañas reales en gran consumo." },
+    { n: "02", t: "Plataforma propia y modular", body: "No revendemos tecnología ajena. Cada layer — validación, rewards, IA, dashboards — está integrado bajo el mismo backoffice." },
+    { n: "03", t: "End-to-end realmente end-to-end", body: "Diseño, legal, soporte, customer care, fraude, premios y reporting bajo el mismo equipo. Cero integradores en medio." },
+    { n: "04", t: "Pensado para escalar marcas, no demos", body: "+50k tiendas, +7M€ reembolsados, millones de transacciones. Ya está probado en producción para los más grandes." },
+  ];
+  return (
+    <section data-screen-label="27 Why savi">
+      <div className="frame">
+        <DeckHeader section="10 · ACTIVACIÓN" sectionLabel="Why savi" slide={27} />
+        <div className="row between ai-end" style={{ marginTop: 40, marginBottom: 32 }}>
+          <h2 className="h1">Por qué savi,<br/>en una sola página.</h2>
+          <p className="body-l" style={{ maxWidth: 460 }}>
+            Cuatro razones para elegirnos como partner de customer engagement de tu marca durante los próximos años.
+          </p>
+        </div>
+        <div className="grid-2" style={{ flex: 1, gap: 0 }}>
+          {reasons.map((r, i) => (
+            <div key={r.n} className="col" style={{
+              padding: 40,
+              borderTop: i < 2 ? "1px solid var(--line)" : "none",
+              borderBottom: "1px solid var(--line)",
+              borderRight: i % 2 === 0 ? "1px solid var(--line)" : "none",
+              gap: 16,
+              minHeight: 280,
+              justifyContent: "space-between",
+            }}>
+              <div className="row between ai-center">
+                <span className="display xs" style={{ fontSize: 110, lineHeight: 0.8, color: "var(--accent)" }}>{r.n}</span>
+                <span className="serif" style={{ fontSize: 80, opacity: 0.15 }}>—</span>
+              </div>
+              <div>
+                <h3 className="h3" style={{ fontSize: 44, marginBottom: 12 }}>{r.t}</h3>
+                <p className="body-l">{r.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 28 — NEXT STEP / CTA
+   ========================================================= */
+function SlideCTA() {
+  return (
+    <section data-screen-label="28 Next step" className="invert">
+      <div className="frame">
+        <DeckHeader section="NEXT STEP" sectionLabel="Workshop" slide={28} />
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <span className="eyebrow lg" style={{ marginBottom: 24 }}><span className="dot"></span>El siguiente paso</span>
+          <h1 className="display" style={{ fontSize: 200 }}>
+            Diseñemos<br/>el customer engagement<br/>
+            que tu marca necesita<br/>
+            <span style={{ fontStyle: "italic", color: "var(--accent)" }}>vender mañana.</span>
+          </h1>
+
+          <div className="row between ai-end" style={{ marginTop: 48, borderTop: "1px solid rgba(244,241,234,0.18)", paddingTop: 32 }}>
+            <div className="col" style={{ maxWidth: 660 }}>
+              <span className="meta">Workshop · 90 minutos · Sin compromiso</span>
+              <p className="body-l" style={{ color: "rgba(244,241,234,0.85)", marginTop: 16 }}>
+                Salimos con un objetivo comercial claro, una mecánica recomendada, un MVP definido y un roadmap realista de lanzamiento.
+              </p>
+            </div>
+            <div className="row" style={{ gap: 16 }}>
+              <div className="col" style={{ alignItems: "flex-start", gap: 8 }}>
+                <span className="meta">01 · Objetivo comercial</span>
+                <span className="meta">02 · Mecánica ideal</span>
+                <span className="meta">03 · MVP y roadmap</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row between ai-end" style={{ borderTop: "1px solid rgba(244,241,234,0.18)", paddingTop: 24 }}>
+          <SaviMark size={36} />
+          <div className="row" style={{ gap: 56, alignItems: "center" }}>
+            <div className="col">
+              <span className="meta">Contacto</span>
+              <span className="serif" style={{ fontSize: 28, color: "var(--invert-ink)" }}>commercial@savi.com</span>
+            </div>
+            <div className="col">
+              <span className="meta">Web</span>
+              <span className="serif" style={{ fontSize: 28, color: "var(--invert-ink)" }}>savi.com / engage</span>
+            </div>
+            <span className="pill solid" style={{ background: "var(--accent)", borderColor: "var(--accent)", color: "#fff", padding: "12px 24px", fontSize: 24 }}>Reservar workshop →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+Object.assign(window, {
+  SlideDashboard, SlideAI, SlidePlatform, SlideRoadmap, SlideWhySavi, SlideCTA
+});
+
+</script>
+
+<script type="text/babel">
+/* ─── Tweak defaults ───────────────────────────────────────────────────── */
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accent":      "#5dd4c1",
+  "accentDeep":  "#0a4f47",
+  "bg":          "#f4f1ea",
+  "showSideNav": true
+}/*EDITMODE-END*/;
+
+const ACCENT_OPTIONS = [
+  { label: "Savi Turquoise", value: "#5dd4c1" },
+  { label: "Mint",           value: "#7af7c5" },
+  { label: "Electric Blue",  value: "#3d5afe" },
+  { label: "Signal Orange",  value: "#ff4d1f" },
+  { label: "Hot Pink",       value: "#ff2d8e" },
+];
+const ACCENT_DEEP_OPTIONS = [
+  { label: "Deep Teal", value: "#0a4f47" },
+  { label: "Forest",    value: "#0e1a14" },
+  { label: "Ink",       value: "#0a2e2b" },
+  { label: "Navy",      value: "#0a1a3e" },
+];
+const BG_OPTIONS = [
+  { label: "Cream", value: "#f4f1ea" },
+  { label: "Paper", value: "#fafaf7" },
+  { label: "Mist",  value: "#eef2f1" },
+];
+
+/* ─── Tweaks panel app ─────────────────────────────────────────────────── */
+function App() {
+  const [tw, set] = useTweaks(TWEAK_DEFAULTS);
+
+  React.useEffect(() => {
+    const s = document.documentElement.style;
+    s.setProperty("--accent",      tw.accent);
+    s.setProperty("--accent-deep", tw.accentDeep);
+    s.setProperty("--bg",          tw.bg);
+  }, [tw.accent, tw.accentDeep, tw.bg]);
+
+  React.useEffect(() => {
+    const sn = document.getElementById("sideNav");
+    if (sn) sn.style.display = tw.showSideNav ? "" : "none";
+  }, [tw.showSideNav]);
+
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection label="Color">
+        <TweakSelect label="Accent"     value={tw.accent}      onChange={v => set("accent", v)}      options={ACCENT_OPTIONS} />
+        <TweakSelect label="Deep tone"  value={tw.accentDeep}  onChange={v => set("accentDeep", v)}  options={ACCENT_DEEP_OPTIONS} />
+        <TweakSelect label="Background" value={tw.bg}          onChange={v => set("bg", v)}           options={BG_OPTIONS} />
+      </TweakSection>
+      <TweakSection label="Layout">
+        <TweakToggle label="Side nav dots" value={tw.showSideNav} onChange={v => set("showSideNav", v)} />
+      </TweakSection>
+    </TweaksPanel>
+  );
+}
+
+/* ─── Slide registry (slide 6 excluded) ───────────────────────────────── */
+const slideMap = [
+  { id: 1,  Comp: () => <SlideCover /> },
+  { id: 2,  Comp: () => <SlideIndex /> },
+  { id: 3,  Comp: () => <SlideMarketStatement /> },
+  { id: 4,  Comp: () => <SlideThreeForces /> },
+  { id: 5,  Comp: () => <SlideProof /> },
+  { id: 7,  Comp: () => <SlideValueProp /> },
+  { id: 8,  Comp: () => <SlideValueStack /> },
+  { id: 9,  Comp: () => <SlideOperatingModel /> },
+  { id: 10, Comp: () => <SlideFourLevers /> },
+  { id: 11, Comp: () => <SlidePortfolioOverview /> },
+  { id: 12, Comp: () => <SlideWhatsApp /> },
+  { id: 13, Comp: () => <SlideJourneyB2C /> },
+  { id: 14, Comp: () => <SlideMecanicas /> },
+  { id: 15, Comp: () => <SlideValidation /> },
+  { id: 16, Comp: () => <SlideRewards /> },
+  { id: 17, Comp: () => <SlideB2BIntro /> },
+  { id: 18, Comp: () => <SlideB2BPortal /> },
+  { id: 19, Comp: () => <SlideTiers /> },
+  { id: 20, Comp: () => <SlideVerticalFMCG /> },
+  { id: 21, Comp: () => <SlideVerticalSnacking /> },
+  { id: 22, Comp: () => <SlideVerticalsGrid /> },
+  { id: 23, Comp: () => <SlideDashboard /> },
+  { id: 24, Comp: () => <SlideAI /> },
+  { id: 25, Comp: () => <SlidePlatform /> },
+  { id: 26, Comp: () => <SlideRoadmap /> },
+  { id: 27, Comp: () => <SlideWhySavi /> },
+  { id: 28, Comp: () => <SlideCTA /> },
+];
+
+/* ─── Mount helpers ────────────────────────────────────────────────────── */
+
+// Move rendered content from the off-screen temp div into the placeholder section.
+function transferContent(tmp, placeholder) {
+  const rendered = tmp.querySelector("section");
+  if (!rendered) return false;
+
+  // Copy className and screen label from the rendered section
+  if (rendered.className) placeholder.className = rendered.className;
+  const label = rendered.getAttribute("data-screen-label");
+  if (label) placeholder.setAttribute("data-screen-label", label);
+
+  // Move children
+  placeholder.innerHTML = "";
+  while (rendered.firstChild) placeholder.appendChild(rendered.firstChild);
+
+  // Mark the inner frame for staggered reveal-on-scroll
+  const frame = placeholder.querySelector(".frame");
+  if (frame) frame.classList.add("reveal-stagger");
+
+  return true;
+}
+
+let mountedCount = 0;
+
+function afterMount() {
+  mountedCount++;
+  if (mountedCount === slideMap.length) {
+    setupReveals();
+    setupSideNav();
+    setupProgress();
+  }
+}
+
+function mountAllSlides() {
+  slideMap.forEach((entry) => {
+    const placeholder = document.getElementById("m" + entry.id);
+    if (!placeholder) return;
+
+    // Render into a hidden off-screen div (width matches design coords so
+    // relative units inside slide components resolve correctly)
+    const tmp = document.createElement("div");
+    tmp.style.cssText =
+      "position:absolute;left:-99999px;top:0;" +
+      "width:1920px;height:1080px;visibility:hidden;pointer-events:none";
+    document.body.appendChild(tmp);
+
+    const root = ReactDOM.createRoot(tmp);
+    root.render(<entry.Comp />);
+
+    // Poll until React has committed — setTimeout is used (not rAF) so it
+    // fires even when the page is in a background/hidden iframe.
+    let attempts = 0;
+    function tryTransfer() {
+      if (transferContent(tmp, placeholder)) {
+        tmp.remove();
+        afterMount();
+        return;
+      }
+      if (attempts++ < 80) {
+        setTimeout(tryTransfer, 16);
+      } else {
+        console.warn("[savi] mount timeout for #m" + entry.id);
+        tmp.remove();
+        afterMount();
+      }
+    }
+    setTimeout(tryTransfer, 16);
+  });
+}
+
+/* ─── Scroll-reveal ────────────────────────────────────────────────────── */
+function setupReveals() {
+  const sections = Array.from(document.querySelectorAll("deck-stage > section"));
+
+  // Hero is always visible — no IO needed
+  function showSection(s) {
+    s.classList.add("in");
+    const frame = s.querySelector(".reveal-stagger");
+    if (frame) frame.classList.add("in");
+  }
+  if (sections[0]) showSection(sections[0]);
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) showSection(e.target);
+      });
+    },
+    { threshold: 0.05 }
+  );
+
+  sections.slice(1).forEach(s => io.observe(s));
+}
+
+/* ─── Side nav ─────────────────────────────────────────────────────────── */
+function setupSideNav() {
+  const nav = document.getElementById("sideNav");
+  if (!nav) return;
+
+  const sections = Array.from(document.querySelectorAll("deck-stage > section"));
+
+  sections.forEach((s, i) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+
+    const tip = document.createElement("span");
+    tip.className = "tip";
+    tip.textContent = s.getAttribute("data-screen-label") || String(i + 1);
+    btn.appendChild(tip);
+
+    btn.addEventListener("click", () =>
+      s.scrollIntoView({ behavior: "smooth", block: "start" })
+    );
+    nav.appendChild(btn);
+  });
+
+  const buttons = Array.from(nav.querySelectorAll("button"));
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const idx = sections.indexOf(e.target);
+          buttons.forEach((b, i) => b.classList.toggle("active", i === idx));
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+  sections.forEach(s => io.observe(s));
+}
+
+/* ─── Top nav + progress bar ───────────────────────────────────────────── */
+function setupProgress() {
+  const bar = document.getElementById("topProgress");
+  const nav = document.getElementById("topNav");
+
+  function onScroll() {
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    const pct  = docH > 0 ? window.scrollY / docH : 0;
+    if (bar) bar.style.transform = `scaleX(${pct})`;
+    if (nav) nav.classList.toggle("scrolled", window.scrollY > 60);
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+}
+
+/* ─── Anchor link smooth scroll ─────────────────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener("click", e => {
+    const hash = a.getAttribute("href").slice(1);
+    if (!hash) return;
+    const target =
+      document.querySelector(`[data-anchor="${hash}"]`) ||
+      document.getElementById(hash);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+});
+
+window.addEventListener("hashchange", () => {
+  const hash = location.hash.slice(1);
+  if (!hash) return;
+  const target = document.querySelector(`[data-anchor="${hash}"]`);
+  if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+/* ─── Bootstrap ─────────────────────────────────────────────────────────── */
+// Tweaks panel
+const tweaksRoot = document.createElement("div");
+document.body.appendChild(tweaksRoot);
+ReactDOM.createRoot(tweaksRoot).render(<App />);
+
+// Slides
+mountAllSlides();
+</script>
+</body>
+</html>
