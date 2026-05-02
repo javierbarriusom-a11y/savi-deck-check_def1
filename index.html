@@ -1630,6 +1630,15 @@ deck-stage > section.video-teaser-section {
   color: var(--invert-ink) !important;
 }
 
+deck-stage > section.value-prop-section {
+  background: #5fd0bf !important;
+  color: var(--ink) !important;
+}
+
+.value-prop-section .display span {
+  color: var(--invert-ink) !important;
+}
+
 .video-teaser-section .frame {
   gap: clamp(18px, 2.8vh, 32px);
   justify-content: flex-start;
@@ -3171,7 +3180,7 @@ Object.assign(window, {
    ========================================================= */
 function SlideValueProp() {
   return (
-    <section data-screen-label="07 Value prop">
+    <section data-screen-label="07 Value prop" className="value-prop-section">
       <div className="frame">
         <DeckHeader section="02 · PROPUESTA DE VALOR" sectionLabel="The pitch" slide={7} />
         <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
