@@ -1625,13 +1625,133 @@ deck-stage > section:nth-child(4n) .savi-logo {
     0 8px 24px rgba(244, 241, 234, 0.72);
 }
 
-.macbook-demo-section {
+deck-stage > section.video-teaser-section {
+  background: #050505 !important;
+  color: var(--invert-ink) !important;
+}
+
+.video-teaser-section .frame {
+  gap: clamp(22px, 3.2vh, 40px);
+}
+
+.video-teaser-hero {
+  display: grid;
+  grid-template-columns: minmax(360px, 0.48fr) minmax(640px, 1fr);
+  gap: clamp(36px, 5vw, 86px);
+  align-items: end;
+  flex: 1;
+}
+
+.video-teaser-copy {
+  display: grid;
+  gap: 20px;
+  align-content: end;
+  padding-bottom: clamp(10px, 2vh, 26px);
+}
+
+.video-teaser-copy .display {
+  color: var(--invert-ink);
+  font-size: clamp(54px, 6.3vw, 108px) !important;
+  line-height: 0.92 !important;
+}
+
+.video-teaser-section .deck-header {
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.video-teaser-section .meta,
+.video-teaser-section .eyebrow,
+.video-teaser-section .slide-num {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.video-teaser-copy .body-l {
+  max-width: 480px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.video-teaser-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 28px);
+  align-items: end;
+}
+
+.teaser-video-card {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.teaser-video-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 8px;
+  background: #000;
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.48),
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+}
+
+.teaser-video-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.08) contrast(1.04);
+}
+
+.teaser-video-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), transparent 48%, rgba(0, 0, 0, 0.35)),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.14), transparent 30%);
+  pointer-events: none;
+}
+
+.teaser-video-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.24);
+  padding-top: 14px;
+}
+
+.teaser-video-meta .meta {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.teaser-video-meta strong {
+  color: var(--invert-ink);
+  font-family: var(--mono);
+  font-size: clamp(16px, 1.2vw, 22px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+deck-stage > section.macbook-demo-section {
   background: #050505 !important;
   color: var(--invert-ink) !important;
 }
 
 .macbook-demo-section .frame {
   gap: clamp(16px, 3vh, 34px);
+}
+
+.macbook-demo-section .deck-header {
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.macbook-demo-section .meta,
+.macbook-demo-section .eyebrow,
+.macbook-demo-section .slide-num {
+  color: rgba(255, 255, 255, 0.72) !important;
 }
 
 .macbook-layout {
@@ -2057,9 +2177,28 @@ deck-stage > section.slide-active .eyebrow .dot {
     background: rgba(244, 241, 234, 0.62);
   }
 
+  .video-teaser-hero,
   .macbook-layout {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+
+  .video-teaser-copy {
+    padding-bottom: 0;
+  }
+
+  .video-teaser-copy .display {
+    font-size: clamp(42px, 11vw, 56px) !important;
+  }
+
+  .video-teaser-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .teaser-video-meta {
+    display: grid;
+    gap: 8px;
   }
 
   .macbook-screen {
@@ -2115,6 +2254,7 @@ deck-stage > section.slide-active .eyebrow .dot {
 
 <deck-stage id="stage">
   <section id="m1"  data-anchor="top"></section>
+  <section id="m30" data-anchor="teaser"></section>
   <section id="m2"></section>
   <section id="m3"  data-anchor="contexto"></section>
   <section id="m4"></section>
@@ -2657,9 +2797,71 @@ function SlideCover() {
           <span className="meta" style={{ fontSize: 24 }}>A — Cover</span>
           <div className="row" style={{ gap: 48 }}>
             <span className="meta" style={{ fontSize: 24 }}>B2C · B2B · Loyalty · AI</span>
-            <span className="meta" style={{ fontSize: 24 }}>29 slides · ~25 min read</span>
+            <span className="meta" style={{ fontSize: 24 }}>30 slides · ~25 min read</span>
           </div>
           <span className="meta" style={{ fontSize: 24 }}>savi.com</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
+   SLIDE 01B — VIDEO TEASER
+   ========================================================= */
+function SlideVideoTeaser() {
+  return (
+    <section data-screen-label="01B Video teaser" className="video-teaser-section">
+      <div className="frame">
+        <div className="deck-header">
+          <div className="row" style={{ gap: 24, alignItems: "center" }}>
+            <SaviMark size={28} />
+            <span className="meta">Video teaser</span>
+          </div>
+          <div className="row" style={{ gap: 32, alignItems: "center" }}>
+            <span className="meta">Retail activation boards</span>
+            <span className="slide-num">01B</span>
+          </div>
+        </div>
+
+        <div className="video-teaser-hero">
+          <div className="video-teaser-copy">
+            <p className="eyebrow"><span className="dot"></span>Lo que veremos luego</p>
+            <h2 className="display xs">
+              Dos<br/>
+              activaciones.<br/>
+              Un sistema.
+            </h2>
+            <p className="body-l">
+              Un avance rápido de cómo Savi convierte una promoción en una experiencia visible, medible y reutilizable para marca y canal.
+            </p>
+          </div>
+
+          <div className="video-teaser-grid" aria-label="Video teaser previews">
+            <article className="teaser-video-card">
+              <div className="teaser-video-frame">
+                <video autoPlay muted loop playsInline preload="metadata" aria-label="Cornetto board preview">
+                  <source src="assets/videos/cornetto-board.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div className="teaser-video-meta">
+                <strong>Cornetto</strong>
+                <span className="meta">Shopper journey · promo engine</span>
+              </div>
+            </article>
+
+            <article className="teaser-video-card">
+              <div className="teaser-video-frame">
+                <video autoPlay muted loop playsInline preload="metadata" aria-label="Monster board preview">
+                  <source src="assets/videos/monster-board.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div className="teaser-video-meta">
+                <strong>Monster</strong>
+                <span className="meta">Engagement board · retail media</span>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -2706,7 +2908,7 @@ function SlideCornettoMacbook() {
             <div className="macbook-screen">
               <span className="macbook-camera"></span>
               <div className="macbook-video">
-                <video autoPlay muted loop playsInline preload="metadata">
+                <video controls playsInline preload="metadata">
                   <source src="assets/videos/cornetto-board.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -2934,7 +3136,7 @@ window.SaviMark = SaviMark;
 window.DeckHeader = DeckHeader;
 window.DeckFooter = DeckFooter;
 Object.assign(window, {
-  SlideCover, SlideCornettoMacbook, SlideIndex, SlideMarketStatement, SlideThreeForces, SlideProof, SlideLogos
+  SlideCover, SlideVideoTeaser, SlideCornettoMacbook, SlideIndex, SlideMarketStatement, SlideThreeForces, SlideProof, SlideLogos
 });
 
 </script>
@@ -4432,6 +4634,7 @@ function App() {
 /* ─── Slide registry (slide 6 excluded) ───────────────────────────────── */
 const slideMap = [
   { id: 1,  Comp: () => <SlideCover /> },
+  { id: 30, Comp: () => <SlideVideoTeaser /> },
   { id: 2,  Comp: () => <SlideIndex /> },
   { id: 3,  Comp: () => <SlideMarketStatement /> },
   { id: 4,  Comp: () => <SlideThreeForces /> },
