@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Nunito+Sans:ital,wght@1,1000&display=swap" rel="stylesheet">
 <style>
 /* ============================================
    SAVI — Customer Engagement Solutions Deck
@@ -1495,6 +1495,42 @@ deck-stage > section:nth-child(4n) .card.accent {
   color: var(--ink);
 }
 
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.savi-logo {
+  --logo-size: 42px;
+  display: inline-block;
+  color: #064f5d;
+  font-family: "Nunito Sans", "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-size: var(--logo-size);
+  font-style: italic;
+  font-weight: 1000;
+  line-height: 0.8;
+  letter-spacing: -0.075em;
+  text-transform: lowercase;
+  white-space: nowrap;
+  transform: skewX(-4deg);
+}
+
+.invert .savi-logo,
+deck-stage > section:nth-child(4n) .savi-logo {
+  color: #63d3c6;
+}
+
+.top-nav .nav-logo,
+.top-nav.scrolled .nav-logo {
+  opacity: 1;
+}
+
+.top-nav .savi-logo {
+  --logo-size: clamp(34px, 3.8vw, 54px);
+}
+
 .side-nav {
   border: 1px solid var(--line);
   border-radius: 0;
@@ -1796,6 +1832,10 @@ deck-stage > section.slide-active .eyebrow .dot {
     display: none;
   }
 
+  .top-nav .savi-logo {
+    --logo-size: 36px;
+  }
+
   .side-nav {
     display: none;
   }
@@ -1809,7 +1849,9 @@ deck-stage > section.slide-active .eyebrow .dot {
 
 <!-- Fixed top nav -->
 <nav class="top-nav" id="topNav">
-  <a href="#top" class="wordmark">savi<span class="dot">.</span></a>
+  <a href="#top" class="nav-logo" aria-label="Savi">
+    <span class="savi-logo" aria-hidden="true">savi</span>
+  </a>
   <div class="top-nav-links">
     <a href="#contexto">Contexto</a>
     <a href="#valor">Valor</a>
@@ -2295,9 +2337,9 @@ Object.assign(window, {
    Slides 1–10: Cover, market context, value prop, portfolio
 */
 
-const SaviMark = ({ size = 32, accent = "var(--accent)" }) => (
-  <span className="wordmark" style={{ fontSize: size }}>
-    savi<span className="dot" style={{ color: accent }}>.</span>
+const SaviMark = ({ size = 42 }) => (
+  <span className="savi-logo" aria-label="Savi" style={{ "--logo-size": `${size}px` }}>
+    savi
   </span>
 );
 
