@@ -1572,6 +1572,57 @@ deck-stage > section:nth-child(4n) .savi-logo {
   border-radius: 0;
 }
 
+.cover-with-video {
+  background: #ece8de !important;
+}
+
+.cover-video-bg {
+  position: absolute;
+  inset: -34px;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.cover-video-bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(22px) saturate(1.08) brightness(0.62) contrast(1.08);
+  transform: scale(1.08);
+}
+
+.cover-video-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(244, 241, 234, 0.88) 0%, rgba(244, 241, 234, 0.72) 48%, rgba(244, 241, 234, 0.56) 100%),
+    rgba(255, 255, 255, 0.16);
+}
+
+.cover-with-video .frame {
+  position: relative;
+  z-index: 3;
+  opacity: 1 !important;
+  filter: none !important;
+  clip-path: none !important;
+}
+
+.cover-with-video.slide-fx .frame,
+.cover-with-video.slide-before .frame,
+.cover-with-video.slide-active .frame {
+  transform: none !important;
+}
+
+.cover-with-video .display,
+.cover-with-video .body-l,
+.cover-with-video .meta,
+.cover-with-video .serif,
+.cover-with-video .pill {
+  text-shadow: 0 1px 14px rgba(244, 241, 234, 0.5);
+}
+
 .lift:hover {
   transform: translate(-5px, -5px);
   box-shadow: 10px 10px 0 var(--ink) !important;
@@ -1850,6 +1901,19 @@ deck-stage > section.slide-active .eyebrow .dot {
 
   .top-nav .savi-logo {
     --logo-size: 36px;
+  }
+
+  .cover-video-bg {
+    inset: -18px;
+  }
+
+  .cover-video-bg video {
+    filter: blur(18px) saturate(1.05) brightness(0.66) contrast(1.03);
+    transform: scale(1.12);
+  }
+
+  .cover-video-bg::after {
+    background: rgba(244, 241, 234, 0.78);
   }
 
   .side-nav {
@@ -2384,7 +2448,12 @@ const DeckFooter = ({ left = "Customer Engagement Solutions · 2026", right = "M
    ========================================================= */
 function SlideCover() {
   return (
-    <section data-screen-label="01 Cover">
+    <section data-screen-label="01 Cover" className="cover-with-video">
+      <div className="cover-video-bg" aria-hidden="true">
+        <video autoPlay muted loop playsInline preload="metadata">
+          <source src="assets/videos/cover-bg.mp4" type="video/mp4" />
+        </video>
+      </div>
       <div className="frame" style={{ padding: "40px 80px 32px" }}>
         {/* Top bar */}
         <div className="row between ai-center">
