@@ -1530,6 +1530,151 @@ deck-stage > section:nth-child(4n) .card.accent {
   box-shadow: 10px 10px 0 var(--ink) !important;
 }
 
+/* ===== Interactive slide transitions ===== */
+deck-stage > section.slide-fx {
+  --parallax-x: 0;
+  --parallax-y: 0;
+  --slide-tilt: 0deg;
+  perspective: 1200px;
+}
+
+deck-stage > section.slide-fx .frame {
+  opacity: 0.58;
+  filter: blur(2px) saturate(0.86);
+  transform-origin: 50% 50%;
+  transition:
+    opacity 900ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 900ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 980ms cubic-bezier(0.16, 1, 0.3, 1),
+    clip-path 980ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter, clip-path;
+}
+
+deck-stage > section.fx-push .frame {
+  transform: translate3d(0, 92px, 0) scale(0.96);
+}
+
+deck-stage > section.fx-swipe .frame {
+  clip-path: inset(0 34% 0 0);
+  transform: translate3d(-7vw, 0, 0);
+}
+
+deck-stage > section.fx-zoom .frame {
+  transform: scale(0.86);
+}
+
+deck-stage > section.fx-tilt .frame {
+  transform: rotateX(8deg) rotateZ(-2deg) translate3d(0, 70px, 0);
+}
+
+deck-stage > section.fx-reveal .frame {
+  clip-path: inset(18% 0 18% 0);
+  transform: translate3d(0, -56px, 0);
+}
+
+deck-stage > section.fx-cards .frame {
+  transform: translate3d(5vw, 42px, 0) scale(0.98);
+}
+
+deck-stage > section.slide-active .frame {
+  opacity: 1;
+  filter: blur(0) saturate(1);
+  clip-path: inset(0 0 0 0);
+  transform:
+    translate3d(calc(var(--parallax-x) * 5px), calc(var(--parallax-y) * 5px), 0)
+    rotateZ(var(--slide-tilt))
+    scale(1);
+}
+
+deck-stage > section.slide-before .frame {
+  opacity: 0.42;
+  filter: blur(2px) saturate(0.72);
+  transform: translate3d(0, -78px, 0) scale(0.965);
+}
+
+deck-stage > section.slide-active .display,
+deck-stage > section.slide-active .h1,
+deck-stage > section.slide-active .h2 {
+  transform: translate3d(calc(var(--parallax-x) * -10px), calc(var(--parallax-y) * -7px), 0);
+  transition: transform 240ms ease-out;
+}
+
+deck-stage > section.slide-active .card,
+deck-stage > section.slide-active .phone,
+deck-stage > section.slide-active .dash,
+deck-stage > section.slide-active .pill {
+  transform: translate3d(calc(var(--parallax-x) * 8px), calc(var(--parallax-y) * 6px), 0);
+  transition:
+    transform 260ms ease-out,
+    box-shadow 260ms ease-out;
+}
+
+deck-stage > section.slide-active.fx-cards .card:nth-child(odd),
+deck-stage > section.slide-active.fx-cards .tag:nth-child(odd),
+deck-stage > section.slide-active.fx-cards .pill:nth-child(odd) {
+  animation: pop-card 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+deck-stage > section.slide-active.fx-cards .card:nth-child(even),
+deck-stage > section.slide-active.fx-cards .tag:nth-child(even),
+deck-stage > section.slide-active.fx-cards .pill:nth-child(even) {
+  animation: pop-card-alt 780ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+deck-stage > section.slide-active.fx-swipe .divider,
+deck-stage > section.slide-active.fx-swipe .deck-header,
+deck-stage > section.slide-active.fx-swipe .deck-footer,
+deck-stage > section.slide-active.fx-reveal .divider,
+deck-stage > section.slide-active.fx-reveal .deck-header,
+deck-stage > section.slide-active.fx-reveal .deck-footer {
+  animation: draw-line 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: left center;
+}
+
+deck-stage > section.slide-active .live-dot,
+deck-stage > section.slide-active .eyebrow .dot {
+  animation: dot-snap 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes pop-card {
+  from { opacity: 0; transform: translate3d(-28px, 32px, 0) rotate(-1.5deg); }
+  to { opacity: 1; transform: translate3d(calc(var(--parallax-x) * 8px), calc(var(--parallax-y) * 6px), 0) rotate(0); }
+}
+
+@keyframes pop-card-alt {
+  from { opacity: 0; transform: translate3d(28px, 42px, 0) rotate(1.5deg); }
+  to { opacity: 1; transform: translate3d(calc(var(--parallax-x) * 8px), calc(var(--parallax-y) * 6px), 0) rotate(0); }
+}
+
+@keyframes draw-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes dot-snap {
+  0% { transform: scale(0.1); }
+  45% { transform: scale(1.8); }
+  100% { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  deck-stage > section.slide-fx .frame,
+  deck-stage > section.slide-active .display,
+  deck-stage > section.slide-active .h1,
+  deck-stage > section.slide-active .h2,
+  deck-stage > section.slide-active .card,
+  deck-stage > section.slide-active .phone,
+  deck-stage > section.slide-active .dash,
+  deck-stage > section.slide-active .pill {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    clip-path: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+}
+
 @media (max-width: 900px) {
   deck-stage > section {
     min-height: auto !important;
@@ -3963,6 +4108,7 @@ const slideMap = [
 ];
 
 /* ─── Mount helpers ────────────────────────────────────────────────────── */
+const SLIDE_FX_CLASSES = ["fx-push", "fx-swipe", "fx-zoom", "fx-tilt", "fx-reveal", "fx-cards"];
 
 // Move rendered content from the off-screen temp div into the placeholder section.
 function transferContent(tmp, placeholder) {
@@ -3973,6 +4119,9 @@ function transferContent(tmp, placeholder) {
   if (rendered.className) placeholder.className = rendered.className;
   const label = rendered.getAttribute("data-screen-label");
   if (label) placeholder.setAttribute("data-screen-label", label);
+
+  const slideNumber = Number((placeholder.id || "").replace("m", "")) || 1;
+  placeholder.classList.add("slide-fx", SLIDE_FX_CLASSES[(slideNumber - 1) % SLIDE_FX_CLASSES.length]);
 
   // Move children
   placeholder.innerHTML = "";
@@ -3991,6 +4140,7 @@ function afterMount() {
   mountedCount++;
   if (mountedCount === slideMap.length) {
     setupReveals();
+    setupSlideInteractions();
     setupSideNav();
     setupProgress();
   }
@@ -4055,6 +4205,83 @@ function setupReveals() {
   );
 
   sections.slice(1).forEach(s => io.observe(s));
+}
+
+/* ─── Varied slide transitions + pointer response ─────────────────────── */
+function setupSlideInteractions() {
+  const sections = Array.from(document.querySelectorAll("deck-stage > section"));
+  if (!sections.length) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let activeIndex = -1;
+  let ticking = false;
+
+  function setActive(index) {
+    if (index === activeIndex || index < 0) return;
+    activeIndex = index;
+
+    sections.forEach((section, i) => {
+      section.classList.toggle("slide-active", i === index);
+      section.classList.toggle("slide-before", i < index);
+      if (i !== index) {
+        section.style.setProperty("--parallax-x", "0");
+        section.style.setProperty("--parallax-y", "0");
+        section.style.setProperty("--slide-tilt", "0deg");
+      }
+    });
+  }
+
+  function activeByViewport() {
+    const viewportCenter = window.innerHeight * 0.48;
+    let bestIndex = 0;
+    let bestDistance = Infinity;
+
+    sections.forEach((section, i) => {
+      const rect = section.getBoundingClientRect();
+      const sectionCenter = rect.top + rect.height * 0.5;
+      const distance = Math.abs(sectionCenter - viewportCenter);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestIndex = i;
+      }
+    });
+
+    setActive(bestIndex);
+  }
+
+  function requestActiveUpdate() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      activeByViewport();
+    });
+  }
+
+  setActive(0);
+  activeByViewport();
+  window.addEventListener("scroll", requestActiveUpdate, { passive: true });
+  window.addEventListener("resize", requestActiveUpdate);
+
+  if (reduceMotion) return;
+
+  sections.forEach((section) => {
+    section.addEventListener("pointermove", (event) => {
+      if (!section.classList.contains("slide-active")) return;
+      const rect = section.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+      const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+      section.style.setProperty("--parallax-x", x.toFixed(3));
+      section.style.setProperty("--parallax-y", y.toFixed(3));
+      section.style.setProperty("--slide-tilt", `${(x * 0.18).toFixed(3)}deg`);
+    }, { passive: true });
+
+    section.addEventListener("pointerleave", () => {
+      section.style.setProperty("--parallax-x", "0");
+      section.style.setProperty("--parallax-y", "0");
+      section.style.setProperty("--slide-tilt", "0deg");
+    });
+  });
 }
 
 /* ─── Side nav ─────────────────────────────────────────────────────────── */
