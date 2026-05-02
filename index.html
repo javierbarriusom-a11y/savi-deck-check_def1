@@ -1639,6 +1639,57 @@ deck-stage > section.value-prop-section {
   color: var(--invert-ink) !important;
 }
 
+deck-stage > section.tiers-section {
+  background: #5fd0bf !important;
+  color: var(--ink) !important;
+}
+
+deck-stage > section.tiers-section .deck-header,
+deck-stage > section.tiers-section .deck-footer,
+deck-stage > section.tiers-section .rule-top {
+  border-color: rgba(0, 0, 0, 0.72) !important;
+}
+
+deck-stage > section.tiers-section .h1,
+deck-stage > section.tiers-section .h2,
+deck-stage > section.tiers-section .h3,
+deck-stage > section.tiers-section .display,
+deck-stage > section.tiers-section .body-l,
+deck-stage > section.tiers-section .eyebrow,
+deck-stage > section.tiers-section .label,
+deck-stage > section.tiers-section .meta,
+deck-stage > section.tiers-section .slide-num,
+deck-stage > section.tiers-section .savi-logo {
+  color: #050505 !important;
+}
+
+deck-stage > section.tiers-section .tier-card-light {
+  background: var(--paper) !important;
+  color: #050505 !important;
+}
+
+deck-stage > section.tiers-section .tier-card-dark {
+  background: #050505 !important;
+  color: var(--invert-ink) !important;
+}
+
+deck-stage > section.tiers-section .tier-card-light .display,
+deck-stage > section.tiers-section .tier-card-light .body-l,
+deck-stage > section.tiers-section .tier-card-light .mono,
+deck-stage > section.tiers-section .tier-card-light .tier-perk {
+  color: #262626 !important;
+}
+
+deck-stage > section.tiers-section .tier-card-dark .display {
+  color: var(--invert-ink) !important;
+}
+
+deck-stage > section.tiers-section .tier-card-dark .body-l,
+deck-stage > section.tiers-section .tier-card-dark .mono,
+deck-stage > section.tiers-section .tier-card-dark .tier-perk {
+  color: rgba(255, 255, 255, 0.84) !important;
+}
+
 .video-teaser-section .frame {
   gap: clamp(18px, 2.8vh, 32px);
   justify-content: flex-start;
@@ -3947,12 +3998,12 @@ function B2BPortalMock() {
    ========================================================= */
 function SlideTiers() {
   const tiers = [
-    { n: "01", t: "Bronce", body: "Acceso inicial, beneficios básicos y primeras oportunidades. Una bienvenida útil al programa.", perks: ["Catálogo base", "Cashback estándar", "Comunicaciones"], color: "#a37a4d" },
-    { n: "02", t: "Plata", body: "Cliente constante: más ventajas, retos exclusivos y mayor visibilidad sobre la red.", perks: ["+15% en cashback", "Retos exclusivos", "Premios temáticos"], color: "#9da3a7" },
-    { n: "03", t: "Oro", body: "Embajador de marca: experiencias VIP, beneficios exclusivos y comunicación 1:1.", perks: ["Experiencias VIP", "Eventos marca", "Account manager"], color: "var(--accent)" },
+    { n: "01", t: "Bronce", body: "Acceso inicial, beneficios básicos y primeras oportunidades. Una bienvenida útil al programa.", perks: ["Catálogo base", "Cashback estándar", "Comunicaciones"], color: "#7c552f" },
+    { n: "02", t: "Plata", body: "Cliente constante: más ventajas, retos exclusivos y mayor visibilidad sobre la red.", perks: ["+15% en cashback", "Retos exclusivos", "Premios temáticos"], color: "#5e666a" },
+    { n: "03", t: "Oro", body: "Embajador de marca: experiencias VIP, beneficios exclusivos y comunicación 1:1.", perks: ["Experiencias VIP", "Eventos marca", "Account manager"], color: "var(--invert-ink)" },
   ];
   return (
-    <section data-screen-label="19 Tiers">
+    <section data-screen-label="19 Tiers" className="tiers-section">
       <div className="frame">
         <DeckHeader section="06 · B2B & CANAL" sectionLabel="Tier system" slide={19} />
         <div className="row between ai-end" style={{ marginTop: 40, marginBottom: 40 }}>
@@ -3963,7 +4014,7 @@ function SlideTiers() {
         </div>
         <div className="grid-3" style={{ flex: 1, gap: 0 }}>
           {tiers.map((t, i) => (
-            <div key={t.n} className="col" style={{
+            <div key={t.n} className={`col ${i === 2 ? "tier-card-dark" : "tier-card-light"}`} style={{
               padding: 36,
               border: "1px solid var(--line)",
               marginRight: i < 2 ? -1 : 0,
@@ -3982,7 +4033,7 @@ function SlideTiers() {
                 {t.perks.map((p, j) => (
                   <div key={j} className="row" style={{ gap: 10, fontSize: 24 }}>
                     <span className="mono" style={{ opacity: 0.5 }}>—</span>
-                    <span>{p}</span>
+                    <span className="tier-perk">{p}</span>
                   </div>
                 ))}
               </div>
