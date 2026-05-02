@@ -1318,6 +1318,17 @@ deck-stage > section:nth-child(4n) .card.accent {
   border-color: var(--accent);
 }
 
+.invert .chip,
+.invert .pill,
+.invert .tag,
+deck-stage > section:nth-child(4n) .chip,
+deck-stage > section:nth-child(4n) .pill,
+deck-stage > section:nth-child(4n) .tag {
+  color: var(--invert-ink) !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
+  opacity: 1 !important;
+}
+
 .pill,
 .tag,
 .chip {
@@ -1575,8 +1586,8 @@ deck-stage > section.slide-fx {
 }
 
 deck-stage > section.slide-fx .frame {
-  opacity: 0.58;
-  filter: blur(2px) saturate(0.86);
+  opacity: 1;
+  filter: none;
   transform-origin: 50% 50%;
   transition:
     opacity 900ms cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -1623,9 +1634,14 @@ deck-stage > section.slide-active .frame {
 }
 
 deck-stage > section.slide-before .frame {
-  opacity: 0.42;
-  filter: blur(2px) saturate(0.72);
-  transform: translate3d(0, -78px, 0) scale(0.965);
+  opacity: 1;
+  filter: none;
+  transform: translate3d(0, -34px, 0) scale(0.985);
+}
+
+deck-stage > section.slide-fx:not(.slide-active):not(.slide-before) .frame {
+  opacity: 1;
+  filter: none;
 }
 
 deck-stage > section.slide-active .display,
