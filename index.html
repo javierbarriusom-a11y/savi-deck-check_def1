@@ -1656,11 +1656,12 @@ deck-stage > section:nth-child(4n) .savi-logo {
   color: var(--invert-ink);
 }
 
-.cover-with-video .language-picker {
+.global-language-picker {
   position: absolute;
-  top: 96px;
+  top: 136px;
   right: clamp(24px, 4.5vw, 86px);
-  z-index: 5;
+  z-index: 90;
+  pointer-events: auto;
 }
 
 deck-stage > section.video-teaser-section {
@@ -2295,9 +2296,10 @@ deck-stage > section.slide-active .eyebrow .dot {
     padding: 8px 10px;
   }
 
-  .cover-with-video .language-picker {
-    position: static;
-    margin-top: 0;
+  .global-language-picker {
+    top: 164px;
+    left: 18px;
+    right: auto;
   }
 
   .video-teaser-hero,
@@ -2383,6 +2385,11 @@ deck-stage > section.slide-active .eyebrow .dot {
 
 <!-- Side nav dots -->
 <nav class="side-nav" id="sideNav"></nav>
+
+<div class="language-picker global-language-picker" aria-label="Elegir idioma">
+  <button type="button" data-lang-option="es" onclick="window.applySaviLanguage ? window.applySaviLanguage('es') : (window.__saviLangFallback = 'es')">ES</button>
+  <button type="button" data-lang-option="en" onclick="window.applySaviLanguage ? window.applySaviLanguage('en') : (window.__saviLangFallback = 'en')">EN</button>
+</div>
 
 <deck-stage id="stage">
   <section id="m1"  data-anchor="top"></section>
@@ -2901,10 +2908,6 @@ function SlideCover() {
           <div className="row" style={{ gap: 32, alignItems: "center" }}>
             <span className="meta" style={{ fontSize: 24 }}>Commercial Deck · 2026</span>
             <span className="meta" style={{ fontSize: 24 }}>FMCG Edition</span>
-            <div className="language-picker" aria-label="Elegir idioma">
-              <button type="button" data-lang-option="es">ES</button>
-              <button type="button" data-lang-option="en">EN</button>
-            </div>
             <span className="pill" style={{ fontSize: 24, padding: "10px 20px" }}><span className="live-dot"></span>Available now</span>
           </div>
         </div>
@@ -5524,6 +5527,8 @@ function getSavedLanguage() {
   }
 }
 
+window.applySaviLanguage = applyLanguage;
+
 function setupI18n() {
   if (window.__saviI18nReady) {
     applyLanguage(getSavedLanguage());
@@ -5531,7 +5536,6 @@ function setupI18n() {
   }
 
   window.__saviI18nReady = true;
-  window.applySaviLanguage = applyLanguage;
 
   document.addEventListener("click", (event) => {
     const button = event.target.closest("[data-lang-option]");
