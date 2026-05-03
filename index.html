@@ -1994,30 +1994,6 @@ deck-stage > section.macbook-demo-section {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.cornetto-whatsapp-mock {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: min(100%, 500px);
-  margin: 0 auto;
-  padding: clamp(16px, 1.8vw, 26px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background:
-    radial-gradient(circle at 50% 96%, rgba(95, 208, 191, 0.28), transparent 34%),
-    #050505;
-  box-shadow:
-    0 36px 78px rgba(0, 0, 0, 0.52),
-    12px 12px 0 #5fd0bf;
-}
-
-.cornetto-whatsapp-mock img {
-  display: block;
-  width: min(100%, 390px);
-  height: auto;
-  object-fit: contain;
-  filter: saturate(1.04) contrast(1.03);
-}
-
 .lift:hover {
   transform: translate(-5px, -5px);
   box-shadow: 10px 10px 0 var(--ink) !important;
@@ -3608,10 +3584,8 @@ function SlideWhatsApp() {
             </div>
           </div>
 
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "flex-start", position: "relative", paddingTop: 112 }}>
-            <div className="cornetto-whatsapp-mock" aria-label="Cornetto WhatsApp loyalty mockup">
-              <img src="assets/images/cornetto-whatsapp.jpg" alt="Cornetto WhatsApp loyalty mockup" />
-            </div>
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
+            <WhatsAppMock />
             <div style={{ position: "absolute", top: 20, right: 0, width: 240, textAlign: "right" }}>
               <span className="meta">Live preview</span>
               <p className="body-s" style={{ marginTop: 8 }}>Flow real — registro, participación y canje sin abandonar el chat.</p>
