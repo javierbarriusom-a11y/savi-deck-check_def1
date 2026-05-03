@@ -5485,7 +5485,11 @@ function applyLanguage(lang) {
   const nextLang = lang === "en" ? "en" : "es";
   document.documentElement.lang = nextLang;
   document.body.dataset.lang = nextLang;
-  localStorage.setItem("savi-lang", nextLang);
+  try {
+    localStorage.setItem("savi-lang", nextLang);
+  } catch (error) {
+    window.__saviLangFallback = nextLang;
+  }
 
   document.querySelectorAll("[data-lang-option]").forEach((button) => {
     const active = button.getAttribute("data-lang-option") === nextLang;
@@ -5512,20 +5516,31 @@ function applyLanguage(lang) {
   nodes.forEach((node) => translateTextNode(node, nextLang));
 }
 
+function getSavedLanguage() {
+  try {
+    return localStorage.getItem("savi-lang") || window.__saviLangFallback || "es";
+  } catch (error) {
+    return window.__saviLangFallback || "es";
+  }
+}
+
 function setupI18n() {
   if (window.__saviI18nReady) {
-    applyLanguage(localStorage.getItem("savi-lang") || "es");
+    applyLanguage(getSavedLanguage());
     return;
   }
 
   window.__saviI18nReady = true;
-  document.querySelectorAll("[data-lang-option]").forEach((button) => {
-    button.addEventListener("click", () => {
-      applyLanguage(button.getAttribute("data-lang-option"));
-    });
+  window.applySaviLanguage = applyLanguage;
+
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-lang-option]");
+    if (!button) return;
+    event.preventDefault();
+    applyLanguage(button.getAttribute("data-lang-option"));
   });
 
-  applyLanguage(localStorage.getItem("savi-lang") || "es");
+  applyLanguage(getSavedLanguage());
 }
 
 /* ─── Bootstrap ─────────────────────────────────────────────────────────── */
