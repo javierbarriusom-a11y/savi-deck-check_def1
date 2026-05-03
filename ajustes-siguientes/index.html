@@ -1502,6 +1502,41 @@ deck-stage > section:nth-child(4n) .tag {
   color: rgba(0, 0, 0, 0.72) !important;
 }
 
+.dashboard-green {
+  background: #77d4c5 !important;
+  color: var(--ink) !important;
+}
+
+.dashboard-green .deck-header,
+.dashboard-green .deck-footer {
+  color: var(--ink) !important;
+  border-color: rgba(0, 0, 0, 0.72) !important;
+}
+
+.dashboard-green .pill.accent {
+  background: #fff !important;
+  color: var(--ink) !important;
+  border-color: rgba(0, 0, 0, 0.84) !important;
+}
+
+.dashboard-green .h1,
+.dashboard-green .serif,
+.dashboard-green .meta,
+.dashboard-green .body-l,
+.dashboard-green .body-s,
+.dashboard-green .mono {
+  color: var(--ink) !important;
+}
+
+.dashboard-green .rule-top,
+.dashboard-green .rule-top.soft {
+  border-color: rgba(0, 0, 0, 0.42) !important;
+}
+
+.dashboard-green .performance-dash {
+  background: #fff !important;
+}
+
 .top-progress {
   height: 5px;
   background: var(--accent);
@@ -4331,7 +4366,7 @@ Object.assign(window, {
 function SlideDashboard() {
   const bars = [42, 58, 51, 70, 64, 88, 95, 78, 92, 110, 102, 120];
   return (
-    <section data-screen-label="23 Dashboard">
+    <section data-screen-label="23 Dashboard" className="dashboard-green">
       <div className="frame">
         <DeckHeader section="08 · DATA & IA" sectionLabel="Insights dashboard" slide={23} />
         <div className="split-5-7" style={{ flex: 1, marginTop: 32, gap: 56 }}>
