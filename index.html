@@ -2394,7 +2394,6 @@ deck-stage > section.slide-active .eyebrow .dot {
 <deck-stage id="stage">
   <section id="m1"  data-anchor="top"></section>
   <section id="m30" data-anchor="teaser"></section>
-  <section id="m2"></section>
   <section id="m3"  data-anchor="contexto"></section>
   <section id="m4"></section>
   <section id="m5"></section>
@@ -3066,49 +3065,6 @@ function SlideCornettoMacbook() {
 }
 
 /* =========================================================
-   SLIDE 02 — INDEX / TOC
-   ========================================================= */
-function SlideIndex() {
-  const sections = [
-    { num: "01", title: "Contexto de mercado", desc: "Por qué engagement, datos y promociones tienen que trabajar juntos." },
-    { num: "02", title: "Propuesta de valor", desc: "Qué resuelve Savi y por qué es diferencial para tu marca." },
-    { num: "03", title: "Portfolio de soluciones", desc: "El catálogo que conecta, convierte y fideliza." },
-    { num: "04", title: "Customer journeys", desc: "Cómo se vive una activación de Savi de inicio a fin." },
-    { num: "05", title: "B2C, B2B y casos de uso", desc: "Mecánicas y verticales: FMCG, snacking, pharma, horeca." },
-    { num: "06", title: "Data, IA y plataforma", desc: "Dashboards, IA generativa y arquitectura escalable." },
-    { num: "07", title: "Activación y next step", desc: "Cómo pasamos de idea a programa con impacto medible." },
-  ];
-  return (
-    <section data-screen-label="02 Índice">
-      <div className="frame">
-        <DeckHeader section="A · ÍNDICE" sectionLabel="Agenda comercial" slide={2} />
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-          <div className="row between ai-end" style={{ marginBottom: 56 }}>
-            <h2 className="display s">Lo que vamos<br/><span style={{ fontStyle: "italic" }}>a recorrer.</span></h2>
-            <p className="body-l" style={{ maxWidth: 480 }}>
-              Un deck para marcas FMCG que quieren transformar la promoción en un ecosistema de relación medible, escalable y rentable.
-            </p>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 0, borderTop: "1px solid var(--line)" }}>
-            {sections.map((s) => (
-              <div key={s.num} className="row between ai-center" style={{ borderBottom: "1px solid var(--line-soft)", padding: "22px 0" }}>
-                <div className="row ai-center" style={{ gap: 56 }}>
-                  <span className="mono" style={{ fontSize: 24, color: "var(--ink-mute)", width: 40 }}>{s.num}</span>
-                  <span className="serif" style={{ fontSize: 48, lineHeight: 1.05 }}>{s.title}</span>
-                </div>
-                <span className="body" style={{ maxWidth: 540, textAlign: "right" }}>{s.desc}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <DeckFooter />
-      </div>
-    </section>
-  );
-}
-
-/* =========================================================
    SLIDE 03 — MARKET CONTEXT (BIG STATEMENT)
    ========================================================= */
 function SlideMarketStatement() {
@@ -3275,7 +3231,7 @@ window.SaviMark = SaviMark;
 window.DeckHeader = DeckHeader;
 window.DeckFooter = DeckFooter;
 Object.assign(window, {
-  SlideCover, SlideVideoTeaser, SlideCornettoMacbook, SlideIndex, SlideMarketStatement, SlideThreeForces, SlideProof, SlideLogos
+  SlideCover, SlideVideoTeaser, SlideCornettoMacbook, SlideMarketStatement, SlideThreeForces, SlideProof, SlideLogos
 });
 
 </script>
@@ -4774,7 +4730,6 @@ function App() {
 const slideMap = [
   { id: 1,  Comp: () => <SlideCover /> },
   { id: 30, Comp: () => <SlideVideoTeaser /> },
-  { id: 2,  Comp: () => <SlideIndex /> },
   { id: 3,  Comp: () => <SlideMarketStatement /> },
   { id: 4,  Comp: () => <SlideThreeForces /> },
   { id: 5,  Comp: () => <SlideProof /> },
