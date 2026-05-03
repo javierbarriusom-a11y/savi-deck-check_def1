@@ -1835,15 +1835,15 @@ deck-stage > section.tiers-section .tier-card-dark .tier-perk {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
-  gap: clamp(24px, 3.2vh, 38px);
+  gap: clamp(12px, 2.2vh, 24px);
   align-items: stretch;
   flex: 1;
 }
 
 .video-teaser-copy {
   display: grid;
-  grid-template-columns: minmax(560px, 0.62fr) minmax(360px, 0.38fr);
-  gap: clamp(18px, 3vw, 56px);
+  grid-template-columns: minmax(520px, 0.52fr) minmax(420px, 0.48fr);
+  gap: clamp(18px, 3vw, 48px);
   align-content: start;
   align-items: end;
   padding-bottom: 0;
@@ -1852,7 +1852,7 @@ deck-stage > section.tiers-section .tier-card-dark .tier-perk {
 .video-teaser-copy .display {
   color: var(--invert-ink);
   grid-column: 1;
-  font-size: clamp(48px, 5.4vw, 86px) !important;
+  font-size: clamp(44px, 4.7vw, 74px) !important;
   line-height: 0.9 !important;
 }
 
@@ -1873,15 +1873,15 @@ deck-stage > section.tiers-section .tier-card-dark .tier-perk {
 .video-teaser-copy .body-l {
   grid-column: 2;
   grid-row: 2;
-  max-width: 560px;
+  max-width: 620px;
   color: rgba(255, 255, 255, 0.72);
 }
 
 .video-teaser-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(22px, 2.4vw, 36px);
-  align-items: start;
+  position: relative;
+  min-height: clamp(560px, 56vh, 680px);
+  isolation: isolate;
+  margin-top: clamp(8px, 1.6vh, 18px);
 }
 
 .teaser-video-card {
@@ -1889,6 +1889,23 @@ deck-stage > section.tiers-section .tier-card-dark .tier-perk {
   display: grid;
   gap: 14px;
   min-width: 0;
+  width: min(60vw, 960px);
+}
+
+.teaser-video-card.is-cornetto {
+  position: absolute;
+  left: 0;
+  top: clamp(18px, 3vh, 34px);
+  z-index: 1;
+  transform: rotate(-1.4deg);
+}
+
+.teaser-video-card.is-monster {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  transform: rotate(1.2deg);
 }
 
 .teaser-video-frame {
@@ -1942,13 +1959,21 @@ deck-stage > section.tiers-section .tier-card-dark .tier-perk {
   text-transform: uppercase;
 }
 
+.teaser-video-card.is-monster .teaser-video-meta {
+  text-align: right;
+}
+
+.teaser-video-card.is-monster .teaser-video-meta strong {
+  order: 2;
+}
+
 deck-stage > section.macbook-demo-section {
   background: #050505 !important;
   color: var(--invert-ink) !important;
 }
 
 .macbook-demo-section .frame {
-  gap: clamp(16px, 3vh, 34px);
+  gap: clamp(10px, 2vh, 22px);
 }
 
 .macbook-demo-section .deck-header {
@@ -1963,21 +1988,31 @@ deck-stage > section.macbook-demo-section {
 
 .macbook-layout {
   display: grid;
-  grid-template-columns: minmax(420px, 0.45fr) minmax(600px, 1fr);
-  gap: clamp(34px, 4.2vw, 72px);
-  align-items: center;
+  grid-template-columns: minmax(350px, 0.34fr) minmax(720px, 1fr);
+  gap: clamp(28px, 3vw, 54px);
+  align-items: start;
   flex: 1;
+  padding-top: clamp(10px, 1.5vh, 20px);
+}
+
+.macbook-layout.is-reversed {
+  grid-template-columns: minmax(720px, 1fr) minmax(350px, 0.34fr);
 }
 
 .macbook-copy {
   display: grid;
   gap: 16px;
-  align-content: center;
+  align-content: start;
+  padding-top: clamp(12px, 2.4vh, 32px);
+}
+
+.macbook-layout.is-reversed .macbook-copy {
+  order: 2;
 }
 
 .macbook-copy .display {
   color: var(--invert-ink);
-  font-size: clamp(48px, 5.1vw, 78px) !important;
+  font-size: clamp(50px, 5.4vw, 90px) !important;
   line-height: 0.92 !important;
 }
 
@@ -1993,9 +2028,18 @@ deck-stage > section.macbook-demo-section {
 
 .macbook-shell {
   position: relative;
-  width: min(100%, 980px);
+  width: min(100%, 1160px);
   margin-left: auto;
   perspective: 1800px;
+}
+
+.macbook-layout.is-reversed .macbook-shell {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.macbook-layout.is-reversed .macbook-screen {
+  transform: rotateX(2deg) rotateY(5deg);
 }
 
 .macbook-screen {
@@ -2425,11 +2469,34 @@ deck-stage > section.slide-active .eyebrow .dot {
   .video-teaser-grid {
     grid-template-columns: 1fr;
     gap: 22px;
+    min-height: auto;
+    display: grid;
+  }
+
+  .teaser-video-card,
+  .teaser-video-card.is-cornetto,
+  .teaser-video-card.is-monster {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    transform: none;
   }
 
   .teaser-video-meta {
     display: grid;
     gap: 8px;
+  }
+
+  .teaser-video-card.is-monster .teaser-video-meta {
+    text-align: left;
+  }
+
+  .teaser-video-card.is-monster .teaser-video-meta strong {
+    order: 0;
+  }
+
+  .macbook-layout.is-reversed .macbook-copy {
+    order: 0;
   }
 
   .macbook-screen {
@@ -2501,6 +2568,7 @@ deck-stage > section.slide-active .eyebrow .dot {
   <section id="m11" data-anchor="productos"></section>
   <section id="m12"></section>
   <section id="m29" data-anchor="cornetto"></section>
+  <section id="m31" data-anchor="monster-demo"></section>
   <section id="m13" data-anchor="b2c"></section>
   <section id="m14"></section>
   <section id="m15"></section>
@@ -3073,7 +3141,7 @@ function SlideVideoTeaser() {
           </div>
 
           <div className="video-teaser-grid" aria-label="Video teaser previews">
-            <article className="teaser-video-card">
+            <article className="teaser-video-card is-cornetto">
               <div className="teaser-video-frame">
                 <video autoPlay muted loop playsInline preload="metadata" aria-label="Cornetto board preview">
                   <source src="../assets/videos/cornetto-board.mp4" type="video/mp4" />
@@ -3085,7 +3153,7 @@ function SlideVideoTeaser() {
               </div>
             </article>
 
-            <article className="teaser-video-card">
+            <article className="teaser-video-card is-monster">
               <div className="teaser-video-frame">
                 <video autoPlay muted loop playsInline preload="metadata" aria-label="Monster board preview">
                   <source src="../assets/videos/monster-board.mp4" type="video/mp4" />
@@ -3153,6 +3221,61 @@ function SlideCornettoMacbook() {
             <div className="macbook-caption">
               <span className="meta">Live board · shopper journey · promo engine</span>
               <span className="meta">Savi demo environment</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SlideMonsterMacbook() {
+  return (
+    <section data-screen-label="12C Monster video" className="macbook-demo-section">
+      <div className="frame">
+        <div className="deck-header">
+          <div className="row" style={{ gap: 24, alignItems: "center" }}>
+            <SaviMark size={28} />
+            <span className="meta">Product demo</span>
+          </div>
+          <div className="row" style={{ gap: 32, alignItems: "center" }}>
+            <span className="meta">Monster Board</span>
+            <span className="slide-num">12C</span>
+          </div>
+        </div>
+
+        <div className="macbook-layout is-reversed">
+          <div className="macbook-shell" aria-label="Monster Board video inside a MacBook mockup">
+            <div className="macbook-screen">
+              <span className="macbook-camera"></span>
+              <div className="macbook-video">
+                <video controls playsInline preload="metadata">
+                  <source src="../assets/videos/monster-board.mp4" type="video/mp4" />
+                </video>
+              </div>
+              <div className="macbook-glare"></div>
+            </div>
+            <div className="macbook-base"></div>
+            <div className="macbook-caption">
+              <span className="meta">Live board · engagement board · retail media</span>
+              <span className="meta">Savi demo environment</span>
+            </div>
+          </div>
+
+          <div className="macbook-copy">
+            <p className="eyebrow"><span className="dot"></span>Engagement board demo</p>
+            <h2 className="display xs">
+              La activación<br/>
+              se convierte<br/>
+              en contenido.
+            </h2>
+            <p className="body-l">
+              El mismo sistema puede transformar una mecánica promocional en una experiencia de participación, comunidad y retail media.
+            </p>
+            <div className="chip-row">
+              <span className="chip">Engagement board</span>
+              <span className="chip">Retail media</span>
+              <span className="chip">Monster</span>
             </div>
           </div>
         </div>
@@ -3328,7 +3451,7 @@ window.SaviMark = SaviMark;
 window.DeckHeader = DeckHeader;
 window.DeckFooter = DeckFooter;
 Object.assign(window, {
-  SlideCover, SlideVideoTeaser, SlideCornettoMacbook, SlideMarketStatement, SlideThreeForces, SlideProof, SlideLogos
+  SlideCover, SlideVideoTeaser, SlideCornettoMacbook, SlideMonsterMacbook, SlideMarketStatement, SlideThreeForces, SlideProof, SlideLogos
 });
 
 </script>
@@ -4836,6 +4959,7 @@ const slideMap = [
   { id: 11, Comp: () => <SlidePortfolioOverview /> },
   { id: 12, Comp: () => <SlideWhatsApp /> },
   { id: 29, Comp: () => <SlideCornettoMacbook /> },
+  { id: 31, Comp: () => <SlideMonsterMacbook /> },
   { id: 13, Comp: () => <SlideJourneyB2C /> },
   { id: 14, Comp: () => <SlideMecanicas /> },
   { id: 15, Comp: () => <SlideValidation /> },
@@ -5138,10 +5262,31 @@ const SAVI_I18N_TEXT = {
   "activaciones.": "activations.",
   "Un sistema.": "One system.",
   "Un avance rápido de cómo Savi convierte una promoción en una experiencia visible, medible y reutilizable para marca y canal.": "A quick preview of how Savi turns a promotion into a visible, measurable and reusable experience for brand and channel.",
+  "Video teaser": "Video teaser",
+  "Retail activation boards": "Retail activation boards",
+  "Shopper journey · promo engine": "Shopper journey · promo engine",
+  "Engagement board · retail media": "Engagement board · retail media",
+  "Product demo": "Product demo",
+  "Cornetto Board": "Cornetto Board",
+  "Monster Board": "Monster Board",
+  "Retail activation demo": "Retail activation demo",
   "La mecánica": "The mechanic",
   "en pantalla": "on screen",
   "completa.": "complete.",
   "Un board promocional puede vivir como experiencia de marca, pieza de trade y soporte comercial al mismo tiempo.": "A promotional board can work as a brand experience, a trade asset and a sales support tool at the same time.",
+  "Live board · shopper journey · promo engine": "Live board · shopper journey · promo engine",
+  "Live board · engagement board · retail media": "Live board · engagement board · retail media",
+  "Savi demo environment": "Savi demo environment",
+  "Engagement board demo": "Engagement board demo",
+  "La activación": "The activation",
+  "se convierte": "becomes",
+  "en contenido.": "content.",
+  "El mismo sistema puede transformar una mecánica promocional en una experiencia de participación, comunidad y retail media.": "The same system can turn a promotional mechanic into an experience for participation, community and retail media.",
+  "Engagement board": "Engagement board",
+  "Retail media": "Retail media",
+  "Activation board": "Activation board",
+  "Cornetto": "Cornetto",
+  "Monster": "Monster",
   "Lo que vamos": "What we are",
   "a recorrer.": "going to cover.",
   "Un deck para marcas FMCG que quieren transformar la promoción en un ecosistema de relación medible, escalable y rentable.": "A deck for FMCG brands that want to turn promotion into a measurable, scalable and profitable relationship ecosystem.",
