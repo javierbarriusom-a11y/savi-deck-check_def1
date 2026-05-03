@@ -1994,28 +1994,150 @@ deck-stage > section.macbook-demo-section {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.cornetto-whatsapp-mock {
+.whatsapp-case {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  gap: clamp(16px, 1.8vw, 24px);
+  margin-top: 24px;
+}
+
+.whatsapp-case-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.16fr) minmax(360px, 0.84fr);
+  align-items: end;
+  gap: clamp(28px, 4vw, 70px);
+}
+
+.whatsapp-case-title {
+  max-width: 980px;
+  font-size: clamp(58px, 4.9vw, 92px) !important;
+}
+
+.whatsapp-case-note {
+  display: grid;
+  gap: 18px;
+  padding-bottom: 8px;
+}
+
+.whatsapp-feature-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.whatsapp-feature {
+  display: grid;
+  gap: 6px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.cornetto-flow-carousel {
   position: relative;
   display: grid;
-  place-items: center;
-  width: min(100%, 500px);
-  margin: 0 auto;
-  padding: clamp(16px, 1.8vw, 26px);
+  grid-template-columns: 58px minmax(0, 1fr) 58px;
+  align-items: center;
+  gap: 18px;
+  min-height: 0;
+}
+
+.cornetto-flow-viewport {
+  position: relative;
+  overflow: hidden;
+  height: clamp(430px, 48vh, 520px);
   border: 1px solid rgba(255, 255, 255, 0.22);
   background:
-    radial-gradient(circle at 50% 96%, rgba(95, 208, 191, 0.28), transparent 34%),
-    #050505;
+    linear-gradient(90deg, rgba(95, 208, 191, 0.1), transparent 25%, transparent 75%, rgba(95, 208, 191, 0.1)),
+    #f6f7f7;
   box-shadow:
-    0 36px 78px rgba(0, 0, 0, 0.52),
+    0 34px 72px rgba(0, 0, 0, 0.48),
     12px 12px 0 #5fd0bf;
 }
 
-.cornetto-whatsapp-mock img {
-  display: block;
-  width: min(100%, 390px);
-  height: auto;
-  object-fit: contain;
-  filter: saturate(1.04) contrast(1.03);
+.cornetto-flow-track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  gap: clamp(18px, 3.2vw, 58px);
+  height: 100%;
+  padding: clamp(18px, 2.6vw, 34px) clamp(48px, 6vw, 104px);
+}
+
+.cornetto-flow-slide {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  opacity: 0.64;
+  transform: scale(0.94);
+  cursor: pointer;
+  transition: opacity 320ms ease, transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cornetto-flow-slide.is-active {
+  opacity: 1;
+  transform: scale(1.04);
+  z-index: 1;
+}
+
+.cornetto-flow-shot {
+  width: min(100%, 280px);
+  aspect-ratio: 922 / 1542;
+  border-radius: 34px;
+  background-image: url("assets/images/cornetto-whatsapp-flow.jpg");
+  background-repeat: no-repeat;
+  background-size: 300% 100%;
+  box-shadow:
+    0 24px 54px rgba(0, 0, 0, 0.26),
+    0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.cornetto-flow-shot.is-1 { background-position: 0% 50%; }
+.cornetto-flow-shot.is-2 { background-position: 50% 50%; }
+.cornetto-flow-shot.is-3 { background-position: 100% 50%; }
+
+.cornetto-flow-nav {
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-family: inherit;
+  font-size: 42px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.cornetto-flow-nav:hover {
+  transform: translateY(-2px);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+}
+
+.cornetto-flow-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  display: flex;
+  gap: 10px;
+  transform: translateX(-50%);
+}
+
+.cornetto-flow-dot {
+  width: 42px;
+  height: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.36);
+  background: rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+
+.cornetto-flow-dot.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 .lift:hover {
@@ -2278,6 +2400,51 @@ deck-stage > section.slide-active .eyebrow .dot {
     font-size: clamp(28px, 8vw, 34px) !important;
     line-height: 0.96 !important;
     overflow-wrap: anywhere;
+  }
+
+  .whatsapp-case-top,
+  .whatsapp-feature-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .whatsapp-case-title {
+    font-size: clamp(48px, 13vw, 62px) !important;
+  }
+
+  .cornetto-flow-carousel {
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .cornetto-flow-viewport {
+    height: min(74vh, 520px);
+    overflow-x: auto;
+    box-shadow:
+      0 22px 48px rgba(0, 0, 0, 0.42),
+      8px 8px 0 #5fd0bf;
+  }
+
+  .cornetto-flow-track {
+    display: flex;
+    gap: 18px;
+    padding: 18px 26px;
+    width: max-content;
+  }
+
+  .cornetto-flow-slide {
+    width: 230px;
+    flex: 0 0 230px;
+  }
+
+  .cornetto-flow-nav {
+    width: 44px;
+    height: 44px;
+    font-size: 32px;
+  }
+
+  .cornetto-flow-shot {
+    width: min(100%, 268px);
   }
 
   .top-nav {
@@ -3569,54 +3736,82 @@ function SlidePortfolioOverview() {
    SLIDE 12 — WHATSAPP DEEP DIVE (with mockup)
    ========================================================= */
 function SlideWhatsApp() {
+  const [activeCapture, setActiveCapture] = React.useState(0);
+  const captures = [
+    { id: 1, label: "Atrae desde el primer mensaje" },
+    { id: 2, label: "Registra y cualifica" },
+    { id: 3, label: "Activa el formulario" },
+  ];
+  const goToCapture = (direction) => {
+    setActiveCapture((current) => (current + direction + captures.length) % captures.length);
+  };
+
   return (
     <section data-screen-label="12 WhatsApp loyalty">
       <div className="frame">
         <DeckHeader section="04 · CUSTOMER JOURNEY · B2C" sectionLabel="Hero product" slide={12} />
-        <div className="split-7-5" style={{ flex: 1, marginTop: 32 }}>
-          <div className="col" style={{ justifyContent: "space-between" }}>
+        <div className="whatsapp-case">
+          <div className="whatsapp-case-top">
             <div>
-              <span className="pill accent" style={{ marginBottom: 24 }}>Hero product · WhatsApp Loyalty</span>
-              <h2 className="h1" style={{ marginTop: 24 }}>El canal donde<br/>vive tu shopper<br/>se convierte<br/>en tu <span style={{ fontStyle: "italic", color: "var(--accent)" }}>loyalty</span>.</h2>
+              <span className="pill accent">Hero product · WhatsApp Loyalty</span>
+              <h2 className="h1 whatsapp-case-title" style={{ marginTop: 22 }}>
+                El canal donde vive tu shopper se convierte en tu <span style={{ fontStyle: "italic", color: "var(--accent)" }}>loyalty</span>.
+              </h2>
             </div>
-            <div className="grid-2" style={{ gap: 24, marginTop: 24, marginBottom: 24 }}>
-              <div className="col rule-top" style={{ gap: 8 }}>
-                <span className="meta">01 · Adopción</span>
-                <span className="serif" style={{ fontSize: 32 }}>Sin descarga</span>
-                <p className="body-s">Interfaz familiar, baja curva, comunicación inmediata. Cero fricción.</p>
+            <div className="whatsapp-case-note">
+              <span className="meta">Live preview</span>
+              <p className="body" style={{ maxWidth: 560 }}>
+                La demo real de Cornetto muestra el flow completo: invitación, bases legales, registro y formulario dentro de WhatsApp.
+              </p>
+              <div className="whatsapp-feature-strip">
+                {[
+                  ["01 · Adopción", "Sin descarga"],
+                  ["02 · Bidireccional", "Conversa"],
+                  ["03 · Always-on", "End-to-end"],
+                  ["04 · Data", "Relacional"],
+                ].map(([k, v]) => (
+                  <div key={k} className="whatsapp-feature">
+                    <span className="meta">{k}</span>
+                    <span className="serif" style={{ fontSize: 28, color: "var(--invert-ink)" }}>{v}</span>
+                  </div>
+                ))}
               </div>
-              <div className="col rule-top" style={{ gap: 8 }}>
-                <span className="meta">02 · Bidireccional</span>
-                <span className="serif" style={{ fontSize: 32 }}>Conversa</span>
-                <p className="body-s">La marca no solo impacta: escucha, reactiva y resuelve.</p>
-              </div>
-              <div className="col rule-top" style={{ gap: 8 }}>
-                <span className="meta">03 · Always-on</span>
-                <span className="serif" style={{ fontSize: 32 }}>End-to-end</span>
-                <p className="body-s">Registro, participación, validación, canje y soporte en un solo flow.</p>
-              </div>
-              <div className="col rule-top" style={{ gap: 8 }}>
-                <span className="meta">04 · Data</span>
-                <span className="serif" style={{ fontSize: 32 }}>Relacional</span>
-                <p className="body-s">Cada interacción alimenta conocimiento accionable y consentido.</p>
-              </div>
-            </div>
-            <div className="row" style={{ gap: 8, flexWrap: "wrap" }}>
-              {["Loyalty", "Cashback", "Instant Win", "Puntos", "Cupones", "Catálogo", "Soporte"].map(t => (
-                <span key={t} className="pill">{t}</span>
-              ))}
             </div>
           </div>
 
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "flex-start", position: "relative", paddingTop: 112 }}>
-            <div className="cornetto-whatsapp-mock" aria-label="Cornetto WhatsApp loyalty mockup">
-              <img src="assets/images/cornetto-whatsapp.jpg" alt="Cornetto WhatsApp loyalty mockup" />
+          <div className="cornetto-flow-carousel" aria-label="Carrusel de capturas de WhatsApp Cornetto">
+            <button className="cornetto-flow-nav" type="button" aria-label="Captura anterior" onClick={() => goToCapture(-1)}>‹</button>
+            <div className="cornetto-flow-viewport">
+              <div className="cornetto-flow-track">
+                {captures.map((capture, index) => (
+                  <div
+                    className={`cornetto-flow-slide ${index === activeCapture ? "is-active" : ""}`}
+                    key={capture.id}
+                    onClick={() => setActiveCapture(index)}
+                  >
+                    <div
+                      className={`cornetto-flow-shot is-${capture.id}`}
+                      role="img"
+                      aria-label={capture.label}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="cornetto-flow-dots" aria-hidden="true">
+                {captures.map((capture, index) => (
+                  <button
+                    key={capture.id}
+                    className={`cornetto-flow-dot ${index === activeCapture ? "is-active" : ""}`}
+                    type="button"
+                    onClick={() => setActiveCapture(index)}
+                    tabIndex="-1"
+                  />
+                ))}
+              </div>
             </div>
-            <div style={{ position: "absolute", top: 20, right: 0, width: 240, textAlign: "right" }}>
-              <span className="meta">Live preview</span>
-              <p className="body-s" style={{ marginTop: 8 }}>Flow real — registro, participación y canje sin abandonar el chat.</p>
-            </div>
+            <button className="cornetto-flow-nav" type="button" aria-label="Captura siguiente" onClick={() => goToCapture(1)}>›</button>
           </div>
+
         </div>
         <DeckFooter />
       </div>
@@ -5227,6 +5422,7 @@ const SAVI_I18N_TEXT = {
   "vive tu shopper": "your shopper lives",
   "se convierte": "becomes",
   "en tu": "your",
+  "El canal donde vive tu shopper se convierte en tu": "The channel where your shopper lives becomes your",
   "loyalty": "loyalty",
   "Sin descarga": "No download",
   "Interfaz familiar, baja curva, comunicación inmediata. Cero fricción.": "Familiar interface, low learning curve, immediate communication. Zero friction.",
@@ -5237,6 +5433,10 @@ const SAVI_I18N_TEXT = {
   "Relacional": "Relational",
   "Cada interacción alimenta conocimiento accionable y consentido.": "Every interaction feeds actionable, consented knowledge.",
   "Flow real — registro, participación y canje sin abandonar el chat.": "Real flow — registration, participation and redemption without leaving the chat.",
+  "La demo real de Cornetto muestra el flow completo: invitación, bases legales, registro y formulario dentro de WhatsApp.": "The real Cornetto demo shows the full flow: invitation, legal terms, registration and form inside WhatsApp.",
+  "Atrae desde el primer mensaje": "Attract from the first message",
+  "Registra y cualifica": "Register and qualify",
+  "Activa el formulario": "Activate the form",
   "Compra, valida": "Buy, validate",
   "y gana.": "and win.",
   "Diseñado para maximizar participación y reducir abandono. Cada paso tiene un next-best-action comercial.": "Designed to maximize participation and reduce drop-off. Every step has a commercial next-best-action.",
