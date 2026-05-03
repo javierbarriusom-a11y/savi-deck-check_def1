@@ -1625,6 +1625,44 @@ deck-stage > section:nth-child(4n) .savi-logo {
     0 8px 24px rgba(244, 241, 234, 0.72);
 }
 
+.language-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  background: rgba(244, 241, 234, 0.62);
+  backdrop-filter: blur(12px);
+}
+
+.language-picker button {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding: 10px 14px;
+  text-transform: uppercase;
+}
+
+.language-picker button.is-active {
+  background: var(--ink);
+  color: var(--invert-ink);
+}
+
+.cover-with-video .language-picker {
+  position: absolute;
+  top: 96px;
+  right: clamp(24px, 4.5vw, 86px);
+  z-index: 5;
+}
+
 deck-stage > section.video-teaser-section {
   background: #050505 !important;
   color: var(--invert-ink) !important;
@@ -2248,6 +2286,20 @@ deck-stage > section.slide-active .eyebrow .dot {
     background: rgba(244, 241, 234, 0.62);
   }
 
+  .language-picker {
+    padding: 4px;
+  }
+
+  .language-picker button {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .cover-with-video .language-picker {
+    position: static;
+    margin-top: 0;
+  }
+
   .video-teaser-hero,
   .macbook-layout {
     grid-template-columns: 1fr;
@@ -2849,6 +2901,10 @@ function SlideCover() {
           <div className="row" style={{ gap: 32, alignItems: "center" }}>
             <span className="meta" style={{ fontSize: 24 }}>Commercial Deck · 2026</span>
             <span className="meta" style={{ fontSize: 24 }}>FMCG Edition</span>
+            <div className="language-picker" aria-label="Elegir idioma">
+              <button type="button" data-lang-option="es">ES</button>
+              <button type="button" data-lang-option="en">EN</button>
+            </div>
             <span className="pill" style={{ fontSize: 24, padding: "10px 20px" }}><span className="live-dot"></span>Available now</span>
           </div>
         </div>
@@ -4780,6 +4836,7 @@ function afterMount() {
     setupSlideInteractions();
     setupSideNav();
     setupProgress();
+    setupI18n();
     requestAnimationFrame(() => scrollToDeckHash("auto"));
   }
 }
@@ -5005,6 +5062,471 @@ function scrollToDeckHash(behavior = "smooth") {
 window.addEventListener("hashchange", () => {
   scrollToDeckHash("smooth");
 });
+
+/* ─── Bilingual copy layer ─────────────────────────────────────────────── */
+const SAVI_I18N_TEXT = {
+  "Solicitar demo": "Request demo",
+  "Contexto": "Context",
+  "Valor": "Value",
+  "Productos": "Products",
+  "Commercial Deck · 2026": "Commercial Deck · 2026",
+  "FMCG Edition": "FMCG Edition",
+  "Available now": "Available now",
+  "Customer Engagement Solutions": "Customer Engagement Solutions",
+  "Convertimos": "We turn",
+  "cada compra": "every purchase",
+  "en una relación.": "into a relationship.",
+  "Una plataforma modular para diseñar, lanzar y escalar relaciones de valor con consumidores y canales. B2C, B2B, WhatsApp, Loyalty, Data e IA — bajo una sola arquitectura comercial.": "A modular platform to design, launch and scale value relationships with consumers and channels. B2C, B2B, WhatsApp, Loyalty, Data and AI — under one commercial architecture.",
+  "For brands that want to grow beyond the discount": "For brands that want to grow beyond the discount",
+  "30 slides · ~25 min read": "30 slides · ~25 min read",
+  "Lo que veremos luego": "What you will see next",
+  "Dos": "Two",
+  "activaciones.": "activations.",
+  "Un sistema.": "One system.",
+  "Un avance rápido de cómo Savi convierte una promoción en una experiencia visible, medible y reutilizable para marca y canal.": "A quick preview of how Savi turns a promotion into a visible, measurable and reusable experience for brand and channel.",
+  "La mecánica": "The mechanic",
+  "en pantalla": "on screen",
+  "completa.": "complete.",
+  "Un board promocional puede vivir como experiencia de marca, pieza de trade y soporte comercial al mismo tiempo.": "A promotional board can work as a brand experience, a trade asset and a sales support tool at the same time.",
+  "Lo que vamos": "What we are",
+  "a recorrer.": "going to cover.",
+  "Un deck para marcas FMCG que quieren transformar la promoción en un ecosistema de relación medible, escalable y rentable.": "A deck for FMCG brands that want to turn promotion into a measurable, scalable and profitable relationship ecosystem.",
+  "Contexto de mercado": "Market context",
+  "Por qué engagement, datos y promociones tienen que trabajar juntos.": "Why engagement, data and promotions need to work together.",
+  "Propuesta de valor": "Value proposition",
+  "Qué resuelve Savi y por qué es diferencial para tu marca.": "What Savi solves and why it is different for your brand.",
+  "Portfolio de soluciones": "Solution portfolio",
+  "El catálogo que conecta, convierte y fideliza.": "The catalog that connects, converts and builds loyalty.",
+  "Customer journeys": "Customer journeys",
+  "Cómo se vive una activación de Savi de inicio a fin.": "How a Savi activation is experienced from start to finish.",
+  "B2C, B2B y casos de uso": "B2C, B2B and use cases",
+  "Mecánicas y verticales: FMCG, snacking, pharma, horeca.": "Mechanics and verticals: FMCG, snacking, pharma, horeca.",
+  "Data, IA y plataforma": "Data, AI and platform",
+  "Dashboards, IA generativa y arquitectura escalable.": "Dashboards, generative AI and scalable architecture.",
+  "Activación y next step": "Activation and next step",
+  "Cómo pasamos de idea a programa con impacto medible.": "How we move from idea to program with measurable impact.",
+  "El mercado ya": "The market no longer",
+  "no compra solo": "buys only",
+  "productos.": "products.",
+  "Compra": "It buys",
+  "experiencias": "experiences",
+  "— La fidelización tradicional pierde tracción si no genera utilidad, emoción y datos accionables.": "— Traditional loyalty loses traction when it does not create utility, emotion and actionable data.",
+  "Tres fuerzas": "Three forces",
+  "Tres fuerzas que están redefiniendo": "Three forces redefining",
+  "la inversión promocional.": "promotional investment.",
+  "Fuente · Savi research, 2025": "Source · Savi research, 2025",
+  "Consumidores más exigentes": "More demanding consumers",
+  "Esperan valor inmediato, interacciones simples y recompensas relevantes en el canal donde ya están. Cada paso extra es una caída de conversión.": "They expect immediate value, simple interactions and relevant rewards in the channel they already use. Every extra step hurts conversion.",
+  "Privacidad y first-party data": "Privacy and first-party data",
+  "El cookie-less obliga a las marcas a generar relaciones declaradas. El first-party data se vuelve el activo estratégico para personalizar y medir.": "Cookie-less forces brands to build declared relationships. First-party data becomes the strategic asset for personalization and measurement.",
+  "De campaña a relación": "From campaign to relationship",
+  "La promoción aislada se convierte en coste. La oportunidad real está en transformar cada activación en un ecosistema de aprendizaje continuo.": "An isolated promotion becomes cost. The real opportunity is turning every activation into a continuous learning ecosystem.",
+  "El partner detrás": "The partner behind",
+  "de las activaciones": "the activations",
+  "de las marcas que": "of the brands",
+  "compras": "you buy",
+  "Llevamos décadas operando promociones, loyalty y rewards en gran consumo. Conocemos cada detalle: validación, legal, fraude, escala, soporte.": "We have spent decades operating promotions, loyalty and rewards in FMCG. We know every detail: validation, legal, fraud, scale and support.",
+  "reembolsados al año a consumidores": "reimbursed to consumers per year",
+  "cashback, gift cards y rewards": "cashback, gift cards and rewards",
+  "de las grandes marcas FMCG en España": "of major FMCG brands in Spain",
+  "confían en savi para activar": "trust Savi to activate",
+  "tiendas conectadas": "connected stores",
+  "para validar y entregar promociones": "to validate and deliver promotions",
+  "años de experiencia": "years of experience",
+  "diseñando incentivos que funcionan": "designing incentives that work",
+  "Trabajamos con las marcas": "We work with the brands",
+  "que": "that",
+  "marcan": "shape",
+  "tu carrito de la compra.": "your shopping basket.",
+  "* Marcas representativas, ilustrativas para deck comercial": "* Representative brands, illustrative for commercial deck",
+  "No vendemos": "We do not sell",
+  "tecnología.": "technology.",
+  "Vendemos": "We sell",
+  "crecimiento": "relational",
+  "relacional.": "growth.",
+  "Las marcas ya no necesitan más impactos. Necesitan clientes": "Brands no longer need more impressions. They need customers who are",
+  "identificados, activados y vinculados": "identified, activated and connected",
+  ". Eso es lo que entregamos.": ". That is what we deliver.",
+  "El salto que": "The leap",
+  "te ayudamos a dar.": "we help you make.",
+  "Una campaña táctica puede evolucionar a un loyalty completo sin reiniciar nada. Mismo motor, distintas reglas.": "A tactical campaign can evolve into a full loyalty program without restarting anything. Same engine, different rules.",
+  "De descuentos aislados": "From isolated discounts",
+  "A ecosistemas de relación continua": "To continuous relationship ecosystems",
+  "De coste promocional": "From promotional cost",
+  "A activo de conocimiento y crecimiento": "To a knowledge and growth asset",
+  "De datos dispersos": "From scattered data",
+  "A first-party data accionable para negocio": "To actionable first-party business data",
+  "De campañas puntuales": "From one-off campaigns",
+  "A incentivos con aprendizaje y recurrencia": "To incentives with learning and recurrence",
+  "Un enfoque": "An end-to-end",
+  "end-to-end.": "approach.",
+  "Tres fases, una sola plataforma. Cada paso alimenta al siguiente con datos, audiencia y aprendizaje.": "Three phases, one platform. Each step feeds the next with data, audience and learning.",
+  "Conectar": "Connect",
+  "Impactamos al consumidor en el canal y momento adecuado. Tienda, on-pack, WhatsApp, delivery, app, web o medios digitales.": "We reach consumers in the right channel and moment: store, on-pack, WhatsApp, delivery, app, web or digital media.",
+  "Convertir": "Convert",
+  "Promociones inteligentes, recompensas y mecánicas que incentivan compra, prueba y repetición. El incentivo encuentra al usuario donde decide.": "Smart promotions, rewards and mechanics that drive purchase, trial and repeat. The incentive meets the user where decisions happen.",
+  "Fidelizar": "Engage",
+  "Activaciones que crean relación, capturan datos, generan insights y alimentan la siguiente acción comercial sin reiniciar desde cero.": "Activations that create relationships, capture data, generate insights and feed the next commercial action without starting from scratch.",
+  "Cuatro palancas para": "Four levers to",
+  "vender más y": "sell more and",
+  "conocer mejor": "know better",
+  "No se trata de regalar más. Se trata de incentivar mejor, medir mejor y relacionarse mejor.": "It is not about giving away more. It is about incentivizing better, measuring better and relating better.",
+  "Ventas incrementales": "Incremental sales",
+  "Frecuencia, volumen, prueba de producto y nuevos momentos de consumo. La promoción se diseña para mover la métrica que falta.": "Frequency, volume, product trial and new consumption moments. The promotion is designed to move the missing metric.",
+  "Engagement real": "Real engagement",
+  "Convertimos la interacción promocional en una conversación bidireccional. La marca habla, escucha, recompensa y vuelve a impactar.": "We turn promotional interaction into a two-way conversation. The brand speaks, listens, rewards and re-engages.",
+  "Generamos datos transaccionales, declarativos y relacionales con trazabilidad y consentimiento desde el primer touch.": "We generate transactional, declared and relational data with traceability and consent from the first touch.",
+  "Eficiencia operativa": "Operational efficiency",
+  "Centralizamos diseño, validación, soporte, premios, legal y reporting. Una sola operación para múltiples activaciones.": "We centralize design, validation, support, rewards, legal and reporting. One operation for multiple activations.",
+  "Doce soluciones.": "Twelve solutions.",
+  "Una sola arquitectura.": "One architecture.",
+  "Cada solución se puede activar de forma independiente o como parte de un programa escalable. Empieza por una. Crece a las doce.": "Each solution can be activated independently or as part of a scalable program. Start with one. Grow to twelve.",
+  "Cupones digitales": "Digital coupons",
+  "In-store, on-pack, OOH y digital. Face value adaptable, control operativo, clearing y reporting.": "In-store, on-pack, OOH and digital. Flexible face value, operational control, clearing and reporting.",
+  "Validación por ticket o prueba de compra. Reembolso, gift card o dinero tematizado.": "Receipt or proof-of-purchase validation. Refund, gift card or themed money.",
+  "Momentos ganadores, sorteos, premios de consolación. Alta capacidad de viralización.": "Winning moments, draws and consolation prizes. High viral potential.",
+  "Programa de fidelización conversacional sin app. Puntos, catálogo, comunicaciones.": "Conversational loyalty program without an app. Points, catalog and communications.",
+  "Tarjetas regalo, experiencias, contenido y beneficios. Canje digital con trazabilidad.": "Gift cards, experiences, content and benefits. Digital redemption with traceability.",
+  "Activaciones que aprenden del comportamiento para reimpactar con relevancia.": "Activations that learn from behavior to re-engage with relevance.",
+  "Comunidades para preguntar, escuchar, testar y aprender antes de escalar.": "Communities to ask, listen, test and learn before scaling.",
+  "Retos de venta, niveles, formación y rankings para redes profesionales.": "Sales challenges, tiers, training and rankings for professional networks.",
+  "Tickets, facturas, listados de venta. Promociones geolocalizadas por establecimiento.": "Receipts, invoices and sales lists. Geolocated promotions by outlet.",
+  "Farmacias, prescriptores y consumidores. Microlearning, certificación, prescripción.": "Pharmacies, prescribers and consumers. Microlearning, certification and prescription.",
+  "OCR, pincodes, geofencing, anti-fraude. El cerebro que conecta físico y digital.": "OCR, pincodes, geofencing and anti-fraud. The brain connecting physical and digital.",
+  "Bot conversacional con IA generativa para soporte, dudas y reactivación.": "Conversational bot with generative AI for support, questions and reactivation.",
+  "El canal donde": "The channel where",
+  "vive tu shopper": "your shopper lives",
+  "se convierte": "becomes",
+  "en tu": "your",
+  "loyalty": "loyalty",
+  "Sin descarga": "No download",
+  "Interfaz familiar, baja curva, comunicación inmediata. Cero fricción.": "Familiar interface, low learning curve, immediate communication. Zero friction.",
+  "Bidireccional": "Two-way",
+  "Conversa": "Conversation",
+  "La marca no solo impacta: escucha, reactiva y resuelve.": "The brand does not just reach: it listens, reactivates and solves.",
+  "Registro, participación, validación, canje y soporte en un solo flow.": "Registration, participation, validation, redemption and support in one flow.",
+  "Relacional": "Relational",
+  "Cada interacción alimenta conocimiento accionable y consentido.": "Every interaction feeds actionable, consented knowledge.",
+  "Flow real — registro, participación y canje sin abandonar el chat.": "Real flow — registration, participation and redemption without leaving the chat.",
+  "Compra, valida": "Buy, validate",
+  "y gana.": "and win.",
+  "Diseñado para maximizar participación y reducir abandono. Cada paso tiene un next-best-action comercial.": "Designed to maximize participation and reduce drop-off. Every step has a commercial next-best-action.",
+  "Producto, ticket, delivery o pincode on-pack.": "Product, receipt, delivery or on-pack pincode.",
+  "Escanea": "Scan",
+  "On-pack QR": "On-pack QR",
+  "Sube foto": "Upload photo",
+  "OCR de ticket, código único o prueba geolocalizada.": "Receipt OCR, unique code or geolocated proof.",
+  "Valida": "Validate",
+  "Beneficio claro, rápido y personalizado. Sin descargas, sin formularios largos.": "Clear, fast and personalized benefit. No downloads, no long forms.",
+  "Gana": "Win",
+  "Instant win, puntos, cashback o premio físico.": "Instant win, points, cashback or physical reward.",
+  "Canjea": "Redeem",
+  "Catálogo digital, tarjetas regalo, experiencias.": "Digital catalog, gift cards and experiences.",
+  "La mecánica se adapta": "The mechanic adapts",
+  "a tu objetivo de": "to your objective of",
+  "negocio": "business",
+  "Cada activación que diseñamos parte del mismo principio: convertir el incentivo en un ladrillo de relación, no en un coste de adquisición.": "Every activation we design starts from the same principle: turn the incentive into a building block of relationship, not an acquisition cost.",
+  "Compra, rotación, lanzamiento, share of menu": "Purchase, rotation, launch, share of menu",
+  "Mecánica perfecta para impulsar repetición en categorías de alta frecuencia.": "A perfect mechanic to drive repeat purchase in high-frequency categories.",
+  "Tráfico, sell-out, lectura de resultados por punto de venta y nuevas conversaciones.": "Traffic, sell-out, point-of-sale results and new conversations.",
+  "Producto, merch y ediciones limitadas": "Product, merch and limited editions",
+  "Música, festivales, gaming o cine — alineados con la marca.": "Music, festivals, gaming or cinema — aligned with the brand.",
+  "Misiones, UGC e insights de consumidores y profesionales.": "Missions, UGC and insights from consumers and professionals.",
+  "Todas las pruebas": "Every proof",
+  "de compra": "of purchase",
+  "cuentan": "counts",
+  "Nuestro motor de validación conecta canales físicos y digitales con reglas de negocio claras y antifraude integrado desde el día 1.": "Our validation engine connects physical and digital channels with clear business rules and integrated anti-fraud from day one.",
+  "Pincodes únicos": "Unique pincodes",
+  "Códigos on-pack o talonarios asignados por tienda, canal o lote.": "On-pack codes or booklets assigned by store, channel or batch.",
+  "Tickets OCR": "Receipt OCR",
+  "Subida de ticket con validación automática + revisión manual cuando hace falta.": "Receipt upload with automatic validation plus manual review when needed.",
+  "Delivery proof": "Delivery proof",
+  "Recibo digital, captura o prueba del pedido a través de la app.": "Digital receipt, screenshot or proof of order through the app.",
+  "Participación vinculada a ubicación con tolerancia operativa.": "Participation linked to location with operational tolerance.",
+  "Facturas B2B": "B2B invoices",
+  "Carga de facturas y listados de venta para HORECA, farma o retail.": "Invoice and sales-list upload for HORECA, pharma or retail.",
+  "Anti-fraude": "Anti-fraud",
+  "Control de códigos, reintentos, estados, historial y trazabilidad completa.": "Code control, retries, statuses, history and full traceability.",
+  "Recompensas que construyen": "Rewards that build",
+  "relaciones, no solo": "relationships, not only",
+  "redenciones": "redemptions",
+  "Dinero tematizado, regalos digitales y beneficios alineados con momentos de consumo reales.": "Themed money, digital gifts and benefits aligned with real consumption moments.",
+  "Cashback al instante": "Instant cashback",
+  "Validamos compra y devolvemos dinero a cuenta, gift card o WhatsApp Pay.": "We validate purchase and return money to account, gift card or WhatsApp Pay.",
+  "Premios tematizados": "Themed rewards",
+  "Ocio · Viajes · Conciertos": "Leisure · Travel · Concerts",
+  "Smart rewards": "Smart rewards",
+  "Aplica solo a heavy users del norte": "Applies only to heavy users in the north",
+  "Convierte tu canal": "Turn your channel",
+  "en embajador": "into an ambassador",
+  "Para HORECA, farma, franquiciados, veterinarios, gimnasios o redes de servicio. Quien vende, prescribe o ejecuta tu marca, gana con ella.": "For HORECA, pharma, franchisees, vets, gyms or service networks. Whoever sells, prescribes or executes your brand wins with it.",
+  "De obligación": "From obligation",
+  "a": "to",
+  "logro": "achievement",
+  "La compra, formación o ejecución se convierten en reto, reconocimiento y recompensa. La marca gana visibilidad sobre canal, performance y oportunidades.": "Purchase, training or execution become challenge, recognition and reward. The brand gains visibility over channel, performance and opportunities.",
+  "Retos de venta": "Sales challenges",
+  "Compra, rotación, lanzamiento, share of menu": "Purchase, rotation, launch, share of menu",
+  "Formación": "Training",
+  "Píldoras, test, certificaciones y badges": "Lessons, tests, certifications and badges",
+  "Catálogo": "Catalog",
+  "Premios económicos, operativos y experienciales": "Financial, operational and experiential rewards",
+  "Niveles, retos y rankings": "Tiers, challenges and rankings",
+  "para activar": "to activate",
+  "comportamiento": "behavior",
+  "Las mejores plataformas B2B combinan palanca transaccional y relacional. La progresión es tan importante como el premio.": "The best B2B platforms combine transactional and relational levers. Progression is as important as the reward.",
+  "Bronce": "Bronze",
+  "Acceso inicial, beneficios básicos y primeras oportunidades. Una bienvenida útil al programa.": "Initial access, basic benefits and first opportunities. A useful welcome to the program.",
+  "Catálogo base": "Base catalog",
+  "Cashback estándar": "Standard cashback",
+  "Comunicaciones": "Communications",
+  "Plata": "Silver",
+  "Cliente constante: más ventajas, retos exclusivos y mayor visibilidad sobre la red.": "Consistent customer: more advantages, exclusive challenges and greater visibility across the network.",
+  "+15% en cashback": "+15% cashback",
+  "Retos exclusivos": "Exclusive challenges",
+  "Premios temáticos": "Themed rewards",
+  "Oro": "Gold",
+  "Embajador de marca: experiencias VIP, beneficios exclusivos y comunicación 1:1.": "Brand ambassador: VIP experiences, exclusive benefits and 1:1 communication.",
+  "Experiencias VIP": "VIP experiences",
+  "Eventos marca": "Brand events",
+  "FMCG · Loyalty": "FMCG · Loyalty",
+  "sin app propia.": "without your own app.",
+  "Para marcas que necesitan una relación directa con consumidores que compran en múltiples canales — gran distribución, conveniencia, ecommerce, delivery — y no quieren la fricción de una app dedicada.": "For brands that need a direct relationship with consumers buying across multiple channels — grocery, convenience, ecommerce, delivery — without the friction of a dedicated app.",
+  "Qué activamos": "What we activate",
+  "QR + WhatsApp": "QR + WhatsApp",
+  "Cashback": "Cashback",
+  "Puntos": "Points",
+  "Smart camp.": "Smart camp.",
+  "Snacking & Ice Cream.": "Snacking & Ice Cream.",
+  "Activaciones por": "Activations by",
+  "momento": "moment",
+  "Productos de impulso que viven de la emoción, el ocio y el consumo social. La mecánica tiene que ser tan inmediata como el producto.": "Impulse products live on emotion, leisure and social consumption. The mechanic must be as immediate as the product.",
+  "Instant win para acelerar prueba y participación.": "Instant win to accelerate trial and participation.",
+  "Geofenced activation": "Geofenced activation",
+  "Validación por ubicación + prueba": "Location-based validation plus proof",
+  "No solo FMCG.": "Not just FMCG.",
+  "El motor escala con": "The engine scales with",
+  "tu modelo de negocio.": "your business model.",
+  "Mismo core, distintas reglas. La validación, los premios, los retos y los datos se adaptan al vertical sin reescribir la plataforma.": "Same core, different rules. Validation, rewards, challenges and data adapt to the vertical without rewriting the platform.",
+  "Otros verticales": "Other verticals",
+  "Engagement con farmacias, profesionales y consumidores desde la educación, el incentivo y la prescripción.": "Engagement with pharmacies, professionals and consumers through education, incentives and prescription.",
+  "Programas que alinean sell-in, sell-out, formación y ejecución en restaurantes y bares.": "Programs that align sell-in, sell-out, training and execution in restaurants and bars.",
+  "Retail especializado": "Specialty retail",
+  "Pet shops, ópticas, beauty, sportech: redes con identidad propia y necesidad de incentivos a medida.": "Pet shops, opticians, beauty, sportech: networks with their own identity and a need for tailored incentives.",
+  "Servicios & subscripción": "Services & subscription",
+  "Telco, energía, banca, mobility: incentivos para activar primer uso, upsell y reducir churn.": "Telco, energy, banking, mobility: incentives to activate first use, upsell and reduce churn.",
+  "El dato deja de ser": "Data stops being",
+  "reporting": "reporting",
+  "final": "after the fact",
+  "Pasa a ser palanca de decisión durante la campaña. Medimos, aprendemos y ajustamos en tiempo real — no en el debrief.": "It becomes a decision lever during the campaign. We measure, learn and adjust in real time — not in the debrief.",
+  "Participaciones, ventas, frecuencia, valor, conversión": "Participation, sales, frequency, value, conversion",
+  "Coste por participación, redención, incentivo y evolución": "Cost per participation, redemption, incentive and evolution",
+  "Segmentos, perfil, hábitos, recurrencia, engagement": "Segments, profile, habits, recurrence, engagement",
+  "Lectura de feedback, patrones y oportunidades para la próxima acción.": "Feedback reading, patterns and opportunities for the next action.",
+  "Del dato al": "From data to",
+  "insight": "insight",
+  "accionable.": "actionable.",
+  "IA generativa integrada en cada punto del journey: respuestas a usuario, lectura de feedback, sugerencias para próximas activaciones y operaciones.": "Generative AI embedded at every point of the journey: user answers, feedback reading, suggestions for next activations and operations.",
+  "Responde dudas de producto, programa y operación.": "Answers product, program and operation questions.",
+  "Asistente conversacional": "Conversational assistant",
+  "Detecto baja redención (32%) en cashback de 1€. Sugiero": "I detect low redemption (32%) in €1 cashback. I suggest",
+  "subir face value a 2€": "raising face value to €2",
+  "en participantes Light durante 7 días.": "for Light participants for 7 days.",
+  "Aplicar sugerencia": "Apply suggestion",
+  "Ver detalle": "View detail",
+  "Un ecosistema": "An ecosystem",
+  "plug-and-play": "plug-and-play",
+  "Empieza por un MVP. Crece a una plataforma 360º. Mismo core, mismas integraciones, mismas reglas.": "Start with an MVP. Grow into a 360º platform. Same core, same integrations, same rules.",
+  "Front / Canal": "Front / Channel",
+  "Validación": "Validation",
+  "Reward hub": "Reward hub",
+  "Analytics & AI": "Analytics & AI",
+  "Integraciones": "Integrations",
+  "Lanzamos rápido.": "We launch fast.",
+  "Escalamos con": "We scale with",
+  "control": "control",
+  "Metodología agile para minimizar riesgo y acelerar time-to-market. Cada fase entrega valor; nada se queda en backlog.": "Agile methodology to reduce risk and accelerate time-to-market. Every phase delivers value; nothing stays in backlog.",
+  "Campaña conversacional o shopper activation para validar uptake y mecánica.": "Conversational campaign or shopper activation to validate uptake and mechanic.",
+  "Concepto + UX": "Concept + UX",
+  "Reglas + premios": "Rules + rewards",
+  "Backoffice base": "Base backoffice",
+  "Programa": "Program",
+  "Loyalty con backoffice, catálogo, reglas recurrentes y comunicación bidireccional.": "Loyalty with backoffice, catalog, recurring rules and two-way communication.",
+  "Segmentación": "Segmentation",
+  "Catálogo digital": "Digital catalog",
+  "Plataforma": "Platform",
+  "Modelo multi-marca / multi-canal con integraciones, IA y comunidad de usuarios.": "Multi-brand / multi-channel model with integrations, AI and user community.",
+  "Integración CRM/ERP": "CRM/ERP integration",
+  "AI Assistant": "AI Assistant",
+  "Community layer": "Community layer",
+  "Por qué savi,": "Why Savi,",
+  "en una sola página.": "on one page.",
+  "Cuatro razones para elegirnos como partner de customer engagement de tu marca durante los próximos años.": "Four reasons to choose us as your brand's customer engagement partner for the coming years.",
+  "Especialistas, no generalistas": "Specialists, not generalists",
+  "50 años diseñando incentivos. Cada decisión de producto está pulida en miles de campañas reales en gran consumo.": "50 years designing incentives. Every product decision is refined through thousands of real FMCG campaigns.",
+  "Plataforma propia y modular": "Own modular platform",
+  "No revendemos tecnología ajena. Cada layer — validación, rewards, IA, dashboards — está integrado bajo el mismo backoffice.": "We do not resell third-party technology. Every layer — validation, rewards, AI, dashboards — is integrated under the same backoffice.",
+  "End-to-end realmente end-to-end": "Truly end-to-end",
+  "Diseño, legal, soporte, customer care, fraude, premios y reporting bajo el mismo equipo. Cero integradores en medio.": "Design, legal, support, customer care, fraud, rewards and reporting under one team. Zero integrators in the middle.",
+  "Pensado para escalar marcas, no demos": "Built to scale brands, not demos",
+  "+50k tiendas, +7M€ reembolsados, millones de transacciones. Ya está probado en producción para los más grandes.": "+50k stores, +€7M reimbursed, millions of transactions. Already proven in production for the largest players.",
+  "El siguiente paso": "The next step",
+  "Diseñemos": "Let's design",
+  "el customer engagement": "the customer engagement",
+  "que tu marca necesita": "your brand needs",
+  "vender mañana.": "to sell tomorrow.",
+  "Workshop · 90 minutos · Sin compromiso": "Workshop · 90 minutes · No commitment",
+  "Salimos con un objetivo comercial claro, una mecánica recomendada, un MVP definido y un roadmap realista de lanzamiento.": "We leave with a clear commercial objective, a recommended mechanic, a defined MVP and a realistic launch roadmap.",
+  "01 · Objetivo comercial": "01 · Commercial objective",
+  "02 · Mecánica ideal": "02 · Ideal mechanic",
+  "03 · MVP y roadmap": "03 · MVP and roadmap",
+  "Contacto": "Contact",
+  "Web": "Web",
+  "Reservar workshop →": "Book workshop →",
+  "Índice": "Index",
+  "Agenda comercial": "Commercial agenda",
+  "PROPUESTA DE VALOR": "VALUE PROPOSITION",
+  "CONTEXTO DE MERCADO": "MARKET CONTEXT",
+  "CASOS DE USO": "USE CASES",
+  "MECÁNICAS": "MECHANICS",
+  "ACTIVACIÓN": "ACTIVATION",
+  "Roadmap por fases": "Phased roadmap",
+  "Quiénes confían": "Who trusts us",
+  "Tracción": "Traction",
+  "02 Índice": "02 Index",
+  "A · ÍNDICE": "A · INDEX",
+  "14 Mecánicas": "14 Mechanics",
+  "05 · MECÁNICAS": "05 · MECHANICS",
+  "Mecánicas": "Mechanics",
+  "Campañas puntuales": "One-off campaigns",
+  "Ecosistemas de relación continua": "Continuous relationship ecosystems",
+  "Descuentos aislados": "Isolated discounts",
+  "01 · Adopción": "01 · Adoption",
+  "en línea": "online",
+  "¡Hola, Carla! 👋": "Hi, Carla! 👋",
+  "¡Validado! +120 pts": "Validated! +120 pts",
+  "Ver catálogo": "View catalog",
+  "sin fricción": "frictionless",
+  "Un viaje simple,": "A simple,",
+  "medible y": "measurable journey,",
+  "Más compras, más frecuencia, más trazabilidad y un canal directo para las próximas activaciones.": "More purchases, more frequency, more traceability and a direct channel for future activations.",
+  "Momento ganador + premio de consolación": "Winning moment + consolation prize",
+  "El usuario sabe en segundos si ha ganado. Cero espera, máxima viralidad.": "The user knows in seconds if they have won. Zero waiting, maximum virality.",
+  "Reembolso por ticket o acumulación": "Receipt refund or accumulation",
+  "Acumulación y canje por catálogo": "Accumulation and catalog redemption",
+  "Loyalty clásico — la columna vertebral del programa de relación de tu marca.": "Classic loyalty — the backbone of your brand relationship program.",
+  "Descuento inmediato y redención medible": "Immediate discount and measurable redemption",
+  "Distribuibles por WhatsApp, app, on-pack, retail media o tienda. Trazabilidad total.": "Distributed through WhatsApp, app, on-pack, retail media or store. Full traceability.",
+  "Activaciones tácticas en el punto de venta, eventos, cadenas o territorios concretos.": "Tactical activations at point of sale, events, chains or specific territories.",
+  "Códigos cargados": "Loaded codes",
+  "Tickets validados": "Validated receipts",
+  "Tasa fraude": "Fraud rate",
+  "Latencia OCR": "OCR latency",
+  "Catálogos temáticos": "Themed catalogs",
+  "TV · Gaming · Música · Cine": "TV · Gaming · Music · Cinema",
+  "Premios físicos": "Physical rewards",
+  "Beneficios temáticos": "Themed benefits",
+  "Foto de nevera, visibilidad, ejecución, prueba en PDV": "Fridge photo, visibility, execution, POS proof",
+  "Píldoras, tests, certificaciones y badges": "Lessons, tests, certifications and badges",
+  "QUÉ ACTIVAMOS": "WHAT WE ACTIVATE",
+  "Data por categoría, canal, momento de consumo y SKU.": "Data by category, channel, consumption moment and SKU.",
+  "Premios entregados": "Rewards delivered",
+  "\"Pasamos de medir 'cuánto invertimos' a medir 'a cuántos hogares conocemos'. Esa es la diferencia.\"": "\"We moved from measuring 'how much we invest' to measuring 'how many households we know'. That is the difference.\"",
+  "On-pack escaneable que dispara la conversación en 1 segundo.": "Scannable on-pack that triggers the conversation in 1 second.",
+  "Canje digital instantáneo": "Instant digital redemption",
+  "El usuario gana y consume sin abrir otra app.": "The user wins and redeems without opening another app.",
+  "edición verano": "summer edition",
+  "Certificación": "Certification",
+  "Prescripción": "Prescription",
+  "Listados": "Listings",
+  "CAMPAÑA · GRANJA SUMMER 26": "CAMPAIGN · GRANJA SUMMER 26",
+  "PARTICIPACIONES · ÚLTIMOS 12 DÍAS": "PARTICIPATIONS · LAST 12 DAYS",
+  "Resumen de la campaña Granja Summer hasta hoy": "Summary of the Granja Summer campaign to date",
+  "RESUMEN · 12 DÍAS": "SUMMARY · 12 DAYS",
+  "Participaciones": "Participations",
+  "vs el mismo periodo el año pasado. El SKU": "vs the same period last year. SKU",
+  "está rotando un": "is rotating",
+  "en convenience.": "in convenience.",
+  "Comunidad de asesores": "Advisor community",
+  "Insights cognitivos": "Cognitive insights",
+  "Misiones, UGC e insights de consumidores y profesionales.": "Missions, UGC and insights from consumers and professionals.",
+  "Aplica solo a heavy users del norte": "Apply only to northern heavy users",
+  "savi.assist está ajustando segmentos…": "savi.assist is adjusting segments…",
+  "Campaña": "Campaign",
+  "Órdenes": "Orders"
+};
+
+const SAVI_TEXT_NODE_ORIGINALS = new WeakMap();
+
+function translateTextNode(node, lang) {
+  if (!SAVI_TEXT_NODE_ORIGINALS.has(node)) {
+    SAVI_TEXT_NODE_ORIGINALS.set(node, node.nodeValue);
+  }
+
+  const original = SAVI_TEXT_NODE_ORIGINALS.get(node);
+  if (lang === "es") {
+    node.nodeValue = original;
+    return;
+  }
+
+  const match = original.match(/^(\s*)([\s\S]*?)(\s*)$/);
+  const leading = match ? match[1] : "";
+  const raw = match ? match[2] : original;
+  const trailing = match ? match[3] : "";
+  const key = raw.replace(/\s+/g, " ").trim();
+  if (!key) {
+    node.nodeValue = original;
+    return;
+  }
+
+  node.nodeValue = leading + (SAVI_I18N_TEXT[key] || raw) + trailing;
+}
+
+function applyLanguage(lang) {
+  const nextLang = lang === "en" ? "en" : "es";
+  document.documentElement.lang = nextLang;
+  document.body.dataset.lang = nextLang;
+  localStorage.setItem("savi-lang", nextLang);
+
+  document.querySelectorAll("[data-lang-option]").forEach((button) => {
+    const active = button.getAttribute("data-lang-option") === nextLang;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+
+  const walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_TEXT,
+    {
+      acceptNode(node) {
+        if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        const parent = node.parentElement;
+        if (!parent) return NodeFilter.FILTER_REJECT;
+        if (parent.closest("script, style, noscript, .twk-root")) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    }
+  );
+
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach((node) => translateTextNode(node, nextLang));
+}
+
+function setupI18n() {
+  if (window.__saviI18nReady) {
+    applyLanguage(localStorage.getItem("savi-lang") || "es");
+    return;
+  }
+
+  window.__saviI18nReady = true;
+  document.querySelectorAll("[data-lang-option]").forEach((button) => {
+    button.addEventListener("click", () => {
+      applyLanguage(button.getAttribute("data-lang-option"));
+    });
+  });
+
+  applyLanguage(localStorage.getItem("savi-lang") || "es");
+}
 
 /* ─── Bootstrap ─────────────────────────────────────────────────────────── */
 // Tweaks panel
