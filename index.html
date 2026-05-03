@@ -1999,26 +1999,26 @@ deck-stage > section.macbook-demo-section {
   flex: 1;
   min-height: 0;
   flex-direction: column;
-  gap: clamp(24px, 3.2vw, 46px);
-  margin-top: 22px;
+  gap: clamp(16px, 1.8vw, 24px);
+  margin-top: 24px;
 }
 
 .whatsapp-case-top {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  align-items: start;
-  gap: clamp(18px, 2vw, 28px);
+  grid-template-columns: minmax(0, 1.16fr) minmax(360px, 0.84fr);
+  align-items: end;
+  gap: clamp(28px, 4vw, 70px);
 }
 
 .whatsapp-case-title {
-  max-width: 1320px;
-  font-size: clamp(68px, 6.1vw, 118px) !important;
+  max-width: 980px;
+  font-size: clamp(58px, 4.9vw, 92px) !important;
 }
 
 .whatsapp-case-note {
   display: grid;
-  gap: 14px;
-  max-width: 1120px;
+  gap: 18px;
+  padding-bottom: 8px;
 }
 
 .whatsapp-feature-strip {
@@ -2037,55 +2037,60 @@ deck-stage > section.macbook-demo-section {
 .cornetto-flow-carousel {
   position: relative;
   display: grid;
-  grid-template-columns: 64px minmax(0, 1fr) 64px;
+  grid-template-columns: 58px minmax(0, 1fr) 58px;
   align-items: center;
-  gap: 22px;
+  gap: 18px;
   min-height: 0;
-  margin-top: auto;
 }
 
 .cornetto-flow-viewport {
   position: relative;
   overflow: hidden;
-  height: clamp(470px, 52vh, 610px);
-  background: #000;
+  height: clamp(430px, 48vh, 520px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background:
+    linear-gradient(90deg, rgba(95, 208, 191, 0.1), transparent 25%, transparent 75%, rgba(95, 208, 191, 0.1)),
+    #f6f7f7;
+  box-shadow:
+    0 34px 72px rgba(0, 0, 0, 0.48),
+    12px 12px 0 #5fd0bf;
 }
 
 .cornetto-flow-track {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: center;
+  gap: clamp(18px, 3.2vw, 58px);
   height: 100%;
-  transition: transform 620ms cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
+  padding: clamp(18px, 2.6vw, 34px) clamp(48px, 6vw, 104px);
 }
 
 .cornetto-flow-slide {
   display: grid;
-  flex: 0 0 100%;
   place-items: center;
   min-width: 0;
-  opacity: 0.42;
-  transform: scale(0.9);
+  opacity: 0.64;
+  transform: scale(0.94);
   cursor: pointer;
   transition: opacity 320ms ease, transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cornetto-flow-slide.is-active {
   opacity: 1;
-  transform: scale(1);
+  transform: scale(1.04);
   z-index: 1;
 }
 
 .cornetto-flow-shot {
-  width: min(100%, 390px);
+  width: min(100%, 280px);
   aspect-ratio: 922 / 1542;
   border-radius: 34px;
   background-image: url("assets/images/cornetto-whatsapp-flow.jpg");
   background-repeat: no-repeat;
   background-size: 300% 100%;
   box-shadow:
-    0 34px 72px rgba(0, 0, 0, 0.58),
-    0 0 0 1px rgba(255, 255, 255, 0.16);
+    0 24px 54px rgba(0, 0, 0, 0.26),
+    0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 .cornetto-flow-shot.is-1 { background-position: 0% 50%; }
@@ -2093,14 +2098,14 @@ deck-stage > section.macbook-demo-section {
 .cornetto-flow-shot.is-3 { background-position: 100% 50%; }
 
 .cornetto-flow-nav {
-  width: 64px;
-  height: 64px;
+  width: 58px;
+  height: 58px;
   border: 1px solid rgba(255, 255, 255, 0.34);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(0, 0, 0, 0.2);
   color: #fff;
   font-family: inherit;
-  font-size: 44px;
+  font-size: 42px;
   line-height: 1;
   cursor: pointer;
   transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
@@ -2123,10 +2128,10 @@ deck-stage > section.macbook-demo-section {
 }
 
 .cornetto-flow-dot {
-  width: 52px;
+  width: 42px;
   height: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.36);
-  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(0, 0, 0, 0.36);
+  background: rgba(0, 0, 0, 0.12);
   cursor: pointer;
 }
 
@@ -2414,19 +2419,22 @@ deck-stage > section.slide-active .eyebrow .dot {
 
   .cornetto-flow-viewport {
     height: min(74vh, 520px);
-    overflow: hidden;
+    overflow-x: auto;
+    box-shadow:
+      0 22px 48px rgba(0, 0, 0, 0.42),
+      8px 8px 0 #5fd0bf;
   }
 
   .cornetto-flow-track {
     display: flex;
-    gap: 0;
-    padding: 0;
-    width: auto;
+    gap: 18px;
+    padding: 18px 26px;
+    width: max-content;
   }
 
   .cornetto-flow-slide {
-    width: auto;
-    flex: 0 0 100%;
+    width: 230px;
+    flex: 0 0 230px;
   }
 
   .cornetto-flow-nav {
@@ -3751,6 +3759,10 @@ function SlideWhatsApp() {
               </h2>
             </div>
             <div className="whatsapp-case-note">
+              <span className="meta">Live preview</span>
+              <p className="body" style={{ maxWidth: 560 }}>
+                La demo real de Cornetto muestra el flow completo: invitación, bases legales, registro y formulario dentro de WhatsApp.
+              </p>
               <div className="whatsapp-feature-strip">
                 {[
                   ["01 · Adopción", "Sin descarga"],
@@ -3770,7 +3782,7 @@ function SlideWhatsApp() {
           <div className="cornetto-flow-carousel" aria-label="Carrusel de capturas de WhatsApp Cornetto">
             <button className="cornetto-flow-nav" type="button" aria-label="Captura anterior" onClick={() => goToCapture(-1)}>‹</button>
             <div className="cornetto-flow-viewport">
-              <div className="cornetto-flow-track" style={{ transform: `translateX(-${activeCapture * 100}%)` }}>
+              <div className="cornetto-flow-track">
                 {captures.map((capture, index) => (
                   <div
                     className={`cornetto-flow-slide ${index === activeCapture ? "is-active" : ""}`}
