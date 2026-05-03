@@ -1440,6 +1440,68 @@ deck-stage > section:nth-child(4n) .tag {
   background: var(--accent-mid);
 }
 
+.performance-dash {
+  color: var(--ink) !important;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px !important;
+}
+
+.performance-dash .meta {
+  color: rgba(0, 0, 0, 0.62) !important;
+}
+
+.performance-dash .serif,
+.performance-dash .mono,
+.performance-dash span,
+.performance-dash p {
+  color: var(--ink);
+}
+
+.performance-dash .pill {
+  color: var(--ink) !important;
+  background: #fff;
+}
+
+.performance-dash .pill.solid {
+  color: #fff !important;
+  background: var(--ink);
+}
+
+.performance-kpi,
+.performance-panel {
+  background: #fff !important;
+  border: 1px solid rgba(0, 0, 0, 0.18) !important;
+  color: var(--ink) !important;
+}
+
+.performance-kpi {
+  min-height: 112px;
+  padding: 12px !important;
+}
+
+.performance-kpi .serif {
+  font-size: 28px !important;
+}
+
+.performance-kpi .mono {
+  color: var(--accent-mid) !important;
+  font-size: 23px !important;
+}
+
+.performance-panel {
+  padding: 12px !important;
+}
+
+.performance-panel .row {
+  color: var(--ink) !important;
+}
+
+.performance-panel .mono {
+  color: rgba(0, 0, 0, 0.72) !important;
+}
+
 .top-progress {
   height: 5px;
   background: var(--accent);
@@ -4298,54 +4360,54 @@ function SlideDashboard() {
           </div>
 
           {/* Dashboard mock */}
-          <div className="dash" style={{ borderRadius: 6, boxShadow: "0 30px 80px -30px rgba(0,0,0,0.25)" }}>
+          <div className="dash performance-dash" style={{ borderRadius: 6, boxShadow: "0 30px 80px -30px rgba(0,0,0,0.25)" }}>
             <div className="row between ai-center">
               <div>
-                <div className="meta" style={{ fontSize: 24 }}>CAMPAÑA · GRANJA SUMMER 26</div>
-                <div className="serif" style={{ fontSize: 28, lineHeight: 1, marginTop: 4 }}>Performance overview</div>
+                <div className="meta" style={{ fontSize: 20 }}>CAMPAÑA · GRANJA SUMMER 26</div>
+                <div className="serif" style={{ fontSize: 26, lineHeight: 1, marginTop: 4 }}>Performance overview</div>
               </div>
               <div className="row" style={{ gap: 8 }}>
-                <span className="pill" style={{ fontSize: 24, padding: "4px 10px" }}>30d</span>
-                <span className="pill solid" style={{ fontSize: 24, padding: "4px 10px" }}>Live</span>
+                <span className="pill" style={{ fontSize: 20, padding: "4px 10px" }}>30d</span>
+                <span className="pill solid" style={{ fontSize: 20, padding: "4px 10px" }}>Live</span>
               </div>
             </div>
 
-            <div className="grid-4" style={{ gap: 12, marginTop: 20 }}>
+            <div className="grid-4" style={{ gap: 10 }}>
               {[
                 { k: "Participaciones", v: "284.512", d: "+12% vs prev" },
                 { k: "Sell-out lift", v: "+18.4%", d: "vs base 8w" },
                 { k: "Opt-in", v: "78%", d: "+4 pts" },
                 { k: "Cost / lead", v: "0.31€", d: "−14%" },
               ].map(s => (
-                <div key={s.k} style={{ background: "var(--bg)", border: "1px solid var(--line-soft)", padding: 14 }}>
-                  <div className="meta" style={{ fontSize: 24 }}>{s.k}</div>
-                  <div className="serif" style={{ fontSize: 28, marginTop: 4, lineHeight: 1 }}>{s.v}</div>
-                  <div className="mono" style={{ fontSize: 24, color: "var(--accent)", marginTop: 4 }}>{s.d}</div>
+                <div key={s.k} className="performance-kpi">
+                  <div className="meta" style={{ fontSize: 18 }}>{s.k}</div>
+                  <div className="serif" style={{ marginTop: 4, lineHeight: 1 }}>{s.v}</div>
+                  <div className="mono" style={{ marginTop: 4 }}>{s.d}</div>
                 </div>
               ))}
             </div>
 
-            <div className="row between ai-end" style={{ marginTop: 24 }}>
-              <span className="meta" style={{ fontSize: 24 }}>PARTICIPACIONES · ÚLTIMOS 12 DÍAS</span>
-              <span className="mono" style={{ fontSize: 24, color: "var(--ink-mute)" }}>x1k</span>
+            <div className="row between ai-end">
+              <span className="meta" style={{ fontSize: 18 }}>PARTICIPACIONES · ÚLTIMOS 12 DÍAS</span>
+              <span className="mono" style={{ fontSize: 18, color: "var(--ink-mute)" }}>x1k</span>
             </div>
-            <div className="dash-bar" style={{ marginTop: 12, height: 140 }}>
+            <div className="dash-bar" style={{ height: 112 }}>
               {bars.map((b, i) => (
                 <div key={i} className={i === 11 ? "hi" : ""} style={{ height: b + "%" }}></div>
               ))}
             </div>
 
-            <div className="row between" style={{ marginTop: 16 }}>
-              <span className="mono" style={{ fontSize: 24, color: "var(--ink-mute)" }}>L  M  X  J  V  S  D  L  M  X  J  V</span>
+            <div className="row between">
+              <span className="mono" style={{ fontSize: 18, color: "var(--ink-mute)" }}>L  M  X  J  V  S  D  L  M  X  J  V</span>
             </div>
 
-            <div className="grid-2" style={{ gap: 12, marginTop: 16 }}>
-              <div style={{ background: "var(--bg)", border: "1px solid var(--line-soft)", padding: 14 }}>
-                <div className="meta" style={{ fontSize: 24 }}>TOP CANALES</div>
-                <div className="col" style={{ gap: 6, marginTop: 8 }}>
+            <div className="grid-2" style={{ gap: 10 }}>
+              <div className="performance-panel">
+                <div className="meta" style={{ fontSize: 18 }}>TOP CANALES</div>
+                <div className="col" style={{ gap: 5, marginTop: 8 }}>
                   {[["WhatsApp", 64], ["Web bot", 22], ["On-pack QR", 14]].map(([n, p], i) => (
                     <div key={i}>
-                      <div className="row between" style={{ fontSize: 24 }}>
+                      <div className="row between" style={{ fontSize: 18 }}>
                         <span>{n}</span><span className="mono">{p}%</span>
                       </div>
                       <div style={{ height: 4, background: "var(--line-soft)", marginTop: 4 }}>
@@ -4355,12 +4417,12 @@ function SlideDashboard() {
                   ))}
                 </div>
               </div>
-              <div style={{ background: "var(--bg)", border: "1px solid var(--line-soft)", padding: 14 }}>
-                <div className="meta" style={{ fontSize: 24 }}>SEGMENTOS</div>
-                <div className="col" style={{ gap: 6, marginTop: 8 }}>
+              <div className="performance-panel">
+                <div className="meta" style={{ fontSize: 18 }}>SEGMENTOS</div>
+                <div className="col" style={{ gap: 5, marginTop: 8 }}>
                   {[["Heavy", 38], ["Medium", 41], ["Light", 21]].map(([n, p], i) => (
                     <div key={i}>
-                      <div className="row between" style={{ fontSize: 24 }}>
+                      <div className="row between" style={{ fontSize: 18 }}>
                         <span>{n}</span><span className="mono">{p}%</span>
                       </div>
                       <div style={{ height: 4, background: "var(--line-soft)", marginTop: 4 }}>
