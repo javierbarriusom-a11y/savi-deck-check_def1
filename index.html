@@ -2691,6 +2691,290 @@ body.click-navigation-mode .click-controls {
   }
 }
 </style>
+<style>
+/* ============================================
+   SAVI BOARD FINAL — calmer typography pass
+   Inspired by Few & Far: clearer hierarchy,
+   smaller display type, more readable message blocks.
+   Content and slide order stay unchanged.
+   ============================================ */
+
+:root {
+  --display: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Instrument Serif", "Times New Roman", serif;
+  --sans: "Geist", "Helvetica Neue", Arial, sans-serif;
+}
+
+body.click-navigation-mode deck-stage > section .frame,
+deck-stage > section .frame {
+  width: min(1540px, 90vw) !important;
+  padding: clamp(56px, 6.2vh, 84px) clamp(44px, 5vw, 96px) !important;
+}
+
+.display,
+.h1,
+.h2,
+.h3,
+.wordmark,
+.stat-num,
+.brand-logo {
+  font-family: var(--display) !important;
+  text-transform: none !important;
+  letter-spacing: -0.045em !important;
+}
+
+.display {
+  font-size: clamp(64px, 8.2vw, 136px) !important;
+  line-height: 0.96 !important;
+  font-weight: 680 !important;
+  max-width: 1240px;
+}
+
+.display.s {
+  font-size: clamp(56px, 6.4vw, 108px) !important;
+  line-height: 0.98 !important;
+}
+
+.display.xs {
+  font-size: clamp(44px, 4.7vw, 78px) !important;
+  line-height: 1.02 !important;
+}
+
+.h1 {
+  font-size: clamp(48px, 5.4vw, 90px) !important;
+  line-height: 1 !important;
+  font-weight: 670 !important;
+  max-width: 1040px;
+}
+
+.h2 {
+  font-size: clamp(36px, 3.8vw, 62px) !important;
+  line-height: 1.06 !important;
+  font-weight: 650 !important;
+}
+
+.h3 {
+  font-size: clamp(28px, 2.7vw, 44px) !important;
+  line-height: 1.12 !important;
+  font-weight: 640 !important;
+}
+
+.h4 {
+  font-size: clamp(20px, 1.35vw, 26px) !important;
+  line-height: 1.22 !important;
+}
+
+.body-l {
+  font-size: clamp(18px, 1.2vw, 23px) !important;
+  line-height: 1.5 !important;
+  font-weight: 450 !important;
+}
+
+.body,
+.body-s {
+  font-weight: 430 !important;
+}
+
+.body {
+  font-size: clamp(15px, 1.02vw, 19px) !important;
+  line-height: 1.55 !important;
+}
+
+.body-s {
+  font-size: clamp(13px, 0.92vw, 16px) !important;
+  line-height: 1.55 !important;
+}
+
+.serif {
+  font-family: var(--display) !important;
+  letter-spacing: -0.035em !important;
+}
+
+.eyebrow,
+.label,
+.meta,
+.slide-num,
+.idx,
+.pill,
+.tag,
+.chip {
+  letter-spacing: 0.06em !important;
+}
+
+.eyebrow,
+.label,
+.meta,
+.slide-num {
+  font-size: clamp(10px, 0.74vw, 13px) !important;
+}
+
+.pill,
+.tag,
+.chip {
+  font-size: clamp(10px, 0.78vw, 13px) !important;
+  padding: 7px 12px !important;
+}
+
+.deck-header {
+  padding-bottom: 18px !important;
+}
+
+.deck-footer {
+  padding-top: 18px !important;
+  margin-top: clamp(28px, 4vh, 48px) !important;
+}
+
+.row {
+  gap: clamp(18px, 2vw, 30px) !important;
+}
+
+.grid-2,
+.grid-3,
+.grid-4 {
+  gap: clamp(18px, 1.7vw, 28px) !important;
+}
+
+.card {
+  padding: clamp(22px, 2vw, 32px) !important;
+}
+
+/* Keep the highest-impact statement slides expressive, but no longer shouty. */
+.cover-with-video .display {
+  font-size: clamp(72px, 9vw, 148px) !important;
+  line-height: 0.95 !important;
+}
+
+.value-prop-section .display,
+deck-stage > section[data-screen-label="03 Market context"] .display,
+deck-stage > section[data-screen-label="17 B2B intro"] .display,
+deck-stage > section[data-screen-label="28 Next step"] .display {
+  font-size: clamp(64px, 7.4vw, 124px) !important;
+  line-height: 0.98 !important;
+}
+
+.video-teaser-copy .display,
+.macbook-copy .display {
+  font-size: clamp(42px, 4.6vw, 74px) !important;
+  line-height: 1.02 !important;
+}
+
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .display.xs,
+deck-stage > section[data-screen-label="19 Tiers"] .display.xs,
+deck-stage > section[data-screen-label="27 Why savi"] .display.xs {
+  font-size: clamp(42px, 4.2vw, 72px) !important;
+  line-height: 1 !important;
+}
+
+deck-stage > section[data-screen-label="04 Tres fuerzas"] .body-l,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .body-l,
+deck-stage > section[data-screen-label="24 IA"] .body-l,
+deck-stage > section[data-screen-label="26 Roadmap"] .body-l {
+  max-width: 620px !important;
+}
+
+deck-stage > section[data-screen-label="04 Tres fuerzas"] .h3,
+deck-stage > section[data-screen-label="11 Portfolio"] .serif,
+deck-stage > section[data-screen-label="25 Plataforma"] .serif {
+  font-family: var(--display) !important;
+  font-size: clamp(24px, 2.15vw, 38px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.035em !important;
+}
+
+deck-stage > section[data-screen-label="08 Value stack"] .serif {
+  font-family: var(--display) !important;
+  font-size: clamp(28px, 2.6vw, 46px) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.04em !important;
+}
+
+deck-stage > section[data-screen-label="08 Value stack"] .pill {
+  min-width: 118px;
+  justify-content: center;
+}
+
+deck-stage > section[data-screen-label="11 Portfolio"] .card {
+  gap: 10px !important;
+}
+
+deck-stage > section[data-screen-label="11 Portfolio"] .frame {
+  padding-top: clamp(40px, 4.6vh, 62px) !important;
+  padding-bottom: clamp(34px, 3.8vh, 52px) !important;
+}
+
+deck-stage > section[data-screen-label="11 Portfolio"] .row.between.ai-end {
+  margin-top: clamp(22px, 2.2vh, 30px) !important;
+  margin-bottom: clamp(20px, 2.2vh, 28px) !important;
+}
+
+deck-stage > section[data-screen-label="11 Portfolio"] .h1 {
+  font-size: clamp(42px, 4.8vw, 78px) !important;
+}
+
+deck-stage > section[data-screen-label="11 Portfolio"] .grid-4 {
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  min-height: 0;
+}
+
+deck-stage > section[data-screen-label="11 Portfolio"] .card {
+  min-height: 0;
+  padding: clamp(16px, 1.35vw, 24px) !important;
+  overflow: hidden;
+}
+
+deck-stage > section[data-screen-label="11 Portfolio"] .card .serif {
+  font-size: clamp(24px, 2vw, 34px) !important;
+  line-height: 1.02 !important;
+}
+
+deck-stage > section[data-screen-label="11 Portfolio"] .body-s {
+  font-size: clamp(12px, 0.86vw, 15px) !important;
+  line-height: 1.42 !important;
+}
+
+deck-stage > section[data-screen-label="11 Portfolio"] .mono {
+  font-size: clamp(16px, 1.25vw, 22px) !important;
+}
+
+deck-stage > section[data-screen-label="23 Dashboard"] .performance-kpi .serif,
+deck-stage > section[data-screen-label="23 Dashboard"] .performance-panel .row,
+deck-stage > section[data-screen-label="24 IA"] [style*="font-size: 24"],
+deck-stage > section[data-screen-label="26 Roadmap"] [style*="font-size: 24"] {
+  font-size: clamp(15px, 1vw, 18px) !important;
+}
+
+deck-stage > section[data-screen-label="26 Roadmap"] .h2 {
+  font-size: clamp(44px, 4.8vw, 78px) !important;
+}
+
+deck-stage > section[data-screen-label="26 Roadmap"] .grid-3 > .col {
+  padding: clamp(26px, 2.6vw, 40px) !important;
+}
+
+body.click-navigation-mode .click-controls {
+  border-radius: 8px;
+}
+
+@media (max-width: 900px) {
+  .display,
+  .cover-with-video .display,
+  .value-prop-section .display,
+  deck-stage > section[data-screen-label="03 Market context"] .display,
+  deck-stage > section[data-screen-label="17 B2B intro"] .display,
+  deck-stage > section[data-screen-label="28 Next step"] .display {
+    font-size: clamp(42px, 12vw, 58px) !important;
+    line-height: 1 !important;
+  }
+
+  .h1,
+  .h2,
+  .display.xs {
+    font-size: clamp(34px, 10vw, 48px) !important;
+    line-height: 1.04 !important;
+  }
+}
+</style>
 </head>
 <body>
 
