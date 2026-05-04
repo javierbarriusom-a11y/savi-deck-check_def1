@@ -2374,20 +2374,86 @@ body.click-navigation-mode .side-nav {
   display: none !important;
 }
 
-body.click-navigation-mode::after {
-  content: "CLICK / \2192";
+body.click-navigation-mode .click-controls {
   position: fixed;
   right: clamp(18px, 2vw, 34px);
   bottom: clamp(16px, 2vh, 30px);
-  z-index: 90;
+  z-index: 120;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px;
+  background: rgba(244, 241, 234, 0.9);
+  border: 1px solid rgba(10, 46, 43, 0.42);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(14px) saturate(1.1);
+}
+
+.click-controls {
+  display: none;
+}
+
+.click-controls button,
+.click-controls .click-count {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.12em;
-  color: rgba(244, 241, 234, 0.62);
-  background: rgba(0, 0, 0, 0.42);
-  border: 1px solid rgba(244, 241, 234, 0.18);
-  padding: 8px 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.click-controls button {
+  border: 1px solid rgba(10, 46, 43, 0.28);
+  background: transparent;
+  color: var(--ink);
+  min-height: 36px;
+  padding: 9px 12px;
+  cursor: pointer;
+}
+
+.click-controls button:hover:not(:disabled),
+.click-controls button:focus-visible {
+  background: var(--ink);
+  color: var(--bg);
+  outline: none;
+}
+
+.click-controls button:disabled {
+  opacity: 0.32;
+  cursor: default;
+}
+
+.click-controls .click-next {
+  min-width: 118px;
+  background: var(--accent);
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.click-controls .click-count {
+  min-width: 76px;
+  padding: 0 10px;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 900px) {
+  body.click-navigation-mode .click-controls {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    justify-content: space-between;
+  }
+
+  .click-controls button {
+    flex: 1;
+    padding: 9px 8px;
+  }
+
+  .click-controls .click-count {
+    min-width: 56px;
+    padding: 0 6px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -2654,6 +2720,13 @@ body.click-navigation-mode::after {
   <button type="button" data-lang-option="es" onclick="window.applySaviLanguage ? window.applySaviLanguage('es') : (window.__saviLangFallback = 'es')">ES</button>
   <button type="button" data-lang-option="en" onclick="window.applySaviLanguage ? window.applySaviLanguage('en') : (window.__saviLangFallback = 'en')">EN</button>
 </div>
+
+<nav class="click-controls" id="clickControls" aria-label="Controles de presentación">
+  <button type="button" class="click-home" data-click-action="home">Inicio</button>
+  <button type="button" class="click-prev" data-click-action="prev">Atrás</button>
+  <span class="click-count" id="clickCount">01 / 30</span>
+  <button type="button" class="click-next" data-click-action="next">Siguiente →</button>
+</nav>
 
 <deck-stage id="stage">
   <section id="m1"  data-anchor="top"></section>
@@ -5114,6 +5187,7 @@ function afterMount() {
     setupSlideInteractions();
     setupSideNav();
     setupProgress();
+    setupClickControls();
     setupI18n();
     requestAnimationFrame(() => scrollToDeckHash("auto"));
   }
@@ -5352,6 +5426,54 @@ function setupProgress() {
   });
 }
 
+/* ─── Click presentation controls ──────────────────────────────────────── */
+function setupClickControls() {
+  const controls = document.getElementById("clickControls");
+  if (!controls || !window.SaviDeckNavigation) return;
+
+  const count = document.getElementById("clickCount");
+  const home = controls.querySelector("[data-click-action='home']");
+  const prev = controls.querySelector("[data-click-action='prev']");
+  const next = controls.querySelector("[data-click-action='next']");
+
+  controls.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-click-action]");
+    if (!button) return;
+    event.preventDefault();
+    event.stopPropagation();
+
+    const action = button.getAttribute("data-click-action");
+    if (action === "home") {
+      window.SaviDeckNavigation.goTo(0);
+    } else if (action === "prev") {
+      window.SaviDeckNavigation.prev();
+    } else if (action === "next") {
+      window.SaviDeckNavigation.next();
+    }
+  });
+
+  function updateControls(event) {
+    const detail = event && event.detail
+      ? event.detail
+      : {
+          index: window.SaviDeckNavigation.activeIndex,
+          total: window.SaviDeckNavigation.total
+        };
+
+    const index = Math.max(0, detail.index);
+    const total = Math.max(1, detail.total);
+    if (count) {
+      count.textContent = `${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+    }
+    if (home) home.disabled = index === 0;
+    if (prev) prev.disabled = index === 0;
+    if (next) next.disabled = index >= total - 1;
+  }
+
+  window.addEventListener("savi:slidechange", updateControls);
+  updateControls();
+}
+
 /* ─── Anchor link smooth scroll ─────────────────────────────────────────── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener("click", e => {
@@ -5394,6 +5516,10 @@ window.addEventListener("hashchange", () => {
 /* ─── Bilingual copy layer ─────────────────────────────────────────────── */
 const SAVI_I18N_TEXT = {
   "Solicitar demo": "Request demo",
+  "Controles de presentación": "Presentation controls",
+  "Inicio": "Start",
+  "Atrás": "Back",
+  "Siguiente →": "Next →",
   "Contexto": "Context",
   "Valor": "Value",
   "Productos": "Products",
