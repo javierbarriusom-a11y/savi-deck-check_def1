@@ -2865,6 +2865,55 @@ deck-stage > section[data-screen-label="27 Why savi"] .display.xs {
   line-height: 1 !important;
 }
 
+deck-stage > section[data-screen-label="09 Connect Convert Engage"],
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .h1,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .h2,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .h3,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .display,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .display.xs,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .serif,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .wordmark,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .brand-logo,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .slide-num {
+  color: var(--ink) !important;
+}
+
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .body-l,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .body,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .body-s,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .eyebrow,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .label,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .meta {
+  color: rgba(10, 32, 30, 0.78) !important;
+}
+
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .deck-header,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .deck-footer,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .col,
+deck-stage > section[data-screen-label="09 Connect Convert Engage"] .row {
+  border-color: rgba(10, 32, 30, 0.24) !important;
+}
+
+body.click-navigation-mode deck-stage > section.operating-model-section.invert,
+body.click-navigation-mode deck-stage > section.operating-model-section.invert .frame,
+body.click-navigation-mode deck-stage > section.operating-model-section.invert .frame * {
+  color: var(--ink) !important;
+}
+
+body.click-navigation-mode deck-stage > section.operating-model-section.invert .body-l,
+body.click-navigation-mode deck-stage > section.operating-model-section.invert .body,
+body.click-navigation-mode deck-stage > section.operating-model-section.invert .body-s,
+body.click-navigation-mode deck-stage > section.operating-model-section.invert .meta {
+  color: rgba(10, 32, 30, 0.78) !important;
+}
+
+body.click-navigation-mode deck-stage > section.operating-model-section.invert .col,
+body.click-navigation-mode deck-stage > section.operating-model-section.invert .row,
+body.click-navigation-mode deck-stage > section.operating-model-section.invert .deck-header,
+body.click-navigation-mode deck-stage > section.operating-model-section.invert .deck-footer {
+  border-color: rgba(10, 32, 30, 0.24) !important;
+}
+
 deck-stage > section[data-screen-label="04 Tres fuerzas"] .body-l,
 deck-stage > section[data-screen-label="09 Connect Convert Engage"] .body-l,
 deck-stage > section[data-screen-label="24 IA"] .body-l,
@@ -4092,25 +4141,25 @@ function SlideValueStack() {
 function SlideOperatingModel() {
   const phases = [
     {
-      n: "01", title: "Conectar", verb: "Connect",
+      n: "01", title: "Conectar", verb: "Conectar",
       body: "Impactamos al consumidor en el canal y momento adecuado. Tienda, on-pack, WhatsApp, delivery, app, web, medios digitales o asistentes conversacionales.",
-      kpis: [{ k: "Reach", v: "+50k pdv" }, { k: "Channels", v: "8+" }, { k: "Latency", v: "<24h go-live" }],
+      kpis: [{ k: "Alcance", v: "+50k pdv" }, { k: "Canales", v: "8+" }, { k: "Tiempo", v: "<24h go-live" }],
     },
     {
-      n: "02", title: "Convertir", verb: "Convert",
+      n: "02", title: "Convertir", verb: "Convertir",
       body: "Promociones inteligentes, recompensas y mecánicas que incentivan compra, prueba y repetición. El trigger se activa con datos reales, no con intuición.",
-      kpis: [{ k: "Lift", v: "+18% sell-out" }, { k: "Reach-rate", v: "92%" }, { k: "Mecánicas", v: "12+" }],
+      kpis: [{ k: "Incremento", v: "+18% sell-out" }, { k: "Ratio alcance", v: "92%" }, { k: "Mecánicas", v: "12+" }],
     },
     {
-      n: "03", title: "Fidelizar", verb: "Engage",
+      n: "03", title: "Fidelizar", verb: "Fidelizar",
       body: "Activaciones que crean relación, capturan datos y alimentan journeys de win-back, advocacy y CLV sin reiniciar desde cero.",
-      kpis: [{ k: "Opt-in", v: "78% medio" }, { k: "Recurrencia", v: "x3.2" }, { k: "FPD records", v: "Millones" }],
+      kpis: [{ k: "Opt-in", v: "78% medio" }, { k: "Recurrencia", v: "x3.2" }, { k: "Registros FPD", v: "Millones" }],
     },
   ];
   return (
-    <section data-screen-label="09 Connect Convert Engage" className="invert">
+    <section data-screen-label="09 Connect Convert Engage" className="invert operating-model-section">
       <div className="frame">
-        <DeckHeader section="02 · PROPUESTA DE VALOR" sectionLabel="Operating model" slide={9} />
+        <DeckHeader section="02 · PROPUESTA DE VALOR" sectionLabel="Modelo operativo" slide={9} />
         <div className="row between ai-end" style={{ marginTop: 40, marginBottom: 40 }}>
           <h2 className="h1">Un enfoque<br/>end-to-end.</h2>
           <p className="body-l" style={{ maxWidth: 520 }}>
@@ -4440,7 +4489,7 @@ function SlideMecanicas() {
     { n: "M03", t: "Puntos", sub: "Acumulación y canje por catálogo", body: "Loyalty clásico — la columna vertebral del programa de relación de tu marca.", chips: ["Recurrencia", "Catálogo"] },
     { n: "M04", t: "Cupones digitales", sub: "Descuento inmediato y redención medible", body: "Distribuibles por WhatsApp, app, on-pack, retail media o tienda. Trazabilidad total.", chips: ["Trial", "Conversion"] },
     { n: "M05", t: "Colector de compras", sub: "La sexta compra devuelve valor", body: "Mecánica perfecta para impulsar repetición en categorías de alta frecuencia.", chips: ["Frecuencia"] },
-    { n: "M06", t: "Geofenced activation", sub: "Validación por ubicación + prueba", body: "Activaciones tácticas en el punto de venta, eventos, cadenas o territorios concretos.", chips: ["Local", "OOH"] },
+    { n: "M06", t: "Activación geolocalizada", sub: "Validación por ubicación + prueba", body: "Activaciones tácticas en el punto de venta, eventos, cadenas o territorios concretos.", chips: ["Local", "OOH"] },
   ];
   return (
     <section data-screen-label="14 Mecánicas">
@@ -4485,19 +4534,19 @@ function SlideValidation() {
   const proof = [
     { n: "01", t: "Pincodes únicos", body: "Códigos on-pack o talonarios asignados por tienda, canal o lote." },
     { n: "02", t: "Tickets OCR", body: "Subida de ticket con validación automática + revisión manual cuando hace falta." },
-    { n: "03", t: "Delivery proof", body: "Recibo digital, captura o prueba del pedido a través de la app." },
-    { n: "04", t: "Geofencing", body: "Participación vinculada a ubicación con tolerancia operativa." },
+    { n: "03", t: "Prueba de entrega", body: "Recibo digital, captura o prueba del pedido a través de la app." },
+    { n: "04", t: "Geolocalización", body: "Participación vinculada a ubicación con tolerancia operativa." },
     { n: "05", t: "Facturas B2B", body: "Carga de facturas y listados de venta para HORECA, farma o retail." },
     { n: "06", t: "Anti-fraude", body: "Control de códigos, reintentos, estados, historial y trazabilidad completa." },
   ];
   return (
-    <section data-screen-label="15 Validation engine" className="invert">
+    <section data-screen-label="15 Motor de validación" className="invert">
       <div className="frame">
-        <DeckHeader section="05 · MECÁNICAS" sectionLabel="Validation engine" slide={15} />
+        <DeckHeader section="05 · MECÁNICAS" sectionLabel="Motor de validación" slide={15} />
         <div className="split-7-5" style={{ flex: 1, marginTop: 40 }}>
           <div className="col" style={{ justifyContent: "space-between" }}>
             <div>
-              <span className="pill" style={{ marginBottom: 24 }}>The core</span>
+              <span className="pill" style={{ marginBottom: 24 }}>El núcleo</span>
               <h2 className="h1" style={{ marginTop: 24 }}>
                 Todas las pruebas<br/>de compra <span style={{ fontStyle: "italic", color: "var(--accent)" }}>cuentan</span>.
               </h2>
@@ -5215,7 +5264,7 @@ function SlidePlatform() {
   const layers = [
     { t: "Front / Canal", items: ["WhatsApp", "PWA", "App", "Web bot", "QR", "On-pack", "Tienda", "AI agents"], color: "var(--paper)" },
     { t: "Core rules", items: ["Puntos", "Instant win", "Cashback", "Retos", "Niveles", "Smart camp.", "Triggers"], color: "var(--bg-2)" },
-    { t: "Validation", items: ["OCR", "Pincodes", "Ventas", "Geofencing", "Aprobaciones", "Anti-fraude"], color: "var(--paper)" },
+    { t: "Validación", items: ["OCR", "Pincodes", "Ventas", "Geolocalización", "Aprobaciones", "Anti-fraude"], color: "var(--paper)" },
     { t: "Reward hub", items: ["Cupones", "Tarjetas regalo", "Catálogo", "Cashback", "Experiencias"], color: "var(--bg-2)" },
     { t: "Backoffice", items: ["Usuarios", "Campañas", "Premios", "Órdenes", "Stock", "Roles"], color: "var(--paper)" },
     { t: "Analytics & AI", items: ["Dashboards", "Segmentos", "KPIs", "Insights", "Asistente", "Decisioning"], color: "var(--bg-2)" },
@@ -6068,13 +6117,16 @@ const SAVI_I18N_TEXT = {
   "Todas las pruebas": "Every proof",
   "de compra": "of purchase",
   "cuentan": "counts",
+  "Motor de validación": "Validation engine",
+  "El núcleo": "The core",
   "Nuestro motor de validación conecta canales físicos y digitales con reglas de negocio claras y antifraude integrado desde el día 1.": "Our validation engine connects physical and digital channels with clear business rules and integrated anti-fraud from day one.",
   "Pincodes únicos": "Unique pincodes",
   "Códigos on-pack o talonarios asignados por tienda, canal o lote.": "On-pack codes or booklets assigned by store, channel or batch.",
   "Tickets OCR": "Receipt OCR",
   "Subida de ticket con validación automática + revisión manual cuando hace falta.": "Receipt upload with automatic validation plus manual review when needed.",
-  "Delivery proof": "Delivery proof",
+  "Prueba de entrega": "Delivery proof",
   "Recibo digital, captura o prueba del pedido a través de la app.": "Digital receipt, screenshot or proof of order through the app.",
+  "Geolocalización": "Geofencing",
   "Participación vinculada a ubicación con tolerancia operativa.": "Participation linked to location with operational tolerance.",
   "Facturas B2B": "B2B invoices",
   "Carga de facturas y listados de venta para HORECA, farma o retail.": "Invoice and sales-list upload for HORECA, pharma or retail.",
@@ -6147,7 +6199,7 @@ const SAVI_I18N_TEXT = {
   "momento": "moment",
   "Productos de impulso que viven de la emoción, el ocio y el consumo social. La mecánica tiene que ser tan inmediata como el producto.": "Impulse products live on emotion, leisure and social consumption. The mechanic must be as immediate as the product.",
   "Instant win para acelerar prueba y participación.": "Instant win to accelerate trial and participation.",
-  "Geofenced activation": "Geofenced activation",
+  "Activación geolocalizada": "Geofenced activation",
   "Validación por ubicación + prueba": "Location-based validation plus proof",
   "No solo FMCG.": "Not just FMCG.",
   "El motor escala con": "The engine scales with",
@@ -6185,6 +6237,7 @@ const SAVI_I18N_TEXT = {
   "Empieza por un MVP. Crece a una plataforma 360º. Mismo core, mismas integraciones, mismas reglas.": "Start with an MVP. Grow into a 360º platform. Same core, same integrations, same rules.",
   "Front / Canal": "Front / Channel",
   "Validación": "Validation",
+  "Geolocalización": "Geofencing",
   "Reward hub": "Reward hub",
   "Analytics & AI": "Analytics & AI",
   "Integraciones": "Integrations",
@@ -6324,10 +6377,18 @@ const SAVI_I18N_TEXT = {
   "Dependencia de retailer/POS": "Retailer/POS dependency",
   "Validación propia online-to-in-store": "Owned online-to-in-store validation",
   "Cada activación que diseñamos parte del mismo principio: convertir una transacción en señal, la señal en aprendizaje y el aprendizaje en una relación más rentable.": "Every activation we design starts from the same principle: turn a transaction into a signal, the signal into learning, and learning into a more profitable relationship.",
+  "Modelo operativo": "Operating model",
   "Tres fases, una sola plataforma. Cada interacción verificada alimenta al siguiente paso con identidad, audiencia y aprendizaje.": "Three phases, one platform. Every verified interaction feeds the next step with identity, audience and learning.",
   "Impactamos al consumidor en el canal y momento adecuado. Tienda, on-pack, WhatsApp, delivery, app, web, medios digitales o asistentes conversacionales.": "We reach the consumer in the right channel and moment: store, on-pack, WhatsApp, delivery, app, web, digital media or conversational assistants.",
+  "Alcance": "Reach",
+  "Canales": "Channels",
+  "Tiempo": "Latency",
   "Promociones inteligentes, recompensas y mecánicas que incentivan compra, prueba y repetición. El trigger se activa con datos reales, no con intuición.": "Smart promotions, rewards and mechanics that drive purchase, trial and repeat. The trigger is activated by real data, not intuition.",
+  "Incremento": "Lift",
+  "Ratio alcance": "Reach-rate",
   "Activaciones que crean relación, capturan datos y alimentan journeys de win-back, advocacy y CLV sin reiniciar desde cero.": "Activations that create relationships, capture data and feed win-back, advocacy and CLV journeys without starting from scratch.",
+  "Registros FPD": "FPD records",
+  "Millones": "Millions",
   "Activaciones con decisioning, segmentación y next-best-action en tiempo real.": "Activations with real-time decisioning, segmentation and next-best-action.",
   "OCR, pincodes, geofencing, anti-fraude y proof-of-purchase. El puente online-to-in-store.": "OCR, pincodes, geofencing, anti-fraud and proof-of-purchase. The online-to-in-store bridge.",
   "GetOffers API y asistente conversacional para que ofertas y rewards vivan dentro de agentes de compra.": "GetOffers API and conversational assistant so offers and rewards can live inside shopping agents.",
