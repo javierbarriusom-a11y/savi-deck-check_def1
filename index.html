@@ -2370,6 +2370,10 @@ body.click-navigation-mode .top-progress {
   transition: transform 280ms ease;
 }
 
+body.click-navigation-mode .side-nav {
+  display: none !important;
+}
+
 body.click-navigation-mode::after {
   content: "CLICK / \2192";
   position: fixed;
@@ -4989,7 +4993,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "accent":      "#5dd4c1",
   "accentDeep":  "#0a4f47",
   "bg":          "#f4f1ea",
-  "showSideNav": true
+  "showSideNav": false
 }/*EDITMODE-END*/;
 
 const ACCENT_OPTIONS = [
