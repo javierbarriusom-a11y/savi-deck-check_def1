@@ -3886,7 +3886,7 @@ function SlideVideoTeaser() {
           <div className="video-teaser-grid" aria-label="Video teaser previews">
             <article className="teaser-video-card is-cornetto">
               <div className="teaser-video-frame">
-                <video autoPlay muted loop playsInline preload="metadata" aria-label="Cornetto board preview">
+                <video data-autoplay-preview autoPlay muted loop playsInline preload="auto" aria-label="Cornetto board preview">
                   <source src="assets/videos/cornetto-board.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -3898,7 +3898,7 @@ function SlideVideoTeaser() {
 
             <article className="teaser-video-card is-monster">
               <div className="teaser-video-frame">
-                <video autoPlay muted loop playsInline preload="metadata" aria-label="Monster board preview">
+                <video data-autoplay-preview autoPlay muted loop playsInline preload="auto" aria-label="Monster board preview">
                   <source src="assets/videos/monster-board.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -5750,6 +5750,7 @@ function afterMount() {
   if (mountedCount === slideMap.length) {
     setupReveals();
     setupSlideInteractions();
+    setupAutoplayPreviews();
     setupSideNav();
     setupProgress();
     setupClickControls();
@@ -5933,6 +5934,46 @@ function setupSlideInteractions() {
       section.style.setProperty("--parallax-y", "0");
       section.style.setProperty("--slide-tilt", "0deg");
     });
+  });
+}
+
+/* ─── Active slide video previews ─────────────────────────────────────── */
+function setupAutoplayPreviews() {
+  function playActiveVideos(section) {
+    if (!section) return;
+
+    section.querySelectorAll("video[data-autoplay-preview]").forEach((video) => {
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.removeAttribute("data-play-blocked");
+
+      const attempt = video.play();
+      if (attempt && typeof attempt.catch === "function") {
+        attempt.catch(() => {
+          video.setAttribute("data-play-blocked", "true");
+        });
+      }
+    });
+  }
+
+  function pauseInactiveVideos(activeSection) {
+    document.querySelectorAll("deck-stage > section video[data-autoplay-preview]").forEach((video) => {
+      if (activeSection && activeSection.contains(video)) return;
+      video.pause();
+    });
+  }
+
+  window.addEventListener("savi:slidechange", (event) => {
+    const section = event && event.detail ? event.detail.section : null;
+    pauseInactiveVideos(section);
+    playActiveVideos(section);
+  });
+
+  requestAnimationFrame(() => {
+    const activeSection = document.querySelector("deck-stage > section.slide-active");
+    pauseInactiveVideos(activeSection);
+    playActiveVideos(activeSection);
   });
 }
 
