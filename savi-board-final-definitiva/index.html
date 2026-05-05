@@ -3182,6 +3182,95 @@ deck-stage > section[data-screen-label="26 Roadmap"] .grid-3 > .col {
   padding: clamp(26px, 2.6vw, 40px) !important;
 }
 
+deck-stage > section[data-screen-label="24 IA"] {
+  background: #77d4c5 !important;
+  color: var(--ink) !important;
+}
+
+deck-stage > section[data-screen-label="24 IA"] .h1,
+deck-stage > section[data-screen-label="24 IA"] .h2,
+deck-stage > section[data-screen-label="24 IA"] .h3,
+deck-stage > section[data-screen-label="24 IA"] .display,
+deck-stage > section[data-screen-label="24 IA"] .serif,
+deck-stage > section[data-screen-label="24 IA"] .slide-num,
+deck-stage > section[data-screen-label="24 IA"] .savi-logo {
+  color: var(--ink) !important;
+}
+
+deck-stage > section[data-screen-label="24 IA"] .h1 span {
+  color: #0a4f47 !important;
+}
+
+deck-stage > section[data-screen-label="24 IA"] .body-l,
+deck-stage > section[data-screen-label="24 IA"] .body,
+deck-stage > section[data-screen-label="24 IA"] .body-s,
+deck-stage > section[data-screen-label="24 IA"] .eyebrow,
+deck-stage > section[data-screen-label="24 IA"] .label,
+deck-stage > section[data-screen-label="24 IA"] .meta,
+deck-stage > section[data-screen-label="24 IA"] .mono {
+  color: rgba(10, 32, 30, 0.78) !important;
+}
+
+deck-stage > section[data-screen-label="24 IA"] .deck-header,
+deck-stage > section[data-screen-label="24 IA"] .deck-footer,
+deck-stage > section[data-screen-label="24 IA"] .rule-top,
+deck-stage > section[data-screen-label="24 IA"] .row,
+deck-stage > section[data-screen-label="24 IA"] .col {
+  border-color: rgba(10, 32, 30, 0.28) !important;
+}
+
+deck-stage > section[data-screen-label="24 IA"] .pill {
+  color: var(--ink) !important;
+  border-color: rgba(10, 32, 30, 0.42) !important;
+  background: rgba(250, 250, 247, 0.18) !important;
+}
+
+deck-stage > section[data-screen-label="24 IA"] .pill.solid {
+  background: #0a4f47 !important;
+  border-color: #0a4f47 !important;
+  color: #ffffff !important;
+}
+
+deck-stage > section[data-screen-label="24 IA"] .ai-mockup {
+  background: rgba(250, 250, 247, 0.78) !important;
+  border-color: rgba(10, 32, 30, 0.26) !important;
+  box-shadow: 0 28px 70px rgba(10, 32, 30, 0.16);
+}
+
+deck-stage > section[data-screen-label="24 IA"] .ai-mockup-header {
+  border-bottom-color: rgba(10, 32, 30, 0.18) !important;
+}
+
+deck-stage > section[data-screen-label="24 IA"] .ai-avatar {
+  background: #0a4f47 !important;
+}
+
+deck-stage > section[data-screen-label="24 IA"] .ai-bubble {
+  color: var(--ink) !important;
+  box-shadow: 0 12px 28px rgba(10, 32, 30, 0.08);
+}
+
+deck-stage > section[data-screen-label="24 IA"] .ai-bubble-user {
+  background: #0a4f47 !important;
+  color: #ffffff !important;
+}
+
+deck-stage > section[data-screen-label="24 IA"] .ai-bubble-assistant {
+  background: #ffffff !important;
+}
+
+deck-stage > section[data-screen-label="24 IA"] .ai-bubble-assistant .meta {
+  color: rgba(10, 32, 30, 0.58) !important;
+}
+
+deck-stage > section[data-screen-label="24 IA"] .ai-bubble-assistant b {
+  color: #0a4f47 !important;
+}
+
+deck-stage > section[data-screen-label="24 IA"] .ai-status {
+  color: rgba(10, 32, 30, 0.62) !important;
+}
+
 /* Original full-screen format, with horizontal containment for dense slides. */
 body.click-navigation-mode deck-stage > section,
 body.click-navigation-mode deck-stage > section .frame {
@@ -5385,7 +5474,7 @@ function SlideAI() {
           </div>
 
           {/* AI chat mockup */}
-          <div style={{
+          <div className="ai-mockup" style={{
             background: "rgba(244,241,234,0.06)",
             border: "1px solid rgba(244,241,234,0.18)",
             borderRadius: 6,
@@ -5394,9 +5483,9 @@ function SlideAI() {
             flexDirection: "column",
             gap: 16,
           }}>
-            <div className="row between ai-center" style={{ borderBottom: "1px solid rgba(244,241,234,0.12)", paddingBottom: 14 }}>
+            <div className="row between ai-center ai-mockup-header" style={{ borderBottom: "1px solid rgba(244,241,234,0.12)", paddingBottom: 14 }}>
               <div className="row" style={{ gap: 12, alignItems: "center" }}>
-                <div style={{ width: 28, height: 28, borderRadius: "50%", background: "var(--accent)" }}></div>
+                <div className="ai-avatar" style={{ width: 28, height: 28, borderRadius: "50%", background: "var(--accent)" }}></div>
                 <div>
                   <div className="serif" style={{ fontSize: 24, color: "var(--invert-ink)" }}>savi.assist</div>
                   <div className="meta" style={{ fontSize: 24 }}>BRAND COPILOT</div>
@@ -5406,10 +5495,10 @@ function SlideAI() {
             </div>
 
             <div className="col" style={{ gap: 12, fontSize: 24, lineHeight: 1.5 }}>
-              <div style={{ alignSelf: "flex-end", maxWidth: "78%", background: "var(--accent)", color: "#fff", padding: "12px 16px", borderRadius: "12px 12px 0 12px" }}>
+              <div className="ai-bubble ai-bubble-user" style={{ alignSelf: "flex-end", maxWidth: "78%", background: "var(--accent)", color: "#fff", padding: "12px 16px", borderRadius: "12px 12px 0 12px" }}>
                 ¿Qué incentivo sube redención sin quemar margen?
               </div>
-              <div style={{ alignSelf: "flex-start", maxWidth: "92%", background: "rgba(244,241,234,0.08)", color: "var(--invert-ink)", padding: "16px 18px", borderRadius: "12px 12px 12px 0" }}>
+              <div className="ai-bubble ai-bubble-assistant" style={{ alignSelf: "flex-start", maxWidth: "92%", background: "rgba(244,241,234,0.08)", color: "var(--invert-ink)", padding: "16px 18px", borderRadius: "12px 12px 12px 0" }}>
                 <div className="meta" style={{ fontSize: 24, marginBottom: 10, color: "rgba(244,241,234,0.5)" }}>DECISIONING · LIVE</div>
                 <p>Los rewards personalizados suelen elevar la redención hasta <b style={{ color: "var(--accent)" }}>+30%</b> frente a mecánicas estáticas.</p>
                 <p style={{ marginTop: 10 }}>Sugiero mantener face value y activar <b>bonus points + experiencia</b> para participantes Light con compra verificada en los últimos 7 días.</p>
@@ -5418,10 +5507,10 @@ function SlideAI() {
                   <span className="pill" style={{ fontSize: 24 }}>Ver detalle</span>
                 </div>
               </div>
-              <div style={{ alignSelf: "flex-end", maxWidth: "78%", background: "var(--accent)", color: "#fff", padding: "12px 16px", borderRadius: "12px 12px 0 12px" }}>
+              <div className="ai-bubble ai-bubble-user" style={{ alignSelf: "flex-end", maxWidth: "78%", background: "var(--accent)", color: "#fff", padding: "12px 16px", borderRadius: "12px 12px 0 12px" }}>
                 Envíalo también al agente de compra
               </div>
-              <div style={{ alignSelf: "flex-start", color: "rgba(244,241,234,0.5)", fontSize: 24, fontStyle: "italic", padding: "0 8px" }}>
+              <div className="ai-status" style={{ alignSelf: "flex-start", color: "rgba(244,241,234,0.5)", fontSize: 24, fontStyle: "italic", padding: "0 8px" }}>
                 <span className="live-dot" style={{ width: 6, height: 6 }}></span>savi.assist está ajustando segmentos…
               </div>
             </div>
