@@ -5123,9 +5123,14 @@ function SlideB2BPortal() {
 }
 
 function B2BPortalMock() {
+  const portalInk = "#111111";
+  const portalMuted = "#6b6b68";
+  const portalAccent = "#5dd4c1";
+  const portalCard = "#f2f0e8";
   return (
     <div style={{
       background: "var(--paper)",
+      color: portalInk,
       border: "1px solid var(--line)",
       borderRadius: 12,
       overflow: "hidden",
@@ -5138,13 +5143,13 @@ function B2BPortalMock() {
         <span style={{ width: 12, height: 12, borderRadius: "50%", background: "#ff5f57" }}></span>
         <span style={{ width: 12, height: 12, borderRadius: "50%", background: "#febc2e" }}></span>
         <span style={{ width: 12, height: 12, borderRadius: "50%", background: "#28c840" }}></span>
-        <span className="mono" style={{ fontSize: 24, marginLeft: 16, color: "var(--ink-mute)" }}>granjanorte.savi.io/horeca</span>
+        <span className="mono" style={{ fontSize: 24, marginLeft: 16, color: portalMuted }}>granjanorte.savi.io/horeca</span>
       </div>
       {/* App body */}
       <div style={{ display: "grid", gridTemplateColumns: "180px 1fr", flex: 1 }}>
         {/* Sidebar */}
-        <div style={{ background: "var(--bg-2)", padding: "20px 16px", borderRight: "1px solid var(--line-soft)" }}>
-          <div className="wordmark" style={{ fontSize: 24 }}>granja+<span style={{ color: "var(--accent)" }}>.</span></div>
+        <div style={{ background: "#eef0f1", color: portalInk, padding: "20px 16px", borderRight: "1px solid var(--line-soft)" }}>
+          <div style={{ fontSize: 24, fontWeight: 700, lineHeight: 1, letterSpacing: "-0.04em", color: portalInk }}>granja+<span style={{ color: portalAccent }}>.</span></div>
           <div className="col" style={{ gap: 4, marginTop: 24 }}>
             {[
               { t: "Inicio", on: false },
@@ -5165,11 +5170,11 @@ function B2BPortalMock() {
           </div>
         </div>
         {/* Main */}
-        <div style={{ padding: 24 }}>
+        <div style={{ padding: 24, color: portalInk }}>
           <div className="row between ai-center">
             <div>
-              <div className="meta" style={{ fontSize: 24 }}>BIENVENIDO</div>
-              <div className="serif" style={{ fontSize: 34, lineHeight: 1, marginTop: 4 }}>Bar La Coruña</div>
+              <div className="meta" style={{ fontSize: 24, color: portalMuted }}>BIENVENIDO</div>
+              <div className="serif" style={{ fontSize: 34, lineHeight: 1, marginTop: 4, color: portalInk }}>Bar La Coruña</div>
             </div>
             <span className="pill solid" style={{ fontSize: 24 }}>★ Nivel ORO</span>
           </div>
@@ -5180,14 +5185,14 @@ function B2BPortalMock() {
               { k: "Retos activos", v: "07" },
               { k: "Premio mes", v: "168€" },
             ].map(s => (
-              <div key={s.k} style={{ background: "var(--bg)", padding: 14, border: "1px solid var(--line-soft)" }}>
-                <div className="meta" style={{ fontSize: 24 }}>{s.k}</div>
-                <div className="serif" style={{ fontSize: 26, marginTop: 4 }}>{s.v}</div>
+              <div key={s.k} style={{ background: portalCard, color: portalInk, padding: 14, border: "1px solid #c7c7c2" }}>
+                <div className="meta" style={{ fontSize: 24, color: portalMuted }}>{s.k}</div>
+                <div className="serif" style={{ fontSize: 26, marginTop: 4, color: portalInk }}>{s.v}</div>
               </div>
             ))}
           </div>
 
-          <div className="meta" style={{ fontSize: 24, marginTop: 24 }}>RETOS DE LA SEMANA</div>
+          <div className="meta" style={{ fontSize: 24, marginTop: 24, color: portalMuted }}>RETOS DE LA SEMANA</div>
           <div className="col" style={{ gap: 8, marginTop: 8 }}>
             {[
               { t: "Vende 12 botellas Granja IPA", p: 8, total: 12, reward: "+250 pts" },
@@ -5196,15 +5201,15 @@ function B2BPortalMock() {
             ].map((r, i) => {
               const pct = (r.p / r.total) * 100;
               return (
-                <div key={i} style={{ background: "var(--bg)", padding: "10px 14px", border: "1px solid var(--line-soft)" }}>
+                <div key={i} style={{ background: portalCard, color: portalInk, padding: "10px 14px", border: "1px solid #c7c7c2" }}>
                   <div className="row between ai-center">
-                    <div style={{ fontSize: 24, fontWeight: 500 }}>{r.t}</div>
-                    <div className="mono" style={{ fontSize: 24, color: "var(--accent)" }}>{r.reward}</div>
+                    <div style={{ fontSize: 24, fontWeight: 500, color: portalInk }}>{r.t}</div>
+                    <div className="mono" style={{ fontSize: 24, color: portalAccent }}>{r.reward}</div>
                   </div>
-                  <div style={{ height: 4, background: "var(--line-soft)", marginTop: 8, position: "relative" }}>
-                    <div style={{ position: "absolute", inset: 0, width: pct + "%", background: "var(--accent)" }}></div>
+                  <div style={{ height: 4, background: "#c7c7c2", marginTop: 8, position: "relative" }}>
+                    <div style={{ position: "absolute", inset: 0, width: pct + "%", background: portalAccent }}></div>
                   </div>
-                  <div className="mono" style={{ fontSize: 24, marginTop: 4, color: "var(--ink-mute)" }}>{r.p}/{r.total} completado</div>
+                  <div className="mono" style={{ fontSize: 24, marginTop: 4, color: portalMuted }}>{r.p}/{r.total} completado</div>
                 </div>
               );
             })}
