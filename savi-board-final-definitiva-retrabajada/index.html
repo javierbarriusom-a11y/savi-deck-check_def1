@@ -5070,12 +5070,12 @@ function SlideWhatsApp() {
             </div>
           </div>
 
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
-            <WhatsAppMock />
-            <div style={{ position: "absolute", top: 20, right: 0, width: 240, textAlign: "right" }}>
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", position: "relative", gap: 20 }}>
+            <div style={{ width: 360, maxWidth: "100%", textAlign: "right", alignSelf: "flex-end" }}>
               <span className="meta">Live preview</span>
               <p className="body-s" style={{ marginTop: 8 }}>Flow real — registro, participación y canje sin abandonar el chat.</p>
             </div>
+            <WhatsAppMock />
           </div>
         </div>
         <DeckFooter />
