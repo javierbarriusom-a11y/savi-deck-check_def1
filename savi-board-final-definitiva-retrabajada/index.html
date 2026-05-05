@@ -3893,6 +3893,7 @@ body.click-navigation-mode deck-stage > section .b2b-portal-mock div[style*="bac
   <section id="m24"></section>
   <section id="m25"></section>
   <section id="m25b" data-anchor="mapa-accion"></section>
+  <section id="m25c" data-anchor="campanas-loyalty"></section>
   <section id="m26"></section>
   <section id="m27"></section>
   <section id="m28" data-anchor="cta"></section>
@@ -6206,6 +6207,172 @@ function SlideObjectiveMap() {
 }
 
 /* =========================================================
+   SLIDE 25C — OBJETIVOS COMERCIALES A CAMPANAS Y LOYALTY
+   ========================================================= */
+function SlideCampaignLoyaltyMap() {
+  const columns = [
+    "Cupones",
+    "Instant win",
+    "Cashback",
+    "Retos",
+    "Puntos / tiers",
+    "Club / catálogo",
+    "Journeys AI",
+  ];
+  const rows = [
+    {
+      objective: "Tráfico a tienda",
+      body: "Visita y redención física.",
+      cells: ["primary", "primary", "secondary", "secondary", "", "", "secondary"],
+    },
+    {
+      objective: "Trial de producto",
+      body: "Primera compra verificada.",
+      cells: ["primary", "primary", "primary", "secondary", "", "", "secondary"],
+    },
+    {
+      objective: "Ventas incrementales",
+      body: "Ticket, frecuencia o mix.",
+      cells: ["primary", "secondary", "primary", "primary", "secondary", "", "secondary"],
+    },
+    {
+      objective: "Repetición",
+      body: "Siguiente compra.",
+      cells: ["secondary", "", "primary", "primary", "primary", "secondary", "primary"],
+    },
+    {
+      objective: "Fidelización",
+      body: "Beneficios, tiers y catálogo.",
+      cells: ["", "secondary", "secondary", "primary", "primary", "primary", "primary"],
+    },
+    {
+      objective: "Data & insight",
+      body: "Señales accionables.",
+      cells: ["secondary", "secondary", "primary", "primary", "primary", "secondary", "primary"],
+    },
+  ];
+  const Dot = ({ kind }) => (
+    <span
+      aria-label={kind === "primary" ? "Principal" : kind === "secondary" ? "Complementario" : "Sin cobertura"}
+      style={{
+        display: "inline-block",
+        width: kind ? 21 : 8,
+        height: kind ? 21 : 8,
+        borderRadius: "50%",
+        background: kind === "primary" ? "var(--accent-deep)" : kind === "secondary" ? "rgba(10,79,71,0.18)" : "transparent",
+        border: kind ? "none" : "1px solid rgba(10,79,71,0.16)",
+      }}
+    />
+  );
+  return (
+    <section data-screen-label="25C Campañas y loyalty" className="bg-accent">
+      <div className="frame" style={{ paddingTop: 34, paddingBottom: 28 }}>
+        <DeckHeader section="09 · PLATAFORMA" sectionLabel="Campañas & loyalty" slide="25C" />
+        <div className="row between ai-end" style={{ marginTop: 22, marginBottom: 16, gap: 52 }}>
+          <h2 style={{
+            maxWidth: 860,
+            margin: 0,
+            fontFamily: "var(--display)",
+            fontSize: "clamp(38px, 3.8vw, 52px)",
+            lineHeight: 0.9,
+            fontWeight: 400,
+            letterSpacing: 0,
+            textTransform: "uppercase",
+          }}>
+            Objetivo comercial,<br/><span style={{ fontStyle: "italic" }}>mecánica adecuada</span>.
+          </h2>
+          <p className="body-l" style={{ maxWidth: 500, fontSize: "clamp(15px, 1.05vw, 19px)", lineHeight: 1.32 }}>
+            No todas las campañas sirven para lo mismo. Savi permite elegir una mecánica táctica, conectarla con loyalty y hacerla crecer sin cambiar de plataforma.
+          </p>
+        </div>
+
+        <div style={{
+          background: "rgba(250,250,247,0.88)",
+          border: "1px solid rgba(10,79,71,0.34)",
+          padding: 14,
+          overflowX: "auto",
+          boxShadow: "0 18px 60px rgba(10,79,71,0.12)",
+        }}>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "minmax(340px, 1.22fr) repeat(7, minmax(100px, 0.62fr))",
+            minWidth: 1080,
+            alignItems: "stretch",
+          }}>
+            <div style={{ borderBottom: "3px solid var(--accent-deep)", padding: "0 18px 10px 0" }}>
+              <span className="meta" style={{ color: "var(--accent-deep)" }}>Objetivo comercial</span>
+            </div>
+            {columns.map((column) => (
+              <div key={column} style={{
+                borderBottom: "3px solid var(--accent-deep)",
+                padding: "0 6px 10px",
+                textAlign: "center",
+              }}>
+                <span className="pill" style={{
+                  display: "inline-flex",
+                  justifyContent: "center",
+                  minWidth: 86,
+                  fontSize: 15,
+                  background: "rgba(244,241,234,0.72)",
+                  color: "var(--ink)",
+                }}>{column}</span>
+              </div>
+            ))}
+
+            {rows.map((row, i) => (
+              <React.Fragment key={row.objective}>
+                <div style={{
+                  minHeight: 50,
+                  borderBottom: "1px solid rgba(10,79,71,0.28)",
+                  padding: "7px 18px 6px 0",
+                  display: "flex",
+                  gap: 14,
+                  alignItems: "center",
+                }}>
+                  <span className="mono" style={{ fontSize: 17, color: "var(--accent-deep)", opacity: 0.65 }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 style={{
+                      margin: "0 0 5px",
+                      fontFamily: "var(--display)",
+                      fontSize: 20,
+                      lineHeight: 0.98,
+                      fontWeight: 400,
+                      letterSpacing: 0,
+                      textTransform: "uppercase",
+                    }}>{row.objective}</h3>
+                    <p className="body-s" style={{ color: "var(--ink-soft)", maxWidth: 470, fontSize: 12, lineHeight: 1.15 }}>{row.body}</p>
+                  </div>
+                </div>
+                {row.cells.map((cell, index) => (
+                  <div key={`${row.objective}-${columns[index]}`} style={{
+                    minHeight: 50,
+                    borderBottom: "1px solid rgba(10,79,71,0.28)",
+                    display: "grid",
+                    placeItems: "center",
+                    padding: "8px 6px",
+                  }}>
+                    <Dot kind={cell} />
+                  </div>
+                ))}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+
+        <div className="row between ai-center" style={{ marginTop: 10 }}>
+          <p className="body-s" style={{ maxWidth: 980, color: "var(--accent-deep)", fontSize: 14, lineHeight: 1.25 }}>
+            Lectura práctica: la campaña activa la acción inmediata; loyalty captura recurrencia, permiso y valor acumulado. Punto oscuro = prioridad; claro = apoyo.
+          </p>
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
    SLIDE 26 — ROADMAP IMPLANTACIÓN
    ========================================================= */
 function SlideRoadmap() {
@@ -6359,7 +6526,7 @@ function SlideCTA() {
 }
 
 Object.assign(window, {
-  SlideDashboard, SlideAI, SlidePlatform, SlideObjectiveMap, SlideRoadmap, SlideWhySavi, SlideCTA
+  SlideDashboard, SlideAI, SlidePlatform, SlideObjectiveMap, SlideCampaignLoyaltyMap, SlideRoadmap, SlideWhySavi, SlideCTA
 });
 
 </script>
@@ -6446,6 +6613,7 @@ const slideMap = [
   { id: 24, Comp: () => <SlideAI /> },
   { id: 25, Comp: () => <SlidePlatform /> },
   { id: "25b", Comp: () => <SlideObjectiveMap /> },
+  { id: "25c", Comp: () => <SlideCampaignLoyaltyMap /> },
   { id: 26, Comp: () => <SlideRoadmap /> },
   { id: 27, Comp: () => <SlideWhySavi /> },
   { id: 28, Comp: () => <SlideCTA /> },
@@ -7364,6 +7532,36 @@ const SAVI_I18N_TEXT = {
   "Generar data": "Generate data",
   "Cerrar el loop entre campaña, compra física, canal y reporting accionable.": "Close the loop between campaign, physical purchase, channel and actionable reporting.",
   "La matriz no limita el diseño: orienta qué capas activar primero para que cada campaña nazca preparada para escalar. Punto oscuro = principal; claro = complementario.": "The matrix does not limit the design: it guides which layers to activate first so each campaign is ready to scale from day one. Dark dot = primary; light dot = complementary.",
+  "Campañas & loyalty": "Campaigns & loyalty",
+  "Objetivo comercial,": "Commercial objective,",
+  "mecánica adecuada": "right mechanic",
+  "No todas las campañas sirven para lo mismo. Savi permite elegir una mecánica táctica, conectarla con loyalty y hacerla crecer sin cambiar de plataforma.": "Not every campaign serves the same purpose. Savi lets you choose a tactical mechanic, connect it with loyalty and grow it without changing platform.",
+  "Objetivo comercial": "Commercial objective",
+  "Cupones": "Coupons",
+  "Instant win": "Instant win",
+  "Cashback": "Cashback",
+  "Retos": "Challenges",
+  "Puntos / tiers": "Points / tiers",
+  "Club / catálogo": "Club / catalog",
+  "Journeys AI": "AI journeys",
+  "Tráfico a tienda": "Store traffic",
+  "Visita y redención física.": "Physical visit and redemption.",
+  "Motivo claro para visitar, escanear y redimir en un punto físico.": "A clear reason to visit, scan and redeem at a physical location.",
+  "Trial de producto": "Product trial",
+  "Primera compra verificada.": "Verified first purchase.",
+  "Reducir fricción de prueba y convertir una primera compra en dato útil.": "Reduce trial friction and turn a first purchase into useful data.",
+  "Ticket, frecuencia o mix.": "Basket, frequency or mix.",
+  "Subir ticket, frecuencia o mix con reglas medibles por SKU, canal o periodo.": "Increase basket, frequency or mix with measurable rules by SKU, channel or period.",
+  "Repetición": "Repeat purchase",
+  "Siguiente compra.": "Next purchase.",
+  "Crear siguiente compra con incentivos progresivos y misiones de consumo.": "Create the next purchase with progressive incentives and consumption missions.",
+  "Fidelización": "Loyalty",
+  "Beneficios, tiers y catálogo.": "Benefits, tiers and catalog.",
+  "Pasar de campaña puntual a relación con niveles, beneficios y catálogo vivo.": "Move from a one-off campaign to a relationship with tiers, benefits and a live catalog.",
+  "Data & insight": "Data & insight",
+  "Señales accionables.": "Actionable signals.",
+  "Aprender quién compra, dónde, cuándo y qué incentivo mueve mejor la acción.": "Learn who buys, where, when and which incentive best drives action.",
+  "Lectura práctica: la campaña activa la acción inmediata; loyalty captura recurrencia, permiso y valor acumulado. Punto oscuro = prioridad; claro = apoyo.": "Practical read: the campaign activates immediate action; loyalty captures recurrence, permission and accumulated value. Dark dot = priority; light dot = support.",
   "Principal": "Primary",
   "Complementario": "Complementary"
 };
@@ -7903,6 +8101,36 @@ const SAVI_I18N_TEXTS = {
   "Generar data": "Daten generieren",
   "Cerrar el loop entre campaña, compra física, canal y reporting accionable.": "Den Kreislauf zwischen Kampagne, physischem Kauf, Kanal und verwertbarem Reporting schließen.",
   "La matriz no limita el diseño: orienta qué capas activar primero para que cada campaña nazca preparada para escalar. Punto oscuro = principal; claro = complementario.": "Die Matrix begrenzt das Design nicht: Sie zeigt, welche Ebenen zuerst aktiviert werden sollten, damit jede Kampagne von Anfang an skalierbar ist. Dunkler Punkt = primär; heller Punkt = ergänzend.",
+  "Campañas & loyalty": "Kampagnen & Loyalty",
+  "Objetivo comercial,": "Kommerzielles Ziel,",
+  "mecánica adecuada": "passende Mechanik",
+  "No todas las campañas sirven para lo mismo. Savi permite elegir una mecánica táctica, conectarla con loyalty y hacerla crecer sin cambiar de plataforma.": "Nicht jede Kampagne erfüllt denselben Zweck. Mit Savi können Sie eine taktische Mechanik wählen, mit Loyalty verbinden und ohne Plattformwechsel ausbauen.",
+  "Objetivo comercial": "Kommerzielles Ziel",
+  "Cupones": "Coupons",
+  "Instant win": "Sofortgewinn",
+  "Cashback": "Cashback",
+  "Retos": "Challenges",
+  "Puntos / tiers": "Punkte / Tiers",
+  "Club / catálogo": "Club / Katalog",
+  "Journeys AI": "KI-Journeys",
+  "Tráfico a tienda": "Store-Traffic",
+  "Visita y redención física.": "Physischer Besuch und Einlösung.",
+  "Motivo claro para visitar, escanear y redimir en un punto físico.": "Ein klarer Anlass, einen physischen Standort zu besuchen, zu scannen und einzulösen.",
+  "Trial de producto": "Produkttest",
+  "Primera compra verificada.": "Verifizierter Erstkauf.",
+  "Reducir fricción de prueba y convertir una primera compra en dato útil.": "Testbarrieren senken und einen Erstkauf in nutzbare Daten verwandeln.",
+  "Ticket, frecuencia o mix.": "Warenkorb, Frequenz oder Mix.",
+  "Subir ticket, frecuencia o mix con reglas medibles por SKU, canal o periodo.": "Warenkorb, Frequenz oder Mix mit messbaren Regeln nach SKU, Kanal oder Zeitraum steigern.",
+  "Repetición": "Wiederkauf",
+  "Siguiente compra.": "Nächster Kauf.",
+  "Crear siguiente compra con incentivos progresivos y misiones de consumo.": "Den nächsten Kauf mit progressiven Anreizen und Konsummissionen auslösen.",
+  "Fidelización": "Loyalität",
+  "Beneficios, tiers y catálogo.": "Vorteile, Tiers und Katalog.",
+  "Pasar de campaña puntual a relación con niveles, beneficios y catálogo vivo.": "Von einer Einzelkampagne zu einer Beziehung mit Stufen, Vorteilen und lebendigem Katalog wechseln.",
+  "Data & insight": "Daten & Insight",
+  "Señales accionables.": "Handlungsrelevante Signale.",
+  "Aprender quién compra, dónde, cuándo y qué incentivo mueve mejor la acción.": "Lernen, wer kauft, wo, wann und welcher Anreiz die Aktion am besten bewegt.",
+  "Lectura práctica: la campaña activa la acción inmediata; loyalty captura recurrencia, permiso y valor acumulado. Punto oscuro = prioridad; claro = apoyo.": "Praktische Lesart: Die Kampagne aktiviert die unmittelbare Aktion; Loyalty erfasst Wiederkehr, Zustimmung und kumulierten Wert. Dunkler Punkt = Priorität; heller Punkt = Unterstützung.",
   "Principal": "Primär",
   "Complementario": "Ergänzend"
 },
@@ -8439,6 +8667,36 @@ const SAVI_I18N_TEXTS = {
   "Generar data": "Generare dati",
   "Cerrar el loop entre campaña, compra física, canal y reporting accionable.": "Chiudere il loop tra campagna, acquisto fisico, canale e reporting azionabile.",
   "La matriz no limita el diseño: orienta qué capas activar primero para que cada campaña nazca preparada para escalar. Punto oscuro = principal; claro = complementario.": "La matrice non limita il design: orienta quali livelli attivare per primi affinché ogni campagna nasca pronta a scalare. Punto scuro = principale; punto chiaro = complementare.",
+  "Campañas & loyalty": "Campagne & loyalty",
+  "Objetivo comercial,": "Obiettivo commerciale,",
+  "mecánica adecuada": "meccanica giusta",
+  "No todas las campañas sirven para lo mismo. Savi permite elegir una mecánica táctica, conectarla con loyalty y hacerla crecer sin cambiar de plataforma.": "Non tutte le campagne servono allo stesso scopo. Savi permette di scegliere una meccanica tattica, collegarla alla loyalty e farla crescere senza cambiare piattaforma.",
+  "Objetivo comercial": "Obiettivo commerciale",
+  "Cupones": "Coupon",
+  "Instant win": "Instant win",
+  "Cashback": "Cashback",
+  "Retos": "Sfide",
+  "Puntos / tiers": "Punti / tier",
+  "Club / catálogo": "Club / catalogo",
+  "Journeys AI": "Journey IA",
+  "Tráfico a tienda": "Traffico in negozio",
+  "Visita y redención física.": "Visita e riscatto fisico.",
+  "Motivo claro para visitar, escanear y redimir en un punto físico.": "Un motivo chiaro per visitare, scansionare e riscattare in un punto fisico.",
+  "Trial de producto": "Prova prodotto",
+  "Primera compra verificada.": "Primo acquisto verificato.",
+  "Reducir fricción de prueba y convertir una primera compra en dato útil.": "Ridurre la frizione della prova e trasformare un primo acquisto in dati utili.",
+  "Ticket, frecuencia o mix.": "Scontrino, frequenza o mix.",
+  "Subir ticket, frecuencia o mix con reglas medibles por SKU, canal o periodo.": "Aumentare scontrino, frequenza o mix con regole misurabili per SKU, canale o periodo.",
+  "Repetición": "Ripetizione",
+  "Siguiente compra.": "Prossimo acquisto.",
+  "Crear siguiente compra con incentivos progresivos y misiones de consumo.": "Creare il prossimo acquisto con incentivi progressivi e missioni di consumo.",
+  "Fidelización": "Fidelizzazione",
+  "Beneficios, tiers y catálogo.": "Benefit, tier e catalogo.",
+  "Pasar de campaña puntual a relación con niveles, beneficios y catálogo vivo.": "Passare da una campagna puntuale a una relazione con livelli, benefit e catalogo vivo.",
+  "Data & insight": "Dati & insight",
+  "Señales accionables.": "Segnali azionabili.",
+  "Aprender quién compra, dónde, cuándo y qué incentivo mueve mejor la acción.": "Capire chi compra, dove, quando e quale incentivo muove meglio l'azione.",
+  "Lectura práctica: la campaña activa la acción inmediata; loyalty captura recurrencia, permiso y valor acumulado. Punto oscuro = prioridad; claro = apoyo.": "Lettura pratica: la campagna attiva l'azione immediata; la loyalty cattura ricorrenza, consenso e valore accumulato. Punto scuro = priorità; punto chiaro = supporto.",
   "Principal": "Principale",
   "Complementario": "Complementare"
 }
