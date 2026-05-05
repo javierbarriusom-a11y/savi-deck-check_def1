@@ -1841,19 +1841,19 @@ deck-stage > section.tiers-section .tier-card-dark .tier-perk {
 
 .video-teaser-hero {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
-  gap: clamp(12px, 2.2vh, 24px);
-  align-items: stretch;
+  grid-template-columns: minmax(390px, 0.4fr) minmax(0, 0.6fr);
+  grid-template-rows: 1fr;
+  gap: clamp(28px, 4vw, 72px);
+  align-items: start;
   flex: 1;
 }
 
 .video-teaser-copy {
   display: grid;
-  grid-template-columns: minmax(520px, 0.52fr) minmax(420px, 0.48fr);
-  gap: clamp(18px, 3vw, 48px);
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(16px, 2.6vh, 28px);
   align-content: start;
-  align-items: end;
+  align-items: start;
   padding-bottom: 0;
 }
 
@@ -1879,41 +1879,44 @@ deck-stage > section.tiers-section .tier-card-dark .tier-perk {
 }
 
 .video-teaser-copy .body-l {
-  grid-column: 2;
-  grid-row: 2;
-  max-width: 620px;
+  grid-column: 1;
+  grid-row: auto;
+  max-width: 720px;
   color: rgba(255, 255, 255, 0.72);
 }
 
 .video-teaser-grid {
   position: relative;
-  min-height: clamp(560px, 56vh, 680px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2vw, 30px);
+  min-height: 0;
   isolation: isolate;
-  margin-top: clamp(8px, 1.6vh, 18px);
+  margin-top: clamp(-26px, -2.8vh, -12px);
 }
 
 .teaser-video-card {
   position: relative;
   display: grid;
-  gap: 14px;
+  gap: 10px;
   min-width: 0;
-  width: min(60vw, 960px);
+  width: 100%;
 }
 
 .teaser-video-card.is-cornetto {
-  position: absolute;
-  left: 0;
-  top: clamp(18px, 3vh, 34px);
+  position: relative;
+  left: auto;
+  top: auto;
   z-index: 1;
-  transform: rotate(-1.4deg);
+  transform: translateY(8px) rotate(-0.8deg);
 }
 
 .teaser-video-card.is-monster {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  position: relative;
+  right: auto;
+  bottom: auto;
   z-index: 2;
-  transform: rotate(1.2deg);
+  transform: translateY(clamp(36px, 5vh, 58px)) rotate(0.8deg);
 }
 
 .teaser-video-frame {
