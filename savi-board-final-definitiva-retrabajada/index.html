@@ -3362,6 +3362,151 @@ body.click-navigation-mode .click-controls {
     line-height: 1.04 !important;
   }
 }
+
+/* Responsive presentation safety pass.
+   Each slide keeps click-based navigation, but the active slide can scroll
+   internally whenever its content is taller than the viewport. */
+:root {
+  --deck-top-safe: clamp(146px, 14vh, 168px);
+  --deck-bottom-safe: clamp(88px, 9vh, 124px);
+}
+
+body.click-navigation-mode deck-stage > section {
+  height: 100dvh !important;
+  min-height: 100dvh !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.click-navigation-mode deck-stage > section:not(.slide-active) {
+  overflow: hidden !important;
+}
+
+body.click-navigation-mode deck-stage > section .frame,
+body.click-navigation-mode deck-stage > section.slide-active .frame {
+  position: relative !important;
+  inset: auto !important;
+  height: auto !important;
+  min-height: 100dvh !important;
+  margin-inline: auto !important;
+  padding-top: var(--deck-top-safe) !important;
+  padding-bottom: var(--deck-bottom-safe) !important;
+  transform: none !important;
+}
+
+body.click-navigation-mode deck-stage > section .frame > * {
+  min-width: 0;
+}
+
+body.click-navigation-mode .top-nav {
+  gap: clamp(14px, 2vw, 36px);
+}
+
+body.click-navigation-mode .top-nav-links {
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: center;
+}
+
+body.click-navigation-mode .top-nav .cta {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+body.click-navigation-mode .global-language-picker {
+  position: fixed;
+  top: clamp(88px, 8vh, 98px);
+  right: clamp(18px, 3vw, 42px);
+  left: auto;
+}
+
+body.click-navigation-mode .deck-header {
+  flex-wrap: wrap;
+  gap: 12px 20px;
+}
+
+body.click-navigation-mode .deck-header > .row {
+  min-width: 0;
+}
+
+body.click-navigation-mode .deck-header .meta {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1180px) {
+  :root {
+    --deck-top-safe: clamp(132px, 14vh, 158px);
+    --deck-bottom-safe: clamp(96px, 11vh, 132px);
+  }
+
+  body.click-navigation-mode .top-nav-links {
+    display: none;
+  }
+
+  body.click-navigation-mode deck-stage > section .frame,
+  body.click-navigation-mode deck-stage > section.slide-active .frame {
+    width: min(100vw, 980px) !important;
+    padding-left: clamp(22px, 4vw, 44px) !important;
+    padding-right: clamp(22px, 4vw, 44px) !important;
+  }
+
+  body.click-navigation-mode .split-7-5,
+  body.click-navigation-mode .split-5-7,
+  body.click-navigation-mode .grid-4,
+  body.click-navigation-mode .grid-6 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  body.click-navigation-mode .grid-3 {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --deck-top-safe: 148px;
+    --deck-bottom-safe: 118px;
+  }
+
+  body.click-navigation-mode .top-nav {
+    padding: 14px 18px !important;
+  }
+
+  body.click-navigation-mode .top-nav .cta {
+    display: none;
+  }
+
+  body.click-navigation-mode .global-language-picker {
+    top: 76px !important;
+    left: 18px !important;
+    right: auto !important;
+  }
+
+  body.click-navigation-mode deck-stage > section .frame,
+  body.click-navigation-mode deck-stage > section.slide-active .frame {
+    width: 100vw !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  body.click-navigation-mode .split-7-5,
+  body.click-navigation-mode .split-5-7,
+  body.click-navigation-mode .grid-2,
+  body.click-navigation-mode .grid-3,
+  body.click-navigation-mode .grid-4,
+  body.click-navigation-mode .grid-6 {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  body.click-navigation-mode .deck-footer {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 8px;
+  }
+}
 </style>
 </head>
 <body>
@@ -5951,6 +6096,10 @@ function setupSlideInteractions() {
     window.dispatchEvent(new CustomEvent("savi:slidechange", {
       detail: { index: activeIndex, total: sections.length, section: activeSection }
     }));
+
+    if (activeSection && options.preserveScroll !== true) {
+      activeSection.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
   }
 
   function goTo(index, options = {}) {
