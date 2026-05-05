@@ -3483,6 +3483,15 @@ body.click-navigation-mode .deck-header .meta {
     top: 76px !important;
     left: 18px !important;
     right: auto !important;
+    width: calc(100vw - 36px) !important;
+    max-width: calc(100vw - 36px) !important;
+  }
+
+  body.click-navigation-mode .global-language-picker button {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
   }
 
   body.click-navigation-mode deck-stage > section .frame,
@@ -3579,6 +3588,246 @@ deck-stage > section.slide-active .pill {
 .click-controls .click-next:focus-visible {
   background: var(--accent) !important;
   color: var(--ink) !important;
+}
+
+/* Uniform deck skin: turquoise canvas, black editorial type, readable panels. */
+:root {
+  --uniform-bg: #5dd4c1;
+  --uniform-ink: #050505;
+  --uniform-muted: rgba(5, 5, 5, 0.72);
+  --uniform-soft: rgba(5, 5, 5, 0.54);
+  --uniform-line: rgba(5, 5, 5, 0.34);
+  --uniform-panel: rgba(250, 250, 247, 0.24);
+  --uniform-panel-strong: rgba(250, 250, 247, 0.46);
+}
+
+body.click-navigation-mode deck-stage > section,
+body.click-navigation-mode deck-stage > section.invert,
+body.click-navigation-mode deck-stage > section.bg-accent,
+body.click-navigation-mode deck-stage > section.dashboard-green,
+body.click-navigation-mode deck-stage > section.tiers-section,
+body.click-navigation-mode deck-stage > section.video-teaser-section,
+body.click-navigation-mode deck-stage > section.value-prop-section,
+body.click-navigation-mode deck-stage > section.macbook-demo-section {
+  background: var(--uniform-bg) !important;
+  color: var(--uniform-ink) !important;
+}
+
+body.click-navigation-mode deck-stage > section .frame {
+  color: var(--uniform-ink) !important;
+}
+
+body.click-navigation-mode deck-stage > section :is(
+  .display,
+  .display.xs,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .serif,
+  .wordmark,
+  .brand-logo,
+  .savi-logo,
+  .slide-num,
+  .idx,
+  .accent-text
+) {
+  color: var(--uniform-ink) !important;
+  text-shadow: none !important;
+}
+
+body.click-navigation-mode deck-stage > section :is(
+  .body-l,
+  .body,
+  .body-s,
+  .eyebrow,
+  .label,
+  .meta,
+  .mono,
+  .tag,
+  .chip
+) {
+  color: var(--uniform-muted) !important;
+  text-shadow: none !important;
+}
+
+body.click-navigation-mode deck-stage > section :is(strong, em, b, i),
+body.click-navigation-mode deck-stage > section [style*="color: var(--accent)"],
+body.click-navigation-mode deck-stage > section span[style*="#fff"],
+body.click-navigation-mode deck-stage > section span[style*="255,255,255"],
+body.click-navigation-mode deck-stage > section span[style*="244,241,234"],
+body.click-navigation-mode deck-stage > section div[style*="#fff"],
+body.click-navigation-mode deck-stage > section p[style*="#fff"],
+body.click-navigation-mode deck-stage > section p[style*="255,255,255"],
+body.click-navigation-mode deck-stage > section p[style*="244,241,234"] {
+  color: var(--uniform-ink) !important;
+}
+
+body.click-navigation-mode deck-stage > section :is(
+  .deck-header,
+  .deck-footer,
+  .divider,
+  .divider.soft,
+  .rule-top,
+  .rule-top.soft,
+  .row,
+  .col
+) {
+  border-color: var(--uniform-line) !important;
+}
+
+body.click-navigation-mode deck-stage > section :is(.divider, .divider.soft) {
+  background: var(--uniform-line) !important;
+}
+
+body.click-navigation-mode deck-stage > section :is(
+  .card,
+  .card.dark,
+  .card.accent,
+  .card.soft,
+  .lift,
+  .tier-card-light,
+  .tier-card-dark,
+  .performance-kpi,
+  .performance-panel
+) {
+  background: var(--uniform-panel) !important;
+  border-color: var(--uniform-line) !important;
+  color: var(--uniform-ink) !important;
+  box-shadow: none !important;
+}
+
+body.click-navigation-mode deck-stage > section :is(.card, .lift, .tier-card-light, .tier-card-dark) :is(.display, .h1, .h2, .h3, .h4, .serif) {
+  color: var(--uniform-ink) !important;
+}
+
+body.click-navigation-mode deck-stage > section :is(.card, .lift, .tier-card-light, .tier-card-dark) :is(.body-l, .body, .body-s, .meta, .mono, .label, .tier-perk) {
+  color: var(--uniform-muted) !important;
+}
+
+body.click-navigation-mode deck-stage > section :is(.pill, .tag, .chip) {
+  background: transparent !important;
+  border-color: var(--uniform-line) !important;
+  color: var(--uniform-ink) !important;
+}
+
+body.click-navigation-mode deck-stage > section :is(.pill.solid, .pill.accent),
+body.click-navigation-mode deck-stage > section .cta-pill {
+  background: var(--uniform-ink) !important;
+  border-color: var(--uniform-ink) !important;
+  color: #ffffff !important;
+}
+
+body.click-navigation-mode deck-stage > section :is(.pill.solid, .pill.accent) * {
+  color: #ffffff !important;
+}
+
+body.click-navigation-mode deck-stage > section .live-dot,
+body.click-navigation-mode deck-stage > section .eyebrow .dot {
+  background: var(--uniform-ink) !important;
+}
+
+body.click-navigation-mode deck-stage > section .phone,
+body.click-navigation-mode deck-stage > section .phone-screen {
+  background: #f5f6f2 !important;
+  border-color: var(--uniform-line) !important;
+  color: var(--uniform-ink) !important;
+}
+
+body.click-navigation-mode deck-stage > section .wa-header,
+body.click-navigation-mode deck-stage > section .wa-header * {
+  background: #075e54 !important;
+  color: #ffffff !important;
+}
+
+body.click-navigation-mode deck-stage > section .wa-body {
+  background: #ece5dd !important;
+}
+
+body.click-navigation-mode deck-stage > section .wa-msg,
+body.click-navigation-mode deck-stage > section .wa-input .input-bubble {
+  background: #ffffff !important;
+  color: #050505 !important;
+}
+
+body.click-navigation-mode deck-stage > section .wa-msg.mine {
+  background: #dcf8c6 !important;
+  color: #050505 !important;
+}
+
+body.click-navigation-mode deck-stage > section .wa-msg :is(.heading, .ts) {
+  color: #050505 !important;
+}
+
+body.click-navigation-mode deck-stage > section .wa-msg .btn {
+  background: #050505 !important;
+  color: #ffffff !important;
+}
+
+body.click-navigation-mode deck-stage > section .performance-dash,
+body.click-navigation-mode deck-stage > section .dash,
+body.click-navigation-mode deck-stage > section .ai-mockup {
+  background: var(--uniform-panel-strong) !important;
+  border-color: var(--uniform-line) !important;
+  color: var(--uniform-ink) !important;
+  box-shadow: none !important;
+}
+
+body.click-navigation-mode deck-stage > section .dash-bar {
+  background: rgba(5, 5, 5, 0.12) !important;
+}
+
+body.click-navigation-mode deck-stage > section .dash-bar div {
+  background: var(--uniform-ink) !important;
+}
+
+body.click-navigation-mode deck-stage > section .dash-bar div.hi {
+  background: #0a4f47 !important;
+}
+
+body.click-navigation-mode deck-stage > section .ai-mockup :is(.serif, .body, .body-s, .meta, .mono) {
+  color: var(--uniform-ink) !important;
+}
+
+body.click-navigation-mode deck-stage > section .ai-bubble-user {
+  background: var(--uniform-ink) !important;
+  color: #ffffff !important;
+}
+
+body.click-navigation-mode deck-stage > section .ai-bubble-user * {
+  color: #ffffff !important;
+}
+
+body.click-navigation-mode deck-stage > section .ai-bubble-assistant {
+  background: rgba(255, 255, 255, 0.58) !important;
+  color: var(--uniform-ink) !important;
+}
+
+body.click-navigation-mode deck-stage > section .ai-status,
+body.click-navigation-mode deck-stage > section .ai-bubble-assistant .meta {
+  color: var(--uniform-muted) !important;
+}
+
+body.click-navigation-mode deck-stage > section .b2b-portal-mock,
+body.click-navigation-mode deck-stage > section .b2b-portal-mock div {
+  color: #111111 !important;
+}
+
+body.click-navigation-mode deck-stage > section .b2b-portal-mock .meta,
+body.click-navigation-mode deck-stage > section .b2b-portal-mock .mono {
+  color: #6b6b68 !important;
+}
+
+body.click-navigation-mode deck-stage > section .b2b-portal-mock .pill.solid,
+body.click-navigation-mode deck-stage > section .b2b-portal-mock .pill.solid * {
+  background: #050505 !important;
+  border-color: #050505 !important;
+  color: #ffffff !important;
+}
+
+body.click-navigation-mode deck-stage > section .b2b-portal-mock div[style*="background: var(--ink)"] {
+  background: #050505 !important;
+  color: #ffffff !important;
 }
 </style>
 </head>
@@ -5201,7 +5450,7 @@ function B2BPortalMock() {
   const portalAccent = "#5dd4c1";
   const portalCard = "#f2f0e8";
   return (
-    <div style={{
+    <div className="b2b-portal-mock" style={{
       background: "var(--paper)",
       color: portalInk,
       border: "1px solid var(--line)",
