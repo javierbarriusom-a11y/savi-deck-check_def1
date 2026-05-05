@@ -3892,6 +3892,7 @@ body.click-navigation-mode deck-stage > section .b2b-portal-mock div[style*="bac
   <section id="m23" data-anchor="data"></section>
   <section id="m24"></section>
   <section id="m25"></section>
+  <section id="m25b" data-anchor="mapa-accion"></section>
   <section id="m26"></section>
   <section id="m27"></section>
   <section id="m28" data-anchor="cta"></section>
@@ -6045,6 +6046,166 @@ function SlidePlatform() {
 }
 
 /* =========================================================
+   SLIDE 25B — MAPA DE ACCION POR OBJETIVO
+   ========================================================= */
+function SlideObjectiveMap() {
+  const columns = [
+    "Front / Canal",
+    "Core rules",
+    "Validación",
+    "Reward hub",
+    "Backoffice",
+    "Analytics & AI",
+  ];
+  const rows = [
+    {
+      objective: "Drive to store",
+      body: "Activar tráfico desde QR, WhatsApp, on-pack o tienda con una promesa inmediata.",
+      cells: ["primary", "primary", "primary", "secondary", "", "secondary"],
+    },
+    {
+      objective: "Ventas incrementales",
+      body: "Convertir compra, repetición y upsell con reglas, cupones, cashback y retos medibles.",
+      cells: ["primary", "primary", "primary", "primary", "secondary", "secondary"],
+    },
+    {
+      objective: "Conocer al consumidor",
+      body: "Transformar cada participación verificada en identidad, permiso y señal first-party.",
+      cells: ["secondary", "secondary", "primary", "", "primary", "primary"],
+    },
+    {
+      objective: "Fidelizar",
+      body: "Construir recurrencia con puntos, niveles, retos, catálogo y journeys always-on.",
+      cells: ["secondary", "primary", "secondary", "primary", "primary", "primary"],
+    },
+    {
+      objective: "Generar data",
+      body: "Cerrar el loop entre campaña, compra física, canal y reporting accionable.",
+      cells: ["secondary", "secondary", "primary", "secondary", "primary", "primary"],
+    },
+  ];
+  const Dot = ({ kind }) => (
+    <span
+      aria-label={kind === "primary" ? "Principal" : kind === "secondary" ? "Complementario" : "Sin cobertura"}
+      style={{
+        display: "inline-block",
+        width: kind ? 22 : 8,
+        height: kind ? 22 : 8,
+        borderRadius: "50%",
+        background: kind === "primary" ? "var(--accent-deep)" : kind === "secondary" ? "rgba(10,79,71,0.18)" : "transparent",
+        border: kind ? "none" : "1px solid rgba(10,79,71,0.16)",
+      }}
+    />
+  );
+  return (
+    <section data-screen-label="25B Mapa de acción" className="bg-accent">
+      <div className="frame" style={{ paddingTop: 34, paddingBottom: 28 }}>
+        <DeckHeader section="09 · PLATAFORMA" sectionLabel="Mapa de acción" slide="25B" />
+        <div className="row between ai-end" style={{ marginTop: 22, marginBottom: 16, gap: 52 }}>
+          <h2 style={{
+            maxWidth: 820,
+            margin: 0,
+            fontFamily: "var(--display)",
+            fontSize: "clamp(40px, 4.1vw, 56px)",
+            lineHeight: 0.9,
+            fontWeight: 400,
+            letterSpacing: 0,
+            textTransform: "uppercase",
+          }}>
+            Objetivos de marca,<br/><span style={{ fontStyle: "italic" }}>piezas combinables</span>.
+          </h2>
+          <p className="body-l" style={{ maxWidth: 500, fontSize: "clamp(15px, 1.05vw, 19px)", lineHeight: 1.32 }}>
+            Las mismas piezas del ecosistema se activan distinto según el objetivo: llevar tráfico a tienda, vender más, conocer al consumidor, fidelizar y generar data accionable.
+          </p>
+        </div>
+
+        <div style={{
+          background: "rgba(250,250,247,0.88)",
+          border: "1px solid rgba(10,79,71,0.34)",
+          padding: 14,
+          overflowX: "auto",
+          boxShadow: "0 18px 60px rgba(10,79,71,0.12)",
+        }}>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "minmax(360px, 1.35fr) repeat(6, minmax(116px, 0.7fr))",
+            minWidth: 1070,
+            alignItems: "stretch",
+          }}>
+            <div style={{ borderBottom: "3px solid var(--accent-deep)", padding: "0 18px 10px 0" }}>
+              <span className="meta" style={{ color: "var(--accent-deep)" }}>Objetivo de marca</span>
+            </div>
+            {columns.map((column) => (
+              <div key={column} style={{
+                borderBottom: "3px solid var(--accent-deep)",
+                padding: "0 7px 10px",
+                textAlign: "center",
+              }}>
+                <span className="pill" style={{
+                  display: "inline-flex",
+                  justifyContent: "center",
+                  minWidth: 92,
+                  fontSize: 16,
+                  background: "rgba(244,241,234,0.72)",
+                  color: "var(--ink)",
+                }}>{column}</span>
+              </div>
+            ))}
+
+            {rows.map((row) => (
+              <React.Fragment key={row.objective}>
+                <div style={{
+                  minHeight: 58,
+                  borderBottom: "1px solid rgba(10,79,71,0.28)",
+                  padding: "7px 20px 6px 0",
+                  display: "flex",
+                  gap: 16,
+                  alignItems: "center",
+                }}>
+                  <span className="mono" style={{ fontSize: 17, color: "var(--accent-deep)", opacity: 0.65 }}>
+                    {String(rows.indexOf(row) + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 style={{
+                      margin: "0 0 5px",
+                      fontFamily: "var(--display)",
+                      fontSize: 21,
+                      lineHeight: 0.98,
+                      fontWeight: 400,
+                      letterSpacing: 0,
+                      textTransform: "uppercase",
+                    }}>{row.objective}</h3>
+                    <p className="body-s" style={{ color: "var(--ink-soft)", maxWidth: 500, fontSize: 12, lineHeight: 1.18 }}>{row.body}</p>
+                  </div>
+                </div>
+                {row.cells.map((cell, index) => (
+                  <div key={`${row.objective}-${columns[index]}`} style={{
+                    minHeight: 58,
+                    borderBottom: "1px solid rgba(10,79,71,0.28)",
+                    display: "grid",
+                    placeItems: "center",
+                    padding: "8px 7px",
+                  }}>
+                    <Dot kind={cell} />
+                  </div>
+                ))}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+
+        <div className="row between ai-center" style={{ marginTop: 10 }}>
+          <p className="body-s" style={{ maxWidth: 980, color: "var(--accent-deep)", fontSize: 14, lineHeight: 1.25 }}>
+            La matriz no limita el diseño: orienta qué capas activar primero para que cada campaña nazca preparada para escalar. Punto oscuro = principal; claro = complementario.
+          </p>
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
    SLIDE 26 — ROADMAP IMPLANTACIÓN
    ========================================================= */
 function SlideRoadmap() {
@@ -6198,7 +6359,7 @@ function SlideCTA() {
 }
 
 Object.assign(window, {
-  SlideDashboard, SlideAI, SlidePlatform, SlideRoadmap, SlideWhySavi, SlideCTA
+  SlideDashboard, SlideAI, SlidePlatform, SlideObjectiveMap, SlideRoadmap, SlideWhySavi, SlideCTA
 });
 
 </script>
@@ -6284,6 +6445,7 @@ const slideMap = [
   { id: 23, Comp: () => <SlideDashboard /> },
   { id: 24, Comp: () => <SlideAI /> },
   { id: 25, Comp: () => <SlidePlatform /> },
+  { id: "25b", Comp: () => <SlideObjectiveMap /> },
   { id: 26, Comp: () => <SlideRoadmap /> },
   { id: 27, Comp: () => <SlideWhySavi /> },
   { id: 28, Comp: () => <SlideCTA /> },
@@ -7179,7 +7341,31 @@ const SAVI_I18N_TEXT = {
   "savi: el partner tras": "Savi: the partner behind",
   "las campañas de las marcas": "the campaigns of the brands",
   "más queridas por los": "most loved by",
-  "consumidores": "consumers"
+  "consumidores": "consumers",
+  "Mapa de acción": "Action map",
+  "Objetivos de marca,": "Brand objectives,",
+  "piezas combinables": "combinable pieces",
+  "Las mismas piezas del ecosistema se activan distinto según el objetivo: llevar tráfico a tienda, vender más, conocer al consumidor, fidelizar y generar data accionable.": "The same ecosystem pieces activate differently depending on the objective: drive store traffic, sell more, understand the consumer, build loyalty and generate actionable data.",
+  "Objetivo de marca": "Brand objective",
+  "Front / Canal": "Front / Channel",
+  "Core rules": "Core rules",
+  "Validación": "Validation",
+  "Reward hub": "Reward hub",
+  "Backoffice": "Backoffice",
+  "Analytics & AI": "Analytics & AI",
+  "Drive to store": "Drive to store",
+  "Activar tráfico desde QR, WhatsApp, on-pack o tienda con una promesa inmediata.": "Activate traffic from QR, WhatsApp, on-pack or store with an immediate promise.",
+  "Ventas incrementales": "Incremental sales",
+  "Convertir compra, repetición y upsell con reglas, cupones, cashback y retos medibles.": "Turn purchase, repeat and upsell into measurable rules, coupons, cashback and challenges.",
+  "Conocer al consumidor": "Know the consumer",
+  "Transformar cada participación verificada en identidad, permiso y señal first-party.": "Turn every verified participation into identity, permission and a first-party signal.",
+  "Fidelizar": "Build loyalty",
+  "Construir recurrencia con puntos, niveles, retos, catálogo y journeys always-on.": "Build recurrence with points, levels, challenges, catalog and always-on journeys.",
+  "Generar data": "Generate data",
+  "Cerrar el loop entre campaña, compra física, canal y reporting accionable.": "Close the loop between campaign, physical purchase, channel and actionable reporting.",
+  "La matriz no limita el diseño: orienta qué capas activar primero para que cada campaña nazca preparada para escalar. Punto oscuro = principal; claro = complementario.": "The matrix does not limit the design: it guides which layers to activate first so each campaign is ready to scale from day one. Dark dot = primary; light dot = complementary.",
+  "Principal": "Primary",
+  "Complementario": "Complementary"
 };
 
 const SAVI_I18N_TEXTS = {
@@ -7694,7 +7880,31 @@ const SAVI_I18N_TEXTS = {
   "savi: el partner tras": "Savi: der Partner hinter",
   "las campañas de las marcas": "den Kampagnen der Marken",
   "más queridas por los": "die Verbraucher am meisten lieben",
-  "consumidores": "Verbraucher"
+  "consumidores": "Verbraucher",
+  "Mapa de acción": "Aktionskarte",
+  "Objetivos de marca,": "Markenziele,",
+  "piezas combinables": "kombinierbare Bausteine",
+  "Las mismas piezas del ecosistema se activan distinto según el objetivo: llevar tráfico a tienda, vender más, conocer al consumidor, fidelizar y generar data accionable.": "Die gleichen Bausteine des Ökosystems werden je nach Ziel unterschiedlich aktiviert: Store-Traffic steigern, mehr verkaufen, Konsumenten verstehen, Loyalität aufbauen und verwertbare Daten generieren.",
+  "Objetivo de marca": "Markenziel",
+  "Front / Canal": "Front / Kanal",
+  "Core rules": "Kernregeln",
+  "Validación": "Validierung",
+  "Reward hub": "Reward Hub",
+  "Backoffice": "Backoffice",
+  "Analytics & AI": "Analytics & KI",
+  "Drive to store": "Store-Traffic",
+  "Activar tráfico desde QR, WhatsApp, on-pack o tienda con una promesa inmediata.": "Traffic über QR, WhatsApp, On-Pack oder Store mit einem unmittelbaren Versprechen aktivieren.",
+  "Ventas incrementales": "Zusätzliche Verkäufe",
+  "Convertir compra, repetición y upsell con reglas, cupones, cashback y retos medibles.": "Kauf, Wiederholung und Upsell mit Regeln, Coupons, Cashback und messbaren Challenges auslösen.",
+  "Conocer al consumidor": "Konsumenten verstehen",
+  "Transformar cada participación verificada en identidad, permiso y señal first-party.": "Jede verifizierte Teilnahme in Identität, Zustimmung und ein First-Party-Signal verwandeln.",
+  "Fidelizar": "Binden",
+  "Construir recurrencia con puntos, niveles, retos, catálogo y journeys always-on.": "Wiederkehr mit Punkten, Levels, Challenges, Katalog und Always-on-Journeys aufbauen.",
+  "Generar data": "Daten generieren",
+  "Cerrar el loop entre campaña, compra física, canal y reporting accionable.": "Den Kreislauf zwischen Kampagne, physischem Kauf, Kanal und verwertbarem Reporting schließen.",
+  "La matriz no limita el diseño: orienta qué capas activar primero para que cada campaña nazca preparada para escalar. Punto oscuro = principal; claro = complementario.": "Die Matrix begrenzt das Design nicht: Sie zeigt, welche Ebenen zuerst aktiviert werden sollten, damit jede Kampagne von Anfang an skalierbar ist. Dunkler Punkt = primär; heller Punkt = ergänzend.",
+  "Principal": "Primär",
+  "Complementario": "Ergänzend"
 },
   it: {
   "Solicitar demo": "Richiedi demo",
@@ -8206,7 +8416,31 @@ const SAVI_I18N_TEXTS = {
   "savi: el partner tras": "Savi: il partner dietro",
   "las campañas de las marcas": "le campagne dei brand",
   "más queridas por los": "più amati dai",
-  "consumidores": "consumatori"
+  "consumidores": "consumatori",
+  "Mapa de acción": "Mappa d'azione",
+  "Objetivos de marca,": "Obiettivi di marca,",
+  "piezas combinables": "moduli combinabili",
+  "Las mismas piezas del ecosistema se activan distinto según el objetivo: llevar tráfico a tienda, vender más, conocer al consumidor, fidelizar y generar data accionable.": "Gli stessi moduli dell'ecosistema si attivano in modo diverso a seconda dell'obiettivo: portare traffico in negozio, vendere di più, conoscere il consumatore, fidelizzare e generare dati azionabili.",
+  "Objetivo de marca": "Obiettivo di marca",
+  "Front / Canal": "Front / Canale",
+  "Core rules": "Regole core",
+  "Validación": "Validazione",
+  "Reward hub": "Reward hub",
+  "Backoffice": "Backoffice",
+  "Analytics & AI": "Analytics e IA",
+  "Drive to store": "Drive to store",
+  "Activar tráfico desde QR, WhatsApp, on-pack o tienda con una promesa inmediata.": "Attivare traffico da QR, WhatsApp, on-pack o negozio con una promessa immediata.",
+  "Ventas incrementales": "Vendite incrementali",
+  "Convertir compra, repetición y upsell con reglas, cupones, cashback y retos medibles.": "Convertire acquisto, ripetizione e upsell con regole, coupon, cashback e sfide misurabili.",
+  "Conocer al consumidor": "Conoscere il consumatore",
+  "Transformar cada participación verificada en identidad, permiso y señal first-party.": "Trasformare ogni partecipazione verificata in identità, consenso e segnale first-party.",
+  "Fidelizar": "Fidelizzare",
+  "Construir recurrencia con puntos, niveles, retos, catálogo y journeys always-on.": "Costruire ricorrenza con punti, livelli, sfide, catalogo e journey always-on.",
+  "Generar data": "Generare dati",
+  "Cerrar el loop entre campaña, compra física, canal y reporting accionable.": "Chiudere il loop tra campagna, acquisto fisico, canale e reporting azionabile.",
+  "La matriz no limita el diseño: orienta qué capas activar primero para que cada campaña nazca preparada para escalar. Punto oscuro = principal; claro = complementario.": "La matrice non limita il design: orienta quali livelli attivare per primi affinché ogni campagna nasca pronta a scalare. Punto scuro = principale; punto chiaro = complementare.",
+  "Principal": "Principale",
+  "Complementario": "Complementare"
 }
 };
 
