@@ -167,9 +167,18 @@ section.slide.lemon { background: var(--lemon); }
 }
 .title.small { font-size: clamp(40px, 5.6vw, 76px); }
 .title.xl { font-size: clamp(72px, 14vw, 190px); }
-.slide:first-child .title { font-size: clamp(48px, 7vw, 104px); }
-.slide:first-child .subtitle { max-width: 760px; font-size: clamp(18px, 1.8vw, 28px); }
-.slide:first-child .poster { min-height: 500px; }
+.slide:first-child {
+  padding: 0;
+  background:
+    linear-gradient(90deg, rgba(5,12,20,.9) 0%, rgba(5,12,20,.76) 33%, rgba(5,12,20,.34) 62%, rgba(5,12,20,.08) 100%),
+    linear-gradient(0deg, rgba(5,12,20,.54), transparent 44%),
+    url("assets/cover-frigo-centenario.png") center / cover no-repeat !important;
+  color: var(--white);
+}
+.slide:first-child .slide-grid { position: relative; z-index: 1; height: 100%; padding: clamp(58px, 6vw, 96px); }
+.slide:first-child .title { font-size: clamp(48px, 7vw, 104px); max-width: 700px; }
+.slide:first-child .subtitle { max-width: 700px; font-size: clamp(18px, 1.8vw, 28px); color: rgba(255,255,255,.78); }
+.cover-copy { align-self: center; }
 .subtitle {
   margin: 18px 0 0;
   max-width: 980px;
@@ -929,7 +938,7 @@ function renderCards(items = [], cols = 3) {
 
 function layout(slide, i) {
   if (slide.layout === "cover") {
-    return `<div class="content two"><div>${titleBlock(slide)}</div><div class="poster"><div class="qr-block"></div></div></div>`;
+    return `<div class="cover-copy">${titleBlock(slide)}</div>`;
   }
   if (slide.layout === "agenda") {
     return `<div class="content split">${titleBlock(slide, true)}<div class="agenda-list">${slide.items.map((item) => `
