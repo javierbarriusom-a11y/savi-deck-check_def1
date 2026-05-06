@@ -172,7 +172,7 @@ section.slide.lemon { background: var(--lemon); }
   background:
     linear-gradient(90deg, rgba(5,12,20,.9) 0%, rgba(5,12,20,.76) 33%, rgba(5,12,20,.34) 62%, rgba(5,12,20,.08) 100%),
     linear-gradient(0deg, rgba(5,12,20,.54), transparent 44%),
-    url("assets/frigo-beach-hero-2.png") center / cover no-repeat !important;
+    url("assets/cover-frigo-centenario.png") center / cover no-repeat !important;
   color: var(--white);
 }
 .slide:first-child .slide-grid { position: relative; z-index: 1; height: 100%; padding: clamp(58px, 6vw, 96px); }
@@ -193,36 +193,6 @@ section.slide.lemon { background: var(--lemon); }
 
 .content.two { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(320px, .98fr); gap: clamp(28px, 5vw, 80px); align-items: center; }
 .content.split { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 80px); align-items: stretch; }
-.content.media-split { grid-template-columns: minmax(0, 1.05fr) minmax(300px, .72fr); align-items: start; }
-.content.media-split .grid { gap: 10px; }
-.content.media-split .grid.cols-4,
-.content.media-split .grid.cols-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.content.media-split .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.content.media-split .grid.cols-5 .card:nth-child(5) { grid-column: 1 / -1; }
-.content.media-split .title.small { font-size: clamp(34px, 4.15vw, 58px); }
-.content.media-split .subtitle { margin-top: 10px; font-size: clamp(15px, 1.2vw, 20px); line-height: 1.24; }
-.content.media-split .card,
-.content.media-split .stat-card { padding: 14px; }
-.content.media-split .card h3 { font-size: clamp(17px, 1.3vw, 22px); }
-.content.media-split .card .body { font-size: clamp(13px, .92vw, 15px); line-height: 1.28; }
-.content.media-split .stat-card strong { font-size: clamp(40px, 4.4vw, 66px); }
-.content.media-split .stat-card span { font-size: clamp(13px, 1vw, 16px); line-height: 1.28; }
-.content.media-split .timeline { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-.content.media-split .timeline-item { min-height: 112px; padding: 12px; }
-.content.media-split .timeline-item b { font-size: clamp(24px, 2.4vw, 34px); }
-.content.media-split .timeline-item h3 { font-size: clamp(14px, 1vw, 17px); }
-.content.media-split .timeline-item .body { font-size: clamp(11px, .78vw, 13px); }
-.content.media-split .journey { grid-template-columns: 1fr; gap: 10px; }
-.content.media-split .journey .card {
-  min-height: 0;
-  padding: 10px 12px;
-  display: grid;
-  grid-template-columns: 34px 42px 1fr;
-  align-items: center;
-  gap: 12px;
-}
-.content.media-split .journey .icon { font-size: 26px; }
-.content.media-split .journey .card h3 { font-size: 18px; }
 .content.center { display: grid; align-content: center; }
 .stack { display: flex; flex-direction: column; gap: 18px; }
 .grid { display: grid; gap: 18px; }
@@ -372,44 +342,6 @@ section.slide.lemon { background: var(--lemon); }
 .grid.cols-5 .card .body,
 .grid.cols-5 .idea .body { font-size: clamp(14px, 1vw, 17px); line-height: 1.32; }
 
-.visual-panel {
-  position: relative;
-  min-height: 440px;
-  height: 440px;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid rgba(21,21,21,.28);
-  background: rgba(255,255,255,.32);
-}
-.slide.dark .visual-panel,
-.slide.red .visual-panel,
-.slide.blue .visual-panel {
-  border-color: rgba(255,255,255,.28);
-  background: rgba(255,255,255,.08);
-}
-.visual-panel img {
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  object-fit: cover;
-  display: block;
-}
-.visual-panel.portrait img { object-position: center; }
-.visual-panel.wide { min-height: 360px; }
-.visual-panel.wide { height: 360px; }
-.media-stack {
-  display: grid;
-  gap: 14px;
-}
-.media-stack .visual-panel { min-height: 138px; height: 138px; }
-.photo-ribbon {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-}
-.photo-ribbon .visual-panel { min-height: 220px; }
-.photo-ribbon .visual-panel { height: 220px; }
-
 .dashboard {
   border: 1px solid rgba(21,21,21,.34);
   border-radius: 8px;
@@ -446,10 +378,6 @@ a { color: inherit; }
   .nav-pills { overflow-x: auto; justify-content: flex-start; }
   .content.two, .content.split, .grid.cols-2, .grid.cols-3, .grid.cols-4, .grid.cols-5,
   .journey, .timeline, .roadmap, .dashboard-grid { grid-template-columns: 1fr; }
-  .content.media-split .grid.cols-3,
-  .content.media-split .grid.cols-4,
-  .content.media-split .grid.cols-5,
-  .photo-ribbon { grid-template-columns: 1fr; }
   .matrix { grid-template-columns: 1fr; }
   .matrix div { border-right: 0; }
   .poster { min-height: 420px; }
@@ -513,7 +441,6 @@ const slides = [
     title: "El helado vende mas, pero la marca compite peor si no posee la relacion.",
     subtitle: "El centenario no es solo una efemeride: es una ventana para transformar recuerdo masivo en identidad, permiso y recurrencia.",
     layout: "stats",
-    media: { src: "assets/frigo-senior-retail.png", mode: "portrait" },
     stats: [
       ["140M L", "helado consumido en hogares espanoles entre junio 2023 y mayo 2024."],
       ["650M EUR", "facturacion del sector en ese periodo, con crecimiento de valor por precio."],
@@ -541,7 +468,6 @@ const slides = [
     title: "100 años de momentos que ya viven en la memoria.",
     subtitle: "La marca tiene un activo cultural dificil de replicar: verano, playa, gondolero, cucurucho, familia y nostalgia. El programa convierte ese capital emocional en participacion y data.",
     layout: "timeline",
-    media: { src: "assets/frigo-seniors-bench.png", mode: "wide" },
     items: [
       ["1927", "Fundacion Frigo Barcelona", "Primer fabricante industrial de helados en Espana."],
       ["1959", "Nace el cono protegido", "El chocolate protege el cucurucho y crea ritual."],
@@ -570,11 +496,6 @@ const slides = [
     subtitle: "Nostalgia + novedad = fidelizacion. El reto no es recordar Frigo; es hacer que el recuerdo produzca una nueva accion medible.",
     layout: "cards",
     cols: 3,
-    media: [
-      { src: "assets/frigo-teens-counter.png", mode: "portrait" },
-      { src: "assets/frigo-family-selfie.png", mode: "portrait" },
-      { src: "assets/frigo-seniors-bench.png", mode: "wide" }
-    ],
     items: [
       ["Boomers & Gen X", "45-65 · Vivieron Just One Frigo. Alta fidelidad emocional; responden a experiencias retro y ediciones limitadas."],
       ["Millennials", "28-44 · WhatsApp nativo. Buscan conveniencia, valor tangible y dinamicas que puedan compartir."],
@@ -648,7 +569,6 @@ const slides = [
     subtitle: "Un programa tematico alrededor de los 100 años de la marca: una pieza de historia, un recuerdo compartido y una recompensa del centenario.",
     layout: "cards",
     cols: 4,
-    media: { src: "assets/frigo-counter-sale-wide.png", mode: "wide" },
     items: [
       ["Colecciona Momentos", "Pincodes, tickets, QR, selfie proof o geofencing segun canal."],
       ["Instant Win", "Gana como en el 82: tension, sorpresa y recompensa inmediata."],
@@ -675,7 +595,6 @@ const slides = [
     title: "Del cartel al fan en 90 segundos.",
     subtitle: "La experiencia debe ser corta, reconocible y suficientemente divertida como para repetirse.",
     layout: "journey",
-    media: { src: "assets/frigo-family-counter-wide.png", mode: "wide" },
     items: [
       ["Ve el cartel", "Canal impulso, PLV, mass media o social."],
       ["Escanea el QR", "QR dinamico o link social."],
@@ -691,7 +610,6 @@ const slides = [
     subtitle: "Pincode on-pack cuando exista. QR + selfie/ticket/geofencing/keyword cuando el canal lo requiera. El diseno reduce friccion y maximiza cobertura.",
     layout: "cards",
     cols: 5,
-    media: { src: "assets/frigo-counter-sale-portrait.png", mode: "portrait" },
     items: [
       ["Selfie Proof", "Foto con helado; IA valida visibilidad del producto Frigo."],
       ["Ticket OCR", "Producto, importe, fecha y establecimiento."],
@@ -720,7 +638,6 @@ const slides = [
     subtitle: "La logica de diseno: siempre ganar algo, siempre avanzar, siempre tener una razon para volver.",
     layout: "cards",
     cols: 3,
-    media: { src: "assets/frigo-cinema-kids.png", mode: "wide" },
     items: [
       ["Clasico · 0-199 puntos", "Instant win por compra, catalogo basico y noticias de marca."],
       ["Fan / Classico · 200-499", "Acceso anticipado, premio trimestral y 1.5x puntos en temporada."],
@@ -753,7 +670,6 @@ const slides = [
     subtitle: "Activo todos los dias, no solo durante una ventana promocional. Gamifica habito, urgencia y retorno.",
     layout: "cards",
     cols: 3,
-    media: { src: "assets/frigo-fair-couple.png", mode: "wide" },
     items: [
       ["Just One Challenge", "Trivia diaria sobre historia de Frigo. Sin compra obligatoria; con compra puntos x2. Rachas: 7 dias = bonus."],
       ["La Ruleta del 100", "Cada lunes, quien valido compra gira. 100 premios, ventana de 24h y Premio Misterio VIP."],
@@ -766,7 +682,6 @@ const slides = [
     subtitle: "El coleccionismo convierte SKUs, eras y recuerdos en un progreso visible.",
     layout: "cards",
     cols: 3,
-    media: { src: "assets/frigo-counter-sale-wide.png", mode: "wide" },
     items: [
       ["Bingo del Centenario", "25 SKUs Frigo: linea = premio; bingo = gran premio. Incentiva cross-SKU trial."],
       ["Album del Centenario", "10 cromos digitales de momentos historicos. Duplicados intercambiables via WhatsApp."],
@@ -830,7 +745,6 @@ const slides = [
     title: "Retailer Booster: promocion local sin entregar la relacion.",
     subtitle: "La misma mecanica puede dar valor al retailer mientras Frigo mantiene identidad, permiso y aprendizaje.",
     layout: "matrix",
-    media: { src: "assets/frigo-counter-sale-portrait.png", mode: "portrait" },
     rows: [
       ["Drive to store", "QR en tienda", "Instant win", "Geofencing", "Ranking por cadena"],
       ["Sell-out incremental", "Reto por SKU", "Puntos x2", "Ticket OCR", "Mix y frecuencia"],
@@ -1013,16 +927,6 @@ function titleBlock(slide, small = false) {
     </div>`;
 }
 
-function renderMedia(media) {
-  if (!media) return "";
-  const entries = Array.isArray(media) ? media : [media];
-  const figures = entries.map((item) => `
-    <figure class="visual-panel ${safe(item.mode || "")}">
-      <img src="${safe(item.src)}" alt="">
-    </figure>`).join("");
-  return entries.length > 1 ? `<div class="media-stack">${figures}</div>` : figures;
-}
-
 function renderCards(items = [], cols = 3) {
   return `<div class="grid cols-${cols}">${items.map((item, idx) => `
     <article class="card">
@@ -1044,18 +948,10 @@ function layout(slide, i) {
     return `<div class="content center">${titleBlock(slide)}</div>`;
   }
   if (slide.layout === "stats") {
-    if (slide.media) {
-      return `<div class="content split media-split"><div class="stack">${titleBlock(slide, true)}<div class="grid cols-4">${slide.stats.map((stat) => `
-        <article class="stat-card"><strong>${safe(stat[0])}</strong><span>${safe(stat[1])}</span></article>`).join("")}</div></div>${renderMedia(slide.media)}</div>`;
-    }
     return `<div class="stack">${titleBlock(slide, true)}<div class="grid cols-4">${slide.stats.map((stat) => `
       <article class="stat-card"><strong>${safe(stat[0])}</strong><span>${safe(stat[1])}</span></article>`).join("")}</div></div>`;
   }
   if (slide.layout === "timeline") {
-    if (slide.media) {
-      return `<div class="content split media-split"><div class="stack">${titleBlock(slide, true)}<div class="timeline">${slide.items.map((item) => `
-        <article class="timeline-item"><b>${safe(item[0])}</b><div><h3>${safe(item[1])}</h3><p class="body">${safe(item[2])}</p></div></article>`).join("")}</div></div>${renderMedia(slide.media)}</div>`;
-    }
     return `<div class="stack">${titleBlock(slide, true)}<div class="timeline">${slide.items.map((item) => `
       <article class="timeline-item"><b>${safe(item[0])}</b><div><h3>${safe(item[1])}</h3><p class="body">${safe(item[2])}</p></div></article>`).join("")}</div></div>`;
   }
@@ -1067,10 +963,6 @@ function layout(slide, i) {
     return `<div class="content two"><div>${titleBlock(slide, true)}${renderCards(slide.items, 2)}</div><div class="poster"><div class="qr-block"></div></div></div>`;
   }
   if (slide.layout === "journey") {
-    if (slide.media) {
-      return `<div class="content split media-split"><div class="stack">${titleBlock(slide, true)}<div class="journey">${slide.items.map((item, idx) => `
-        <article class="card"><div class="meta">${String(idx + 1).padStart(2, "0")}</div><div class="icon">${iconSet[idx]}</div><div><h3>${safe(item[0])}</h3><p class="body">${safe(item[1])}</p></div></article>`).join("")}</div></div>${renderMedia(slide.media)}</div>`;
-    }
     return `<div class="stack">${titleBlock(slide, true)}<div class="journey">${slide.items.map((item, idx) => `
       <article class="card"><div class="meta">${String(idx + 1).padStart(2, "0")}</div><div class="icon">${iconSet[idx]}</div><div><h3>${safe(item[0])}</h3><p class="body">${safe(item[1])}</p></div></article>`).join("")}</div></div>`;
   }
@@ -1089,9 +981,6 @@ function layout(slide, i) {
   }
   if (slide.layout === "matrix") {
     const heads = ["Objetivo", "Front / canal", "Core rules", "Validacion", "Output"];
-    if (slide.media) {
-      return `<div class="content split media-split"><div class="stack">${titleBlock(slide, true)}<div class="matrix">${heads.map((h) => `<div class="head">${h}</div>`).join("")}${slide.rows.map((row) => row.map((cell, idx) => `<div>${idx === 0 ? "<span class='dot'></span>" : ""}${safe(cell)}</div>`).join("")).join("")}</div></div>${renderMedia(slide.media)}</div>`;
-    }
     return `<div class="stack">${titleBlock(slide, true)}<div class="matrix">${heads.map((h) => `<div class="head">${h}</div>`).join("")}${slide.rows.map((row) => row.map((cell, idx) => `<div>${idx === 0 ? "<span class='dot'></span>" : ""}${safe(cell)}</div>`).join("")).join("")}</div></div>`;
   }
   if (slide.layout === "dashboard") {
@@ -1115,9 +1004,6 @@ function layout(slide, i) {
   }
   if (slide.layout === "closing") {
     return `<div class="content split">${titleBlock(slide)}${renderCards(slide.items, 3)}</div>`;
-  }
-  if (slide.media) {
-    return `<div class="content split media-split"><div class="stack">${titleBlock(slide, true)}${renderCards(slide.items, slide.cols || 3)}</div>${renderMedia(slide.media)}</div>`;
   }
   return `<div class="stack">${titleBlock(slide, true)}${renderCards(slide.items, slide.cols || 3)}</div>`;
 }
