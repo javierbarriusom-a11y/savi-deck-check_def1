@@ -35,32 +35,74 @@ button { font: inherit; }
 
 .topbar {
   position: fixed;
-  z-index: 20;
-  inset: 0 0 auto;
-  height: 58px;
+  z-index: 80;
+  inset: 14px 18px auto;
+  min-height: 54px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 0 22px;
+  gap: 14px;
+  padding: 8px 10px 8px 16px;
   color: var(--white);
-  mix-blend-mode: difference;
-  pointer-events: none;
+  background: rgba(9, 13, 18, .82);
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: 999px;
+  box-shadow: 0 14px 36px rgba(0,0,0,.28);
+  backdrop-filter: blur(18px) saturate(1.25);
+  pointer-events: auto;
 }
-.brand { font-family: var(--serif); font-size: 30px; line-height: 1; white-space: nowrap; }
+.brand { font-family: var(--serif); font-size: 28px; line-height: 1; white-space: nowrap; }
 .brand span { color: var(--red); }
-.nav-pills { display: flex; align-items: center; gap: 8px; pointer-events: auto; }
+.nav-pills { display: flex; align-items: center; justify-content: flex-end; gap: 7px; pointer-events: auto; }
 .nav-pills button, .controls button {
-  border: 1px solid currentColor;
-  background: transparent;
-  color: inherit;
+  border: 1px solid rgba(255,255,255,.38);
+  background: rgba(255,255,255,.06);
+  color: #fff;
   min-height: 34px;
   padding: 6px 11px;
   border-radius: 999px;
   cursor: pointer;
 }
-.nav-pills button { font-size: 12px; text-transform: uppercase; }
-.nav-pills button.is-active, .controls button:hover { background: currentColor; color: #000; }
+.nav-pills button {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  transition: background .18s ease, color .18s ease, border-color .18s ease;
+}
+.nav-pills button.is-active {
+  background: #fff;
+  color: var(--deep);
+  border-color: #fff;
+}
+.nav-pills button:hover, .controls button:hover { background: rgba(255,255,255,.2); color: #fff; }
+.section-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(230,41,41,.96);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.section-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: currentColor;
+  box-shadow: 0 0 0 4px rgba(255,255,255,.18);
+}
+.section-status strong {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0;
+}
 
 .controls {
   position: fixed;
@@ -227,10 +269,11 @@ section.slide.lemon { background: var(--lemon); }
   min-height: 520px;
 }
 .compare-grid .num {
-  font-size: clamp(56px, 6vw, 96px);
+  font-size: clamp(44px, 4.2vw, 70px);
   line-height: .92;
   max-width: 100%;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 .compare-grid .body {
   max-width: 92%;
@@ -386,7 +429,15 @@ a { color: inherit; }
     display: block;
   }
   .controls, .progress { display: none; }
-  .topbar { position: sticky; mix-blend-mode: normal; background: #111; color: #fff; }
+  .topbar {
+    position: sticky;
+    inset: 0;
+    border-radius: 0;
+    background: #111;
+    color: #fff;
+    flex-wrap: wrap;
+  }
+  .section-status { order: 3; width: 100%; justify-content: center; }
   .nav-pills { overflow-x: auto; justify-content: flex-start; }
   .content.two, .content.split, .grid.cols-2, .grid.cols-3, .grid.cols-4, .grid.cols-5,
   .journey, .timeline, .roadmap, .dashboard-grid { grid-template-columns: 1fr; }
@@ -399,6 +450,7 @@ a { color: inherit; }
 <body>
 <header class="topbar">
   <div class="brand">savi<span>.</span> Frigo 100</div>
+  <div class="section-status" aria-live="polite">Seccion <strong id="sectionName">Inicio</strong></div>
   <nav class="nav-pills" aria-label="Capitulos">
     <button data-jump="0">Inicio</button>
     <button data-jump="2">Contexto</button>
@@ -897,6 +949,7 @@ const slides = [
 const deck = document.getElementById("deck");
 const counter = document.getElementById("counter");
 const progress = document.getElementById("progress");
+const sectionName = document.getElementById("sectionName");
 let current = Math.max(0, Math.min(slides.length - 1, Number(location.hash.replace("#slide-", "")) - 1 || 0));
 
 const iconSet = ["🍦", "📱", "💬", "🎯", "🏆", "📸", "🧾", "📍", "🔑", "🔢", "🎰", "🏅", "🎴", "🤝", "🔮"];
@@ -1019,6 +1072,13 @@ function render() {
     </section>`).join("");
 }
 
+function getActiveSection(index) {
+  return [...document.querySelectorAll("[data-jump]")]
+    .map((button) => ({ button, jump: Number(button.dataset.jump) }))
+    .filter((item) => item.jump <= index)
+    .sort((a, b) => b.jump - a.jump)[0];
+}
+
 function update(next) {
   current = Math.max(0, Math.min(slides.length - 1, next));
   document.querySelectorAll(".slide").forEach((section, i) => {
@@ -1027,9 +1087,13 @@ function update(next) {
   });
   counter.textContent = `${String(current + 1).padStart(2, "0")} / ${slides.length}`;
   progress.style.width = `${((current + 1) / slides.length) * 100}%`;
+  const activeSection = getActiveSection(current);
   document.querySelectorAll("[data-jump]").forEach((button) => {
-    button.classList.toggle("is-active", Number(button.dataset.jump) <= current);
+    const active = button === activeSection?.button;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-current", active ? "true" : "false");
   });
+  if (activeSection && sectionName) sectionName.textContent = activeSection.button.textContent.trim();
   history.replaceState(null, "", `#slide-${current + 1}`);
 }
 
