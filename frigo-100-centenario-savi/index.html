@@ -223,6 +223,18 @@ section.slide.lemon { background: var(--lemon); }
   line-height: .82;
   font-weight: 400;
 }
+.compare-grid .card {
+  min-height: 520px;
+}
+.compare-grid .num {
+  font-size: clamp(56px, 6vw, 96px);
+  line-height: .92;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.compare-grid .body {
+  max-width: 92%;
+}
 .stat-card strong { display: block; font-family: var(--serif); font-size: clamp(54px, 6vw, 104px); line-height: .9; font-weight: 400; }
 .stat-card span { display: block; margin-top: 12px; color: var(--muted); font-size: clamp(16px, 1.45vw, 22px); }
 .slide.dark .stat-card span, .slide.red .stat-card span, .slide.blue .stat-card span { color: rgba(255,255,255,.76); }
@@ -956,7 +968,7 @@ function layout(slide, i) {
       <article class="timeline-item"><b>${safe(item[0])}</b><div><h3>${safe(item[1])}</h3><p class="body">${safe(item[2])}</p></div></article>`).join("")}</div></div>`;
   }
   if (slide.layout === "compare") {
-    return `<div class="content split">${titleBlock(slide, true)}<div class="grid cols-2">${slide.items.map((item) => `
+    return `<div class="content split">${titleBlock(slide, true)}<div class="grid cols-2 compare-grid">${slide.items.map((item) => `
       <article class="card"><div class="num">${safe(item[0])}</div><p class="body">${safe(item[1])}</p></article>`).join("")}</div></div>`;
   }
   if (slide.layout === "poster") {
