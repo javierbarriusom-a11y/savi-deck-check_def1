@@ -641,16 +641,16 @@ a { color: inherit; }
     <button data-jump="2">Contexto</button>
     <button data-jump="9">Oportunidad</button>
     <button data-jump="13">Programa</button>
-    <button data-jump="20">Mecanicas</button>
-    <button data-jump="29">Data</button>
-    <button data-jump="34">Despliegue</button>
+    <button data-jump="22">Mecanicas</button>
+    <button data-jump="31">Data</button>
+    <button data-jump="36">Despliegue</button>
   </nav>
 </header>
 <deck-stage id="deck" aria-live="polite"></deck-stage>
 <div class="controls" aria-label="Navegacion">
   <button id="home" type="button">Inicio</button>
   <button id="prev" type="button">Atras</button>
-  <div class="counter" id="counter">01 / 39</div>
+  <div class="counter" id="counter">01 / 41</div>
   <button id="next" type="button">Siguiente</button>
 </div>
 <div class="progress"><span id="progress"></span></div>
@@ -882,6 +882,33 @@ const slides = [
       ["Acumula", "Puntos, rachas y nivel."],
       ["Canjea", "Premio o experiencia."]
     ]
+  },
+  {
+    eyebrow: "04 · Arquitectura hibrida",
+    title: "El QR no es un destino. Es un router de experiencia.",
+    subtitle: "Cada QR puede decidir si conviene abrir WhatsApp, una landing con registro/login o una experiencia embebida, manteniendo una identidad unica de usuario.",
+    layout: "cards",
+    cols: 4,
+    items: [
+      ["WhatsApp first", "Conversacion, opt-in, recordatorios, ticket simple, puntos y atencion inmediata."],
+      ["Landing con login", "Registro ligero, magic link, OTP o social login cuando la mecanica necesita sesion."],
+      ["Juego embebido", "Ruletas, trivias avanzadas, albumes, rankings o dinamicas visuales que no caben bien en chat."],
+      ["Vuelta al canal", "Resultado, puntos, premio y siguiente accion vuelven a WhatsApp para activar recurrencia."]
+    ]
+  },
+  {
+    eyebrow: "04 · Landings jugables",
+    title: "Las mecanicas complejas viven mejor en una landing.",
+    subtitle: "WhatsApp sigue siendo el canal relacional. La landing aporta interfaz, estado de juego y login cuando la experiencia necesita mas control visual o tecnico.",
+    layout: "journey",
+    items: [
+      ["Escanea QR", "El soporte identifica origen, ciudad, canal, campaña y contexto."],
+      ["Registro / login", "Edad, consentimiento y usuario unico antes de jugar o acumular progreso."],
+      ["Juega en landing", "Ruleta, album, trivia avanzada, mapa, puzzle, ranking o instant win visual."],
+      ["Valida compra", "Ticket OCR, selfie proof, pincode o geofencing, segun el canal."],
+      ["Recibe seguimiento", "WhatsApp confirma puntos, premio, nivel y proxima mision."]
+    ],
+    foot: "Regla de diseno: chat para relacion; landing para interfaz compleja; data layer unico para ambos."
   },
   {
     eyebrow: "04 · Niveles",
