@@ -287,7 +287,13 @@ section.slide.immersive {
   align-items: center;
 }
 .content.center { display: grid; align-content: center; }
-.stack { display: flex; flex-direction: column; gap: 23px; }
+.stack {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 23px;
+}
 .grid { display: grid; gap: 23px; }
 .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
