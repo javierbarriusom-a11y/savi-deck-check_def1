@@ -223,6 +223,46 @@ section.slide.lemon { background: var(--color-canvas-white); color: var(--color-
 .slide:first-child .title { font-size: clamp(72px, 10.5vw, 187px); max-width: 1160px; }
 .slide:first-child .subtitle { max-width: 760px; font-size: clamp(20px, 1.8vw, 30px); color: rgba(255,255,255,.78); }
 .cover-copy { align-self: center; }
+section.slide.immersive {
+  background:
+    linear-gradient(90deg, rgba(0,13,16,.95) 0%, rgba(0,13,16,.86) 42%, rgba(0,13,16,.62) 74%, rgba(0,13,16,.42) 100%),
+    linear-gradient(0deg, rgba(0,13,16,.78) 0%, rgba(0,13,16,.26) 48%, rgba(0,13,16,.62) 100%),
+    url("assets/cover-frigo-centenario.png") center / cover no-repeat !important;
+  color: var(--color-canvas-white);
+}
+.slide.immersive .slide-grid { position: relative; z-index: 1; }
+.slide.immersive .slide-head,
+.slide.immersive .slide-foot { border-color: rgba(255,255,255,.2); }
+.slide.immersive .slide-foot,
+.slide.immersive .eyebrow { color: rgba(255,255,255,.72); }
+.slide.immersive .subtitle,
+.slide.immersive .body { color: rgba(255,255,255,.78); }
+.slide.immersive .card,
+.slide.immersive .stat-card,
+.slide.immersive .timeline-item,
+.slide.immersive .idea,
+.slide.immersive .cell {
+  border-color: rgba(255,255,255,.22);
+  background: rgba(0,13,16,.54);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.slide.immersive .stat-card strong,
+.slide.immersive .bar span { color: var(--color-canvas-white); }
+.slide.immersive .stat-card span { color: rgba(255,255,255,.76); }
+.slide.immersive .agenda-row { border-top-color: rgba(255,255,255,.22); }
+.slide.immersive .matrix { border-color: rgba(255,255,255,.22); }
+.slide.immersive .matrix div {
+  border-color: rgba(255,255,255,.16);
+  background: rgba(0,13,16,.54);
+  color: rgba(255,255,255,.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.slide.immersive .matrix .head {
+  background: rgba(255,255,255,.14);
+  color: var(--color-canvas-white);
+}
 .subtitle {
   margin: 23px 0 0;
   max-width: 980px;
@@ -467,6 +507,7 @@ a { color: inherit; }
   deck-stage { height: auto; overflow: visible; }
   section.slide {
     position: relative;
+    height: auto;
     min-height: 100svh;
     padding: 38px 22px;
     opacity: 1;
@@ -474,6 +515,7 @@ a { color: inherit; }
     pointer-events: auto;
     display: block;
   }
+  .slide-grid { height: auto; min-height: calc(100svh - 76px); }
   .controls, .progress { display: none; }
   .topbar {
     position: sticky;
@@ -1177,9 +1219,29 @@ function layout(slide, i) {
   return `<div class="stack">${titleBlock(slide, true)}${renderCards(slide.items, slide.cols || 3)}</div>`;
 }
 
+const immersiveLayouts = new Set([
+  "agenda",
+  "stats",
+  "timeline",
+  "cards",
+  "compare",
+  "journey",
+  "ideas",
+  "matrix",
+  "bars",
+  "roadmap"
+]);
+
+function slideClass(slide) {
+  const classes = ["slide"];
+  if (slide.theme) classes.push(slide.theme);
+  if (immersiveLayouts.has(slide.layout) && !slide.image) classes.push("immersive");
+  return classes.join(" ");
+}
+
 function render() {
   deck.innerHTML = slides.map((slide, i) => `
-    <section class="slide ${slide.theme || ""}" id="slide-${i + 1}" data-index="${i}">
+    <section class="${slideClass(slide)}" id="slide-${i + 1}" data-index="${i}">
       <div class="slide-grid">
         ${header(slide, i)}
         ${layout(slide, i)}
