@@ -412,6 +412,9 @@ section.slide.lemon { background: var(--color-canvas-white); color: var(--color-
 .icon svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 1.9; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .timeline { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 17px; align-items: stretch; }
 .timeline-item { min-height: 260px; padding: 22px; display: flex; flex-direction: column; justify-content: space-between; }
+.timeline-mark { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 24px; }
+.timeline-mark .icon { flex: 0 0 auto; width: 48px; height: 48px; }
+.timeline-mark .icon svg { width: 22px; height: 22px; }
 .timeline-item b { font-family: var(--sans); font-size: clamp(30px, 3.1vw, 52px); font-weight: 700; line-height: .91; letter-spacing: -.01em; color: var(--color-desert-sienna); }
 .timeline-item h3 { font-size: 20px; line-height: 1.2; letter-spacing: -.01em; }
 .timeline-item .body { font-size: 17px; line-height: 1.45; }
@@ -1021,7 +1024,12 @@ const iconLibrary = {
   box: `<path d="m3 7 9-4 9 4-9 4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/>`,
   spark: `<path d="M12 2v7"/><path d="M12 15v7"/><path d="M2 12h7"/><path d="M15 12h7"/><path d="m5 5 4 4"/><path d="m15 15 4 4"/><path d="m19 5-4 4"/><path d="m9 15-4 4"/>`,
   chart: `<path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15l3-4 3 2 5-7"/>`,
-  shield: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-5"/>`
+  shield: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-5"/>`,
+  factory: `<path d="M3 21h18"/><path d="M5 21V9l5 3V9l5 3V5h4v16"/><path d="M8 17h1"/><path d="M12 17h1"/><path d="M16 17h1"/>`,
+  cone: `<path d="m8 10 4 11 4-11"/><path d="M8 10h8"/><path d="M8 10a4 4 0 0 1 8 0"/><path d="m10 15 4-2"/><path d="m11 18 3-2"/>`,
+  volume: `<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 8a5 5 0 0 1 0 8"/><path d="M19 5a9 9 0 0 1 0 14"/>`,
+  heart: `<path d="M20.8 5.6a5.2 5.2 0 0 0-7.4 0L12 7l-1.4-1.4a5.2 5.2 0 1 0-7.4 7.4L12 21l8.8-8a5.2 5.2 0 0 0 0-7.4z"/>`,
+  celebration: `<path d="m4 20 5-14 9 9z"/><path d="m7 17 6-6"/><path d="M15 5h.01"/><path d="M19 3h.01"/><path d="M21 8h.01"/><path d="M18 11h.01"/>`
 };
 
 const fallbackIcons = ["qr", "check", "game", "users", "database", "phone", "chat", "target", "camera", "receipt", "pin", "key", "clock", "box", "spark"];
@@ -1045,6 +1053,11 @@ function iconFor(label, index = 0) {
   else if (text.includes("compra") || text.includes("valid") || text.includes("antifraude") || text.includes("compliance")) key = "check";
   else if (text.includes("social") || text.includes("convers") || text.includes("recuerdo")) key = "chat";
   else if (text.includes("futuro") || text.includes("tiempo") || text.includes("time") || text.includes("historia")) key = "clock";
+  else if (text.includes("fundacion") || text.includes("barcelona") || text.includes("fabricante")) key = "factory";
+  else if (text.includes("cono") || text.includes("cucurucho")) key = "cone";
+  else if (text.includes("jingle") || text.includes("just one")) key = "volume";
+  else if (text.includes("heartbrand") || text.includes("identidad global")) key = "heart";
+  else if (text.includes("100 anos") || text.includes("celebrar")) key = "celebration";
   else if (text.includes("packaging") || text.includes("retailer") || text.includes("sku") || text.includes("producto") || text.includes("portfolio")) key = "box";
   else if (text.includes("frecuencia") || text.includes("reto") || text.includes("challenge") || text.includes("flash")) key = "target";
   else if (text.includes("impacto") || text.includes("activacion") || text.includes("acquisition") || text.includes("retention")) key = "chart";
@@ -1103,7 +1116,7 @@ function layout(slide, i) {
   }
   if (slide.layout === "timeline") {
     return `<div class="stack">${titleBlock(slide, true)}<div class="timeline">${slide.items.map((item) => `
-      <article class="timeline-item"><b>${safe(item[0])}</b><div><h3>${safe(item[1])}</h3><p class="body">${safe(item[2])}</p></div></article>`).join("")}</div></div>`;
+      <article class="timeline-item"><div class="timeline-mark"><b>${safe(item[0])}</b><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24">${iconFor(`${item[1]} ${item[2]}`)}</svg></span></div><div><h3>${safe(item[1])}</h3><p class="body">${safe(item[2])}</p></div></article>`).join("")}</div></div>`;
   }
   if (slide.layout === "compare") {
     return `<div class="content split">${titleBlock(slide, true)}<div class="grid cols-2 compare-grid">${slide.items.map((item) => `
