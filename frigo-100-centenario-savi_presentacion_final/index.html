@@ -1326,31 +1326,79 @@ function isImmersive(slide) {
   return immersiveLayouts.has(slide.layout) && !slide.image;
 }
 
-function immersiveBackgroundFor(slide) {
+const backgroundPools = {
+  historia: [
+    "assets/frigo-bg-nostalgia-parque.jpg",
+    "assets/frigo-bg-playa-kiosco.jpg",
+    "assets/frigo-bg-familia-kiosco.jpg"
+  ],
+  mercado: [
+    "assets/frigo-bg-supermercado.jpg",
+    "assets/frigo-bg-familia-kiosco.jpg",
+    "assets/frigo-bg-gondolero.jpg"
+  ],
+  programa: [
+    "assets/frigo-bg-familia-kiosco.jpg",
+    "assets/frigo-bg-gondolero.jpg",
+    "assets/frigo-bg-playa-kiosco.jpg"
+  ],
+  mecanicas: [
+    "assets/frigo-bg-cine-ninos.jpg",
+    "assets/frigo-bg-feria-pareja.jpg",
+    "assets/frigo-bg-gondolero.jpg"
+  ],
+  data: [
+    "assets/frigo-bg-gondolero.jpg",
+    "assets/frigo-bg-supermercado.jpg",
+    "assets/frigo-bg-feria-pareja.jpg"
+  ],
+  despliegue: [
+    "assets/frigo-bg-playa-kiosco.jpg",
+    "assets/frigo-bg-supermercado.jpg",
+    "assets/frigo-bg-feria-pareja.jpg"
+  ]
+};
+
+function immersiveBackgroundCandidates(slide) {
   const text = `${slide.eyebrow || ""} ${slide.title || ""}`.toLowerCase();
   if (text.includes("mapa") || text.includes("roadmap") || text.includes("piloto") || text.includes("despliegue") || text.includes("savi")) {
-    return "assets/frigo-bg-playa-kiosco.jpg";
+    return backgroundPools.despliegue;
   }
   if (text.includes("data") || text.includes("kpi") || text.includes("compliance") || text.includes("antifraude") || text.includes("intelligence") || text.includes("first-party")) {
-    return "assets/frigo-bg-gondolero.jpg";
+    return backgroundPools.data;
   }
   if (text.includes("trade") || text.includes("activacion fisica")) {
-    return "assets/frigo-bg-gondolero.jpg";
+    return backgroundPools.data;
   }
   if (text.includes("narrativa") || text.includes("nuevas ideas") || text.includes("comunidad")) {
-    return "assets/frigo-bg-feria-pareja.jpg";
+    return backgroundPools.mecanicas;
   }
   if (text.includes("mecanica") || text.includes("palancas") || text.includes("frecuencia") || text.includes("coleccionismo") || text.includes("comunidad") || text.includes("viralidad") || text.includes("trade") || text.includes("nuevas ideas") || text.includes("activacion fisica") || text.includes("niveles")) {
-    return "assets/frigo-bg-cine-ninos.jpg";
+    return backgroundPools.mecanicas;
   }
   if (text.includes("100 momentos") || text.includes("concepto") || text.includes("oportunidad") || text.includes("arquitectura") || text.includes("journey") || text.includes("validacion") || text.includes("whatsapp") || text.includes("apuestas")) {
-    return "assets/frigo-bg-familia-kiosco.jpg";
+    return backgroundPools.programa;
   }
   if (text.includes("punto de partida") || text.includes("mercado") || text.includes("presion") || text.includes("consumidor") || text.includes("lectura estrategica") || text.includes("helado vende") || text.includes("distribucion")) {
-    return "assets/frigo-bg-supermercado.jpg";
+    return backgroundPools.mercado;
   }
-  return "assets/frigo-bg-nostalgia-parque.jpg";
+  return backgroundPools.historia;
 }
+
+const resolvedBackgrounds = [];
+slides.forEach((slide, index) => {
+  if (!isImmersive(slide)) {
+    resolvedBackgrounds[index] = "";
+    return;
+  }
+  const candidates = immersiveBackgroundCandidates(slide);
+  const previousBackground = [...resolvedBackgrounds].reverse().find(Boolean) || "";
+  let background = candidates[index % candidates.length];
+  if (background === previousBackground) {
+    background = candidates.find((candidate) => candidate !== previousBackground) || background;
+  }
+  resolvedBackgrounds[index] = background;
+});
 
 function slideClass(slide) {
   const classes = ["slide"];
@@ -1359,14 +1407,14 @@ function slideClass(slide) {
   return classes.join(" ");
 }
 
-function slideStyle(slide) {
+function slideStyle(slide, index) {
   if (!isImmersive(slide)) return "";
-  return ` style="--immersive-bg: url('${immersiveBackgroundFor(slide)}')"`;
+  return ` style="--immersive-bg: url('${resolvedBackgrounds[index]}')"`;
 }
 
 function render() {
   deck.innerHTML = slides.map((slide, i) => `
-    <section class="${slideClass(slide)}" id="slide-${i + 1}" data-index="${i}"${slideStyle(slide)}>
+    <section class="${slideClass(slide)}" id="slide-${i + 1}" data-index="${i}"${slideStyle(slide, i)}>
       <div class="slide-grid">
         ${header(slide, i)}
         ${layout(slide, i)}
