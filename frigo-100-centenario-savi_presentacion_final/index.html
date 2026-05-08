@@ -189,6 +189,24 @@ section.slide.lemon { background: var(--color-canvas-white); color: var(--color-
 .slide.dark .slide-foot, .slide.red .slide-foot, .slide.blue .slide-foot { border-color: rgba(255,255,255,.2); }
 .slide-foot { padding-top: 22px; border-top: 1px solid rgba(0,13,16,.18); color: var(--muted); font-size: 17px; line-height: 1.45; }
 .slide.dark .slide-foot, .slide.red .slide-foot, .slide.blue .slide-foot { color: rgba(255,255,255,.74); }
+.footer-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+}
+.footer-nav button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.footer-nav button:hover { color: var(--color-desert-sienna); }
+.footer-nav span { opacity: .55; }
 .eyebrow, .meta, .chip {
   font-family: var(--sans);
   text-transform: none;
@@ -1272,7 +1290,11 @@ function header(slide, i) {
 
 function footer(slide) {
   const source = slide.foot ? safe(slide.foot) : "Frigo 100 · propuesta visual interactiva · Savi";
-  return `<div class="slide-foot"><div class="source">${source}</div><div>Inicio · Atras · Siguiente</div></div>`;
+  return `<div class="slide-foot"><div class="source">${source}</div><div class="footer-nav" aria-label="Navegacion de diapositivas">
+    <button type="button" data-footer-nav="home">Inicio</button><span>·</span>
+    <button type="button" data-footer-nav="prev">Atras</button><span>·</span>
+    <button type="button" data-footer-nav="next">Siguiente</button>
+  </div></div>`;
 }
 
 function titleBlock(slide, small = false) {
@@ -1527,6 +1549,12 @@ document.getElementById("next").addEventListener("click", () => update(current +
 document.getElementById("prev").addEventListener("click", () => update(current - 1));
 document.getElementById("home").addEventListener("click", () => update(0));
 document.querySelectorAll("[data-jump]").forEach((button) => button.addEventListener("click", () => update(Number(button.dataset.jump))));
+document.querySelectorAll("[data-footer-nav]").forEach((button) => button.addEventListener("click", () => {
+  const action = button.dataset.footerNav;
+  if (action === "home") update(0);
+  if (action === "prev") update(current - 1);
+  if (action === "next") update(current + 1);
+}));
 deck.addEventListener("click", (event) => {
   if (event.target.closest("a, button")) return;
   update(current + 1);
