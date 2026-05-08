@@ -471,6 +471,86 @@ section.slide.immersive {
 .bar { display: grid; grid-template-columns: 180px 1fr; align-items: center; gap: 23px; }
 .bar span { font-family: var(--sans); font-size: 17px; font-weight: 700; }
 .bar i { display: block; height: 34px; border-radius: var(--radius-full); background: var(--color-desert-sienna); }
+.planning-board {
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: var(--radius-other);
+  background: rgba(0,13,16,.56);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: clamp(20px, 2vw, 30px);
+  min-height: 520px;
+  display: grid;
+  align-content: center;
+  gap: 10px;
+}
+.plan-months,
+.plan-row {
+  display: grid;
+  grid-template-columns: minmax(210px, .82fr) repeat(7, minmax(66px, 1fr));
+  gap: 11px;
+  align-items: center;
+}
+.plan-months span {
+  color: rgba(255,255,255,.66);
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+}
+.plan-months span:first-child { text-align: left; }
+.plan-row {
+  min-height: 58px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,.14);
+}
+.plan-label h3 {
+  margin: 0;
+  color: var(--color-canvas-white);
+  font-size: clamp(17px, 1.2vw, 22px);
+  line-height: 1.12;
+  letter-spacing: -.01em;
+}
+.plan-label p {
+  margin: 4px 0 0;
+  color: rgba(255,255,255,.68);
+  font-size: 14px;
+  line-height: 1.2;
+}
+.plan-track {
+  grid-column: var(--start-col) / span var(--span);
+  min-height: 42px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 16px;
+  background: linear-gradient(90deg, rgba(188,113,85,.98), rgba(232,157,127,.94));
+  color: var(--color-canvas-white);
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.plan-track strong { font-size: 14px; }
+.plan-track span { color: rgba(255,255,255,.78); font-size: 14px; }
+.plan-track.is-soft { background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.18); }
+.plan-track.is-blue { background: linear-gradient(90deg, rgba(93,183,200,.95), rgba(210,246,255,.92)); color: var(--color-obsidian); }
+.plan-track.is-blue span { color: rgba(0,13,16,.66); }
+.plan-milestones {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 11px;
+  margin-top: 4px;
+}
+.plan-milestones div {
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 26px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.76);
+  font-size: 15px;
+  line-height: 1.25;
+}
+.plan-milestones strong { display: block; color: var(--color-canvas-white); font-size: 16px; margin-bottom: 3px; }
 
 .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 23px; }
 .roadmap .card { min-height: 310px; display: flex; flex-direction: column; justify-content: space-between; }
@@ -540,6 +620,10 @@ a { color: inherit; }
   .slide-head, .slide-foot { align-items: flex-start; flex-direction: column; gap: 13px; }
   .content.two, .content.split, .content.image-split, .grid.cols-2, .grid.cols-3, .grid.cols-4, .grid.cols-5,
   .journey, .timeline, .roadmap, .dashboard-grid { grid-template-columns: 1fr; }
+  .plan-months, .plan-row { grid-template-columns: 1fr; }
+  .plan-months span:not(:first-child) { display: none; }
+  .plan-track { grid-column: auto; white-space: normal; min-height: 54px; }
+  .plan-milestones { grid-template-columns: 1fr; }
   .feature-photo { height: auto; min-height: 360px; }
   .image-points { grid-column: auto; }
   .matrix { grid-template-columns: 1fr; }
@@ -985,15 +1069,16 @@ const slides = [
   {
     eyebrow: "05 · Mapa de despliegue",
     title: "Cuándo y cómo se apilan las mecanicas.",
-    subtitle: "El plan no es una lista de acciones: es una secuencia para capturar volumen, elevar frecuencia y cerrar con noticia.",
+    subtitle: "Una planificacion por olas: preparar, aprender, escalar, mantener frecuencia y cerrar el centenario con noticia.",
     layout: "bars",
     items: [
-      ["Trivia diaria", "95"],
-      ["Ruleta del 100", "82"],
-      ["Desafio Flash 72h", "64"],
-      ["Bingo / Album", "74"],
-      ["Frigo Squads", "52"],
-      ["Prediccion + Reveal", "88"]
+      ["Setup programa", "Legal, chatbot, QR, data layer", 2, 2, "Preparacion", "is-soft"],
+      ["Piloto Madrid", "Validar UX, OCR, opt-in y carga operativa", 3, 2, "Go / no-go", "is-blue"],
+      ["Trivia + Ruleta", "Always-on para capturar volumen diario", 4, 4, "Base diaria", ""],
+      ["Desafio Flash 72h", "Picos tacticos por calor, festivos y retail", 5, 3, "Pulsos", "is-soft"],
+      ["Album 100 Momentos", "Coleccionismo y repeticion semanal", 5, 4, "Frecuencia", ""],
+      ["Frigo Squads", "Rankings locales y embajadores", 6, 3, "Comunidad", "is-blue"],
+      ["Reveal final", "Ganadores, PR, trade story y learning report", 8, 1, "Cierre", ""]
     ]
   },
   {
@@ -1204,8 +1289,14 @@ function layout(slide, i) {
     return `<div class="content split">${titleBlock(slide, true)}<div class="dashboard"><img src="assets/frigo-live-dashboard.svg" alt="Dashboard realista del programa 100 Momentos Frigo con KPIs, embudo de participacion, zonas, mecanicas y validaciones recientes"></div></div>`;
   }
   if (slide.layout === "bars") {
-    return `<div class="content split">${titleBlock(slide, true)}<div class="bars">${slide.items.map((item) => `
-      <div class="bar"><span>${safe(item[0])}</span><i style="width:${safe(item[1])}%"></i></div>`).join("")}</div></div>`;
+    const months = ["Fase", "Q1", "Abr", "May", "Jun", "Jul", "Ago", "Sep"];
+    return `<div class="content split">${titleBlock(slide, true)}<div class="planning-board">
+      <div class="plan-months">${months.map((month) => `<span>${safe(month)}</span>`).join("")}</div>
+      ${slide.items.map((item) => `<div class="plan-row">
+        <div class="plan-label"><h3>${safe(item[0])}</h3><p>${safe(item[1])}</p></div>
+        <div class="plan-track ${safe(item[5])}" style="--start-col:${Number(item[2]) || 2}; --span:${Number(item[3]) || 1};"><strong>${safe(item[4])}</strong><span>${safe(months[(Number(item[2]) || 2) - 1])}</span></div>
+      </div>`).join("")}
+    </div></div>`;
   }
   if (slide.layout === "roadmap") {
     return `<div class="stack">${titleBlock(slide, true)}<div class="roadmap">${slide.items.map((item) => `
