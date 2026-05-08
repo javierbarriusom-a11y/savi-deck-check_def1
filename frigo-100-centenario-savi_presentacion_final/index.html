@@ -293,6 +293,24 @@ section.slide.immersive {
 .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .grid.cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.channel-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(23px, 3vw, 38px); }
+.channel-group { display: flex; flex-direction: column; gap: 17px; min-width: 0; }
+.group-label {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  min-height: 38px;
+  padding: 9px 17px 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-desert-sienna);
+  color: var(--color-canvas-white);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+.channel-group .grid { gap: 17px; }
+.channel-group .card { min-height: 300px; }
 
 .card, .stat-card, .timeline-item, .idea, .cell {
   border: 1px solid rgba(0,13,16,.18);
@@ -619,7 +637,7 @@ a { color: inherit; }
   .slide:first-child .slide-grid { padding: 38px 22px; }
   .slide-head, .slide-foot { align-items: flex-start; flex-direction: column; gap: 13px; }
   .content.two, .content.split, .content.image-split, .grid.cols-2, .grid.cols-3, .grid.cols-4, .grid.cols-5,
-  .journey, .timeline, .roadmap, .dashboard-grid { grid-template-columns: 1fr; }
+  .journey, .timeline, .roadmap, .dashboard-grid, .channel-groups { grid-template-columns: 1fr; }
   .plan-months, .plan-row { grid-template-columns: 1fr; }
   .plan-months span:not(:first-child) { display: none; }
   .plan-track { grid-column: auto; white-space: normal; min-height: 54px; }
@@ -831,14 +849,23 @@ const slides = [
   {
     eyebrow: "03 · Arquitectura",
     title: "Todos los canales. Un solo WhatsApp.",
-    subtitle: "La arquitectura permite activar Frigo alli donde se compra, se ve, se recuerda o se comparte: impulso, restauracion, parques, mass media y social.",
-    layout: "cards",
-    cols: 4,
-    items: [
-      ["Canal impulso", "Trigger: QR en cartel iconico. Mecanica: instant win + puntos. Validacion: selfie proof o geofencing."],
-      ["Restauracion / ocio", "Trigger: QR en PLV. Mecanica: ticket upload + puntos por importe. Validacion: OCR Savi."],
-      ["Mass media", "Trigger: QR TV/OOH o keyword. Mecanica: registro + instant win + referral."],
-      ["Social media", "Trigger: link dinamico. Mecanica: UGC contest + puntos. Validacion: hashtag + revision."]
+    subtitle: "La arquitectura separa donde se compra de donde se genera alcance, trafico y conversacion, manteniendo un unico identificador y una misma capa de datos.",
+    layout: "channel-groups",
+    groups: [
+      {
+        title: "Canales de venta",
+        items: [
+          ["Impulso", "QR en cartel iconico, nevera o gondola. Instant win + puntos. Validacion por selfie proof o geofencing."],
+          ["Restauracion / ocio", "QR en PLV, ticket o sobremesa. Ticket upload + puntos por importe. Validacion OCR Savi."]
+        ]
+      },
+      {
+        title: "Canales de comunicacion y marketing",
+        items: [
+          ["Mass media", "QR en TV/OOH o keyword. Registro, instant win y referral para convertir cobertura en opt-in."],
+          ["Social media", "Link dinamico, influencers o paid social. UGC contest + puntos. Validacion por hashtag y revision."]
+        ]
+      }
     ]
   },
   {
@@ -1259,6 +1286,14 @@ function renderCards(items = [], cols = 3) {
     </article>`).join("")}</div>`;
 }
 
+function renderChannelGroups(groups = []) {
+  return `<div class="channel-groups">${groups.map((group) => `
+    <section class="channel-group">
+      <div class="group-label">${safe(group.title)}</div>
+      ${renderCards(group.items, 2)}
+    </section>`).join("")}</div>`;
+}
+
 function layout(slide, i) {
   if (slide.layout === "cover") {
     return `<div class="cover-copy">${titleBlock(slide)}</div>`;
@@ -1290,6 +1325,9 @@ function layout(slide, i) {
       ? `<div class="poster has-image"><img src="${safe(slide.image)}" alt="Collage de carteles Frigo de helados en puntos de venta"></div>`
       : `<div class="poster"><div class="qr-block"></div></div>`;
     return `<div class="content two"><div>${titleBlock(slide, true)}${renderCards(slide.items, 2)}</div>${poster}</div>`;
+  }
+  if (slide.layout === "channel-groups") {
+    return `<div class="stack">${titleBlock(slide, true)}${renderChannelGroups(slide.groups)}</div>`;
   }
   if (slide.layout === "journey") {
     return `<div class="stack">${titleBlock(slide, true)}<div class="journey">${slide.items.map((item, idx) => `
@@ -1341,6 +1379,7 @@ const immersiveLayouts = new Set([
   "stats",
   "timeline",
   "cards",
+  "channel-groups",
   "compare",
   "journey",
   "ideas",
