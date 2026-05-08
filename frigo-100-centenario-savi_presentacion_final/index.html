@@ -375,8 +375,13 @@ section.slide.immersive {
   letter-spacing: -.02em;
   color: var(--color-desert-sienna);
 }
+.compare-grid { align-self: center; }
 .compare-grid .card {
-  min-height: 520px;
+  min-height: clamp(360px, 38vh, 440px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
 }
 .compare-grid .num {
   font-size: clamp(44px, 4.2vw, 70px);
@@ -387,6 +392,21 @@ section.slide.immersive {
 }
 .compare-grid .body {
   max-width: 92%;
+}
+.compare-badge {
+  width: max-content;
+  max-width: 100%;
+  margin-top: 34px;
+  padding: 10px 17px 11px;
+  border: 1px solid rgba(188,113,85,.8);
+  border-radius: var(--radius-full);
+  color: var(--color-desert-sienna);
+  font-size: 17px;
+  font-weight: 700;
+}
+.compare-badge.is-after {
+  background: var(--color-desert-sienna);
+  color: var(--color-canvas-white);
 }
 .stat-card strong { display: block; font-family: var(--sans); font-size: clamp(52px, 3.9vw, 68px); line-height: .91; font-weight: 700; letter-spacing: -.02em; color: var(--color-obsidian); white-space: nowrap; }
 .slide.dark .stat-card strong, .slide.red .stat-card strong, .slide.blue .stat-card strong { color: var(--color-canvas-white); }
@@ -801,7 +821,7 @@ const slides = [
     layout: "compare",
     items: [
       ["Hoy", "Compra por impulso, dato fragmentado, presion MDD, poca capacidad de reactivacion."],
-      ["Con 100 Momentos", "Identidad, compra verificada, canal propio, preferencias, frecuencia y permiso activable."]
+      ["Con 100 Momentos", "Identidad, compra verificada, canal propio, preferencias, frecuencia y permiso activable.", "Activo D2C"]
     ]
   },
   {
@@ -1343,7 +1363,7 @@ function layout(slide, i) {
   }
   if (slide.layout === "compare") {
     return `<div class="content split">${titleBlock(slide, true)}<div class="grid cols-2 compare-grid">${slide.items.map((item) => `
-      <article class="card"><div class="num">${safe(item[0])}</div><p class="body">${safe(item[1])}</p></article>`).join("")}</div></div>`;
+      <article class="card"><div><div class="num">${safe(item[0])}</div><p class="body">${safe(item[1])}</p></div><div class="compare-badge ${item[2] ? "is-after" : ""}">${safe(item[2] || "Dato fragmentado")}</div></article>`).join("")}</div></div>`;
   }
   if (slide.layout === "image-split") {
     return `<div class="content image-split"><div class="image-copy">${titleBlock(slide, true)}</div><img class="feature-photo" src="${safe(slide.image)}" alt="Familia comprando un helado Frigo en un punto de venta de playa"><div class="image-points">${renderCards(slide.items, 3)}</div></div>`;
