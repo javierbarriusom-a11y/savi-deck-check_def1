@@ -238,6 +238,13 @@ section.slide.lemon { background: var(--color-canvas-white); color: var(--color-
 
 .content.two { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(320px, .98fr); gap: clamp(34px, 5vw, 119px); align-items: center; }
 .content.split { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(34px, 5vw, 119px); align-items: stretch; }
+.content.image-split {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(480px, 1.18fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 23px clamp(34px, 5vw, 96px);
+  align-items: center;
+}
 .content.center { display: grid; align-content: center; }
 .stack { display: flex; flex-direction: column; gap: 23px; }
 .grid { display: grid; gap: 23px; }
@@ -262,6 +269,21 @@ section.slide.lemon { background: var(--color-canvas-white); color: var(--color-
 }
 .card h3, .idea h3, .cell h3 { margin: 0; font-size: clamp(23px, 1.9vw, 37px); line-height: 1.1; letter-spacing: -.01em; font-weight: 700; }
 .card p, .idea p, .cell p { margin: 13px 0 0; }
+.image-copy { display: flex; flex-direction: column; gap: 23px; }
+.image-copy .title.small { font-size: clamp(48px, 4.8vw, 78px); }
+.image-points { grid-column: 1 / -1; }
+.image-points .card { padding: 18px 22px; border-radius: 34px; }
+.image-points .card h3 { font-size: clamp(21px, 1.6vw, 28px); }
+.image-points .card .body { line-height: 1.35; }
+.feature-photo {
+  width: 100%;
+  height: min(48vh, 560px);
+  min-height: 420px;
+  border-radius: var(--radius-other);
+  border: 1px solid rgba(0,13,16,.18);
+  object-fit: cover;
+  display: block;
+}
 .num {
   font-family: var(--sans);
   font-size: clamp(63px, 8vw, 131px);
@@ -452,8 +474,10 @@ a { color: inherit; }
   .title.small { font-size: clamp(44px, 13vw, 68px); }
   .slide:first-child .slide-grid { padding: 38px 22px; }
   .slide-head, .slide-foot { align-items: flex-start; flex-direction: column; gap: 13px; }
-  .content.two, .content.split, .grid.cols-2, .grid.cols-3, .grid.cols-4, .grid.cols-5,
+  .content.two, .content.split, .content.image-split, .grid.cols-2, .grid.cols-3, .grid.cols-4, .grid.cols-5,
   .journey, .timeline, .roadmap, .dashboard-grid { grid-template-columns: 1fr; }
+  .feature-photo { height: auto; min-height: 360px; }
+  .image-points { grid-column: auto; }
   .matrix { grid-template-columns: 1fr; }
   .matrix div { border-right: 0; }
   .poster { min-height: 420px; }
@@ -601,7 +625,8 @@ const slides = [
     eyebrow: "02 · North star",
     title: "Convertir el centenario en el mayor evento de fidelizacion FMCG en Espana.",
     subtitle: "Crear una comunidad de fans que trascienda el producto y perdure mas alla del aniversario.",
-    layout: "cards",
+    layout: "image-split",
+    image: "assets/frigo-centenario-playa-familia.png",
     cols: 3,
     items: [
       ["Activar la nostalgia", "Transformar recuerdos colectivos de 100 años en activo de marca monetizable y medible."],
@@ -1069,6 +1094,9 @@ function layout(slide, i) {
   if (slide.layout === "compare") {
     return `<div class="content split">${titleBlock(slide, true)}<div class="grid cols-2 compare-grid">${slide.items.map((item) => `
       <article class="card"><div class="num">${safe(item[0])}</div><p class="body">${safe(item[1])}</p></article>`).join("")}</div></div>`;
+  }
+  if (slide.layout === "image-split") {
+    return `<div class="content image-split"><div class="image-copy">${titleBlock(slide, true)}</div><img class="feature-photo" src="${safe(slide.image)}" alt="Familia comprando un helado Frigo en un punto de venta de playa"><div class="image-points">${renderCards(slide.items, 3)}</div></div>`;
   }
   if (slide.layout === "poster") {
     return `<div class="content two"><div>${titleBlock(slide, true)}${renderCards(slide.items, 2)}</div><div class="poster"><div class="qr-block"></div></div></div>`;
