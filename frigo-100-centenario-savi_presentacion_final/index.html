@@ -224,10 +224,11 @@ section.slide.lemon { background: var(--color-canvas-white); color: var(--color-
 .slide:first-child .subtitle { max-width: 760px; font-size: clamp(20px, 1.8vw, 30px); color: rgba(255,255,255,.78); }
 .cover-copy { align-self: center; }
 section.slide.immersive {
+  --immersive-bg: url("assets/frigo-bg-historia.svg");
   background:
     linear-gradient(90deg, rgba(0,13,16,.95) 0%, rgba(0,13,16,.86) 42%, rgba(0,13,16,.62) 74%, rgba(0,13,16,.42) 100%),
     linear-gradient(0deg, rgba(0,13,16,.78) 0%, rgba(0,13,16,.26) 48%, rgba(0,13,16,.62) 100%),
-    url("assets/cover-frigo-centenario.png") center / cover no-repeat !important;
+    var(--immersive-bg) center / cover no-repeat !important;
   color: var(--color-canvas-white);
 }
 .slide.immersive .slide-grid { position: relative; z-index: 1; }
@@ -1232,16 +1233,45 @@ const immersiveLayouts = new Set([
   "roadmap"
 ]);
 
+function isImmersive(slide) {
+  return immersiveLayouts.has(slide.layout) && !slide.image;
+}
+
+function immersiveBackgroundFor(slide) {
+  const text = `${slide.eyebrow || ""} ${slide.title || ""}`.toLowerCase();
+  if (text.includes("mapa") || text.includes("roadmap") || text.includes("piloto") || text.includes("despliegue") || text.includes("savi")) {
+    return "assets/frigo-bg-despliegue.svg";
+  }
+  if (text.includes("data") || text.includes("kpi") || text.includes("compliance") || text.includes("antifraude") || text.includes("intelligence") || text.includes("first-party")) {
+    return "assets/frigo-bg-data.svg";
+  }
+  if (text.includes("mecanica") || text.includes("frecuencia") || text.includes("coleccionismo") || text.includes("comunidad") || text.includes("viralidad") || text.includes("trade") || text.includes("nuevas ideas") || text.includes("activacion fisica") || text.includes("niveles")) {
+    return "assets/frigo-bg-mecanicas.svg";
+  }
+  if (text.includes("100 momentos") || text.includes("arquitectura") || text.includes("journey") || text.includes("validacion") || text.includes("whatsapp") || text.includes("apuestas")) {
+    return "assets/frigo-bg-programa.svg";
+  }
+  if (text.includes("mercado") || text.includes("presion") || text.includes("consumidor") || text.includes("lectura estrategica") || text.includes("helado vende") || text.includes("distribucion")) {
+    return "assets/frigo-bg-mercado.svg";
+  }
+  return "assets/frigo-bg-historia.svg";
+}
+
 function slideClass(slide) {
   const classes = ["slide"];
   if (slide.theme) classes.push(slide.theme);
-  if (immersiveLayouts.has(slide.layout) && !slide.image) classes.push("immersive");
+  if (isImmersive(slide)) classes.push("immersive");
   return classes.join(" ");
+}
+
+function slideStyle(slide) {
+  if (!isImmersive(slide)) return "";
+  return ` style="--immersive-bg: url('${immersiveBackgroundFor(slide)}')"`;
 }
 
 function render() {
   deck.innerHTML = slides.map((slide, i) => `
-    <section class="${slideClass(slide)}" id="slide-${i + 1}" data-index="${i}">
+    <section class="${slideClass(slide)}" id="slide-${i + 1}" data-index="${i}"${slideStyle(slide)}>
       <div class="slide-grid">
         ${header(slide, i)}
         ${layout(slide, i)}
