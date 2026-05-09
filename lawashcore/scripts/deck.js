@@ -92,6 +92,26 @@ function imageOnly(slide) {
   </div>`;
 }
 
+const backgroundPools = {
+  Inicio: ["assets/source-media/image2.png", "assets/source-media/image11.jpeg"],
+  Modelo: ["assets/source-media/image19.png", "assets/source-media/image18.png", "assets/source-media/image11.jpeg"],
+  Nexa: ["assets/source-media/image30.png", "assets/source-media/image35.png", "assets/source-media/image22.png", "assets/source-media/image36.png", "assets/source-media/image40.png"],
+  Servicios: ["assets/source-media/image42.png", "assets/source-media/image44.png", "assets/source-media/image47.png"],
+  Prueba: ["assets/source-media/image53.png", "assets/source-media/image54.png", "assets/source-media/image55.png", "assets/source-media/image56.png", "assets/source-media/image57.png"],
+  Cierre: ["assets/source-media/image58.png", "assets/source-media/image60.png"]
+};
+
+function backgroundFor(slide, index) {
+  if (slide.background) return slide.background;
+  if (slide.image) return slide.image;
+  const pool = backgroundPools[slide.section] || backgroundPools.Inicio;
+  return pool[index % pool.length];
+}
+
+function slideStyle(slide, index) {
+  return ` style="--slide-bg: url('${safe(backgroundFor(slide, index))}')"`;
+}
+
 function layout(slide) {
   if (slide.layout === "hero") {
     return `<div class="hero-layout">
@@ -205,7 +225,7 @@ function layout(slide) {
 
 function render() {
   deck.innerHTML = slides.map((slide, i) => `
-    <section class="slide ${safe(slide.theme || "")}" id="slide-${i + 1}" data-index="${i}">
+    <section class="slide ${safe(slide.theme || "")}" id="slide-${i + 1}" data-index="${i}"${slideStyle(slide, i)}>
       <div class="slide-grid">
         ${header(slide, i)}
         <main>${layout(slide, i)}</main>
