@@ -109,7 +109,7 @@ function backgroundFor(slide, index) {
 }
 
 function slideStyle(slide, index) {
-  return ` style="--slide-bg: url('${safe(backgroundFor(slide, index))}')"`;
+  return ` style="--slide-bg: url('../${safe(backgroundFor(slide, index))}')"`;
 }
 
 function layout(slide) {
