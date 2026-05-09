@@ -239,7 +239,7 @@ section.slide.lemon { background: var(--color-canvas-white); color: var(--color-
 }
 .slide:first-child .slide-grid { position: relative; z-index: 1; height: 100%; padding: clamp(68px, 6vw, 119px); }
 .slide:first-child .title { font-size: clamp(72px, 10.5vw, 187px); max-width: 1160px; }
-.slide:first-child .subtitle { max-width: 760px; font-size: clamp(20px, 1.8vw, 30px); color: rgba(255,255,255,.78); }
+.slide:first-child .subtitle { max-width: 840px; font-size: clamp(23px, 2vw, 34px); color: rgba(255,255,255,.78); }
 .cover-copy { align-self: center; }
 section.slide.immersive {
   --immersive-bg: url("assets/frigo-bg-nostalgia-parque.jpg");
@@ -285,14 +285,20 @@ section.slide.immersive {
 .subtitle {
   margin: 23px 0 0;
   max-width: 980px;
-  font-size: clamp(20px, 1.8vw, 30px);
-  line-height: 1.2;
+  font-size: clamp(24px, 2.1vw, 37px);
+  line-height: 1.18;
   color: var(--muted);
   text-wrap: pretty;
   letter-spacing: .01em;
 }
 .slide.dark .subtitle, .slide.red .subtitle, .slide.blue .subtitle { color: rgba(255,255,255,.76); }
-.body { font-size: 17px; line-height: 1.61; letter-spacing: .01em; color: var(--muted); }
+.body {
+  font-size: clamp(19px, 1.12vw, 22px);
+  line-height: 1.45;
+  letter-spacing: .01em;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
 .slide.dark .body, .slide.red .body, .slide.blue .body { color: rgba(255,255,255,.76); }
 
 .content.two { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(320px, .98fr); gap: clamp(34px, 5vw, 119px); align-items: center; }
@@ -351,13 +357,13 @@ section.slide.immersive {
   background: rgba(255,255,255,.06);
 }
 .card h3, .idea h3, .cell h3 { margin: 0; font-size: clamp(23px, 1.9vw, 37px); line-height: 1.1; letter-spacing: -.01em; font-weight: 700; }
-.card p, .idea p, .cell p { margin: 13px 0 0; }
+.card p, .idea p, .cell p { margin: 15px 0 0; }
 .image-copy { display: flex; flex-direction: column; gap: 23px; }
 .image-copy .title.small { font-size: clamp(48px, 4.8vw, 78px); }
 .image-points { grid-column: 1 / -1; }
 .image-points .card { padding: 18px 22px; border-radius: 34px; }
 .image-points .card h3 { font-size: clamp(21px, 1.6vw, 28px); }
-.image-points .card .body { line-height: 1.35; }
+.image-points .card .body { font-size: clamp(18px, 1vw, 20px); line-height: 1.34; }
 .feature-photo {
   width: 100%;
   height: min(48vh, 560px);
@@ -391,6 +397,8 @@ section.slide.immersive {
   word-break: normal;
 }
 .compare-grid .body {
+  font-size: clamp(22px, 1.55vw, 30px);
+  line-height: 1.45;
   max-width: 92%;
 }
 .compare-badge {
@@ -401,7 +409,7 @@ section.slide.immersive {
   border: 1px solid rgba(188,113,85,.8);
   border-radius: var(--radius-full);
   color: var(--color-desert-sienna);
-  font-size: 17px;
+  font-size: clamp(18px, 1.15vw, 22px);
   font-weight: 700;
 }
 .compare-badge.is-after {
@@ -410,22 +418,22 @@ section.slide.immersive {
 }
 .stat-card strong { display: block; font-family: var(--sans); font-size: clamp(52px, 3.9vw, 68px); line-height: .91; font-weight: 700; letter-spacing: -.02em; color: var(--color-obsidian); white-space: nowrap; }
 .slide.dark .stat-card strong, .slide.red .stat-card strong, .slide.blue .stat-card strong { color: var(--color-canvas-white); }
-.stat-card span { display: block; margin-top: 17px; color: var(--muted); font-size: 17px; line-height: 1.61; letter-spacing: .01em; }
+.stat-card span { display: block; margin-top: 17px; color: var(--muted); font-size: clamp(19px, 1.12vw, 22px); line-height: 1.45; letter-spacing: .01em; }
 .slide.dark .stat-card span, .slide.red .stat-card span, .slide.blue .stat-card span { color: rgba(255,255,255,.76); }
 
-.agenda-list { counter-reset: agenda; display: grid; gap: 21px; }
+.agenda-list { counter-reset: agenda; display: grid; gap: 13px; align-content: center; }
 .agenda-row {
   counter-increment: agenda;
   display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 34px;
+  grid-template-columns: clamp(86px, 6vw, 120px) 1fr;
+  gap: 24px;
   align-items: start;
   border-top: 1px solid rgba(0,13,16,.18);
-  padding-top: 21px;
+  padding-top: 14px;
 }
-.agenda-row::before { content: counter(agenda, decimal-leading-zero); font-family: var(--sans); font-size: 20px; font-weight: 700; color: var(--color-desert-sienna); }
-.agenda-row h3 { margin: 0; font-size: clamp(30px, 3vw, 52px); font-family: var(--sans); font-weight: 700; line-height: 1.09; letter-spacing: -.01em; }
-.agenda-row p { margin: 11px 0 0; }
+.agenda-row::before { content: counter(agenda, decimal-leading-zero); font-family: var(--sans); font-size: clamp(42px, 4.2vw, 66px); line-height: .91; font-weight: 700; letter-spacing: -.02em; color: var(--color-desert-sienna); }
+.agenda-row h3 { margin: 0; font-size: clamp(42px, 4.2vw, 66px); font-family: var(--sans); font-weight: 700; line-height: .91; letter-spacing: -.02em; }
+.agenda-row p { margin: 11px 0 0; font-size: clamp(20px, 1.35vw, 24px); line-height: 1.24; }
 
 .poster {
   min-height: 560px;
@@ -500,7 +508,7 @@ section.slide.immersive {
   border: 1px solid rgba(0,13,16,.16);
   border-radius: 24px;
   background: #fff;
-  font-size: 17px;
+  font-size: clamp(18px, 1vw, 20px);
   line-height: 1.45;
 }
 .bubble.me { margin-left: auto; background: var(--color-obsidian); color: var(--color-canvas-white); }
@@ -520,18 +528,18 @@ section.slide.immersive {
 .timeline-mark .icon svg { width: 22px; height: 22px; }
 .timeline-item b { font-family: var(--sans); font-size: clamp(30px, 3.1vw, 52px); font-weight: 700; line-height: .91; letter-spacing: -.01em; color: var(--color-desert-sienna); }
 .timeline-item h3 { font-size: 20px; line-height: 1.2; letter-spacing: -.01em; }
-.timeline-item .body { font-size: 17px; line-height: 1.45; }
+.timeline-item .body { font-size: clamp(18px, 1vw, 20px); line-height: 1.35; }
 
-.matrix { display: grid; grid-template-columns: 190px repeat(4, 1fr); border: 1px solid rgba(0,13,16,.18); border-radius: var(--radius-other); overflow: hidden; }
-.matrix div { padding: 22px; min-height: 72px; border-right: 1px solid rgba(0,13,16,.16); border-bottom: 1px solid rgba(0,13,16,.16); background: var(--color-canvas-white); font-size: 17px; line-height: 1.45; }
+.matrix { display: grid; grid-template-columns: minmax(220px, .72fr) repeat(4, 1fr); border: 1px solid rgba(0,13,16,.18); border-radius: var(--radius-other); overflow: hidden; }
+.matrix div { padding: 22px; min-height: 72px; border-right: 1px solid rgba(0,13,16,.16); border-bottom: 1px solid rgba(0,13,16,.16); background: var(--color-canvas-white); font-size: clamp(18px, 1vw, 20px); line-height: 1.42; }
 .matrix div:nth-child(5n) { border-right: 0; }
-.matrix .head { font-family: var(--sans); text-transform: none; font-size: 17px; font-weight: 700; background: var(--color-obsidian); color: var(--color-canvas-white); }
+.matrix .head { font-family: var(--sans); text-transform: none; font-size: clamp(18px, 1vw, 20px); font-weight: 700; background: var(--color-obsidian); color: var(--color-canvas-white); }
 .dot { display: inline-block; width: 13px; height: 13px; border-radius: 50%; background: var(--color-desert-sienna); margin-right: 11px; vertical-align: middle; }
 .dot.light { background: transparent; border: 1px solid var(--color-desert-sienna); }
 
 .bars { display: grid; gap: 17px; margin-top: 22px; }
 .bar { display: grid; grid-template-columns: 180px 1fr; align-items: center; gap: 23px; }
-.bar span { font-family: var(--sans); font-size: 17px; font-weight: 700; }
+.bar span { font-family: var(--sans); font-size: clamp(19px, 1.1vw, 22px); font-weight: 700; }
 .bar i { display: block; height: 34px; border-radius: var(--radius-full); background: var(--color-desert-sienna); }
 .planning-board {
   border: 1px solid rgba(255,255,255,.22);
@@ -574,8 +582,8 @@ section.slide.immersive {
 .plan-label p {
   margin: 4px 0 0;
   color: rgba(255,255,255,.68);
-  font-size: 14px;
-  line-height: 1.2;
+  font-size: clamp(15px, .85vw, 17px);
+  line-height: 1.24;
 }
 .plan-track {
   grid-column: var(--start-col) / span var(--span);
@@ -588,12 +596,12 @@ section.slide.immersive {
   padding: 0 16px;
   background: linear-gradient(90deg, rgba(188,113,85,.98), rgba(232,157,127,.94));
   color: var(--color-canvas-white);
-  font-size: 14px;
+  font-size: clamp(14px, .82vw, 16px);
   font-weight: 800;
   white-space: nowrap;
 }
-.plan-track strong { font-size: 14px; }
-.plan-track span { color: rgba(255,255,255,.78); font-size: 14px; }
+.plan-track strong { font-size: clamp(14px, .82vw, 16px); }
+.plan-track span { color: rgba(255,255,255,.78); font-size: clamp(14px, .82vw, 16px); }
 .plan-track.is-soft { background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.18); }
 .plan-track.is-blue { background: linear-gradient(90deg, rgba(93,183,200,.95), rgba(210,246,255,.92)); color: var(--color-obsidian); }
 .plan-track.is-blue span { color: rgba(0,13,16,.66); }
@@ -609,14 +617,14 @@ section.slide.immersive {
   padding: 14px 16px;
   background: rgba(255,255,255,.08);
   color: rgba(255,255,255,.76);
-  font-size: 15px;
+  font-size: clamp(16px, .9vw, 18px);
   line-height: 1.25;
 }
-.plan-milestones strong { display: block; color: var(--color-canvas-white); font-size: 16px; margin-bottom: 3px; }
+.plan-milestones strong { display: block; color: var(--color-canvas-white); font-size: clamp(17px, 1vw, 19px); margin-bottom: 3px; }
 
 .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 23px; }
 .roadmap .card { min-height: 310px; display: flex; flex-direction: column; justify-content: space-between; }
-.phase { font-family: var(--sans); color: var(--color-desert-sienna); font-size: 17px; font-weight: 700; }
+.phase { font-family: var(--sans); color: var(--color-desert-sienna); font-size: clamp(18px, 1vw, 20px); font-weight: 700; }
 
 .grid.cols-5 .card,
 .grid.cols-5 .idea { padding: 22px; }
@@ -624,7 +632,7 @@ section.slide.immersive {
 .grid.cols-5 .card h3,
 .grid.cols-5 .idea h3 { font-size: clamp(20px, 1.45vw, 24px); }
 .grid.cols-5 .card .body,
-.grid.cols-5 .idea .body { font-size: 17px; line-height: 1.45; }
+.grid.cols-5 .idea .body { font-size: clamp(18px, .95vw, 20px); line-height: 1.35; }
 
 .dashboard {
   border: 1px solid rgba(255,255,255,.18);
