@@ -6,14 +6,16 @@ window.DECK_SLIDES = [
     title: "Es mucho más que lavanderías.",
     subtitle: "Es una inversión tecnológica de éxito para tu rentabibilidad y libertad financiera.",
     image: "assets/source-media/image2.png",
+    foreground: false,
     stats: [
-      ["alta rentabilidad", ""],
-      ["RETORNO  RAPIDO", ""],
-      ["INVERSIÓN PASIVA", ""],
-      ["SOPORTE\n 360", ""],
-      [" 450 \nTIENDAS ACTIVAS", ""]
+      ["ALTA\nRENTABILIDAD", "", "assets/source-media/image5.png"],
+      ["RETORNO\nRAPIDO", "", "assets/source-media/image6.png"],
+      ["INVERSIÓN\nPASIVA", "", "assets/source-media/image7.png"],
+      ["SOPORTE\n360", "", "assets/source-media/image8.png"],
+      ["450\nTIENDAS ACTIVAS", "", "assets/source-media/image9.png"]
     ],
-    foot: "descubre Por qué somos diferentes",
+    foot: false,
+    action: ["descubre Por qué somos diferentes", "https://lawash.es/masterlawash/"],
     layout: "hero"
   },
   {

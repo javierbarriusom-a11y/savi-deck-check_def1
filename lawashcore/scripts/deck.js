@@ -33,8 +33,9 @@ function header(slide, i) {
 }
 
 function footer(slide) {
+  const footText = slide.foot === false ? "" : (slide.foot ? lines(slide.foot) : "La Wash Core · Producto core · franquicia de lavanderías autoservicio");
   return `<div class="slide-foot">
-    <div>${slide.foot ? lines(slide.foot) : "La Wash Core · Producto core · franquicia de lavanderías autoservicio"}</div>
+    <div>${footText}</div>
     <div class="footer-nav" aria-label="Navegación de diapositivas">
       <button type="button" data-footer-nav="home">Inicio</button><span>·</span>
       <button type="button" data-footer-nav="prev">Atrás</button><span>·</span>
@@ -46,9 +47,15 @@ function footer(slide) {
 function renderStats(stats = [], compact = false) {
   return `<div class="stats ${compact ? "compact" : ""}">${stats.map((stat) => `
     <article class="stat">
+      ${stat[2] ? `<img class="stat-icon" src="${safe(stat[2])}" alt="">` : ""}
       <strong>${lines(stat[0])}</strong>
       ${stat[1] ? `<span>${lines(stat[1])}</span>` : ""}
     </article>`).join("")}</div>`;
+}
+
+function renderAction(action) {
+  if (!action) return "";
+  return `<a class="hero-action" href="${safe(action[1])}" target="_blank" rel="noopener">${lines(action[0])}</a>`;
 }
 
 function renderCards(cards = [], className = "") {
@@ -114,9 +121,10 @@ function slideStyle(slide, index) {
 
 function layout(slide) {
   if (slide.layout === "hero") {
-    return `<div class="hero-layout">
+    return `<div class="hero-layout ${slide.foreground === false ? "no-foreground" : ""}">
       <div>${titleBlock(slide)}${renderStats(slide.stats, true)}</div>
-      ${media(slide.image, "App La Wash")}
+      ${slide.foreground === false ? "" : media(slide.image, "App La Wash")}
+      ${renderAction(slide.action)}
     </div>`;
   }
   if (slide.layout === "statement") {

@@ -214,6 +214,27 @@ main { min-height: 0; display: grid; align-items: center; }
   align-items: center;
   min-height: 0;
 }
+.hero-layout.no-foreground {
+  grid-template-columns: minmax(0, 1fr);
+  align-content: center;
+  gap: 30px;
+}
+.hero-layout.no-foreground .copy { max-width: 980px; }
+.hero-layout.no-foreground .title { max-width: 980px; }
+.hero-action {
+  position: absolute;
+  left: 72px;
+  bottom: 72px;
+  z-index: 4;
+  color: var(--wash-white);
+  font-size: 22px;
+  line-height: 1.1;
+  font-weight: 800;
+  text-decoration: none;
+  border-bottom: 2px solid var(--wash-green);
+  text-shadow: 0 2px 14px rgba(0,0,0,.32);
+}
+.hero-action:hover { color: var(--wash-green); }
 .process-wrap, .image-only, .closing-layout {
   min-height: 0;
 }
@@ -264,13 +285,35 @@ main { min-height: 0; display: grid; align-items: center; }
 }
 .stats.compact .stat { min-height: 108px; padding: 10px; }
 .stats.compact .stat strong {
-  font-family: var(--sans);
-  font-size: 13px;
-  line-height: 1.16;
-  font-weight: 900;
+  font-family: var(--display);
+  font-size: 36px;
+  line-height: 1.02;
+  font-weight: 400;
   text-transform: uppercase;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
   word-break: normal;
+  text-align: center;
+}
+.stat-icon {
+  display: block;
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  margin: 0 auto 18px;
+}
+.hero-layout.no-foreground .stats.compact {
+  width: min(100%, 1120px);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 34px;
+}
+.hero-layout.no-foreground .stats.compact .stat {
+  min-height: 220px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: 24px 18px;
+  background: rgba(23,31,40,.42);
 }
 .stat span {
   display: block;
@@ -467,6 +510,10 @@ main { min-height: 0; display: grid; align-items: center; }
   .step { min-height: 124px; }
   .operations article { min-height: 96px; }
   .media img { max-height: 56svh; }
+  .hero-action { bottom: 48px; }
+  .hero-layout.no-foreground .stats.compact .stat { min-height: 170px; padding: 18px 12px; }
+  .hero-layout.no-foreground .stats.compact .stat strong { font-size: 28px; }
+  .hero-layout.no-foreground .stat-icon { width: 58px; height: 58px; margin-bottom: 12px; }
 }
 
 @media (max-width: 680px) {
@@ -496,4 +543,6 @@ main { min-height: 0; display: grid; align-items: center; }
   .controls { bottom: 10px; }
   .controls button { font-size: 12px; padding: 7px 10px; }
   .counter { min-width: 68px; }
+  .hero-action { left: 18px; bottom: 58px; font-size: 17px; }
+  .hero-layout.no-foreground .stats.compact { grid-template-columns: 1fr; }
 }
