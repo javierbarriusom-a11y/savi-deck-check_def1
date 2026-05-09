@@ -583,7 +583,7 @@ section.slide.immersive {
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 12px;
   padding: 0 16px;
   background: linear-gradient(90deg, rgba(188,113,85,.98), rgba(232,157,127,.94));
@@ -1407,7 +1407,7 @@ function layout(slide, i) {
       <div class="plan-months">${months.map((month) => `<span>${safe(month)}</span>`).join("")}</div>
       ${slide.items.map((item) => `<div class="plan-row">
         <div class="plan-label"><h3>${safe(item[0])}</h3><p>${safe(item[1])}</p></div>
-        <div class="plan-track ${safe(item[5])}" style="--start-col:${Number(item[2]) || 2}; --span:${Number(item[3]) || 1};"><strong>${safe(item[4])}</strong><span>${safe(months[(Number(item[2]) || 2) - 1])}</span></div>
+        <div class="plan-track ${safe(item[5])}" style="--start-col:${Number(item[2]) || 2}; --span:${Number(item[3]) || 1};"><strong>${safe(item[4])}</strong></div>
       </div>`).join("")}
     </div></div>`;
   }
