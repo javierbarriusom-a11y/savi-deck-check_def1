@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Savi Deck Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Plantilla interactiva de presentaciones Savi.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geist:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/theme.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">savi<span>.</span> Deck</div>
+  <div class="section-status" aria-live="polite">Seccion <strong id="sectionName">Inicio</strong></div>
+  <nav class="nav-pills" aria-label="Capitulos">
+    <button data-jump="0">Inicio</button>
+    <button data-jump="2">Contexto</button>
+    <button data-jump="9">Oportunidad</button>
+    <button data-jump="13">Programa</button>
+    <button data-jump="22">Mecanicas</button>
+    <button data-jump="31">Data</button>
+    <button data-jump="36">Despliegue</button>
+  </nav>
+</header>
+<deck-stage id="deck" aria-live="polite"></deck-stage>
+<div class="controls" aria-label="Navegacion">
+  <button id="home" type="button">Inicio</button>
+  <button id="prev" type="button">Atras</button>
+  <div class="counter" id="counter">01 / 01</div>
+  <button id="next" type="button">Siguiente</button>
+</div>
+<div class="progress"><span id="progress"></span></div>
+<script src="data/slides.js"></script>
+<script src="scripts/deck.js"></script>
+</body>
+</html>
