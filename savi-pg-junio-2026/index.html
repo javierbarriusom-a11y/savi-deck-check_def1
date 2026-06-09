@@ -1,0 +1,891 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Savi x P&G · Activation Playbook 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Presentacion interactiva de Savi para P&G: incentivos phygitales, cupones, wallet, medicion y fidelizacion.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+<style>
+:root {
+  --ink: #102f33;
+  --ink-2: #183f43;
+  --paper: #f6f4ef;
+  --white: #fff;
+  --aqua: #a9ebe0;
+  --teal: #0b7c78;
+  --deep: #083c40;
+  --coral: #f36d52;
+  --yellow: #f5c84b;
+  --mist: #dce9e6;
+  --muted: #5c716f;
+  --line: rgba(16,47,51,.2);
+  --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif: "Newsreader", Georgia, serif;
+  --mono: "DM Mono", ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: #071f22; color: var(--ink); font-family: var(--sans); }
+body { overflow: hidden; }
+button { font: inherit; }
+button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+
+.chrome {
+  position: fixed;
+  z-index: 100;
+  inset: 18px 20px auto;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 7px 9px 7px 16px;
+  color: #fff;
+  background: rgba(5,38,41,.88);
+  border: 1px solid rgba(255,255,255,.2);
+  box-shadow: 0 14px 40px rgba(0,0,0,.2);
+  backdrop-filter: blur(18px) saturate(1.3);
+}
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: max-content;
+  font-size: 18px;
+  font-weight: 800;
+}
+.wordmark b { color: var(--aqua); }
+.wordmark img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,.25); }
+.section-now {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: max-content;
+  padding: 7px 10px;
+  background: var(--coral);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.section-now::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #fff; }
+.chapter-nav { display: flex; flex: 1; justify-content: flex-end; gap: 4px; }
+.chapter-nav button {
+  min-height: 36px;
+  border: 0;
+  padding: 7px 11px;
+  background: transparent;
+  color: rgba(255,255,255,.66);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.chapter-nav button:hover { color: #fff; background: rgba(255,255,255,.1); }
+.chapter-nav button.is-active { color: var(--deep); background: var(--aqua); }
+
+.deck {
+  display: block;
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
+}
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: clamp(88px, 8vh, 112px) clamp(44px, 6vw, 96px) clamp(72px, 7vh, 90px);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(3%) scale(.99);
+  pointer-events: none;
+  transition: opacity .35s ease, transform .5s cubic-bezier(.2,.8,.2,1);
+  background:
+    linear-gradient(rgba(16,47,51,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16,47,51,.055) 1px, transparent 1px),
+    var(--paper);
+  background-size: 64px 64px;
+}
+.slide.active { opacity: 1; transform: none; pointer-events: auto; }
+.slide.before { transform: translateY(-3%) scale(.99); }
+.slide.dark { background: var(--deep); color: #fff; }
+.slide.aqua { background: var(--aqua); }
+.slide.coral { background: var(--coral); color: #fff; }
+.slide.yellow { background: var(--yellow); }
+.slide.photo { color: #fff; background-color: var(--deep); background-size: cover; background-position: center; }
+.slide.photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(4,34,37,.92) 0%, rgba(4,34,37,.7) 40%, rgba(4,34,37,.18) 72%, rgba(4,34,37,.08));
+}
+.slide.photo > * { position: relative; z-index: 1; }
+
+.frame { height: 100%; display: grid; grid-template-rows: auto 1fr auto; gap: clamp(16px, 2.5vh, 28px); }
+.slide-head, .slide-foot { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.slide-head { padding-bottom: 13px; border-bottom: 1px solid currentColor; border-color: var(--line); }
+.slide.dark .slide-head, .slide.coral .slide-head, .slide.photo .slide-head { border-color: rgba(255,255,255,.25); }
+.slide-foot { padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+.slide.dark .slide-foot, .slide.coral .slide-foot, .slide.photo .slide-foot { border-color: rgba(255,255,255,.22); color: rgba(255,255,255,.7); }
+.kicker, .folio, .label {
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+.kicker { color: var(--teal); font-weight: 500; }
+.slide.dark .kicker, .slide.coral .kicker, .slide.photo .kicker { color: var(--aqua); }
+.folio { color: var(--muted); }
+.slide.dark .folio, .slide.coral .folio, .slide.photo .folio { color: rgba(255,255,255,.65); }
+
+.content { min-height: 0; display: grid; align-content: center; }
+.content.two { grid-template-columns: minmax(0, 1fr) minmax(340px, .9fr); gap: clamp(34px, 6vw, 92px); align-items: center; }
+.content.split { grid-template-columns: minmax(320px, .82fr) minmax(0, 1.18fr); gap: clamp(30px, 5vw, 74px); align-items: stretch; }
+.content.center { justify-items: center; text-align: center; }
+.copy { max-width: 860px; }
+.display {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(52px, 7.6vw, 116px);
+  line-height: .88;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+.display.medium { font-size: clamp(46px, 5.6vw, 82px); }
+.display.compact { font-size: clamp(40px, 4.7vw, 68px); }
+.lede {
+  max-width: 850px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: clamp(17px, 1.55vw, 24px);
+  line-height: 1.35;
+  text-wrap: pretty;
+}
+.slide.dark .lede, .slide.coral .lede, .slide.photo .lede { color: rgba(255,255,255,.78); }
+.body { color: var(--muted); font-size: clamp(14px, 1.05vw, 17px); line-height: 1.48; }
+.slide.dark .body, .slide.coral .body, .slide.photo .body { color: rgba(255,255,255,.72); }
+.accent { color: var(--coral); }
+.slide.coral .accent { color: var(--yellow); }
+.rule { width: 74px; height: 6px; margin: 24px 0; background: var(--coral); }
+
+.hero-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+.hero-logo img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 1px solid rgba(255,255,255,.3); }
+.hero-logo span { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0; }
+.hero-note { max-width: 610px; margin-top: 28px; padding-left: 18px; border-left: 5px solid var(--coral); color: rgba(255,255,255,.8); font-size: clamp(16px,1.25vw,20px); }
+
+.grid { display: grid; gap: 14px; }
+.grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.card {
+  min-width: 0;
+  padding: clamp(18px, 2vw, 28px);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.68);
+}
+.slide.dark .card, .slide.coral .card { border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.07); }
+.card .icon-wrap {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 34px;
+  background: var(--aqua);
+  color: var(--deep);
+}
+.card h3 { margin: 0; font-size: clamp(18px, 1.55vw, 25px); line-height: 1.12; }
+.card p { margin: 9px 0 0; }
+.card .tag { display: inline-block; margin-top: 18px; padding: 5px 8px; background: var(--mist); color: var(--deep); font-family: var(--mono); font-size: 10px; text-transform: uppercase; }
+
+.objective-picker { display: grid; grid-template-columns: 260px 1fr; gap: 18px; min-height: 430px; }
+.objective-list { display: flex; flex-direction: column; gap: 8px; }
+.objective-list button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.48);
+  color: var(--ink);
+  text-align: left;
+  font-weight: 750;
+  cursor: pointer;
+}
+.objective-list button.is-active { background: var(--deep); color: #fff; border-color: var(--deep); }
+.objective-list svg { width: 18px; }
+.recommendation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+.recommendation-copy { display: flex; flex-direction: column; justify-content: space-between; padding: clamp(26px,3vw,42px); }
+.recommendation-copy h3 { margin: 0; font-family: var(--serif); font-size: clamp(34px,4vw,60px); line-height: .95; font-weight: 400; }
+.recommendation-copy p { max-width: 500px; }
+.recommendation-visual { position: relative; overflow: hidden; min-height: 420px; background: var(--deep); }
+.recommendation-visual img { width: 100%; height: 100%; object-fit: cover; opacity: .9; }
+.recommendation-visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(5,38,41,.58), transparent 55%); }
+.rec-badge { position: absolute; z-index: 2; left: 18px; bottom: 18px; padding: 8px 10px; background: var(--yellow); color: var(--deep); font-family: var(--mono); font-size: 11px; text-transform: uppercase; }
+
+.metric-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; border: 1px solid var(--line); background: var(--line); }
+.metric { min-height: 250px; padding: clamp(22px,3vw,42px); background: var(--paper); }
+.metric strong { display: block; font-family: var(--serif); font-size: clamp(62px,8vw,118px); line-height: .82; font-weight: 400; }
+.metric b { display: block; margin-top: 16px; font-size: 18px; }
+.metric p { margin: 8px 0 0; }
+.asset-panel { min-height: 440px; overflow: hidden; border: 1px solid var(--line); background: #fff; }
+.asset-panel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.big-stat { display: flex; align-items: flex-end; gap: 20px; margin: 22px 0; }
+.big-stat strong { font-family: var(--serif); font-size: clamp(82px,12vw,170px); line-height: .72; font-weight: 400; color: var(--aqua); }
+.big-stat span { max-width: 240px; padding-bottom: 6px; font-size: 17px; color: rgba(255,255,255,.76); }
+.feature-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 26px; }
+.feature { display: flex; gap: 10px; align-items: flex-start; padding: 13px; border-top: 1px solid rgba(255,255,255,.22); }
+.feature svg { width: 18px; min-width: 18px; color: var(--aqua); }
+.feature b { display: block; font-size: 14px; }
+.feature span { display: block; margin-top: 3px; color: rgba(255,255,255,.65); font-size: 12px; }
+
+.journey { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); border: 1px solid var(--line); background: #fff; }
+.journey-step { position: relative; min-height: 330px; padding: 24px 20px; border-right: 1px solid var(--line); }
+.journey-step:last-child { border-right: 0; }
+.journey-step::after { content: ""; position: absolute; top: 45px; right: -7px; z-index: 2; width: 13px; height: 13px; transform: rotate(45deg); background: #fff; border-top: 1px solid var(--line); border-right: 1px solid var(--line); }
+.journey-step:last-child::after { display: none; }
+.journey-step .step-num { font-family: var(--serif); font-size: 64px; line-height: .8; color: var(--coral); }
+.journey-step svg { width: 34px; height: 34px; margin: 38px 0 20px; color: var(--teal); }
+.journey-step h3 { margin: 0; font-size: 18px; }
+.journey-step p { margin: 8px 0 0; }
+
+.wallet-crop { position: relative; min-height: 510px; overflow: hidden; }
+.wallet-crop img { width: 100%; height: 100%; object-fit: cover; }
+.wallet-crop::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); }
+.reminders { display: flex; gap: 8px; margin-top: 22px; }
+.reminders span { display: grid; place-items: center; width: 68px; aspect-ratio: 1; border-radius: 50%; background: var(--yellow); color: var(--deep); font-family: var(--serif); font-size: 28px; }
+
+.api-flow { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 24px; }
+.api-step { position: relative; min-height: 148px; padding: 18px; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.07); }
+.api-step:not(:last-child)::after { content: "→"; position: absolute; right: -12px; top: 56px; z-index: 3; color: var(--yellow); font-size: 22px; }
+.api-step span { font-family: var(--mono); font-size: 10px; color: var(--aqua); }
+.api-step h3 { margin: 22px 0 0; font-size: 17px; }
+
+.benchmark-shell { display: grid; grid-template-columns: 260px 1fr; gap: 20px; }
+.benchmark-tabs { display: flex; flex-direction: column; gap: 7px; }
+.benchmark-tabs button {
+  flex: 1;
+  padding: 13px 15px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.48);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+.benchmark-tabs button b { display: block; font-size: 14px; }
+.benchmark-tabs button span { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+.benchmark-tabs button.is-active { background: var(--deep); color: #fff; }
+.benchmark-tabs button.is-active span { color: var(--aqua); }
+.benchmark-panel { display: grid; grid-template-columns: .85fr 1.15fr; min-height: 440px; border: 1px solid var(--line); background: #fff; }
+.benchmark-copy { padding: clamp(28px,4vw,48px); display: flex; flex-direction: column; justify-content: space-between; }
+.benchmark-copy h3 { margin: 0; font-family: var(--serif); font-size: clamp(40px,5vw,70px); line-height: .9; font-weight: 400; }
+.bars { display: grid; gap: 18px; margin-top: 30px; }
+.bar-head { display: flex; justify-content: space-between; font-size: 12px; font-family: var(--mono); text-transform: uppercase; }
+.bar-track { height: 12px; margin-top: 6px; background: var(--mist); }
+.bar-fill { height: 100%; width: 0; background: var(--coral); transition: width .5s ease; }
+.bar-fill.alt { background: var(--teal); }
+.benchmark-image { overflow: hidden; background: var(--deep); }
+.benchmark-image img { width: 100%; height: 100%; object-fit: cover; }
+
+.phases { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.phase-card { min-height: 390px; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(22px,2.6vw,38px); border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.07); }
+.phase-card:nth-child(2) { background: var(--aqua); color: var(--deep); }
+.phase-card:nth-child(3) { background: var(--yellow); color: var(--deep); }
+.phase-card .phase-num { font-family: var(--serif); font-size: 80px; line-height: .8; }
+.phase-card h3 { margin: 0; font-size: clamp(25px,2.4vw,34px); }
+.phase-card p { margin: 8px 0 0; }
+.phase-card .label { opacity: .74; }
+
+.use-cases { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; border: 1px solid var(--line); background: var(--line); }
+.use-case { min-height: 350px; padding: 24px; background: var(--paper); display: flex; flex-direction: column; justify-content: space-between; }
+.use-case:nth-child(2) { background: var(--aqua); }
+.use-case:nth-child(3) { background: var(--yellow); }
+.use-case:nth-child(4) { background: var(--coral); color: #fff; }
+.use-case svg { width: 34px; height: 34px; }
+.use-case h3 { margin: 0; font-size: 21px; }
+.use-case p { margin: 9px 0 0; font-size: 13px; line-height: 1.4; }
+.use-case .mechanic { padding-top: 14px; border-top: 1px solid currentColor; font-family: var(--mono); font-size: 10px; text-transform: uppercase; }
+
+.timeline { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; }
+.time-block { position: relative; min-height: 330px; padding: 28px; border-top: 7px solid var(--coral); background: rgba(255,255,255,.7); }
+.time-block:nth-child(2) { border-color: var(--yellow); }
+.time-block:nth-child(3) { border-color: var(--aqua); }
+.time-block:nth-child(4) { border-color: var(--teal); }
+.time-block:not(:last-child) { border-right: 1px solid var(--line); }
+.time-block strong { display: block; font-family: var(--serif); font-size: clamp(40px,4vw,62px); line-height: .9; font-weight: 400; }
+.time-block h3 { margin: 28px 0 0; font-size: 19px; }
+.time-block p { margin: 8px 0 0; }
+
+.dashboard-view { position: relative; min-height: 500px; overflow: hidden; border: 1px solid rgba(255,255,255,.22); }
+.dashboard-view img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.dashboard-view::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,38,41,.12), rgba(5,38,41,.74)); }
+.kpi-list { position: absolute; z-index: 2; inset: 28px 28px 28px auto; width: min(430px,44%); display: grid; gap: 8px; }
+.kpi { padding: 13px 16px; background: rgba(5,38,41,.88); border: 1px solid rgba(255,255,255,.2); color: #fff; backdrop-filter: blur(10px); }
+.kpi b { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
+.kpi span { display: block; margin-top: 4px; color: rgba(255,255,255,.65); font-size: 11px; }
+
+.next-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(34px,6vw,90px); align-items: end; }
+.steps { counter-reset: step; }
+.next-step { counter-increment: step; display: grid; grid-template-columns: 48px 1fr; gap: 16px; padding: 15px 0; border-top: 1px solid rgba(255,255,255,.25); }
+.next-step::before { content: counter(step, decimal-leading-zero); font-family: var(--mono); color: var(--aqua); }
+.next-step h3 { margin: 0; font-size: 18px; }
+.next-step p { margin: 4px 0 0; }
+.contact { padding: 28px; background: var(--aqua); color: var(--deep); }
+.contact .label { color: var(--teal); }
+.contact h3 { margin: 24px 0 6px; font-family: var(--serif); font-size: 38px; font-weight: 400; }
+.contact a { color: inherit; }
+
+.controls {
+  position: fixed;
+  z-index: 90;
+  right: 22px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px;
+  background: rgba(5,38,41,.88);
+  border: 1px solid rgba(255,255,255,.2);
+  backdrop-filter: blur(16px);
+}
+.controls button {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+.controls button:hover { background: rgba(255,255,255,.12); }
+.controls svg { width: 18px; }
+.counter { min-width: 70px; text-align: center; color: #fff; font-family: var(--mono); font-size: 11px; }
+.progress { position: fixed; z-index: 95; left: 0; bottom: 0; width: 100%; height: 5px; background: rgba(255,255,255,.14); }
+.progress span { display: block; width: 0; height: 100%; background: var(--coral); transition: width .35s ease; }
+.source { max-width: 1000px; line-height: 1.35; }
+
+@media (max-width: 1020px) {
+  .chrome { inset: 0 0 auto; flex-wrap: wrap; padding: 7px 10px; }
+  .chapter-nav { width: 100%; order: 3; overflow-x: auto; justify-content: flex-start; }
+  .chapter-nav button { min-width: max-content; }
+  .section-now { margin-left: auto; }
+  .slide { padding: 126px 28px 74px; }
+  .content.two, .content.split, .recommendation, .benchmark-panel, .next-grid { grid-template-columns: 1fr; }
+  .recommendation-visual, .benchmark-image { min-height: 240px; }
+  .objective-picker, .benchmark-shell { grid-template-columns: 210px 1fr; }
+  .journey { grid-template-columns: repeat(5, minmax(150px,1fr)); overflow-x: auto; }
+}
+
+@media (max-height: 760px) and (min-width: 721px) {
+  .slide { padding-top: 82px; padding-bottom: 54px; }
+  .frame { gap: 11px; }
+  .slide-head { padding-bottom: 9px; }
+  .slide-foot { padding-top: 8px; }
+  .display.medium { font-size: clamp(44px, 5vw, 66px); }
+  .display.compact { font-size: clamp(38px, 4.2vw, 54px); line-height: .9; }
+  .lede { margin-top: 9px; font-size: clamp(15px, 1.25vw, 18px); line-height: 1.28; }
+  .objective-picker { min-height: 340px; margin-top: 16px !important; }
+  .recommendation-visual { min-height: 340px; }
+  .recommendation-copy { padding: 24px 36px; }
+  .recommendation-copy h3 { font-size: 50px; }
+  .asset-panel { min-height: 340px; max-height: 390px; }
+  .metric { min-height: 190px; padding: 20px; }
+  .metric strong { font-size: 72px; }
+  .metric-strip { margin-top: 18px !important; }
+  .big-stat { margin: 15px 0; }
+  .big-stat strong { font-size: 104px; }
+  .feature-list { margin-top: 15px; }
+  .feature { padding: 9px; }
+  .journey { margin-top: 18px !important; }
+  .journey-step { min-height: 270px; padding: 18px 16px; }
+  .journey-step svg { margin: 28px 0 16px; }
+  .wallet-crop { min-height: 390px; }
+  .api-flow { margin-top: 16px; }
+  .api-step { min-height: 118px; padding: 14px; }
+  .benchmark-shell { margin-top: 16px !important; }
+  .benchmark-panel { min-height: 350px; }
+  .benchmark-copy { padding: 28px; }
+  .benchmark-copy h3 { font-size: 48px; }
+  .bars { margin-top: 20px; gap: 12px; }
+  .phases { margin-top: 20px !important; }
+  .phase-card { min-height: 315px; }
+  .use-cases { margin-top: 20px !important; }
+  .use-case { min-height: 290px; }
+  .timeline { margin-top: 22px !important; }
+  .time-block { min-height: 275px; padding: 22px; }
+  .time-block h3 { margin-top: 18px; }
+  .dashboard-view { min-height: 330px; margin-top: 12px !important; }
+  .kpi-list { inset: 14px 18px 14px auto; gap: 5px; }
+  .kpi { padding: 7px 11px; }
+  .kpi b { font-size: 13px; }
+  .kpi span { margin-top: 2px; font-size: 10px; }
+  .next-step { padding: 10px 0; }
+  .contact { padding: 22px; }
+  .contact h3 { margin-top: 16px; }
+}
+
+@media (max-width: 720px) {
+  body { overflow: auto; }
+  .deck { height: auto; overflow: visible; }
+  .slide {
+    position: relative;
+    min-height: 100svh;
+    height: auto;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    padding: 138px 18px 52px;
+  }
+  .slide.photo { min-height: 820px; }
+  .controls, .progress { display: none; }
+  .wordmark span { display: none; }
+  .section-now { font-size: 9px; }
+  .grid.three, .grid.four, .metric-strip, .feature-list, .phases, .use-cases, .timeline, .api-flow { grid-template-columns: 1fr; }
+  .content.two, .content.split, .next-grid { gap: 28px; }
+  .objective-picker, .benchmark-shell { grid-template-columns: 1fr; }
+  .objective-list, .benchmark-tabs { display: grid; grid-template-columns: 1fr 1fr; }
+  .recommendation, .benchmark-panel { min-height: 0; }
+  .journey { grid-template-columns: 1fr; overflow: visible; }
+  .journey-step { min-height: 210px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .journey-step::after { display: none; }
+  .kpi-list { position: relative; inset: auto; width: auto; padding: 18px; }
+  .dashboard-view { min-height: 760px; }
+  .display { font-size: clamp(46px,17vw,82px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+<header class="chrome">
+  <div class="wordmark"><b>savi.</b><img src="assets/pg-logo.jpg" alt="P&G"><span>Activation Playbook</span></div>
+  <div class="section-now">Ahora: <strong id="sectionName">Inicio</strong></div>
+  <nav class="chapter-nav" aria-label="Capitulos">
+    <button data-jump="0">Inicio</button>
+    <button data-jump="1">Tesis</button>
+    <button data-jump="3">Mecanicas</button>
+    <button data-jump="5">Journey</button>
+    <button data-jump="8">Evidencia</button>
+    <button data-jump="10">Piloto</button>
+    <button data-jump="13">Siguiente paso</button>
+  </nav>
+</header>
+
+<main class="deck" id="deck">
+  <section class="slide photo active" data-section="Inicio" style="background-image:url('assets/scan-qr.jpg')">
+    <div class="frame">
+      <div class="slide-head"><span class="kicker">P&G · Junio 2026</span><span class="folio">01</span></div>
+      <div class="content">
+        <div class="copy">
+          <div class="hero-logo"><img src="assets/pg-logo.jpg" alt="P&G"><span>Savi × P&G · Executive activation playbook</span></div>
+          <h1 class="display">Incentivos que <span class="accent">venden hoy</span> y aprenden para mañana.</h1>
+          <p class="hero-note">Una propuesta para activar cupones, wallet y mecanicas phygitales con foco en sell-out, trial y data accionable.</p>
+        </div>
+      </div>
+      <div class="slide-foot"><span>Marketing that works for everyone</span><span>Presentacion interactiva</span></div>
+    </div>
+  </section>
+
+  <section class="slide aqua" data-section="Tesis">
+    <div class="frame">
+      <div class="slide-head"><span class="kicker">01 · La oportunidad</span><span class="folio">02</span></div>
+      <div class="content">
+        <h2 class="display medium">Del incentivo al <span class="accent">engagement.</span></h2>
+        <p class="lede">El consumidor ya no separa tienda fisica, mobile y wallet: espera una experiencia simple, medible y util.</p>
+        <div class="grid three" style="margin-top:34px">
+          <article class="card"><div class="icon-wrap"><i data-lucide="radio-tower"></i></div><h3>Conectar</h3><p class="body">QR en tienda, social, newsletter, retail media, OOH y soportes fisicos.</p><span class="tag">Impacto omnicanal</span></article>
+          <article class="card"><div class="icon-wrap"><i data-lucide="ticket-check"></i></div><h3>Convertir</h3><p class="body">Cupon unico, seleccion de retailer, wallet y redencion trazable.</p><span class="tag">Del impacto al ticket</span></article>
+          <article class="card"><div class="icon-wrap"><i data-lucide="refresh-cw"></i></div><h3>Fidelizar</h3><p class="body">Data, segmentacion, recordatorios y journeys para ampliar frecuencia.</p><span class="tag">Relacion recurrente</span></article>
+        </div>
+      </div>
+      <div class="slide-foot"><span>Tres palancas, un objetivo: acelerar sell-out y construir relacion.</span><span>Savi x P&G</span></div>
+    </div>
+  </section>
+
+  <section class="slide" data-section="Tesis">
+    <div class="frame">
+      <div class="slide-head"><span class="kicker">01 · Decision ejecutiva</span><span class="folio">03</span></div>
+      <div class="content">
+        <h2 class="display compact">Primero el objetivo. Despues, la mecanica.</h2>
+        <p class="lede">Selecciona una prioridad de marca para ver la ruta recomendada.</p>
+        <div class="objective-picker" style="margin-top:26px">
+          <div class="objective-list" role="tablist">
+            <button class="is-active" data-objective="trial"><span>Lanzamiento / trial</span><i data-lucide="arrow-right"></i></button>
+            <button data-objective="sellout"><span>Sell-out tactico</span><i data-lucide="arrow-right"></i></button>
+            <button data-objective="engagement"><span>Brand engagement</span><i data-lucide="arrow-right"></i></button>
+            <button data-objective="loyalty"><span>Data & loyalty</span><i data-lucide="arrow-right"></i></button>
+          </div>
+          <div class="recommendation">
+            <div class="recommendation-copy">
+              <div><span class="label" id="recLabel">Recomendacion · trial</span><h3 id="recTitle">On pack + QR + wallet</h3><p class="body" id="recText">Cupón o incentivo de muestra con seleccion de retailer y recordatorio persistente.</p></div>
+              <p class="body"><b>Decision clave:</b> definir face value, canal de impacto y retailer priority antes de cerrar creatividad.</p>
+            </div>
+            <div class="recommendation-visual"><img id="recImage" src="assets/scan-qr.jpg" alt=""><span class="rec-badge" id="recBadge">Foco: prueba medible</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-foot"><span>Sweet spot: alcance fisico + trazabilidad mobile + aprendizaje.</span><span>Interactivo</span></div>
+    </div>
+  </section>
+
+  <section class="slide yellow" data-section="Mecanicas">
+    <div class="frame">
+      <div class="slide-head"><span class="kicker">02 · Cupon papel</span><span class="folio">04</span></div>
+      <div class="content">
+        <div class="content two">
+          <div>
+            <h2 class="display compact">El driver de volumen que sigue funcionando.</h2>
+            <p class="lede">Rotacion, trial y respuesta rapida frente a competencia con aceptacion masiva.</p>
+            <div class="metric-strip" style="margin-top:28px">
+              <div class="metric"><strong>15%</strong><b>On pack</b><p class="body">Sticker, collarin o cupon en producto.</p></div>
+              <div class="metric"><strong>25%</strong><b>In store</b><p class="body">Take one, stopper o azafatas.</p></div>
+              <div class="metric"><strong>2–5,9%</strong><b>Out of store</b><p class="body">Prensa, mailing y buzoneo.</p></div>
+            </div>
+          </div>
+          <div class="asset-panel"><img src="assets/paper-portfolio.jpg" alt="Ejemplos de cupones fisicos"></div>
+        </div>
+      </div>
+      <div class="slide-foot source"><span>Redenciones medias indicadas en el material fuente Savi para P&G, junio 2026.</span><span>Volumen · velocidad · cobertura</span></div>
+    </div>
+  </section>
+
+  <section class="slide dark" data-section="Mecanicas">
+    <div class="frame">
+      <div class="slide-head"><span class="kicker">02 · Cupon mobile</span><span class="folio">05</span></div>
+      <div class="content two">
+        <div>
+          <h2 class="display compact">Mas medicion. Menos friccion.</h2>
+          <p class="lede">El mobile añade trazabilidad, personalizacion y control del funnel sin perder capilaridad retail.</p>
+          <div class="big-stat"><strong>+75–102%</strong><span>crecimiento en redencion para retailers con clearing digital.</span></div>
+          <div class="feature-list">
+            <div class="feature"><i data-lucide="shield-check"></i><div><b>Control</b><span>Codigos unicos de un solo uso.</span></div></div>
+            <div class="feature"><i data-lucide="activity"></i><div><b>Tiempo real</b><span>Seguimiento de impacto a redencion.</span></div></div>
+            <div class="feature"><i data-lucide="users"></i><div><b>Data</b><span>Leads, segmentacion y learning.</span></div></div>
+            <div class="feature"><i data-lucide="wallet-cards"></i><div><b>Wallet</b><span>Recordatorios nativos por expiracion.</span></div></div>
+          </div>
+        </div>
+        <div class="asset-panel"><img src="assets/mobile-coupons.jpg" alt="Cupones moviles en smartphones"></div>
+      </div>
+      <div class="slide-foot source"><span>Fuente: benchmark de clearing digital incluido en los materiales Savi para P&G.</span><span>Captacion · control · data</span></div>
+    </div>
+  </section>
+
+  <section class="slide" data-section="Journey">
+    <div class="frame">
+      <div class="slide-head"><span class="kicker">03 · Experiencia end-to-end</span><span class="folio">06</span></div>
+      <div class="content">
+        <h2 class="display compact">Del impacto al ticket, en cinco momentos.</h2>
+        <p class="lede">El journey ganador es el mas corto: escanear, elegir, guardar y redimir.</p>
+        <div class="journey" style="margin-top:30px">
+          <article class="journey-step"><span class="step-num">1</span><i data-lucide="scan-line"></i><h3>Impacto</h3><p class="body">QR fisico o digital en stopper, pack, newsletter, social u OOH.</p></article>
+          <article class="journey-step"><span class="step-num">2</span><i data-lucide="badge-percent"></i><h3>Generacion</h3><p class="body">Cupon unico creado al instante con control antifraude.</p></article>
+          <article class="journey-step"><span class="step-num">3</span><i data-lucide="store"></i><h3>Retailer</h3><p class="body">El consumidor elige donde canjear sin abandonar el flujo.</p></article>
+          <article class="journey-step"><span class="step-num">4</span><i data-lucide="wallet-cards"></i><h3>Wallet</h3><p class="body">Guardado en Apple o Google Wallet con avisos nativos.</p></article>
+          <article class="journey-step"><span class="step-num">5</span><i data-lucide="circle-check-big"></i><h3>Redencion</h3><p class="body">QR o codigo en caja, descuento aplicado y funnel medido.</p></article>
+        </div>
+      </div>
+      <div class="slide-foot"><span>Distribucion fisica y/o digital · cupon unico · retailer · wallet · caja</span><span>Seamless experience</span></div>
+    </div>
+  </section>
+
+  <section class="slide coral" data-section="Journey">
+    <div class="frame">
+      <div class="slide-head"><span class="kicker">03 · Wallet nativo</span><span class="folio">07</span></div>
+      <div class="content two">
+        <div>
+          <h2 class="display compact">El cupon deja de ser un impacto efimero.</h2>
+          <p class="lede">Google Wallet y Apple Wallet mantienen la promocion visible hasta el momento de compra, sin exigir datos personales para recordatorios basicos.</p>
+          <div class="rule" style="background:var(--yellow)"></div>
+          <h3 style="font-size:22px;margin:0">Apple Wallet puede recordar la expiracion:</h3>
+          <div class="reminders"><span>10d</span><span>4d</span><span>1d</span></div>
+        </div>
+        <div class="wallet-crop"><img src="assets/wallet-coupon.jpg" alt="Cupon digital en un telefono"></div>
+      </div>
+      <div class="slide-foot source"><span>Ejemplo de cadencia incluido en el material fuente; la configuracion final depende de plataforma y campaña.</span><span>Menos olvido · mas conversion</span></div>
+    </div>
+  </section>
+
+  <section class="slide dark" data-section="Journey">
+    <div class="frame">
+      <div class="slide-head"><span class="kicker">03 · Cuponera + API</span><span class="folio">08</span></div>
+      <div class="content two">
+        <div>
+          <h2 class="display compact">Una capa operativa. Multiples experiencias.</h2>
+          <p class="lede">La API Savi centraliza contenido, generacion de cupon, seleccion de retailer y URLs de redencion.</p>
+          <div class="api-flow">
+            <div class="api-step"><span>01</span><h3>Usuario selecciona</h3></div>
+            <div class="api-step"><span>02</span><h3>Cuponera llama a la API</h3></div>
+            <div class="api-step"><span>03</span><h3>Savi devuelve URL unica</h3></div>
+            <div class="api-step"><span>04</span><h3>Retailer redime</h3></div>
+          </div>
+        </div>
+        <div class="asset-panel"><img src="assets/cuponera-api.jpg" alt="Interfaz de cuponera Savi"></div>
+      </div>
+      <div class="slide-foot"><span>Cupon individual o multicupón · retailer selection · wallet ready</span><span>Integracion modular</span></div>
+    </div>
+  </section>
+
+  <section class="slide" data-section="Evidencia">
+    <div class="frame">
+      <div class="slide-head"><span class="kicker">04 · Benchmarks reales</span><span class="folio">09</span></div>
+      <div class="content">
+        <h2 class="display compact">Visibilidad fisica + incentivo + minimo rozamiento.</h2>
+        <p class="lede">Explora cuatro combinaciones de canal y mecanica incluidas en los casos Savi.</p>
+        <div class="benchmark-shell" style="margin-top:26px">
+          <div class="benchmark-tabs">
+            <button class="is-active" data-benchmark="buitoni"><b>QR in store</b><span>Nestle Buitoni</span></button>
+            <button data-benchmark="promotoras"><b>QR + promotoras</b><span>Vileda Turbo Smart</span></button>
+            <button data-benchmark="newsletter"><b>Newsletter propia</b><span>Vileda Turbo Smart</span></button>
+            <button data-benchmark="flyer"><b>QR flyer</b><span>Vileda Turbo Smart</span></button>
+          </div>
+          <div class="benchmark-panel">
+            <div class="benchmark-copy">
+              <div><span class="label" id="benchLabel">QR in store · Nestle Buitoni</span><h3 id="benchTitle">El lineal se convierte en medio medible.</h3></div>
+              <div class="bars">
+                <div><div class="bar-head"><span>Activacion</span><b id="activationValue">52%</b></div><div class="bar-track"><div class="bar-fill" id="activationBar" style="width:52%"></div></div></div>
+                <div><div class="bar-head"><span>Redencion</span><b id="redemptionValue">49%</b></div><div class="bar-track"><div class="bar-fill alt" id="redemptionBar" style="width:49%"></div></div></div>
+              </div>
+            </div>
+            <div class="benchmark-image"><img id="benchImage" src="assets/scan-qr.jpg" alt=""></div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-foot source"><span>Porcentajes y definiciones segun los casos incluidos en los materiales Savi; las bases varian por campaña.</span><span>Interactivo</span></div>
+    </div>
+  </section>
+
+  <section class="slide dark" data-section="Evidencia">
+    <div class="frame">
+      <div class="slide-head"><span class="kicker">04 · De tactica a sistema</span><span class="folio">10</span></div>
+      <div class="content">
+        <h2 class="display compact">Escalar la ambicion por fases.</h2>
+        <p class="lede">Empezar con quick wins medibles y reservar la ambicion CRM para cuando exista learning suficiente.</p>
+        <div class="phases" style="margin-top:32px">
+          <article class="phase-card"><span class="phase-num">1</span><div><span class="label">Quick wins</span><h3>Venta rapida</h3><p class="body">Trial y sell-out con on pack, in store y QR wallet.</p></div></article>
+          <article class="phase-card"><span class="phase-num">2</span><div><span class="label">Acumulacion</span><h3>Frecuencia</h3><p class="body" style="color:var(--ink-2)">Multicupón, cashback hibrido y journeys por segmento.</p></div></article>
+          <article class="phase-card"><span class="phase-num">3</span><div><span class="label">Loyalty / CRM</span><h3>Relacion</h3><p class="body" style="color:var(--ink-2)">Data enrichment y personalizacion recurrente.</p></div></article>
+        </div>
+      </div>
+      <div class="slide-foot"><span>Reducir riesgo operativo · aprender · escalar con evidencias</span><span>Arquitectura recomendada</span></div>
+    </div>
+  </section>
+
+  <section class="slide aqua" data-section="Piloto">
+    <div class="frame">
+      <div class="slide-head"><span class="kicker">05 · Casos de uso</span><span class="folio">11</span></div>
+      <div class="content">
+        <h2 class="display compact">Un stack. Cuatro objetivos de marca.</h2>
+        <p class="lede">La infraestructura se mantiene; cambian el incentivo, el canal y la experiencia.</p>
+        <div class="use-cases" style="margin-top:30px">
+          <article class="use-case"><i data-lucide="sparkles"></i><div><h3>Lanzamiento / trial</h3><p>Prueba medible con retailer selection y recordatorio.</p></div><div class="mechanic">On pack + QR wallet</div></article>
+          <article class="use-case"><i data-lucide="trending-up"></i><div><h3>Sell-out tactico</h3><p>Convertir trafico en caja y medir activacion/redencion.</p></div><div class="mechanic">Stopper + cupón mobile</div></article>
+          <article class="use-case"><i data-lucide="message-circle-heart"></i><div><h3>Brand engagement</h3><p>Impacto digital, registro opcional y cupón al wallet.</p></div><div class="mechanic">Social journey + mobile</div></article>
+          <article class="use-case"><i data-lucide="database-zap"></i><div><h3>Data & loyalty</h3><p>Segmentacion, recurrencia y aprendizaje por categoria.</p></div><div class="mechanic">Multicupón + cashback</div></article>
+        </div>
+      </div>
+      <div class="slide-foot"><span>Objetivo → canal de impacto → incentivo → retailer priority</span><span>Playbook P&G</span></div>
+    </div>
+  </section>
+
+  <section class="slide yellow" data-section="Piloto">
+    <div class="frame">
+      <div class="slide-head"><span class="kicker">05 · Roadmap</span><span class="folio">12</span></div>
+      <div class="content">
+        <h2 class="display compact">Lanzar rapido. Medir pronto. Escalar con evidencia.</h2>
+        <div class="timeline" style="margin-top:36px">
+          <article class="time-block"><strong>0–2 sem.</strong><h3>Diseño</h3><p class="body">Objetivo, producto, face value, legal, retailer priority y UX.</p></article>
+          <article class="time-block"><strong>3–4 sem.</strong><h3>Produccion</h3><p class="body">Creatividades, codigos, wallet, API/cuponera, QA y reporting.</p></article>
+          <article class="time-block"><strong>5–8 sem.</strong><h3>Launch</h3><p class="body">Medios, in store, social/newsletter y optimizacion semanal.</p></article>
+          <article class="time-block"><strong>8+ sem.</strong><h3>Scale</h3><p class="body">Learning por canal, retailer y target; expansion a loyalty/data.</p></article>
+        </div>
+      </div>
+      <div class="slide-foot"><span>Gobernanza: Brand + Trade + Legal + Retail Ops + Savi Project Lead</span><span>Comite semanal</span></div>
+    </div>
+  </section>
+
+  <section class="slide dark" data-section="Piloto">
+    <div class="frame">
+      <div class="slide-head"><span class="kicker">05 · Cuadro de mando</span><span class="folio">13</span></div>
+      <div class="content">
+        <h2 class="display compact">Performance promocional + aprendizaje accionable.</h2>
+        <p class="lede">El output no es solo ROI: es una agenda concreta para mejorar la siguiente oleada.</p>
+        <div class="dashboard-view" style="margin-top:24px">
+          <img src="assets/campaign-dashboard.jpg" alt="Equipo revisando un dashboard de campaña">
+          <div class="kpi-list">
+            <div class="kpi"><b><span>01</span>Reach</b><span>Impactos, visitas y escaneos QR.</span></div>
+            <div class="kpi"><b><span>02</span>Engagement</b><span>Activaciones, wallet saves y journey completion.</span></div>
+            <div class="kpi"><b><span>03</span>Conversion</b><span>Redenciones, coste por redencion y sell-out.</span></div>
+            <div class="kpi"><b><span>04</span>Data</b><span>Leads, opt-ins, segmentos y retailer selection.</span></div>
+            <div class="kpi"><b><span>05</span>Learning</b><span>Canal ganador, producto, creatividad y timing.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-foot"><span>Dashboard por canal y retailer · agenda de optimizacion</span><span>Medir para decidir</span></div>
+    </div>
+  </section>
+
+  <section class="slide coral" data-section="Siguiente paso">
+    <div class="frame">
+      <div class="slide-head"><span class="kicker">06 · Activacion</span><span class="folio">14</span></div>
+      <div class="content">
+        <div class="next-grid">
+          <div>
+            <h2 class="display compact">De la oportunidad a un piloto real.</h2>
+            <p class="lede">Una categoria, una marca, 2–3 canales y un marco de aprendizaje compartido.</p>
+            <div class="steps" style="margin-top:28px">
+              <div class="next-step"><div><h3>Workshop de objetivo y marca</h3><p class="body">Producto, target, retailer priority y KPIs.</p></div></div>
+              <div class="next-step"><div><h3>Diseño del piloto</h3><p class="body">Mecanica, face value, canales y journey.</p></div></div>
+              <div class="next-step"><div><h3>Plan operativo</h3><p class="body">Legal, piezas, codigos, wallets, cuponera/API y QA.</p></div></div>
+              <div class="next-step"><div><h3>Launch + optimizacion</h3><p class="body">Dashboard semanal y decision de escalado.</p></div></div>
+            </div>
+          </div>
+          <aside class="contact">
+            <span class="label">Let's talk more</span>
+            <h3>Roberto Sandoval</h3>
+            <p>Strategic Account Director</p>
+            <p><a href="mailto:rsandoval@savispain.es">rsandoval@savispain.es</a><br>+34 600 571 378</p>
+            <div class="rule"></div>
+            <b>savi. Marketing that works for everyone</b>
+          </aside>
+        </div>
+      </div>
+      <div class="slide-foot"><span>Savi x P&G · Junio 2026</span><span>Gracias</span></div>
+    </div>
+  </section>
+</main>
+
+<div class="controls" aria-label="Navegacion de slides">
+  <button id="home" type="button" title="Inicio"><i data-lucide="panel-top"></i></button>
+  <button id="prev" type="button" title="Anterior"><i data-lucide="arrow-left"></i></button>
+  <span class="counter" id="counter">01 / 14</span>
+  <button id="next" type="button" title="Siguiente"><i data-lucide="arrow-right"></i></button>
+</div>
+<div class="progress"><span id="progress"></span></div>
+
+<script>
+const slides = [...document.querySelectorAll(".slide")];
+const counter = document.getElementById("counter");
+const progress = document.getElementById("progress");
+const sectionName = document.getElementById("sectionName");
+const navButtons = [...document.querySelectorAll(".chapter-nav button")];
+let current = Math.max(0, slides.findIndex(slide => slide.id === location.hash.slice(1)));
+let wheelLocked = false;
+let touchStartY = 0;
+
+const sectionStarts = navButtons.map(button => ({
+  index: Number(button.dataset.jump),
+  name: button.textContent.trim()
+}));
+
+function activeSection(index) {
+  return [...sectionStarts].reverse().find(item => index >= item.index) || sectionStarts[0];
+}
+
+function show(index, updateHash = true) {
+  current = Math.max(0, Math.min(slides.length - 1, index));
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("active", i === current);
+    slide.classList.toggle("before", i < current);
+    slide.setAttribute("aria-hidden", i === current ? "false" : "true");
+  });
+  const section = activeSection(current);
+  sectionName.textContent = section.name;
+  navButtons.forEach(button => {
+    const selected = Number(button.dataset.jump) === section.index;
+    button.classList.toggle("is-active", selected);
+    if (selected) button.setAttribute("aria-current", "page");
+    else button.removeAttribute("aria-current");
+  });
+  counter.textContent = `${String(current + 1).padStart(2,"0")} / ${String(slides.length).padStart(2,"0")}`;
+  progress.style.width = `${((current + 1) / slides.length) * 100}%`;
+  if (updateHash) history.replaceState(null, "", `#slide-${current + 1}`);
+}
+
+document.getElementById("home").addEventListener("click", () => show(0));
+document.getElementById("prev").addEventListener("click", () => show(current - 1));
+document.getElementById("next").addEventListener("click", () => show(current + 1));
+navButtons.forEach(button => button.addEventListener("click", () => show(Number(button.dataset.jump))));
+
+document.addEventListener("keydown", event => {
+  if (["ArrowRight","ArrowDown","PageDown"," "].includes(event.key)) { event.preventDefault(); show(current + 1); }
+  if (["ArrowLeft","ArrowUp","PageUp"].includes(event.key)) { event.preventDefault(); show(current - 1); }
+  if (event.key === "Home") show(0);
+  if (event.key === "End") show(slides.length - 1);
+});
+
+window.addEventListener("wheel", event => {
+  if (window.innerWidth <= 720 || wheelLocked || Math.abs(event.deltaY) < 28) return;
+  wheelLocked = true;
+  show(current + (event.deltaY > 0 ? 1 : -1));
+  setTimeout(() => wheelLocked = false, 650);
+}, { passive: true });
+
+window.addEventListener("touchstart", event => { touchStartY = event.changedTouches[0].clientY; }, { passive: true });
+window.addEventListener("touchend", event => {
+  if (window.innerWidth <= 720) return;
+  const delta = touchStartY - event.changedTouches[0].clientY;
+  if (Math.abs(delta) > 45) show(current + (delta > 0 ? 1 : -1));
+}, { passive: true });
+window.addEventListener("hashchange", () => {
+  const match = location.hash.match(/slide-(\d+)/);
+  if (match) show(Number(match[1]) - 1, false);
+});
+
+const recommendations = {
+  trial: { label: "Recomendacion · trial", title: "On pack + QR + wallet", text: "Cupon o incentivo de muestra con seleccion de retailer y recordatorio persistente.", badge: "Foco: prueba medible", image: "assets/scan-qr.jpg" },
+  sellout: { label: "Recomendacion · sell-out", title: "Stopper + cupón mobile", text: "Convertir trafico de tienda en caja, con lectura clara de activacion y redencion.", badge: "Foco: rotacion rapida", image: "assets/checkout-redemption.jpg" },
+  engagement: { label: "Recomendacion · engagement", title: "Social journey + mobile", text: "Un impacto digital corto que termina en cupón al wallet y puede incluir registro opcional.", badge: "Foco: participacion", image: "assets/wallet-coupon.jpg" },
+  loyalty: { label: "Recomendacion · loyalty", title: "Multicupón + cashback", text: "Segmentacion, recurrencia y aprendizaje por categoria sobre una infraestructura comun.", badge: "Foco: frecuencia y data", image: "assets/campaign-dashboard.jpg" }
+};
+document.querySelectorAll("[data-objective]").forEach(button => button.addEventListener("click", () => {
+  document.querySelectorAll("[data-objective]").forEach(item => item.classList.toggle("is-active", item === button));
+  const item = recommendations[button.dataset.objective];
+  document.getElementById("recLabel").textContent = item.label;
+  document.getElementById("recTitle").textContent = item.title;
+  document.getElementById("recText").textContent = item.text;
+  document.getElementById("recBadge").textContent = item.badge;
+  document.getElementById("recImage").src = item.image;
+}));
+
+const benchmarks = {
+  buitoni: { label: "QR in store · Nestle Buitoni", title: "El lineal se convierte en medio medible.", activation: 52, redemption: 49, image: "assets/scan-qr.jpg" },
+  promotoras: { label: "QR + promotoras · Vileda Turbo Smart", title: "La asistencia humana reduce el rozamiento.", activation: 75, redemption: 71, image: "assets/checkout-redemption.jpg" },
+  newsletter: { label: "Newsletter propia · Vileda Turbo Smart", title: "La afinidad impulsa activacion; la oferta decide redencion.", activation: 51, redemption: 22, image: "assets/mobile-coupons.jpg" },
+  flyer: { label: "QR flyer · Vileda Turbo Smart", title: "El soporte fisico puede ser una puerta digital directa.", activation: 80, redemption: null, image: "assets/scan-qr.jpg" }
+};
+document.querySelectorAll("[data-benchmark]").forEach(button => button.addEventListener("click", () => {
+  document.querySelectorAll("[data-benchmark]").forEach(item => item.classList.toggle("is-active", item === button));
+  const item = benchmarks[button.dataset.benchmark];
+  document.getElementById("benchLabel").textContent = item.label;
+  document.getElementById("benchTitle").textContent = item.title;
+  document.getElementById("activationValue").textContent = `${item.activation}%`;
+  document.getElementById("activationBar").style.width = `${item.activation}%`;
+  document.getElementById("redemptionValue").textContent = item.redemption === null ? "n/d" : `${item.redemption}%`;
+  document.getElementById("redemptionBar").style.width = `${item.redemption || 0}%`;
+  document.getElementById("benchImage").src = item.image;
+}));
+
+const hashMatch = location.hash.match(/slide-(\d+)/);
+if (hashMatch) current = Number(hashMatch[1]) - 1;
+show(current, false);
+if (window.lucide) lucide.createIcons({ attrs: { "stroke-width": 1.8 } });
+</script>
+</body>
+</html>
