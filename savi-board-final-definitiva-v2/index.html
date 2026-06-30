@@ -1234,6 +1234,22 @@ deck-stage > section[data-screen-label="14 Mecánicas"] .serif {
   color: rgba(255, 255, 255, 0.72) !important;
 }
 
+.shopping-collector-dark,
+.shopping-collector-dark .h2,
+.shopping-collector-dark .pill,
+.shopping-collector-dark div {
+  color: #f4f1ea !important;
+}
+
+.shopping-collector-dark .meta,
+.shopping-collector-dark .body-s {
+  color: rgba(244, 241, 234, 0.72) !important;
+}
+
+.shopping-collector-dark .flow-index {
+  color: var(--accent) !important;
+}
+
 deck-stage > section[data-screen-label="14 Mecánicas"] .body {
   color: rgba(255, 255, 255, 0.78) !important;
 }
@@ -3706,6 +3722,19 @@ body.click-navigation-mode deck-stage > section :is(.card, .lift, .tier-card-lig
   color: var(--uniform-muted) !important;
 }
 
+body.click-navigation-mode deck-stage > section .shopping-collector-dark,
+body.click-navigation-mode deck-stage > section .shopping-collector-dark :is(.h2, .pill, div, span) {
+  color: #f4f1ea !important;
+}
+
+body.click-navigation-mode deck-stage > section .shopping-collector-dark :is(.meta, .body-s, p) {
+  color: rgba(244, 241, 234, 0.72) !important;
+}
+
+body.click-navigation-mode deck-stage > section .shopping-collector-dark .flow-index {
+  color: var(--accent) !important;
+}
+
 body.click-navigation-mode deck-stage > section :is(.pill, .tag, .chip) {
   background: transparent !important;
   border-color: var(--uniform-line) !important;
@@ -3880,6 +3909,7 @@ body.click-navigation-mode deck-stage > section .b2b-portal-mock div[style*="bac
   <section id="m9"></section>
   <section id="m11" data-anchor="productos"></section>
   <section id="m12"></section>
+  <section id="m12a" data-anchor="shopping-collector"></section>
   <section id="m29" data-anchor="cornetto"></section>
   <section id="m31" data-anchor="monster-demo"></section>
   <section id="m14" data-anchor="b2c"></section>
@@ -5086,6 +5116,182 @@ function SlideWhatsApp() {
   );
 }
 
+/* =========================================================
+   SLIDE 12A — SHOPPING COLLECTOR FOCUS
+   ========================================================= */
+function SlideShoppingCollector() {
+  const purchases = [
+    { n: "01", label: "Compra validada", value: "+1 sello", active: true },
+    { n: "02", label: "Ticket o pincode", value: "+1 sello", active: true },
+    { n: "03", label: "SKU objetivo", value: "+bonus", active: true },
+    { n: "04", label: "Nueva compra", value: "+1 sello", active: true },
+    { n: "05", label: "Frecuencia", value: "+1 sello", active: true },
+    { n: "06", label: "Reward", value: "Desbloqueado", active: false },
+  ];
+  const flow = [
+    { k: "Compra", i18nKey: "shoppingCollector.purchaseStep", d: "Producto, canal y momento reales" },
+    { k: "Valida", d: "Ticket OCR, pincode o venta atribuida" },
+    { k: "Acumula", d: "Progreso visible hacia el hito" },
+    { k: "Canjea", d: "Cashback, cupón, regalo o puntos" },
+  ];
+  return (
+    <section data-screen-label="12A Shopping Collector" className="bg-accent">
+      <div className="frame">
+        <DeckHeader section="04 · CUSTOMER JOURNEY · B2C" sectionLabel="Focus próxima reunión" slide="12A" />
+        <div className="row between ai-end" style={{ marginTop: 18, marginBottom: 22, gap: 48 }}>
+          <h2 className="h1" style={{ maxWidth: 780, fontSize: "clamp(58px, 6.4vw, 106px)", lineHeight: 0.94 }}>
+            Shopping Collector:<br/>compra repetida,<br/><span style={{ fontStyle: "italic" }}>relación medible.</span>
+          </h2>
+          <p className="body-l" style={{ maxWidth: 470 }}>
+            Una mecánica simple para categorías de alta frecuencia: cada compra validada acerca al consumidor a un beneficio y genera data accionable para la siguiente activación.
+          </p>
+        </div>
+
+        <div className="grid-2" style={{ flex: 1, gap: 26, alignItems: "stretch" }}>
+          <div style={{
+            background: "rgba(250,250,247,0.9)",
+            border: "1px solid rgba(10,79,71,0.34)",
+            padding: 28,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            minHeight: 430,
+            boxShadow: "0 24px 70px rgba(10,79,71,0.12)",
+          }}>
+            <div className="row between ai-start" style={{ gap: 32 }}>
+              <div>
+                <span className="meta" style={{ color: "var(--accent-deep)" }}>Mecánica principal</span>
+                <h3 className="h2" style={{ marginTop: 8, fontSize: "clamp(40px, 3.7vw, 62px)", lineHeight: 0.95 }}>
+                  Compra 6.<br/>Recibe valor.
+                </h3>
+              </div>
+              <div style={{
+                width: 116,
+                height: 116,
+                borderRadius: "50%",
+                border: "2px solid var(--accent-deep)",
+                display: "grid",
+                placeItems: "center",
+                background: "var(--accent)",
+                color: "var(--ink)",
+                flex: "0 0 auto",
+              }}>
+                <div style={{ textAlign: "center" }}>
+                  <div className="mono" style={{ fontSize: 18 }}>PROGRESO</div>
+                  <div style={{ fontSize: 40, fontWeight: 750, letterSpacing: "-0.04em" }}>5/6</div>
+                </div>
+              </div>
+            </div>
+
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: 12,
+              marginTop: 20,
+            }}>
+              {purchases.map((item, i) => (
+                <div key={item.n} style={{
+                  minHeight: 94,
+                  border: "1px solid rgba(10,79,71,0.28)",
+                  background: item.active ? "rgba(93,212,193,0.26)" : "rgba(244,241,234,0.85)",
+                  padding: 14,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  position: "relative",
+                }}>
+                  <div className="row between ai-center">
+                    <span className="mono" style={{ color: "var(--accent-deep)", fontSize: 18 }}>{item.n}</span>
+                    <span style={{
+                      width: 22,
+                      height: 22,
+                      borderRadius: "50%",
+                      background: item.active ? "var(--accent-deep)" : "transparent",
+                      border: "1px solid var(--accent-deep)",
+                      display: "inline-block",
+                    }}></span>
+                  </div>
+                  <div>
+                    <div style={{ fontWeight: 720, fontSize: 18, letterSpacing: "-0.03em" }}>{item.label}</div>
+                    <div className="meta" style={{ marginTop: 6, color: item.active ? "var(--accent-deep)" : "var(--ink-mute)" }}>{item.value}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ marginTop: 18 }}>
+              <div style={{ height: 10, background: "rgba(10,79,71,0.18)", border: "1px solid rgba(10,79,71,0.2)" }}>
+                <div style={{ width: "83%", height: "100%", background: "var(--accent-deep)" }}></div>
+              </div>
+              <div className="row between ai-center" style={{ marginTop: 10 }}>
+                <span className="meta" style={{ color: "var(--accent-deep)" }}>Una compra más desbloquea reward</span>
+                <span className="pill" style={{ background: "var(--ink)", color: "var(--bg)", borderColor: "var(--ink)" }}>Alta frecuencia</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="col" style={{ gap: 14, minHeight: 430 }}>
+            <div className="shopping-collector-dark" style={{
+              flex: "1 1 auto",
+              background: "var(--ink)",
+              color: "#f4f1ea",
+              border: "1px solid rgba(10,79,71,0.34)",
+              padding: 28,
+              display: "grid",
+              gridTemplateColumns: "1fr",
+              alignContent: "space-between",
+            }}>
+              <div className="row between ai-start">
+                <div>
+                  <span className="meta" style={{ color: "rgba(244,241,234,0.62)" }}>Cómo se activa</span>
+                  <h3 className="h2" style={{ color: "#f4f1ea", marginTop: 8, fontSize: "clamp(38px, 3.4vw, 56px)" }}>
+                    Un loop de frecuencia,<br/>no una promo aislada.
+                  </h3>
+                </div>
+                <span className="pill" style={{ color: "#f4f1ea", borderColor: "rgba(244,241,234,0.42)" }}>Shopping Collector</span>
+              </div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 10, marginTop: 20 }}>
+                {flow.map((f, i) => (
+                  <div key={f.k} style={{
+                    borderTop: "1px solid rgba(244,241,234,0.34)",
+                    paddingTop: 12,
+                    minHeight: 96,
+                  }}>
+                    <div className="mono flow-index" style={{ color: "var(--accent)", fontSize: 18 }}>0{i + 1}</div>
+                    <div style={{ fontWeight: 720, fontSize: 24, marginTop: 8, letterSpacing: "-0.03em" }}>
+                      <span data-i18n-key={f.i18nKey || undefined}>{f.k}</span>
+                    </div>
+                    <p className="body-s" style={{ color: "rgba(244,241,234,0.68)", marginTop: 8, fontSize: 15, lineHeight: 1.25 }}>{f.d}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid-3" style={{ gap: 0, border: "1px solid rgba(10,79,71,0.34)", background: "rgba(250,250,247,0.86)" }}>
+              {[
+                ["+ frecuencia", "Impulsa repetición sin depender solo del descuento."],
+                ["+ trazabilidad", "Cada ticket, SKU o pincode alimenta reporting por canal."],
+                ["+ siguiente acción", "Permite retargeting, retos, tiers y rewards personalizados."],
+              ].map(([k, d], i) => (
+                <div key={k} style={{
+                  padding: 16,
+                  borderRight: i < 2 ? "1px solid rgba(10,79,71,0.22)" : "none",
+                  minHeight: 108,
+                }}>
+                  <div style={{ fontWeight: 760, fontSize: 24, letterSpacing: "-0.04em" }}>{k}</div>
+                  <p className="body-s" style={{ marginTop: 8, fontSize: 15, lineHeight: 1.24 }}>{d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <DeckFooter />
+      </div>
+    </section>
+  );
+}
+
 function WhatsAppMock() {
   return (
     <div className="phone">
@@ -5206,7 +5412,7 @@ function SlideJourneyB2C() {
 
 Object.assign(window, {
   SlideValueProp, SlideValueStack, SlideOperatingModel, SlideFourLevers,
-  SlidePortfolioOverview, SlideWhatsApp, WhatsAppMock, SlideJourneyB2C
+  SlidePortfolioOverview, SlideWhatsApp, SlideShoppingCollector, WhatsAppMock, SlideJourneyB2C
 });
 
 </script>
@@ -6600,6 +6806,7 @@ const slideMap = [
   { id: 9,  Comp: () => <SlideOperatingModel /> },
   { id: 11, Comp: () => <SlidePortfolioOverview /> },
   { id: 12, Comp: () => <SlideWhatsApp /> },
+  { id: "12a", Comp: () => <SlideShoppingCollector /> },
   { id: 29, Comp: () => <SlideCornettoMacbook /> },
   { id: 31, Comp: () => <SlideMonsterMacbook /> },
   { id: 14, Comp: () => <SlideMecanicas /> },
@@ -7209,6 +7416,43 @@ const SAVI_I18N_TEXT = {
   "Producto, merch y ediciones limitadas": "Product, merch and limited editions",
   "Música, festivales, gaming o cine — alineados con la marca.": "Music, festivals, gaming or cinema — aligned with the brand.",
   "Misiones, UGC e insights de consumidores y profesionales.": "Missions, UGC and insights from consumers and professionals.",
+  "Focus próxima reunión": "Next meeting focus",
+  "Shopping Collector:": "Shopping Collector:",
+  "compra repetida,": "repeat purchase,",
+  "relación medible.": "measurable relationship.",
+  "la compra repetida se convierte en": "repeat purchase becomes",
+  "relación": "relationship",
+  "Una mecánica simple para categorías de alta frecuencia: cada compra validada acerca al consumidor a un beneficio y genera data accionable para la siguiente activación.": "A simple mechanic for high-frequency categories: each validated purchase moves the consumer closer to a benefit and generates actionable data for the next activation.",
+  "Mecánica principal": "Core mechanic",
+  "Compra 6.": "Buy 6.",
+  "Recibe valor.": "Get value.",
+  "PROGRESO": "PROGRESS",
+  "Compra validada": "Validated purchase",
+  "Ticket o pincode": "Receipt or pincode",
+  "SKU objetivo": "Target SKU",
+  "Nueva compra": "New purchase",
+  "+1 sello": "+1 stamp",
+  "+bonus": "+bonus",
+  "Reward": "Reward",
+  "Desbloqueado": "Unlocked",
+  "Una compra más desbloquea reward": "One more purchase unlocks the reward",
+  "Alta frecuencia": "High frequency",
+  "Cómo se activa": "How it activates",
+  "Un loop de frecuencia,": "A frequency loop,",
+  "no una promo aislada.": "not an isolated promo.",
+  "Producto, canal y momento reales": "Real product, channel and moment",
+  "Valida": "Validate",
+  "Ticket OCR, pincode o venta atribuida": "Receipt OCR, pincode or attributed sale",
+  "Acumula": "Accumulate",
+  "Progreso visible hacia el hito": "Visible progress toward the milestone",
+  "Canjea": "Redeem",
+  "Cashback, cupón, regalo o puntos": "Cashback, coupon, gift or points",
+  "+ frecuencia": "+ frequency",
+  "Impulsa repetición sin depender solo del descuento.": "Drives repeat purchase without relying only on discount.",
+  "+ trazabilidad": "+ traceability",
+  "Cada ticket, SKU o pincode alimenta reporting por canal.": "Each receipt, SKU or pincode feeds channel-level reporting.",
+  "+ siguiente acción": "+ next action",
+  "Permite retargeting, retos, tiers y rewards personalizados.": "Enables retargeting, challenges, tiers and personalized rewards.",
   "Todas las pruebas": "Every proof",
   "de compra": "of purchase",
   "cuentan": "counts",
@@ -7768,6 +8012,43 @@ const SAVI_I18N_TEXTS = {
   "Producto, merch y ediciones limitadas": "Produkt, Merch und limitierte Editionen",
   "Música, festivales, gaming o cine — alineados con la marca.": "Musik, Festivals, Gaming oder Kino – passend zur Marke.",
   "Misiones, UGC e insights de consumidores y profesionales.": "Missionen, UGC und Erkenntnisse von Verbrauchern und Fachleuten.",
+  "Focus próxima reunión": "Fokus des nächsten Meetings",
+  "Shopping Collector:": "Shopping Collector:",
+  "compra repetida,": "Wiederkauf,",
+  "relación medible.": "messbare Beziehung.",
+  "la compra repetida se convierte en": "Wiederkauf wird zur",
+  "relación": "Beziehung",
+  "Una mecánica simple para categorías de alta frecuencia: cada compra validada acerca al consumidor a un beneficio y genera data accionable para la siguiente activación.": "Eine einfache Mechanik für Hochfrequenz-Kategorien: Jeder validierte Kauf bringt den Verbraucher näher an einen Vorteil und erzeugt verwertbare Daten für die nächste Aktivierung.",
+  "Mecánica principal": "Kernmechanik",
+  "Compra 6.": "Kaufe 6.",
+  "Recibe valor.": "Erhalte Wert.",
+  "PROGRESO": "FORTSCHRITT",
+  "Compra validada": "Validierter Kauf",
+  "Ticket o pincode": "Beleg oder PIN-Code",
+  "SKU objetivo": "Ziel-SKU",
+  "Nueva compra": "Neuer Kauf",
+  "+1 sello": "+1 Stempel",
+  "+bonus": "+Bonus",
+  "Reward": "Prämie",
+  "Desbloqueado": "Freigeschaltet",
+  "Una compra más desbloquea reward": "Ein weiterer Kauf schaltet die Belohnung frei",
+  "Alta frecuencia": "Hohe Frequenz",
+  "Cómo se activa": "So wird es aktiviert",
+  "Un loop de frecuencia,": "Eine Frequenzschleife,",
+  "no una promo aislada.": "keine isolierte Promo.",
+  "Producto, canal y momento reales": "Reales Produkt, Kanal und Moment",
+  "Valida": "Validieren",
+  "Ticket OCR, pincode o venta atribuida": "Beleg-OCR, PIN-Code oder zugeordneter Verkauf",
+  "Acumula": "Sammeln",
+  "Progreso visible hacia el hito": "Sichtbarer Fortschritt zum Meilenstein",
+  "Canjea": "Einlösen",
+  "Cashback, cupón, regalo o puntos": "Cashback, Coupon, Geschenk oder Punkte",
+  "+ frecuencia": "+ Frequenz",
+  "Impulsa repetición sin depender solo del descuento.": "Fördert Wiederkauf, ohne nur vom Rabatt abzuhängen.",
+  "+ trazabilidad": "+ Rückverfolgbarkeit",
+  "Cada ticket, SKU o pincode alimenta reporting por canal.": "Jeder Beleg, jede SKU oder jeder PIN-Code speist Reporting nach Kanal.",
+  "+ siguiente acción": "+ nächste Aktion",
+  "Permite retargeting, retos, tiers y rewards personalizados.": "Ermöglicht Retargeting, Challenges, Tiers und personalisierte Rewards.",
   "Todas las pruebas": "Jeder Beweis",
   "de compra": "des Kaufs",
   "cuentan": "zählt",
@@ -8334,6 +8615,43 @@ const SAVI_I18N_TEXTS = {
   "Producto, merch y ediciones limitadas": "Prodotto, merchandising ed edizioni limitate",
   "Música, festivales, gaming o cine — alineados con la marca.": "Musica, festival, giochi o cinema: in linea con il marchio.",
   "Misiones, UGC e insights de consumidores y profesionales.": "Missioni, UGC e insight da consumatori e professionisti.",
+  "Focus próxima reunión": "Focus prossimo meeting",
+  "Shopping Collector:": "Shopping Collector:",
+  "compra repetida,": "acquisto ripetuto,",
+  "relación medible.": "relazione misurabile.",
+  "la compra repetida se convierte en": "l'acquisto ripetuto diventa",
+  "relación": "relazione",
+  "Una mecánica simple para categorías de alta frecuencia: cada compra validada acerca al consumidor a un beneficio y genera data accionable para la siguiente activación.": "Una meccanica semplice per categorie ad alta frequenza: ogni acquisto validato avvicina il consumatore a un beneficio e genera dati azionabili per la prossima attivazione.",
+  "Mecánica principal": "Meccanica principale",
+  "Compra 6.": "Acquista 6.",
+  "Recibe valor.": "Ricevi valore.",
+  "PROGRESO": "PROGRESSO",
+  "Compra validada": "Acquisto validato",
+  "Ticket o pincode": "Scontrino o pincode",
+  "SKU objetivo": "SKU target",
+  "Nueva compra": "Nuovo acquisto",
+  "+1 sello": "+1 timbro",
+  "+bonus": "+bonus",
+  "Reward": "Premio",
+  "Desbloqueado": "Sbloccato",
+  "Una compra más desbloquea reward": "Un altro acquisto sblocca il reward",
+  "Alta frecuencia": "Alta frequenza",
+  "Cómo se activa": "Come si attiva",
+  "Un loop de frecuencia,": "Un loop di frequenza,",
+  "no una promo aislada.": "non una promo isolata.",
+  "Producto, canal y momento reales": "Prodotto, canale e momento reali",
+  "Valida": "Valida",
+  "Ticket OCR, pincode o venta atribuida": "OCR scontrino, pincode o vendita attribuita",
+  "Acumula": "Accumula",
+  "Progreso visible hacia el hito": "Progresso visibile verso il traguardo",
+  "Canjea": "Riscatta",
+  "Cashback, cupón, regalo o puntos": "Cashback, coupon, regalo o punti",
+  "+ frecuencia": "+ frequenza",
+  "Impulsa repetición sin depender solo del descuento.": "Stimola la ripetizione senza dipendere solo dallo sconto.",
+  "+ trazabilidad": "+ tracciabilità",
+  "Cada ticket, SKU o pincode alimenta reporting por canal.": "Ogni scontrino, SKU o pincode alimenta il reporting per canale.",
+  "+ siguiente acción": "+ prossima azione",
+  "Permite retargeting, retos, tiers y rewards personalizados.": "Abilita retargeting, sfide, tier e reward personalizzati.",
   "Todas las pruebas": "Ogni prova",
   "de compra": "di acquisto",
   "cuentan": "conta",
@@ -8704,6 +9022,15 @@ const SAVI_I18N_TEXTS = {
 
 const SAVI_AVAILABLE_LANGS = new Set(["es", "en", "de", "it"]);
 
+const SAVI_I18N_KEYED_TEXT = {
+  "shoppingCollector.purchaseStep": {
+    es: "Compra",
+    en: "Purchase",
+    de: "Kauf",
+    it: "Acquisto"
+  }
+};
+
 const SAVI_TEXT_NODE_ORIGINALS = new WeakMap();
 
 function translateTextNode(node, lang) {
@@ -8764,6 +9091,12 @@ function applyLanguage(lang) {
   const nodes = [];
   while (walker.nextNode()) nodes.push(walker.currentNode);
   nodes.forEach((node) => translateTextNode(node, nextLang));
+
+  document.querySelectorAll("[data-i18n-key]").forEach((element) => {
+    const key = element.getAttribute("data-i18n-key");
+    const value = SAVI_I18N_KEYED_TEXT[key]?.[nextLang];
+    if (value) element.textContent = value;
+  });
 }
 
 function getSavedLanguage() {
